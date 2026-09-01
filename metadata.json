@@ -1,0 +1,8 @@
+{
+  "name": "AgriGuru",
+  "description": "AgriGuru - AI-Powered Agricultural Ecosystem & Startup Co-Pilot for Farmers, Mandis, Storage, KCC Loans, & Agribusinesses.",
+  "requestFramePermissions": ["geolocation", "microphone"],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,48 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper function
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // User profile documents
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if isOwner(userId);
+    }
+
+    // Farm records & IoT telemetries
+    match /farms/{farmId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Soil prescriptions & crop logs
+    match /prescriptions/{prescriptionId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Market auctions & bids
+    match /auctions/{auctionId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Chat sessions and live consultation records
+    match /chats/{chatId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Default rule
+    match /{document=**} {
+      allow read, write: if isAuthenticated();
+    }
+  }
+}
