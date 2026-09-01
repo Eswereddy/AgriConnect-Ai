@@ -1,0 +1,212 @@
+import { CropListingItem } from "../components/buyer/BuyerBidManagement";
+
+export const defaultListings: CropListingItem[] = [
+  {
+    id: "LOT-9102",
+    cropName: "Rice (IR 64)",
+    variety: "IR 64 High-Yield Long Grain",
+    farmerName: "Rajesh Patel",
+    location: "Anand, Gujarat",
+    region: "Gujarat",
+    cropType: "Rice",
+    quantity: 8,
+    minOrderQty: 1,
+    packagingType: "Export Grade Gunny Jute Sacks",
+    packagingSize: "50 Kg Sacks",
+    farmerRating: 4.8,
+    farmerTotalCropsSold: 142,
+    qualityGrade: "Grade B",
+    startingBid: 31000,
+    currentHighestBid: 31500,
+    bidCount: 4,
+    timeLeft: 3900,
+    image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&q=80&w=600",
+    images: [
+      "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1536304997881-a372c179924b?auto=format&fit=crop&q=80&w=600"
+    ],
+    harvestDate: "2026-06-29",
+    moisture: "13.2%",
+    purity: "98.5%",
+    organic: false,
+    bidsHistory: [
+      { company: "AgroMart India Pvt Ltd", amount: 31500, time: "2 hours ago" },
+      { company: "Indus Milling Group", amount: 31200, time: "4 hours ago" },
+      { company: "Adani Wilmar", amount: 31000, time: "7 hours ago" }
+    ]
+  },
+  {
+    id: "LOT-8432",
+    cropName: "Wheat (PBW 343)",
+    variety: "PBW 343 Premium",
+    farmerName: "Rajesh Patel",
+    location: "Anand, Gujarat",
+    region: "Gujarat",
+    cropType: "Wheat",
+    quantity: 10,
+    minOrderQty: 1,
+    packagingType: "Heavy-Duty HDPE Woven Bags",
+    packagingSize: "25 Kg Bags",
+    farmerRating: 4.8,
+    farmerTotalCropsSold: 310,
+    qualityGrade: "Grade A",
+    startingBid: 24000,
+    currentHighestBid: 25000,
+    bidCount: 5,
+    timeLeft: 5400,
+    image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&q=80&w=600",
+    images: [
+      "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&q=80&w=600"
+    ],
+    harvestDate: "2026-06-25",
+    moisture: "12.8%",
+    purity: "99.1%",
+    organic: false,
+    bidsHistory: [
+      { company: "AgroMart India Pvt Ltd", amount: 25000, time: "1 hour ago" },
+      { company: "ITC Food Division", amount: 24600, time: "3 hours ago" },
+      { company: "Cargill India", amount: 24000, time: "5 hours ago" }
+    ]
+  },
+  {
+    id: "LOT-7761",
+    cropName: "Organic High-Protein Soybeans",
+    variety: "Non-GMO JS-335",
+    farmerName: "Gurnam Singh Farms",
+    location: "Ambala, Haryana",
+    region: "Haryana",
+    cropType: "Soybean",
+    quantity: 12,
+    minOrderQty: 2,
+    packagingType: "Bulk Poly-Laminated Sacks",
+    packagingSize: "1000 Kg Super-Sacks",
+    farmerRating: 4.8,
+    farmerTotalCropsSold: 94,
+    qualityGrade: "Grade A",
+    startingBid: 39000,
+    currentHighestBid: 41500,
+    bidCount: 4,
+    timeLeft: 1200,
+    image: "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&q=80&w=600",
+    images: [
+      "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1536304997881-a372c179924b?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1551754626-7ed7d2cc77b4?auto=format&fit=crop&q=80&w=600"
+    ],
+    harvestDate: "2026-06-22",
+    moisture: "11.5%",
+    purity: "99.1%",
+    organic: true,
+    bidsHistory: [
+      { company: "Global Agrifood Corp", amount: 41500, time: "30 mins ago" },
+      { company: "Patanjali Foods", amount: 40500, time: "2 hours ago" },
+      { company: "Soya-Tech Oilfields", amount: 39000, time: "4 hours ago" }
+    ]
+  },
+  {
+    id: "LOT-6650",
+    cropName: "Corn (Hybrid 1)",
+    variety: "Hybrid 1 Premium Quality",
+    farmerName: "Suresh Kumar",
+    location: "Ramanagara, Karnataka",
+    region: "Karnataka",
+    cropType: "Corn",
+    quantity: 12,
+    minOrderQty: 1,
+    packagingType: "Open-Mesh Ventilation Bags",
+    packagingSize: "40 Kg Bags",
+    farmerRating: 4.8,
+    farmerTotalCropsSold: 512,
+    qualityGrade: "Premium",
+    startingBid: 18000,
+    currentHighestBid: 19000,
+    bidCount: 3,
+    timeLeft: 8200,
+    image: "https://images.unsplash.com/photo-1551754626-7ed7d2cc77b4?auto=format&fit=crop&q=80&w=600",
+    images: [
+      "https://images.unsplash.com/photo-1551754626-7ed7d2cc77b4?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&q=80&w=600"
+    ],
+    harvestDate: "2026-06-18",
+    moisture: "12.5%",
+    purity: "99.0%",
+    organic: false,
+    bidsHistory: [
+      { company: "AgroMart India Pvt Ltd", amount: 19000, time: "5 hours ago" },
+      { company: "Suguna Foods", amount: 18500, time: "8 hours ago" },
+      { company: "Poultry Feed Mills", amount: 18000, time: "10 hours ago" }
+    ]
+  },
+  {
+    id: "LOT-5123",
+    cropName: "Golden Delicious Apples",
+    variety: "Royal Shimla Grade",
+    farmerName: "Devender Sharma Orchards",
+    location: "Shimla, Himachal Pradesh",
+    region: "Himachal Pradesh",
+    cropType: "Apple",
+    quantity: 8,
+    minOrderQty: 1,
+    packagingType: "Vented Corrugated Wooden Cases",
+    packagingSize: "15 Kg Boxes",
+    farmerRating: 4.95,
+    farmerTotalCropsSold: 78,
+    qualityGrade: "Premium",
+    startingBid: 85000,
+    currentHighestBid: 92000,
+    bidCount: 11,
+    timeLeft: 2100,
+    image: "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&q=80&w=600",
+    images: [
+      "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1619546813926-a78fa6372cd2?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&q=80&w=600"
+    ],
+    harvestDate: "2026-07-02",
+    moisture: "85.2% (Juiciness)",
+    purity: "99.8%",
+    organic: true,
+    bidsHistory: [
+      { company: "Reliance Fresh Ltd", amount: 92000, time: "10 mins ago" },
+      { company: "BigBasket Agri", amount: 90000, time: "1 hour ago" },
+      { company: "Global Agrifood Corp", amount: 88000, time: "3 hours ago" },
+      { company: "Shimla Cold Chain", amount: 85000, time: "6 hours ago" }
+    ]
+  },
+  {
+    id: "LOT-4412",
+    cropName: "Organic Chickpeas (Kabuli Chana)",
+    variety: "Desi Bold Grade 1",
+    farmerName: "Pritam Singh Dhillon",
+    location: "Bhatinda, Punjab",
+    region: "Punjab",
+    cropType: "Chickpeas",
+    quantity: 20,
+    minOrderQty: 4,
+    packagingType: "Laminated Protective PP Sacks",
+    packagingSize: "30 Kg Bags",
+    farmerRating: 4.6,
+    farmerTotalCropsSold: 165,
+    qualityGrade: "Grade B",
+    startingBid: 48000,
+    currentHighestBid: 51000,
+    bidCount: 6,
+    timeLeft: 11000,
+    image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&q=80&w=600",
+    images: [
+      "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1536304997881-a372c179924b?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&q=80&w=600"
+    ],
+    harvestDate: "2026-06-20",
+    moisture: "12.0%",
+    purity: "98.2%",
+    organic: true,
+    bidsHistory: [
+      { company: "TATA Sampann", amount: 51000, time: "4 hours ago" },
+      { company: "Adani Wilmar", amount: 49500, time: "6 hours ago" },
+      { company: "Indus Pulses Co", amount: 48000, time: "9 hours ago" }
+    ]
+  }
+];
