@@ -1,5 +1,5 @@
 // AgriConnect AI - Precision Farming Offline Service Worker
-const CACHE_NAME = "agriconnect-cache-v2";
+const CACHE_NAME = "agriconnect-cache-v3";
 const ASSETS_TO_CACHE = [
   "/",
   "/index.html"
@@ -37,6 +37,13 @@ self.addEventListener("fetch", (event) => {
 
   // Skip POST and non-http/https requests (e.g. chrome-extension or websockets)
   if (event.request.method !== "GET" || !event.request.url.startsWith(self.location.origin)) {
+    return;
+  }
+
+  // Never cache or intercept API traffic: it is per-user, authenticated data.
+  // Caching it let a logged-out (or different) user see the previous user's
+  // responses on a shared phone, and stale AI answers looked like fresh ones.
+  if (reqUrl.pathname.startsWith("/api/")) {
     return;
   }
 
@@ -80,7 +87,7 @@ self.addEventListener("fetch", (event) => {
               }),
               {
                 headers: { "Content-Type": "application/json" },
-                status: 200
+                status: 503
               }
             );
           }
