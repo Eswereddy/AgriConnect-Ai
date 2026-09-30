@@ -23,3 +23,21 @@ export const registerRateLimiter = rateLimit({
   legacyHeaders: false,
   message: { error: "Too many accounts created from this network. Please try again later." }
 });
+
+// Generic per-IP limiter for all /api/* traffic (protects the paid Gemini quota).
+export const apiRateLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 120,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many requests. Please slow down and try again shortly." }
+});
+
+// The public client-error endpoint would otherwise let anyone flood the error log.
+export const clientErrorRateLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many error reports." }
+});
