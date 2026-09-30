@@ -13,7 +13,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { randomUUID } from "crypto";
 import type { Request, Response, NextFunction } from "express";
-import { createUser, findUserByEmail, touchLastLogin, recordAudit, type UserRecord } from "./db";
+import { createUser, findUserByEmail, findUserById, touchLastLogin, recordAudit, type UserRecord } from "./db";
 
 const TOKEN_COOKIE = "agriconnect_token";
 const TOKEN_TTL_SECONDS = 60 * 60 * 24 * 7; // 7 days
@@ -136,6 +136,32 @@ export function attachUserIfPresent(req: AuthedRequest, _res: Response, next: Ne
   next();
 }
 
+/**
+ * Verifies a raw token string and returns the CURRENT user from the database.
+ * Using the DB record (not the role baked into the JWT) means role changes
+ * (e.g. promote-admin) apply immediately and deleted accounts lose access.
+ */
+export function verifyTokenToUser(token: string | undefined): PublicUser | null {
+  if (!token) return null;
+  try {
+    const payload = jwt.verify(token, EFFECTIVE_SECRET) as any;
+    const record = findUserById(payload.sub);
+    return record ? toPublicUser(record) : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Authenticates a raw HTTP upgrade request (used by the WebSocket server). */
+export function authenticateUpgradeRequest(req: { headers: Record<string, any> }): PublicUser | null {
+  const cookieHeader: string = req.headers.cookie || "";
+  const match = cookieHeader.split(";").map(c => c.trim()).find(c => c.startsWith(TOKEN_COOKIE + "="));
+  const cookieToken = match ? decodeURIComponent(match.slice(TOKEN_COOKIE.length + 1)) : undefined;
+  const header: string | undefined = req.headers.authorization;
+  const bearer = header?.startsWith("Bearer ") ? header.slice(7) : undefined;
+  return verifyTokenToUser(cookieToken || bearer);
+}
+
 /** Blocks the request with 401 unless a valid session is present. */
 export function requireAuth(req: AuthedRequest, res: Response, next: NextFunction): void {
   const token = extractToken(req);
@@ -143,13 +169,13 @@ export function requireAuth(req: AuthedRequest, res: Response, next: NextFunctio
     res.status(401).json({ error: "Authentication required." });
     return;
   }
-  try {
-    const payload = jwt.verify(token, EFFECTIVE_SECRET) as any;
-    req.user = { id: payload.sub, email: payload.email, role: payload.role, name: payload.name };
-    next();
-  } catch {
+  const user = verifyTokenToUser(token);
+  if (!user) {
     res.status(401).json({ error: "Your session has expired. Please log in again." });
+    return;
   }
+  req.user = user;
+  next();
 }
 
 /** Use after requireAuth to restrict an endpoint to specific roles. */
