@@ -1,0 +1,8 @@
+{
+  "firestore": [
+    {
+      "database": "ai-studio-remixagriconnect-31ccdbd0-9c9b-46d3-9c70-cc0c2c51ae77",
+      "rules": "firestore.rules"
+    }
+  ]
+}
