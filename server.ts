@@ -5,9 +5,9 @@ import cookieParser from "cookie-parser";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI, Type } from "@google/genai";
 import { initMonitoring, captureClientError, errorHandlerMiddleware } from "./server/monitoring";
-import { registerUser, authenticateUser, signToken, setAuthCookie, clearAuthCookie, requireAuth, requireRole, type AuthedRequest } from "./server/auth";
+import { registerUser, authenticateUser, signToken, setAuthCookie, clearAuthCookie, requireAuth, requireRole, authenticateUpgradeRequest, type AuthedRequest } from "./server/auth";
 import { listUsers, countUsers, recentErrors } from "./server/db";
-import { loginRateLimiter, registerRateLimiter } from "./server/rateLimiter";
+import { loginRateLimiter, registerRateLimiter, apiRateLimiter, clientErrorRateLimiter } from "./server/rateLimiter";
 
 // Load environment variables
 dotenv.config();
@@ -15,8 +15,23 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
-app.use(express.json());
+// Behind Render/Cloud Run/nginx the real client IP is in X-Forwarded-For; without
+// this every user shares one rate-limit bucket (and express-rate-limit logs errors).
+app.set("trust proxy", 1);
+app.disable("x-powered-by");
+
+// Photo diagnosis posts base64 images. Express's default 100kb JSON limit made
+// those requests fail with HTTP 413, so allow realistic phone-photo sizes.
+app.use(express.json({ limit: "12mb" }));
 app.use(cookieParser());
+
+// Basic security headers (no extra dependency needed).
+app.use((_req, res, next) => {
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "SAMEORIGIN");
+  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  next();
+});
 
 // Structured request logging + process-level crash capture (server/monitoring.ts).
 // Registered early so it wraps every route added below.
@@ -37,6 +52,7 @@ initMonitoring(app);
 // error reporter stay open, since a signed-out user has to be able to log
 // in, and a crash on the login screen itself still needs somewhere to go.
 const PUBLIC_API_PATHS = new Set(["/api/client-error"]);
+app.use("/api/", apiRateLimiter);
 
 // Demo mode: set DEMO_MODE=true in the environment to let anyone use the
 // app without registering - useful for a pitch/investor demo where signup
@@ -88,6 +104,24 @@ interface CacheEntry {
 
 const aiCache: { [key: string]: CacheEntry } = {};
 const CACHE_TTL = 15 * 60 * 1000; // Cache responses for 15 minutes to guarantee quota safety
+const CACHE_MAX_ENTRIES = 500;
+
+// Without this the cache grows forever (each entry can hold a full AI response),
+// which slowly exhausts memory on a long-running server.
+(setInterval(() => {
+  const now = Date.now();
+  const keys = Object.keys(aiCache);
+  for (const k of keys) {
+    if (now - aiCache[k].timestamp > CACHE_TTL) delete aiCache[k];
+  }
+  const remaining = Object.keys(aiCache);
+  if (remaining.length > CACHE_MAX_ENTRIES) {
+    remaining
+      .sort((a, b) => aiCache[a].timestamp - aiCache[b].timestamp)
+      .slice(0, remaining.length - CACHE_MAX_ENTRIES)
+      .forEach(k => delete aiCache[k]);
+  }
+}, 60 * 1000) as any).unref?.();
 
 // Smart Quota and Rate Limit Quarantine System
 let geminiQuarantineUntil = 0;
@@ -4322,14 +4356,23 @@ app.post("/api/resource-exchange/listings", (req, res) => {
 const wsClients = new Set<WebSocket>();
 
 function setupWebSocketServer(server: any) {
-  const wss = new WebSocketServer({ noServer: true });
+  const wss = new WebSocketServer({ noServer: true, maxPayload: 64 * 1024 });
 
   server.on("upgrade", (request: any, socket: any, head: any) => {
     const pathname = new URL(request.url, `http://${request.headers.host}`).pathname;
     if (pathname === "/api/resource-exchange/ws") {
+      // The HTTP auth middleware doesn't run for upgrades, so check the session here.
+      if (process.env.DEMO_MODE !== "true" && !authenticateUpgradeRequest(request)) {
+        socket.write("HTTP/1.1 401 Unauthorized\r\nConnection: close\r\n\r\n");
+        socket.destroy();
+        return;
+      }
       wss.handleUpgrade(request, socket, head, (ws) => {
         wss.emit("connection", ws, request);
       });
+    } else if (!pathname.startsWith("/@vite") && pathname !== "/") {
+      // Unknown upgrade paths previously hung open forever.
+      socket.destroy();
     }
   });
 
@@ -4340,7 +4383,7 @@ function setupWebSocketServer(server: any) {
     ws.on("message", (messageStr: string) => {
       try {
         const payload = JSON.parse(messageStr);
-        console.log("WebSocket event received:", payload);
+        
 
         switch (payload.type) {
           case "init": {
@@ -5431,9 +5474,8 @@ app.post("/api/gemini/video-status", async (req, res) => {
 // deliberately to the auth surface itself for now - the 30 existing Gemini
 // endpoints above are left exactly as they were and remain open, so nothing
 // that already worked in the demo breaks. Gating those endpoints behind
-// requireAuth/requireRole (using the middleware defined below) is the
-// natural next step once the frontend is sending session cookies on every
-// request; see AGRICONNECT_HARDENING.md for the rollout plan.
+// requireAuth is now applied globally to /api/* by the middleware near the
+// top of this file. Per-role restrictions (requireRole) are still a TODO.
 
 app.post("/api/auth/register", registerRateLimiter, async (req, res) => {
   try {
@@ -5483,12 +5525,12 @@ app.get("/api/auth/errors", requireAuth, requireRole("Admin"), (req, res) => {
 
 // Public: lets the frontend ErrorBoundary (src/components/ErrorBoundary.tsx)
 // report uncaught client-side errors into the same monitoring pipeline.
-app.post("/api/client-error", (req, res) => {
+app.post("/api/client-error", clientErrorRateLimiter, (req, res) => {
   const { message, stack, context } = req.body || {};
   if (!message) {
     return res.status(400).json({ error: "message is required" });
   }
-  captureClientError(String(message), stack ? String(stack) : undefined, context);
+  captureClientError(String(message).slice(0, 1000), stack ? String(stack).slice(0, 4000) : undefined, context);
   res.status(204).end();
 });
 
