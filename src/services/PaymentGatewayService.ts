@@ -80,8 +80,9 @@ export class PaymentGatewayService {
   }
 
   /**
-   * Simulates PCI-DSS compliant secure transaction initialization and escrow locking
-   * using modern Stripe or Razorpay endpoints.
+   * SIMULATION ONLY - no money moves. Do not collect real card numbers/CVV in
+   * this app; use Razorpay/Stripe hosted checkout (server-created order + client
+   * SDK) so card data never touches your code or servers.
    */
   public static async processPayment(
     payload: PaymentPayload
@@ -114,9 +115,9 @@ export class PaymentGatewayService {
       invoiceId,
       date: new Date().toLocaleDateString("en-IN"),
       provider: {
-        name: "AgriConnect AI Private Ltd",
-        address: "7th Block, Koramangala, Bengaluru, Karnataka, 560034",
-        gstin: "29AAFCA8324M1ZP"
+        name: "AgriConnect AI (DEMO - not a real invoice)",
+        address: "Demo address - replace with your registered business address",
+        gstin: "DEMO-GSTIN-NOT-REGISTERED"
       },
       buyer: {
         name: payload.buyerName,
