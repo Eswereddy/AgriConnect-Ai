@@ -51,7 +51,23 @@ initMonitoring(app);
 // Only the public auth endpoints (register/login/logout) and the client
 // error reporter stay open, since a signed-out user has to be able to log
 // in, and a crash on the login screen itself still needs somewhere to go.
-const PUBLIC_API_PATHS = new Set(["/api/client-error"]);
+const PUBLIC_API_PATHS = new Set(["/api/client-error", "/api/health"]);
+
+// Reports whether the real Gemini AI is configured, so a missing key is visible
+// instead of every feature silently returning simulated (fallback) answers.
+app.get("/api/health", (_req, res) => {
+  res.json({
+    status: "ok",
+    geminiConfigured: Boolean(process.env.GEMINI_API_KEY),
+    uptimeSeconds: Math.round(process.uptime())
+  });
+});
+
+// Logs WHY an AI call fell back to simulated data (previously the reason was swallowed).
+function logAiFailure(err: any) {
+  const msg = String(err?.message || err || "unknown error").replace(/\s+/g, " ").slice(0, 300);
+  console.warn(`[AI-FAILURE] Gemini call failed, using simulated fallback. Reason: ${msg}`);
+}
 app.use("/api/", apiRateLimiter);
 
 // Demo mode: set DEMO_MODE=true in the environment to let anyone use the
@@ -261,6 +277,7 @@ Your response must be a strict structured JSON matching the requested schema:
         activateGeminiQuarantine("Quota Exceeded (429)");
       }
     }
+    logAiFailure(error);
     console.log(`[Quality Grading Fallback Active] Served fallback grading response for crop ${req.body.cropName || "Crop"}`);
 
     // Generate high-fidelity fallback response dynamically
@@ -446,6 +463,7 @@ Your response must be a strict structured JSON matching the requested schema:
         activateGeminiQuarantine("Quota Exceeded (429)");
       }
     }
+    logAiFailure(error);
     console.log(`[Logistics Optimizer Fallback Active] Served fallback response`);
     
     // Fallback generator
@@ -619,6 +637,7 @@ Your response must be a strict structured JSON matching the requested schema:
         activateGeminiQuarantine("Quota Exceeded (429)");
       }
     }
+    logAiFailure(error);
     console.log(`[Price Predictor Fallback Active] Served fallback prediction response for ${req.body.cropName || "Crop"}`);
 
     const cropName = req.body.cropName || "Premium Crop";
@@ -790,6 +809,7 @@ Your response must be a strict structured JSON matching the requested schema:
         activateGeminiQuarantine("Quota Exceeded (429)");
       }
     }
+    logAiFailure(error);
     console.log(`[Demand Predictor Fallback Active] Served fallback prediction response for category ${req.body.category || "Seeds"}`);
 
     const cat = req.body.category || "Seeds";
@@ -980,6 +1000,7 @@ Your response must be a strict structured JSON matching the requested schema:
         activateGeminiQuarantine("Quota Exceeded (429)");
       }
     }
+    logAiFailure(error);
     console.log(`[Pricing Optimizer Fallback Active] Served fallback pricing optimization for ${req.body.productName}`);
 
     const pName = req.body.productName || "Hybrid Seeds";
@@ -1145,6 +1166,7 @@ Your response must be a strict structured JSON matching the requested schema:
         activateGeminiQuarantine("Quota Exceeded (429)");
       }
     }
+    logAiFailure(error);
     console.log(`[Product Copy Gen Fallback Active] Served fallback marketing copy for ${req.body.productName}`);
 
     const pName = req.body.productName || "Hybrid Seeds";
@@ -1364,6 +1386,7 @@ Your response must be a strict structured JSON matching the requested schema:
         activateGeminiQuarantine("Quota Exceeded (429)");
       }
     }
+    logAiFailure(error);
     console.log(`[Diagnostic Fallback Active] Served high-fidelity response for crop ${req.body.cropName || "Crop"}`);
     
     // High-fidelity fallback based on cropName
@@ -1622,6 +1645,7 @@ Your response must be a strict structured JSON matching the requested schema:
         activateGeminiQuarantine("Quota Exceeded (429)");
       }
     }
+    logAiFailure(error);
     console.log(`[Smart Alerts Fallback Active] Served high-fidelity response for crop ${cropName || "Crop"}`);
     // Provide a rich local fallback if Gemini is offline or not configured
     const mockAlerts = generateFallbackAlerts(req.body);
@@ -1794,6 +1818,7 @@ For each of the top 5 crop recommendations, provide:
         activateGeminiQuarantine("Quota Exceeded (429)");
       }
     }
+    logAiFailure(error);
     console.log("[Crop Plan Fallback Active] Served high-fidelity response for crop recommendations");
     
     const season = req.body.season || "Kharif";
@@ -2129,6 +2154,7 @@ Your response must be a strict structured JSON matching the requested schema:
         activateGeminiQuarantine("Quota Exceeded (429)");
       }
     }
+    logAiFailure(error);
     console.log(`[Advisory Fallback Active] Served high-fidelity response for crop ${req.body.cropName || "Crop"}`);
     
     const cropName = req.body.cropName || "Basmati Rice";
@@ -2391,6 +2417,7 @@ Perform a comprehensive chemical, physical, and biological assessment of this so
         activateGeminiQuarantine("Quota Exceeded (429)");
       }
     }
+    logAiFailure(error);
     console.log(`[Soil Analysis Fallback Active] Served high-fidelity response for pH ${req.body.phManual || 6.5}`);
     
     const soilTypeManual = req.body.soilTypeManual || "Loamy Soil";
@@ -2633,6 +2660,7 @@ Please reference this live data dynamically in your advice to personalize the re
         activateGeminiQuarantine("Quota Exceeded (429)");
       }
     }
+    logAiFailure(error);
     console.log(`[Chat Fallback Active] Served high-fidelity response for query: "${(req.body.messages?.[req.body.messages.length-1]?.content || "").substring(0, 30)}..."`);
     
     // Fallback response using retrieved sources or default roles
@@ -2731,6 +2759,7 @@ Text to translate:
         activateGeminiQuarantine("Quota Exceeded (429)");
       }
     }
+    logAiFailure(error);
     console.log(`[Translation Fallback Active] Served high-fidelity response for translation to ${req.body.targetLanguage || "Language"}`);
     
     const { text, targetLanguage } = req.body;
@@ -2849,6 +2878,7 @@ Return a strict JSON object matching the requested schema:
         activateGeminiQuarantine("Quota Exceeded (429)");
       }
     }
+    logAiFailure(error);
     console.log("[OCR Fallback Active] Served high-fidelity response for document parsing");
     
     const result = {
@@ -3094,6 +3124,7 @@ Generate detailed patent suggestions in Markdown:
         activateGeminiQuarantine("Quota Exceeded (429)");
       }
     }
+    logAiFailure(error);
     console.log(`[Research Fallback Active] Served high-fidelity response for task "${req.body.task || "Task"}"`);
     
     const task = req.body.task || "summarize";
@@ -3288,6 +3319,7 @@ Your response must be a strict structured JSON matching this schema:
         activateGeminiQuarantine("Quota Exceeded (429)");
       }
     }
+    logAiFailure(error);
     console.log(`[Location Fallback Active] Served high-fidelity response for location: "${req.body.location || "Location"}"`);
     try {
       const { location } = req.body;
@@ -3533,6 +3565,7 @@ Your response must be a strict structured JSON matching this schema:
         activateGeminiQuarantine("Quota Exceeded (429)");
       }
     }
+    logAiFailure(error);
     console.log(`[Forecast Fallback Active] Served high-fidelity response for location ${location || "Location"}`);
     try {
       const resolvedCrop = cropName || "Basmati Rice";
@@ -3791,6 +3824,7 @@ Generate an end-of-season yield and production forecast. Your response must be a
         activateGeminiQuarantine("Quota Exceeded (429)");
       }
     }
+    logAiFailure(error);
     console.log(`[Yield Forecast Fallback Active] Served fallback response for crop ${cropName}`);
 
     // High fidelity fallback calculation
@@ -3997,6 +4031,7 @@ Evaluate and generate an eligibility dossier. Your response must be a strict str
 
     res.json(result);
   } catch (error: any) {
+    logAiFailure(error);
     console.log(`[Eligibility Fallback Active] Served fallback response for ${farmerName}`);
 
     // High fidelity fallback calculation
@@ -4175,6 +4210,7 @@ Assess the disaster probability, severity, time to impact, and recommended prote
 
     res.json(result);
   } catch (error: any) {
+    logAiFailure(error);
     console.log(`[Disaster Fallback Active] Served fallback response for ${zone}`);
 
     // High fidelity fallback calculation
@@ -5034,6 +5070,7 @@ Your response must be a strict structured JSON matching the requested schema:
         activateGeminiQuarantine("Quota Exceeded (429)");
       }
     }
+    logAiFailure(error);
     console.log("[Bidding Suggestion Fallback Active] Served high-fidelity response for bidding recommendation");
 
     const currentHighestBid = Number(req.body.currentHighestBid) || 45000;
