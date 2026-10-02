@@ -5,10 +5,13 @@ import './index.css';
 import ErrorBoundary from './components/ErrorBoundary';
 import AuthGate from './components/auth/AuthGate';
 import { initClientMonitoring } from './utils/monitoring';
+import { installAiStatusWatcher } from './utils/aiStatus';
+import SimulatedAIBanner from './components/SimulatedAIBanner';
 
 // Error monitoring (Sentry if VITE_SENTRY_DSN is set, otherwise logged to the
 // backend's /api/client-error -> SQLite + ./logs). See src/utils/monitoring.ts.
 initClientMonitoring();
+installAiStatusWatcher();
 
 // Register Precision Farming Offline Service Worker
 if ("serviceWorker" in navigator) {
@@ -28,9 +31,9 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ErrorBoundary>
       <AuthGate>
+        <SimulatedAIBanner />
         <App />
       </AuthGate>
     </ErrorBoundary>
   </StrictMode>,
 );
-
