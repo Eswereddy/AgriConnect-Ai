@@ -37,6 +37,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { auth, googleProvider, db } from "../../lib/firebase";
+import { sanitizeSvg } from "../../utils/sanitizeSvg";
 import { signInWithPopup, signOut, onAuthStateChanged, User as FirebaseUser } from "firebase/auth";
 import { collection, addDoc, getDocs, query, orderBy, limit, serverTimestamp } from "firebase/firestore";
 
@@ -1540,7 +1541,7 @@ export const GeminiAIStudioSuite: React.FC = () => {
                 <div className="space-y-4">
                   <div
                     className="w-full rounded-2xl overflow-hidden border border-slate-200 shadow-sm aspect-video bg-slate-950"
-                    dangerouslySetInnerHTML={{ __html: generatedVisual.svgGraphic }}
+                    dangerouslySetInnerHTML={{ __html: sanitizeSvg(generatedVisual.svgGraphic) }}
                   />
                   <div className="p-4 bg-purple-50/50 border border-purple-200 rounded-2xl space-y-1">
                     <p className="text-xs font-bold text-purple-900">Botanical & Visual Diagnosis:</p>
