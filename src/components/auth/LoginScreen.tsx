@@ -1,157 +1,63 @@
-import React, { useState } from "react";
-import { Sprout, Mail, Lock, User as UserIcon, Loader2, AlertTriangle } from "lucide-react";
-import { useAuth } from "../../contexts/AuthContext";
-
-const ROLE_OPTIONS = [
-  "Farmer", "Buyer", "Government Officer", "Supplier", "Agriculture Expert",
-  "Logistics Provider", "Warehouse Operator", "Insurance Agent", "Bank Officer",
-  "Researcher", "Extension Officer"
-  // "Admin" is intentionally excluded here - it can't be self-assigned via
-  // public registration. See server/scripts/promote-admin.ts.
-];
-
-export default function LoginScreen() {
-  const { login, register, error, clearError } = useAuth();
-  const [mode, setMode] = useState<"login" | "register">("login");
-  const [submitting, setSubmitting] = useState(false);
-
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("Farmer");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitting(true);
-    try {
-      if (mode === "login") {
-        await login(email, password);
-      } else {
-        await register({ name, email, password, role });
-      }
-    } catch {
-      // error is already captured in AuthContext state and rendered below
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
-  return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-4">
-      <div className="w-full max-w-md">
-        <div className="flex flex-col items-center mb-6">
-          <div className="p-3.5 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl text-white shadow-lg shadow-emerald-200 mb-3">
-            <Sprout className="h-8 w-8" />
-          </div>
-          <h1 className="text-xl font-black text-slate-800">AgriConnect AI</h1>
-          <p className="text-xs text-slate-500 font-medium mt-1">Sign in to your workspace</p>
-        </div>
-
-        <div className="bg-white border border-slate-150 rounded-3xl shadow-sm p-6 sm:p-7">
-          <div className="flex bg-slate-50 border border-slate-100 rounded-2xl p-1 mb-6">
-            {(["login", "register"] as const).map((m) => (
-              <button
-                key={m}
-                type="button"
-                onClick={() => {
-                  setMode(m);
-                  clearError();
-                }}
-                className={`flex-1 py-2 rounded-xl text-xs font-extrabold uppercase tracking-wide transition-all cursor-pointer ${
-                  mode === m ? "bg-emerald-600 text-white shadow-sm" : "text-slate-500 hover:text-slate-700"
-                }`}
-              >
-                {m === "login" ? "Sign In" : "Create Account"}
-              </button>
-            ))}
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {mode === "register" && (
-              <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Full Name</label>
-                <div className="relative">
-                  <UserIcon className="h-4 w-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                  <input
-                    type="text"
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Aditi Sharma"
-                    className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400"
-                  />
-                </div>
-              </div>
-            )}
-
-            <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Email</label>
-              <div className="relative">
-                <Mail className="h-4 w-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@example.com"
-                  className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400"
-                />
-              </div>
-            </div>
-
-            <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Password</label>
-              <div className="relative">
-                <Lock className="h-4 w-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                <input
-                  type="password"
-                  required
-                  minLength={8}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="At least 8 characters"
-                  className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400"
-                />
-              </div>
-            </div>
-
-            {mode === "register" && (
-              <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">I am a...</label>
-                <select
-                  value={role}
-                  onChange={(e) => setRole(e.target.value)}
-                  className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400"
-                >
-                  {ROLE_OPTIONS.map((r) => (
-                    <option key={r} value={r}>{r}</option>
-                  ))}
-                </select>
-              </div>
-            )}
-
-            {error && (
-              <div className="flex items-start gap-2 p-3 bg-rose-50 border border-rose-100 rounded-xl">
-                <AlertTriangle className="h-4 w-4 text-rose-500 mt-0.5 shrink-0" />
-                <p className="text-xs text-rose-700 font-semibold">{error}</p>
-              </div>
-            )}
-
-            <button
-              type="submit"
-              disabled={submitting}
-              className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 disabled:bg-emerald-300 text-white rounded-xl text-sm font-extrabold flex items-center justify-center gap-2 transition-colors cursor-pointer"
-            >
-              {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
-              {mode === "login" ? "Sign In" : "Create Account"}
-            </button>
-          </form>
-        </div>
-
-        <p className="text-center text-[11px] text-slate-400 mt-5">
-          Your session is protected by a secure, httpOnly cookie.
-        </p>
-      </div>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AgriConnect AI - Login Preview</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg1:#ecfdf5;--bg2:#fff;--bg3:#f0fdfa;--card:#fff;--line:#e2e8f0;--ink:#1e293b;--mut:#64748b;--field:#f8fafc;--g:#059669;--g2:#047857;--quote:#047857}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#052e22;--bg2:#0b1220;--bg3:#042f2e;--card:#111827;--line:#263244;--ink:#f1f5f9;--mut:#94a3b8;--field:#0f172a;--quote:#6ee7b7}}
+:root[data-theme="dark"]{--bg1:#052e22;--bg2:#0b1220;--bg3:#042f2e;--card:#111827;--line:#263244;--ink:#f1f5f9;--mut:#94a3b8;--field:#0f172a;--quote:#6ee7b7}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));color:var(--ink)}
+.wrap{width:100%;max-width:420px}
+.head{display:flex;flex-direction:column;align-items:center;margin-bottom:22px}
+.logo{padding:14px;border-radius:18px;background:linear-gradient(135deg,#10b981,#0d9488);color:#fff;box-shadow:0 8px 20px rgba(16,185,129,.3);margin-bottom:12px;font-size:28px;line-height:1}
+h1{margin:0;font-size:20px;font-weight:900}
+.sub{margin:4px 0 0;font-size:12px;color:var(--mut);font-weight:500}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.tabs{display:flex;background:var(--field);border:1px solid var(--line);border-radius:16px;padding:4px;margin-bottom:22px}
+.tab{flex:1;padding:8px;border:0;border-radius:12px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;background:transparent;color:var(--mut);cursor:pointer}
+.tab.on{background:var(--g);color:#fff}
+label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin:0 0 6px}
+.f{margin-bottom:16px}
+input,select{width:100%;padding:10px 12px;background:var(--field);border:1px solid var(--line);border-radius:12px;font-size:14px;color:var(--ink)}
+input:focus,select:focus{outline:2px solid #a7f3d0;border-color:#34d399}
+.btn{width:100%;padding:12px;border:0;border-radius:12px;background:var(--g);color:#fff;font-size:14px;font-weight:800;cursor:pointer}
+.btn:hover{background:var(--g2)}
+.quote{text-align:center;font-size:14px;font-weight:600;color:var(--quote);line-height:1.6;margin:20px 0 0}
+.note{text-align:center;font-size:11px;color:var(--mut);margin-top:14px}
+.reg{display:none}
+.is-reg .reg{display:block}
+</style>
+</head>
+<body>
+<div class="wrap" id="app">
+  <div class="head">
+    <div class="logo">🌱</div>
+    <h1>AgriConnect AI</h1>
+    <p class="sub">Sign in to your workspace</p>
+  </div>
+  <div class="card">
+    <div class="tabs">
+      <button class="tab on" id="t-login" type="button">Sign In</button>
+      <button class="tab" id="t-reg" type="button">Create Account</button>
     </div>
-  );
-}
+    <div class="f reg"><label>Full Name</label><input placeholder="Aditi Sharma"></div>
+    <div class="f"><label>Email</label><input type="email" placeholder="you@example.com"></div>
+    <div class="f"><label>Password</label><input type="password" placeholder="At least 8 characters"></div>
+    <div class="f reg"><label>I am a...</label><select><option>Farmer</option><option>Buyer</option><option>Agriculture Expert</option></select></div>
+    <button class="btn" id="go" type="button">Sign In</button>
+  </div>
+  <p class="quote">🌱 Together we grow — farmers, buyers &amp; experts, one connected field. 🤝🌾</p>
+ 
+</div>
+<script>
+var app=document.getElementById('app'),go=document.getElementById('go'),a=document.getElementById('t-login'),b=document.getElementById('t-reg');
+function set(r){app.classList.toggle('is-reg',r);a.classList.toggle('on',!r);b.classList.toggle('on',r);go.textContent=r?'Create Account':'Sign In';}
+a.onclick=function(){set(false)};b.onclick=function(){set(true)};
+</script>
+</body>
+</html>
