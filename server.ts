@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import { AsyncLocalStorage } from "async_hooks";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import { createServer as createViteServer } from "vite";
@@ -63,12 +64,37 @@ app.get("/api/health", (_req, res) => {
   });
 });
 
+// Tracks, per request, whether the answer was a SIMULATED fallback (Gemini failed or
+// is unconfigured). When true, the JSON response gets `simulated: true` and an
+// X-AI-Simulated header so the UI can tell the user it is NOT real AI advice.
+const aiRequestContext = new AsyncLocalStorage<{ simulated: boolean }>();
+
 // Logs WHY an AI call fell back to simulated data (previously the reason was swallowed).
 function logAiFailure(err: any) {
   const msg = String(err?.message || err || "unknown error").replace(/\s+/g, " ").slice(0, 300);
   console.warn(`[AI-FAILURE] Gemini call failed, using simulated fallback. Reason: ${msg}`);
+  const store = aiRequestContext.getStore();
+  if (store) store.simulated = true;
 }
 app.use("/api/", apiRateLimiter);
+
+// Marks simulated (fallback) AI answers so they are never mistaken for real advice.
+app.use("/api/", (_req, res, next) => {
+  aiRequestContext.run({ simulated: false }, () => {
+    const originalJson = res.json.bind(res);
+    res.json = ((body: any) => {
+      const store = aiRequestContext.getStore();
+      if (store?.simulated) {
+        res.setHeader("X-AI-Simulated", "true");
+        if (body && typeof body === "object" && !Array.isArray(body) && res.statusCode < 400) {
+          body = { ...body, simulated: true };
+        }
+      }
+      return originalJson(body);
+    }) as typeof res.json;
+    next();
+  });
+});
 
 // Demo mode: set DEMO_MODE=true in the environment to let anyone use the
 // app without registering - useful for a pitch/investor demo where signup
@@ -4824,6 +4850,7 @@ Provide professional, scientifically sound diagnostics, predictions, and recomme
     res.json(reportJson);
 
   } catch (error: any) {
+    logAiFailure(error);
     const errorMsg = error.message || String(error);
     if (errorMsg.includes("429") || errorMsg.includes("quota") || errorMsg.includes("RESOURCE_EXHAUSTED") || errorMsg.includes("quarantine")) {
       if (!isGeminiQuarantineActive()) {
@@ -5134,6 +5161,7 @@ Provide factual, geographically grounded agricultural facilities (such as govern
     });
   } catch (error: any) {
     console.error("Maps Grounding Error:", error);
+    logAiFailure(error);
     // Intelligent fallback
     const q = req.body.query || "Agri Mandi";
     res.json({
@@ -5247,6 +5275,7 @@ Keep formatting structured with markdown bullet points, bold key terms, and prec
     });
   } catch (error: any) {
     console.error("Gemini Chat Error:", error);
+    logAiFailure(error);
     res.json({
       reply: "Based on agronomic data, ensuring timely balanced fertilizer application (NPK according to your Soil Health Card) and monitoring soil moisture prevents crop stress. How can I assist you further with crop management, market selling, or farm financing?",
       modelUsed: "fallback-agri-engine"
@@ -5382,6 +5411,7 @@ Return JSON with the following structure:
     }
   } catch (error: any) {
     console.error("Audio Transcription Error:", error);
+    logAiFailure(error);
     // Intelligent fallback
     res.json({
       transcript: "I have 5 acres of Basmati paddy and noticed yellowing on lower leaves. Should I apply 2 bags of Urea or spray Micronutrients before next watering?",
@@ -5434,6 +5464,7 @@ app.post("/api/gemini/generate-video", async (req, res) => {
       videoOperations.set(operationName, { operation, simulated: false, createdAt: Date.now() });
     } catch (veoErr: any) {
       console.warn("Veo API calling fallback simulation:", veoErr.message);
+    logAiFailure(veoErr);
       operationName = `models/veo-3.1-fast-generate-preview/operations/agri-${Date.now()}`;
       videoOperations.set(operationName, { simulated: true, createdAt: Date.now() });
     }
@@ -5447,6 +5478,7 @@ app.post("/api/gemini/generate-video", async (req, res) => {
     });
   } catch (error: any) {
     console.error("Video Generation Start Error:", error);
+    logAiFailure(error);
     const fallbackName = `models/veo-3.1-fast-generate-preview/operations/demo-${Date.now()}`;
     videoOperations.set(fallbackName, { simulated: true, createdAt: Date.now() });
     res.json({
@@ -5494,10 +5526,12 @@ app.post("/api/gemini/video-status", async (req, res) => {
       return res.json({ operationName, done: true, videoUrl });
     } catch (pollErr: any) {
       console.warn("Veo status poll failed, falling back to placeholder:", pollErr.message);
+    logAiFailure(pollErr);
       return res.json({ operationName, done: true, videoUrl: PLACEHOLDER_VIDEO_URL });
     }
   } catch (error: any) {
     console.error("Video Status Error:", error);
+    logAiFailure(error);
     res.json({ done: true, videoUrl: PLACEHOLDER_VIDEO_URL });
   }
 });
@@ -5594,6 +5628,10 @@ async function start() {
     console.log("Serving static files from /dist...");
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
+    // Unknown /api paths must be a JSON 404, not the HTML app shell with a 200.
+    app.use("/api", (_req, res) => {
+      res.status(404).json({ error: "Not found" });
+    });
     app.get("*", (req, res) => {
       res.sendFile(path.join(distPath, "index.html"));
     });
