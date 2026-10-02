@@ -297,16 +297,16 @@ platforms — this is handled automatically.
 
 ## Known limitations & roadmap
 
-- The 30 API endpoints are gated by login, not by role — any authenticated
-  user can currently call any endpoint. Mapping each endpoint to the roles
-  that should legitimately use it is a natural next step.
-- In-memory demo caches (`aiCache`, `tradeSessions`, `videoOperations` in
-  `server.ts`) still reset on server restart by design.
-- The WebSocket trade-negotiation server isn't yet gated by the auth layer.
-- The production frontend bundle is a single ~7.8MB chunk — code-splitting
-  each role's dashboard with `React.lazy()` would meaningfully cut initial
-  load time.
+- Endpoints are gated by login, not by role - any signed-in user can call any
+  endpoint. Mapping endpoints to roles is the next security step.
+- When Gemini is unavailable the server returns SIMULATED answers. These are now
+  flagged (`simulated: true` + `X-AI-Simulated` header) and the UI shows a warning
+  banner, but they are still demo data, not real advice.
+- Payments, escrow and GST invoices are simulated demo flows - no real money moves.
+- In-memory caches (`aiCache`, `tradeSessions`, `videoOperations`) reset on restart.
+- Role dashboards are code-split with `React.lazy()`; individual dashboards are
+  still very large and could be split further.
 
 ## License
 
-Add your preferred license here (e.g. MIT) — none is currently specified.
+MIT - see `LICENSE`.
