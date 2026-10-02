@@ -4922,7 +4922,13 @@ export default function SupplierView({ items, onUpdateItem }: SupplierViewProps)
                               content = <li className="ml-3 mt-0.5">{line.substring(1).trim()}</li>;
                             } else {
                               // basic parsing of bold and italics
-                              let txt = line;
+                              // Escape HTML first so typed text can never inject markup (XSS),
+                              // then apply the simple bold/italic formatting below.
+                              let txt = line
+                                .replace(/&/g, "&amp;")
+                                .replace(/</g, "&lt;")
+                                .replace(/>/g, "&gt;")
+                                .replace(/"/g, "&quot;");
                               // Replace **bold**
                               const boldRegex = /\*\*(.*?)\*\*/g;
                               const italicRegex = /\*(.*?)\*/g;
