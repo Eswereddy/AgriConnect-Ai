@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import {
   Sprout,
   ShoppingBag,
@@ -47,21 +47,21 @@ import {
 } from "./types";
 
 // Import Role Views
-import FarmerView from "./components/role-views/FarmerView";
-import BuyerView from "./components/role-views/BuyerView";
-import GovernmentView from "./components/role-views/GovernmentView";
-import SupplierView from "./components/role-views/SupplierView";
-import ExpertView from "./components/role-views/ExpertView";
-import LogisticsAndWarehouseView from "./components/role-views/LogisticsAndWarehouseView";
-import FinanceAndInsuranceView from "./components/role-views/FinanceAndInsuranceView";
-import ResearchAndExtensionView from "./components/role-views/ResearchAndExtensionView";
-import AdminView from "./components/role-views/AdminView";
-import AIIoTIntegrationEngine from "./components/AIIoTIntegrationEngine";
-import BlockchainCarbonEngine from "./components/BlockchainCarbonEngine";
-import MobileAppSuite from "./components/MobileAppSuite";
-import { StartupPitchHub } from "./components/startup/StartupPitchHub";
-import { PrecisionAgronomyAndFintech } from "./components/startup/PrecisionAgronomyAndFintech";
-import { GeminiAIStudioSuite } from "./components/startup/GeminiAIStudioSuite";
+const FarmerView = lazy(() => import("./components/role-views/FarmerView"));
+const BuyerView = lazy(() => import("./components/role-views/BuyerView"));
+const GovernmentView = lazy(() => import("./components/role-views/GovernmentView"));
+const SupplierView = lazy(() => import("./components/role-views/SupplierView"));
+const ExpertView = lazy(() => import("./components/role-views/ExpertView"));
+const LogisticsAndWarehouseView = lazy(() => import("./components/role-views/LogisticsAndWarehouseView"));
+const FinanceAndInsuranceView = lazy(() => import("./components/role-views/FinanceAndInsuranceView"));
+const ResearchAndExtensionView = lazy(() => import("./components/role-views/ResearchAndExtensionView"));
+const AdminView = lazy(() => import("./components/role-views/AdminView"));
+const AIIoTIntegrationEngine = lazy(() => import("./components/AIIoTIntegrationEngine"));
+const BlockchainCarbonEngine = lazy(() => import("./components/BlockchainCarbonEngine"));
+const MobileAppSuite = lazy(() => import("./components/MobileAppSuite"));
+const StartupPitchHub = lazy(() => import("./components/startup/StartupPitchHub").then((m) => ({ default: m.StartupPitchHub })));
+const PrecisionAgronomyAndFintech = lazy(() => import("./components/startup/PrecisionAgronomyAndFintech").then((m) => ({ default: m.PrecisionAgronomyAndFintech })));
+const GeminiAIStudioSuite = lazy(() => import("./components/startup/GeminiAIStudioSuite").then((m) => ({ default: m.GeminiAIStudioSuite })));
 
 // Floating AI Advisor
 import AIConsultant from "./components/AIConsultant";
@@ -635,6 +635,13 @@ export default function App() {
 
         {/* Dynamic Center Workstation Dashboard */}
         <main className="flex-1 p-6 md:p-8 overflow-y-auto max-w-7xl mx-auto w-full">
+          <Suspense
+            fallback={
+              <div className="flex items-center justify-center py-24 text-sm font-semibold text-emerald-700">
+                🌱 Loading your workspace...
+              </div>
+            }
+          >
           {activeRole === UserRole.FARMER && (
             <FarmerView
               telemetry={telemetry}
@@ -738,6 +745,7 @@ export default function App() {
           {activeRole === UserRole.GEMINI_SUITE && (
             <GeminiAIStudioSuite />
           )}
+          </Suspense>
         </main>
       </div>
 
