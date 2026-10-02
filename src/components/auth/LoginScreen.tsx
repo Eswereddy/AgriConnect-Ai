@@ -149,7 +149,9 @@ export default function LoginScreen() {
         </div>
 
         <p className="text-center text-sm text-emerald-700 font-semibold mt-5 leading-relaxed">
-          🌱 Together we grow — farmers, buyers &amp; experts, one connected field. 🤝🌾
+          🌱"One network, one vision, one harvest — empowering every hand from the soil to the market."
+
+— Eswar Reddy. 🤝🌾
         </p>
       </div>
     </div>
