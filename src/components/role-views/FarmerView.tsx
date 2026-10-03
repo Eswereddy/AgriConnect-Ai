@@ -116,6 +116,7 @@ import IoTSensorIntegration from "../IoTSensorIntegration";
 import { FirstAidResource } from "../FirstAidResource";
 import { HeatStressWarning } from "../HeatStressWarning";
 import FarmerAuthOnboarding from "../FarmerAuthOnboarding";
+import FarmerProfiles from "../farmers/FarmerProfiles";
 import FarmLandingDashboard from "../startup/FarmLandingDashboard";
 import FarmManagerConsole from "../startup/FarmManagerConsole";
 import CropHistoryConsole from "../startup/CropHistoryConsole";
@@ -1973,6 +1974,7 @@ export default function FarmerView({
           { id: "soil", label: "Soil Analysis Lab", icon: FlaskConical },
           { id: "profile", label: "Land & Assets", icon: Layers },
           { id: "profile_settings", label: "Profile & Settings", icon: Settings },
+          { id: "farmer_validation", label: "Farmer Validation", icon: Users },
           { id: "finances", label: "Ledger (P&L)", icon: DollarSign },
           { id: "fin_services", label: "Financial Services", icon: Coins },
           { id: "carbon_credit", label: "Carbon Marketplace", icon: Leaf },
@@ -4530,6 +4532,10 @@ export default function FarmerView({
 
       {activeTab === "government" && (
         <GovernmentIntegration />
+      )}
+
+      {activeTab === "farmer_validation" && (
+        <FarmerProfiles mode="farmer" />
       )}
 
       {activeTab === "weather" && (
