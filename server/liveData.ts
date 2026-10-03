@@ -22,6 +22,8 @@
 
 import { Router } from "express";
 import { randomUUID } from "crypto";
+import fs from "fs";
+import path from "path";
 import { requireAuth, type AuthedRequest } from "./auth";
 import { query, pgAvailable } from "./pg";
 import { HttpError, wrap } from "./marketplace";
@@ -274,8 +276,41 @@ async function loadStoredMandi(f: MandiFilter, limit: number): Promise<MandiReco
   return rows.map(rowToRecord);
 }
 
+// ---- Offline fallback: Andhra Pradesh prices from the Kaggle dataset ----
+// Built by `npm run import:kaggle`. These are REAL past prices (not live) and are always labelled as such.
+interface FallbackFile { latestDate: string; rows: any[] }
+let fallbackCache: FallbackFile | null | undefined;
+function loadFallbackFile(): FallbackFile | null {
+  if (fallbackCache !== undefined) return fallbackCache;
+  try {
+    const p = path.join(process.cwd(), "server", "fallback", "ap-mandi.json");
+    const j = JSON.parse(fs.readFileSync(p, "utf8"));
+    fallbackCache = Array.isArray(j?.rows) && j.rows.length ? { latestDate: j.latestDate, rows: j.rows } : null;
+  } catch { fallbackCache = null; }
+  return fallbackCache;
+}
+const fileRecords = (): MandiRecord[] =>
+  (loadFallbackFile()?.rows ?? []).map((r: any) => ({
+    state: r.s, district: r.d, market: r.m, commodity: r.c, variety: r.v, grade: r.g, arrivalDate: r.t,
+    minPerQuintal: r.lo, maxPerQuintal: r.hi, modalPerQuintal: r.md, modalPerKg: Math.round((r.md / 100) * 100) / 100,
+  }));
+function loadFileMandi(f: MandiFilter, limit: number) {
+  const fb = loadFallbackFile();
+  if (!fb) return null;
+  const records = fileRecords().filter((r) => matches(r, f))
+    .sort((a, b) => b.arrivalDate.localeCompare(a.arrivalDate) || a.commodity.localeCompare(b.commodity)).slice(0, limit);
+  if (!records.length) return null;
+  return { source: "kaggle-file" as const, stale: true, fetchedAt: null, records,
+    note: `Live prices are unavailable. These are saved Andhra Pradesh prices from the Kaggle dataset (latest date ${fb.latestDate}), not today's rates.` };
+}
+
 export async function getMandiPrices(f: MandiFilter, limit = 100) {
   if (!process.env.DATA_GOV_API_KEY) {
+    const saved = await loadStoredMandi(f, limit).catch(() => []);
+    if (saved.length) return { source: "stored" as const, stale: true, fetchedAt: null, records: saved,
+      note: "Live prices are not configured, so these are the most recent prices saved earlier." };
+    const fromFile = loadFileMandi(f, limit);
+    if (fromFile) return fromFile;
     throw new HttpError(503, "Live mandi prices are not configured. Set DATA_GOV_API_KEY (free key from data.gov.in).");
   }
   const ck = `mandi:${lc(f.state)}|${lc(f.district)}|${lc(f.market)}|${lc(f.commodity)}`;
@@ -296,12 +331,18 @@ export async function getMandiPrices(f: MandiFilter, limit = 100) {
       return { source: "stored" as const, stale: true, fetchedAt: null, records: stored,
         note: "The live feed is unavailable, so these are the most recent prices saved earlier." };
     }
+    const fromFile = loadFileMandi(f, limit);
+    if (fromFile) return fromFile;
     throw err;
   }
 }
 
 export async function getMandiTrend(commodity: string, market: string | undefined, days: number) {
-  if (!pgAvailable()) throw new HttpError(503, "The database is not available.");
+  if (!pgAvailable()) {
+    const pts = fileTrend(commodity, market, days);
+    if (pts.length) return pts;
+    throw new HttpError(503, "The database is not available.");
+  }
   const cutoff = new Date(Date.now() - days * 86400000).toISOString().slice(0, 10);
   const params: any[] = [`%${commodity}%`, cutoff];
   let marketSql = "";
@@ -311,9 +352,26 @@ export async function getMandiTrend(commodity: string, market: string | undefine
      FROM mandi_prices WHERE commodity ILIKE $1 ${marketSql} AND arrival_date >= $2
      GROUP BY arrival_date ORDER BY arrival_date ASC`, params
   );
-  return rows.map((r: any) => ({
+  const points = rows.map((r: any) => ({
     date: typeof r.arrival_date === "string" ? r.arrival_date.slice(0, 10) : new Date(r.arrival_date).toISOString().slice(0, 10),
     modalPerQuintal: Math.round(Number(r.modal)), lowPerQuintal: Number(r.lo), highPerQuintal: Number(r.hi), markets: Number(r.n),
+  }));
+  return points.length ? points : fileTrend(commodity, market, days);
+}
+
+/** Trend from the Kaggle fallback file; "last N days" is counted back from the file's latest date. */
+function fileTrend(commodity: string, market: string | undefined, days: number) {
+  const fb = loadFallbackFile();
+  if (!fb) return [];
+  const cutoff = new Date(new Date(fb.latestDate).getTime() - days * 86400000).toISOString().slice(0, 10);
+  const byDate = new Map<string, MandiRecord[]>();
+  for (const r of fileRecords()) {
+    if (r.arrivalDate < cutoff || !lc(r.commodity).includes(lc(commodity)) || (market && !lc(r.market).includes(lc(market)))) continue;
+    byDate.set(r.arrivalDate, [...(byDate.get(r.arrivalDate) ?? []), r]);
+  }
+  return [...byDate.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([date, list]) => ({
+    date, modalPerQuintal: Math.round(list.reduce((t, r) => t + r.modalPerQuintal, 0) / list.length),
+    lowPerQuintal: Math.min(...list.map((r) => r.minPerQuintal)), highPerQuintal: Math.max(...list.map((r) => r.maxPerQuintal)), markets: list.length,
   }));
 }
 
