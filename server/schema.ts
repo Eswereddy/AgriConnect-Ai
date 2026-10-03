@@ -2,6 +2,7 @@
 // POSTGRES SCHEMA - core marketplace loop
 // ==========================================
 // farmer -> farm -> crop -> listing -> bid -> order -> payment (escrow) -> shipment
+// plus mandi_prices: a history of mandi prices pulled from data.gov.in (see server/liveData.ts).
 //
 // Conventions
 //  - Money is stored as integer PAISE (BIGINT), never floats. 1 rupee = 100 paise.
@@ -111,6 +112,8 @@ CREATE TABLE IF NOT EXISTS payments (
   amount_paise   BIGINT NOT NULL CHECK (amount_paise > 0),
   provider       TEXT NOT NULL,
   provider_ref   TEXT,
+  provider_payment_id TEXT,
+  provider_refund_id  TEXT,
   status         TEXT NOT NULL DEFAULT 'captured' CHECK (status IN ('created','captured','failed','refunded')),
   escrow_status  TEXT NOT NULL DEFAULT 'held' CHECK (escrow_status IN ('held','released','refunded')),
   created_at     TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -118,6 +121,12 @@ CREATE TABLE IF NOT EXISTS payments (
 )
 ;;
 CREATE INDEX IF NOT EXISTS idx_payments_order ON payments(order_id)
+;;
+ALTER TABLE payments ADD COLUMN IF NOT EXISTS provider_payment_id TEXT
+;;
+ALTER TABLE payments ADD COLUMN IF NOT EXISTS provider_refund_id TEXT
+;;
+CREATE INDEX IF NOT EXISTS idx_payments_provider_ref ON payments(provider, provider_ref)
 ;;
 CREATE TABLE IF NOT EXISTS shipments (
   id             UUID PRIMARY KEY,
@@ -153,6 +162,25 @@ CREATE TABLE IF NOT EXISTS warehouse_stock (
 )
 ;;
 CREATE INDEX IF NOT EXISTS idx_stock_owner ON warehouse_stock(owner_id)
+;;
+CREATE TABLE IF NOT EXISTS mandi_prices (
+  id           UUID PRIMARY KEY,
+  state        TEXT NOT NULL,
+  district     TEXT NOT NULL,
+  market       TEXT NOT NULL,
+  commodity    TEXT NOT NULL,
+  variety      TEXT NOT NULL DEFAULT '',
+  grade        TEXT NOT NULL DEFAULT '',
+  arrival_date DATE NOT NULL,
+  min_price    NUMERIC NOT NULL,
+  max_price    NUMERIC NOT NULL,
+  modal_price  NUMERIC NOT NULL,
+  fetched_at   TIMESTAMPTZ NOT NULL DEFAULT now()
+)
+;;
+CREATE UNIQUE INDEX IF NOT EXISTS uq_mandi_price ON mandi_prices(state, district, market, commodity, variety, grade, arrival_date)
+;;
+CREATE INDEX IF NOT EXISTS idx_mandi_lookup ON mandi_prices(commodity, market, arrival_date)
 `
   .split(/^;;$/m)
   .map((s) => s.trim())
