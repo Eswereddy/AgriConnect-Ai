@@ -116,6 +116,11 @@ const QUICK_PROMPTS: Record<UserRole, string[]> = {
     "How does Google Maps Grounding fetch live verified mandi locations?",
     "Explain how Google Search Grounding verifies real-time MSP price updates.",
     "How does Cloud Firestore securely sync user farm parcels and soil health cards?"
+  ],
+  [UserRole.LIVE_MARKET]: [
+    "How does escrow protect me when I buy or sell a crop here?",
+    "How should I price my listing so buyers actually bid?",
+    "What happens to my stock if an order is cancelled?"
   ]
 };
 

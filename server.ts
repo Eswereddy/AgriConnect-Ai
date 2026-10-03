@@ -9,6 +9,10 @@ import { initMonitoring, captureClientError, errorHandlerMiddleware } from "./se
 import { registerUser, authenticateUser, signToken, setAuthCookie, clearAuthCookie, requireAuth, requireRole, authenticateUpgradeRequest, type AuthedRequest } from "./server/auth";
 import { listUsers, countUsers, recentErrors } from "./server/db";
 import { loginRateLimiter, registerRateLimiter, apiRateLimiter, clientErrorRateLimiter } from "./server/rateLimiter";
+import { initPg } from "./server/pg";
+import { marketRouter } from "./server/marketplace";
+import { paymentsRouter, razorpayWebhook } from "./server/payments";
+import { liveRouter } from "./server/liveData";
 
 // Load environment variables
 dotenv.config();
@@ -23,7 +27,14 @@ app.disable("x-powered-by");
 
 // Photo diagnosis posts base64 images. Express's default 100kb JSON limit made
 // those requests fail with HTTP 413, so allow realistic phone-photo sizes.
-app.use(express.json({ limit: "12mb" }));
+// The Razorpay webhook signature is computed over the RAW request bytes, so keep a copy
+// of the body for that one route (re-serialising parsed JSON would break the signature).
+app.use(express.json({
+  limit: "12mb",
+  verify: (req: any, _res, buf) => {
+    if (req.originalUrl?.startsWith("/api/payments/razorpay/webhook")) req.rawBody = buf;
+  },
+}));
 app.use(cookieParser());
 
 // Basic security headers (no extra dependency needed).
@@ -52,7 +63,8 @@ initMonitoring(app);
 // Only the public auth endpoints (register/login/logout) and the client
 // error reporter stay open, since a signed-out user has to be able to log
 // in, and a crash on the login screen itself still needs somewhere to go.
-const PUBLIC_API_PATHS = new Set(["/api/client-error", "/api/health"]);
+// The Razorpay webhook has no login (Razorpay calls it); it is protected by its HMAC signature instead.
+const PUBLIC_API_PATHS = new Set(["/api/client-error", "/api/health", "/api/payments/razorpay/webhook"]);
 
 // Reports whether the real Gemini AI is configured, so a missing key is visible
 // instead of every feature silently returning simulated (fallback) answers.
@@ -5605,6 +5617,14 @@ app.post("/api/client-error", clientErrorRateLimiter, (req, res) => {
   res.status(204).end();
 });
 
+// Real, persisted marketplace (farms, crops, listings, bids, orders, payments,
+// shipments, warehouse stock) - see server/marketplace.ts and server/schema.ts.
+app.post("/api/payments/razorpay/webhook", razorpayWebhook);
+app.use("/api/market/payments", paymentsRouter);
+app.use("/api/market", marketRouter);
+// Live weather + mandi price feeds (see server/liveData.ts).
+app.use("/api/live", liveRouter);
+
 // Catches any error thrown or passed to next() by the routes above (including
 // the pre-existing Gemini endpoints) and reports it through server/monitoring.ts
 // instead of letting Express's default handler leak a stack trace to the client.
@@ -5617,6 +5637,7 @@ app.use(errorHandlerMiddleware);
 // ==========================================
 
 async function start() {
+  await initPg();
   if (process.env.NODE_ENV !== "production") {
     console.log("Setting up Vite Dev Server Middleware...");
     const vite = await createViteServer({

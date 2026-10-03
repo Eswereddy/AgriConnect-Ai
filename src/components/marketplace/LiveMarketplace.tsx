@@ -316,4 +316,131 @@ function OrdersPanel({ role }: { role: string }) {
 
 // ---------------------------------------------------------------- Logistics
 
-const NEXT_SHIP: Record<string, string | undefined> = { booked: "picked_up", picked_up: "in_transit
+const NEXT_SHIP: Record<string, string | undefined> = { booked: "picked_up", picked_up: "in_transit", in_transit: "delivered" };
+
+function ShipmentsPanel() {
+  const ships = useLoad<Shipment[]>(marketApi.myShipments, []);
+  const act = useAction();
+  return (
+    <div className="space-y-3">
+      <ErrorBanner msg={act.error || ships.error} />
+      {ships.loading ? <Empty text="Loading..." /> : ships.data.length === 0 ? <Empty text="No shipments assigned to you yet." /> : ships.data.map(s => {
+        const next = NEXT_SHIP[s.status];
+        return (
+          <div key={s.id} className={`${card} flex items-center justify-between flex-wrap gap-2`}>
+            <div>
+              <p className="font-bold text-slate-800">{s.trackingCode}</p>
+              <p className="text-xs text-slate-500">{s.pickupAddress ?? "-"} → {s.dropAddress ?? "-"}</p>
+            </div>
+            <div className="flex items-center gap-2"><Pill s={s.status} />
+              {next && <button className={primary} disabled={act.busy} onClick={async () => { if (await act.run(() => marketApi.addShipmentEvent(s.id, { status: next }))) ships.reload(); }}>Mark {next.replace(/_/g, " ")}</button>}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------- Warehouse
+
+function StockPanel() {
+  const stock = useLoad<StockRow[]>(marketApi.listStock, []);
+  const act = useAction();
+  const [f, setF] = useState({ warehouseName: "", location: "", cropName: "", quantityKg: "" });
+  const [delta, setDelta] = useState<Record<string, string>>({});
+  return (
+    <div className="space-y-4">
+      <div className={card}>
+        <ErrorBanner msg={act.error || stock.error} />
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
+          <input className={input} placeholder="Warehouse" value={f.warehouseName} onChange={e => setF({ ...f, warehouseName: e.target.value })} />
+          <input className={input} placeholder="Location" value={f.location} onChange={e => setF({ ...f, location: e.target.value })} />
+          <input className={input} placeholder="Crop" value={f.cropName} onChange={e => setF({ ...f, cropName: e.target.value })} />
+          <input className={input} type="number" min="0" placeholder="Qty (kg)" value={f.quantityKg} onChange={e => setF({ ...f, quantityKg: e.target.value })} />
+          <button className={primary} disabled={act.busy} onClick={async () => {
+            if (await act.run(() => marketApi.addStock({ warehouseName: f.warehouseName, location: f.location || undefined, cropName: f.cropName, quantityKg: Number(f.quantityKg) }))) {
+              setF({ warehouseName: "", location: "", cropName: "", quantityKg: "" }); stock.reload();
+            }
+          }}>Add stock</button>
+        </div>
+      </div>
+      {stock.data.map(s => (
+        <div key={s.id} className={`${card} flex items-center justify-between flex-wrap gap-2`}>
+          <div><p className="font-bold text-slate-800">{s.cropName} · {s.quantityKg} kg</p><p className="text-xs text-slate-500">{s.warehouseName}{s.location ? ` · ${s.location}` : ""}</p></div>
+          <div className="flex gap-2">
+            <input className={`${input} w-28`} type="number" placeholder="+/- kg" value={delta[s.id] ?? ""} onChange={e => setDelta({ ...delta, [s.id]: e.target.value })} />
+            <button className={primary} disabled={act.busy} onClick={async () => { if (await act.run(() => marketApi.adjustStock(s.id, Number(delta[s.id])))) { setDelta({ ...delta, [s.id]: "" }); stock.reload(); } }}>Apply</button>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------- Admin
+
+function StatsPanel() {
+  const s = useLoad<MarketStats | null>(marketApi.stats, null);
+  if (s.error) return <ErrorBanner msg={s.error} />;
+  if (!s.data) return <Empty text="Loading..." />;
+  const items: [string, string][] = [
+    ["Farms", String(s.data.farms)], ["Open listings", String(s.data.openListings)], ["Pending bids", String(s.data.pendingBids)],
+    ["Orders", String(s.data.orders)], ["Completed orders", String(s.data.completedOrders)],
+    ["Completed value", inr(s.data.completedValue)], ["Held in escrow", inr(s.data.escrowHeld)],
+    ["Refunds pending", String(s.data.refundsPending ?? 0)],
+  ];
+  return <div className="grid grid-cols-2 md:grid-cols-4 gap-3">{items.map(([k, v]) => <div key={k} className={card}><p className="text-xs text-slate-500">{k}</p><p className="text-xl font-black text-slate-800">{v}</p></div>)}</div>;
+}
+
+// ---------------------------------------------------------------- Shell
+
+type Tab = { id: string; label: string; node: React.ReactNode };
+
+export default function LiveMarketplace() {
+  const { user } = useAuth();
+  const role = user?.role ?? "";
+  const tabs: Tab[] =
+    role === "Farmer" ? [
+      { id: "sell", label: "Sell & bids", node: <SellPanel /> },
+      { id: "farms", label: "My farms & crops", node: <FarmsPanel /> },
+      { id: "orders", label: "Orders & shipping", node: <OrdersPanel role={role} /> },
+      { id: "stock", label: "Stored stock", node: <StockPanel /> },
+      { id: "feeds", label: "Mandi prices & weather", node: <LiveFeeds /> },
+    ] : role === "Buyer" ? [
+      { id: "browse", label: "Browse & bid", node: <BrowsePanel /> },
+      { id: "bids", label: "My bids", node: <MyBidsPanel /> },
+      { id: "orders", label: "My orders", node: <OrdersPanel role={role} /> },
+      { id: "feeds", label: "Mandi prices & weather", node: <LiveFeeds /> },
+    ] : role === "Logistics Provider" ? [
+      { id: "ships", label: "My shipments", node: <ShipmentsPanel /> },
+    ] : role === "Warehouse Operator" ? [
+      { id: "stock", label: "Warehouse stock", node: <StockPanel /> },
+    ] : role === "Admin" ? [
+      { id: "stats", label: "Marketplace stats", node: <StatsPanel /> },
+    ] : [];
+
+  const [tab, setTab] = useState<string>("");
+  const active = tabs.find(t => t.id === tab) ?? tabs[0];
+
+  return (
+    <div className="max-w-5xl mx-auto space-y-4">
+      <div>
+        <h2 className="text-xl font-black text-slate-800">Live Marketplace</h2>
+        <p className="text-xs text-slate-500">Real data saved on the server. You are signed in as <b>{role || "unknown"}</b>; what you can do follows your account role.</p>
+      </div>
+      {!active ? (
+        <div className={card}><p className="text-sm text-slate-600">The live marketplace is available to Farmer, Buyer, Logistics Provider, Warehouse Operator and Admin accounts. Register one of those roles to trade.</p></div>
+      ) : (
+        <>
+          <div className="flex gap-2 flex-wrap">
+            {tabs.map(t => (
+              <button key={t.id} onClick={() => setTab(t.id)} className={`px-3 py-1.5 rounded-xl text-xs font-bold border ${active.id === t.id ? "bg-emerald-600 text-white border-emerald-600" : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"}`}>{t.label}</button>
+            ))}
+          </div>
+          <React.Fragment key={active.id}>{active.node}</React.Fragment>
+        </>
+      )}
+    </div>
+  );
+}

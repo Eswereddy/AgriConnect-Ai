@@ -17,6 +17,7 @@ export enum UserRole {
   MOBILE_APP = "Mobile Apps (iOS & Android)",
   STARTUP_HUB = "Startup Pitch & Investor Hub",
   GEMINI_SUITE = "Gemini AI & Maps/Firebase Suite",
+  LIVE_MARKET = "Live Marketplace",
 }
 
 export interface TelemetryReading {

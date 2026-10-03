@@ -61,6 +61,7 @@ const BlockchainCarbonEngine = lazy(() => import("./components/BlockchainCarbonE
 const MobileAppSuite = lazy(() => import("./components/MobileAppSuite"));
 const StartupPitchHub = lazy(() => import("./components/startup/StartupPitchHub").then((m) => ({ default: m.StartupPitchHub })));
 const PrecisionAgronomyAndFintech = lazy(() => import("./components/startup/PrecisionAgronomyAndFintech").then((m) => ({ default: m.PrecisionAgronomyAndFintech })));
+const LiveMarketplace = lazy(() => import("./components/marketplace/LiveMarketplace"));
 const GeminiAIStudioSuite = lazy(() => import("./components/startup/GeminiAIStudioSuite").then((m) => ({ default: m.GeminiAIStudioSuite })));
 
 // Floating AI Advisor
@@ -455,6 +456,7 @@ export default function App() {
     { role: UserRole.BLOCKCHAIN, icon: Coins, color: "text-emerald-500 bg-emerald-50" },
     { role: UserRole.MOBILE_APP, icon: Smartphone, color: "text-blue-500 bg-blue-50" },
     { role: UserRole.STARTUP_HUB, icon: Rocket, color: "text-rose-500 bg-rose-50" },
+    { role: UserRole.LIVE_MARKET, icon: ShoppingBag, color: "text-emerald-600 bg-emerald-50" },
     { role: UserRole.GEMINI_SUITE, icon: Bot, color: "text-emerald-600 bg-emerald-50" }
   ];
 
@@ -740,6 +742,10 @@ export default function App() {
 
           {activeRole === UserRole.STARTUP_HUB && (
             <StartupPitchHub />
+          )}
+
+          {activeRole === UserRole.LIVE_MARKET && (
+            <LiveMarketplace />
           )}
 
           {activeRole === UserRole.GEMINI_SUITE && (
