@@ -188,19 +188,36 @@ function matches(rec: MandiRecord, f: MandiFilter): boolean {
 async function fetchMandiUpstream(f: MandiFilter): Promise<MandiRecord[]> {
   const key = process.env.DATA_GOV_API_KEY!;
   const base = process.env.DATA_GOV_MANDI_URL || DEFAULT_MANDI_URL;
+  const PAGE = 500;
+  const MAX_PAGES = 6; // up to 3000 rows - enough for one whole state in a day
+  const titleCase = (v: string) => v.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
   // data.gov.in has exposed filters two ways: `filters[state.keyword]` (current) and
   // `filters[State]` (older). We try the current form first, then the older one.
-  const build = (style: "new" | "legacy") => {
-    const p = new URLSearchParams({ "api-key": key, format: "json", limit: "500" });
+  // The upstream "keyword" filters are exact + case-sensitive ("groundnut" finds nothing,
+  // "Groundnut" works). So when a state is given we send ONLY the state upstream and let
+  // matches() do the forgiving district/market/commodity search locally.
+  const build = (style: "new" | "legacy", offset: number) => {
+    const p = new URLSearchParams({ "api-key": key, format: "json", limit: String(PAGE), offset: String(offset) });
     const set = (name: string, v?: string) => {
       if (v) p.set(`filters[${style === "new" ? name.toLowerCase() + ".keyword" : name}]`, v);
     };
-    set("State", f.state); set("District", f.district); set("Commodity", f.commodity); set("Market", f.market);
+    set("State", f.state);
+    if (!f.state) { // no state: narrow upstream instead, using the dataset's own capitalisation
+      set("District", f.district && titleCase(f.district));
+      set("Commodity", f.commodity && titleCase(f.commodity));
+      set("Market", f.market && titleCase(f.market));
+    }
     return `${base}?${p.toString()}`;
   };
   const pull = async (style: "new" | "legacy") => {
-    const j = await getJson(build(style), "The mandi price service (data.gov.in)");
-    return ((j?.records ?? []) as any[]).map(normaliseRecord).filter((x): x is MandiRecord => !!x).filter((x) => matches(x, f));
+    const all: MandiRecord[] = [];
+    for (let page = 0; page < MAX_PAGES; page++) {
+      const j = await getJson(build(style, page * PAGE), "The mandi price service (data.gov.in)");
+      const raw = (j?.records ?? []) as any[];
+      all.push(...raw.map(normaliseRecord).filter((x): x is MandiRecord => !!x));
+      if (raw.length < PAGE || !f.state) break; // last page (or unfiltered: one page is enough)
+    }
+    return all.filter((x) => matches(x, f));
   };
   let rows: MandiRecord[] = [];
   let firstErr: unknown = null;
