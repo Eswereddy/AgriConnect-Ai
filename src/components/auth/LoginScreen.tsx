@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Sprout, Mail, Lock, User as UserIcon, Loader2, AlertTriangle } from "lucide-react";
+import { Mail, Lock, User as UserIcon, Loader2, AlertTriangle } from "lucide-react";
 import { useAuth } from "../../contexts/AuthContext";
 
 const ROLE_OPTIONS = [
@@ -40,10 +40,8 @@ export default function LoginScreen() {
     <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-4">
       <div className="w-full max-w-md">
         <div className="flex flex-col items-center mb-6">
-          <div className="p-3.5 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl text-white shadow-lg shadow-emerald-200 mb-3">
-            <Sprout className="h-8 w-8" />
-          </div>
-          <h1 className="text-xl font-black text-slate-800">AgriConnect AI</h1>
+          <img src="/logo.png" alt="AgriConnect AI" width={160} height={160} className="h-40 w-40 object-contain mb-1" />
+          <h1 className="sr-only">AgriConnect AI</h1>
           <p className="text-xs text-slate-500 font-medium mt-1">Sign in to your workspace</p>
         </div>
 
