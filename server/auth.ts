@@ -13,7 +13,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { randomUUID } from "crypto";
 import type { Request, Response, NextFunction } from "express";
-import { createUser, findUserByEmail, findUserById, touchLastLogin, recordAudit, type UserRecord } from "./db";
+import { deleteLocalUser, createUser, findUserByEmail, findUserById, touchLastLogin, recordAudit, persistUser, persistLastLogin, type UserRecord } from "./db";
 
 const TOKEN_COOKIE = "agriconnect_token";
 const TOKEN_TTL_SECONDS = 60 * 60 * 24 * 7; // 7 days
@@ -91,6 +91,14 @@ export async function registerUser(input: { name: string; email: string; passwor
   const passwordHash = await bcrypt.hash(input.password, 12);
   const id = randomUUID();
   createUser({ id, name, email, passwordHash, role });
+  try {
+    // Postgres is the durable copy; if it fails, undo so we never report an account that would vanish.
+    const rec = findUserById(id)!;
+    await persistUser(rec);
+  } catch (err) {
+    deleteLocalUser(id);
+    throw new Error("Could not save your account right now. Please try again.");
+  }
   recordAudit(id, "user_registered", { email, role });
 
   return { id, name, email, role };
@@ -111,6 +119,7 @@ export async function authenticateUser(email: string, password: string): Promise
   }
 
   touchLastLogin(user.id);
+  void persistLastLogin(user.id);
   recordAudit(user.id, "user_login");
   return toPublicUser(user);
 }

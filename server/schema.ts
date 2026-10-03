@@ -19,6 +19,16 @@
 // one at a time (works on real Postgres and on the in-memory pg-mem used in dev).
 
 export const SCHEMA_STATEMENTS: string[] = `
+CREATE TABLE IF NOT EXISTS app_users (
+  id            TEXT PRIMARY KEY,
+  name          TEXT NOT NULL,
+  email         TEXT NOT NULL UNIQUE,
+  password_hash TEXT NOT NULL,
+  role          TEXT NOT NULL,
+  created_at    TEXT NOT NULL,
+  last_login_at TEXT
+)
+;;
 CREATE TABLE IF NOT EXISTS farms (
   id          UUID PRIMARY KEY,
   owner_id    TEXT NOT NULL,

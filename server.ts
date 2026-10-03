@@ -7,7 +7,7 @@ import { createServer as createViteServer } from "vite";
 import { GoogleGenAI, Type } from "@google/genai";
 import { initMonitoring, captureClientError, errorHandlerMiddleware } from "./server/monitoring";
 import { registerUser, authenticateUser, signToken, setAuthCookie, clearAuthCookie, requireAuth, requireRole, authenticateUpgradeRequest, type AuthedRequest } from "./server/auth";
-import { listUsers, countUsers, recentErrors } from "./server/db";
+import { listUsers, countUsers, recentErrors, syncUsersWithPg } from "./server/db";
 import { loginRateLimiter, registerRateLimiter, apiRateLimiter, clientErrorRateLimiter } from "./server/rateLimiter";
 import { initPg } from "./server/pg";
 import { marketRouter } from "./server/marketplace";
@@ -5638,6 +5638,7 @@ app.use(errorHandlerMiddleware);
 
 async function start() {
   await initPg();
+  await syncUsersWithPg();
   if (process.env.NODE_ENV !== "production") {
     console.log("Setting up Vite Dev Server Middleware...");
     const vite = await createViteServer({

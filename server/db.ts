@@ -22,6 +22,7 @@
 import Database from "better-sqlite3";
 import path from "path";
 import fs from "fs";
+import { pgAvailable, query as pgQuery } from "./pg";
 
 const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), "data");
 if (!fs.existsSync(DATA_DIR)) {
@@ -81,6 +82,10 @@ export function createUser(user: { id: string; name: string; email: string; pass
   ).run(user.id, user.name, user.email.toLowerCase(), user.passwordHash, user.role);
 }
 
+export function deleteLocalUser(id: string): void {
+  db.prepare(`DELETE FROM users WHERE id = ?`).run(id);
+}
+
 export function findUserByEmail(email: string): UserRecord | undefined {
   return db.prepare(`SELECT * FROM users WHERE email = ?`).get(email.toLowerCase()) as UserRecord | undefined;
 }
@@ -123,4 +128,63 @@ export function recordError(source: "server" | "client", message: string, stack?
 
 export function recentErrors(limit = 100) {
   return db.prepare(`SELECT * FROM error_logs ORDER BY created_at DESC LIMIT ?`).all(limit);
+}
+
+// ------------------------------------------------------------------
+// DURABLE USER ACCOUNTS (Postgres)
+// ------------------------------------------------------------------
+// On Render's free plan the disk is wiped on every restart/deploy, so SQLite
+// alone would lose all accounts. When Postgres (DATABASE_URL) is available it is
+// the source of truth for users: accounts are written through to Postgres and
+// loaded back into the local SQLite cache at startup. The synchronous lookup
+// functions above keep working unchanged. Without Postgres, behaviour is as before.
+
+/** Call once after initPg(): copies Postgres users into SQLite and pushes any local-only users up. */
+export async function syncUsersWithPg(): Promise<void> {
+  if (!pgAvailable()) return;
+  try {
+    const remote = await pgQuery<any>(`SELECT id, name, email, password_hash, role, created_at, last_login_at FROM app_users`);
+    const upsert = db.prepare(
+      `INSERT INTO users (id, name, email, password_hash, role, created_at, last_login_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?)
+       ON CONFLICT(id) DO UPDATE SET name=excluded.name, email=excluded.email, password_hash=excluded.password_hash,
+         role=excluded.role, last_login_at=excluded.last_login_at`
+    );
+    db.transaction(() => {
+      for (const u of remote) {
+        // a stale local row with the same email but another id would violate UNIQUE(email)
+        db.prepare(`DELETE FROM users WHERE email = ? AND id <> ?`).run(u.email, u.id);
+        upsert.run(u.id, u.name, u.email, u.password_hash, u.role, u.created_at, u.last_login_at);
+      }
+    })();
+    const known = new Set(remote.map((u) => u.id));
+    const local = db.prepare(`SELECT * FROM users`).all() as UserRecord[];
+    for (const u of local) if (!known.has(u.id)) await persistUser(u);
+    console.log(`[db] User accounts synced with Postgres (${remote.length} loaded).`);
+  } catch (err) {
+    console.error("[db] Could not sync users with Postgres:", err);
+  }
+}
+
+/** Writes a user to Postgres (no-op without Postgres). Throws on failure so registration can be rejected. */
+export async function persistUser(u: { id: string; name: string; email: string; password_hash: string; role: string; created_at: string; last_login_at?: string | null }): Promise<void> {
+  if (!pgAvailable()) return;
+  await pgQuery(
+    `INSERT INTO app_users (id, name, email, password_hash, role, created_at, last_login_at)
+     VALUES ($1,$2,$3,$4,$5,$6,$7)
+     ON CONFLICT (id) DO UPDATE SET name=EXCLUDED.name, email=EXCLUDED.email, password_hash=EXCLUDED.password_hash,
+       role=EXCLUDED.role, last_login_at=EXCLUDED.last_login_at`,
+    [u.id, u.name, u.email.toLowerCase(), u.password_hash, u.role, u.created_at, u.last_login_at ?? null]
+  );
+}
+
+/** Best-effort: records the login time in Postgres. */
+export async function persistLastLogin(id: string): Promise<void> {
+  if (!pgAvailable()) return;
+  try {
+    const u = findUserById(id);
+    await pgQuery(`UPDATE app_users SET last_login_at = $2 WHERE id = $1`, [id, u?.last_login_at ?? new Date().toISOString()]);
+  } catch (err) {
+    console.error("[db] persistLastLogin failed:", err);
+  }
 }
