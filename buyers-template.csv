@@ -1,0 +1,2 @@
+buyer_id,business_name,buyer_type,location,required_crops,required_quantity_quintals,offered_price_per_quintal,quality_requirement,purchase_frequency,pickup_delivery,payment_terms,verification,contact_permission
+SAMPLE-B001,Sample Traders,trader,Anantapur,Tomato,20,2700,Grade A,weekly,pickup,on_delivery,pending,yes
