@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
+import { payForOrder } from "../../services/checkout";
+import LiveFeeds from "./LiveFeeds";
 import {
   marketApi, inr,
   type Farm, type Crop, type Listing, type Bid, type Order, type OrderDetail, type Shipment, type StockRow, type MarketStats,
@@ -255,17 +257,28 @@ function MyBidsPanel() {
 // ---------------------------------------------------------------- Orders (buyer + seller)
 
 function OrdersPanel({ role }: { role: string }) {
+  const { user } = useAuth();
   const orders = useLoad<Order[]>(marketApi.listOrders, []);
   const act = useAction();
+  const [notice, setNotice] = useState<string | null>(null);
   const [detail, setDetail] = useState<OrderDetail | null>(null);
   const [addr, setAddr] = useState({ pickup: "", drop: "" });
   const isBuyer = role === "Buyer";
   const isSeller = role === "Farmer";
   const refresh = async (id?: string) => { await orders.reload(); if (id) setDetail(await marketApi.orderDetail(id)); };
-  const go = (id: string, fn: () => Promise<unknown>) => async () => { if (await act.run(fn)) await refresh(id); };
+  const go = (id: string, fn: () => Promise<unknown>) => async () => { setNotice(null); if (await act.run(fn)) await refresh(id); };
+  const cancel = (id: string) => async () => {
+    setNotice(null);
+    let pending = false;
+    if (await act.run(async () => { pending = Boolean((await marketApi.cancelOrder(id)).refundPending); })) {
+      setNotice(pending ? "Order cancelled. Your refund could not be sent just now and will be retried; contact support if it does not arrive." : "Order cancelled. Any payment is being refunded to your original payment method.");
+      await refresh(id);
+    }
+  };
   return (
     <div className="space-y-3">
       <ErrorBanner msg={act.error || orders.error} />
+      {notice && <div className="bg-emerald-50 text-emerald-700 text-xs font-semibold rounded-lg px-3 py-2">{notice}</div>}
       {orders.loading ? <Empty text="Loading orders..." /> : orders.data.length === 0 ? <Empty text="No orders yet. They appear when a bid is accepted." /> : orders.data.map(o => (
         <div key={o.id} className={card}>
           <div className="flex items-center justify-between gap-2 flex-wrap">
@@ -275,9 +288,9 @@ function OrdersPanel({ role }: { role: string }) {
             </div>
             <div className="flex items-center gap-2"><Pill s={o.status} />
               <button className={ghost} onClick={async () => setDetail(detail?.order.id === o.id ? null : await marketApi.orderDetail(o.id))}>Details</button>
-              {isBuyer && o.status === "pending_payment" && <button className={primary} disabled={act.busy} onClick={go(o.id, () => marketApi.payOrder(o.id))}>Pay (escrow)</button>}
+              {isBuyer && o.status === "pending_payment" && <button className={primary} disabled={act.busy} onClick={go(o.id, () => payForOrder(o.id, { name: user?.name, email: user?.email }))}>Pay {inr(o.totalAmount)}</button>}
               {isBuyer && o.status === "delivered" && <button className={primary} disabled={act.busy} onClick={go(o.id, () => marketApi.confirmDelivery(o.id))}>Confirm delivery</button>}
-              {(o.status === "pending_payment" || o.status === "paid") && <button className={danger} disabled={act.busy} onClick={go(o.id, () => marketApi.cancelOrder(o.id))}>Cancel</button>}
+              {(o.status === "pending_payment" || o.status === "paid") && <button className={danger} disabled={act.busy} onClick={cancel(o.id)}>Cancel</button>}
             </div>
           </div>
           {isSeller && o.status === "paid" && (
@@ -303,128 +316,4 @@ function OrdersPanel({ role }: { role: string }) {
 
 // ---------------------------------------------------------------- Logistics
 
-const NEXT_SHIP: Record<string, string | undefined> = { booked: "picked_up", picked_up: "in_transit", in_transit: "delivered" };
-
-function ShipmentsPanel() {
-  const ships = useLoad<Shipment[]>(marketApi.myShipments, []);
-  const act = useAction();
-  return (
-    <div className="space-y-3">
-      <ErrorBanner msg={act.error || ships.error} />
-      {ships.loading ? <Empty text="Loading..." /> : ships.data.length === 0 ? <Empty text="No shipments assigned to you yet." /> : ships.data.map(s => {
-        const next = NEXT_SHIP[s.status];
-        return (
-          <div key={s.id} className={`${card} flex items-center justify-between flex-wrap gap-2`}>
-            <div>
-              <p className="font-bold text-slate-800">{s.trackingCode}</p>
-              <p className="text-xs text-slate-500">{s.pickupAddress ?? "-"} → {s.dropAddress ?? "-"}</p>
-            </div>
-            <div className="flex items-center gap-2"><Pill s={s.status} />
-              {next && <button className={primary} disabled={act.busy} onClick={async () => { if (await act.run(() => marketApi.addShipmentEvent(s.id, { status: next }))) ships.reload(); }}>Mark {next.replace(/_/g, " ")}</button>}
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
-// ---------------------------------------------------------------- Warehouse
-
-function StockPanel() {
-  const stock = useLoad<StockRow[]>(marketApi.listStock, []);
-  const act = useAction();
-  const [f, setF] = useState({ warehouseName: "", location: "", cropName: "", quantityKg: "" });
-  const [delta, setDelta] = useState<Record<string, string>>({});
-  return (
-    <div className="space-y-4">
-      <div className={card}>
-        <ErrorBanner msg={act.error || stock.error} />
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
-          <input className={input} placeholder="Warehouse" value={f.warehouseName} onChange={e => setF({ ...f, warehouseName: e.target.value })} />
-          <input className={input} placeholder="Location" value={f.location} onChange={e => setF({ ...f, location: e.target.value })} />
-          <input className={input} placeholder="Crop" value={f.cropName} onChange={e => setF({ ...f, cropName: e.target.value })} />
-          <input className={input} type="number" min="0" placeholder="Qty (kg)" value={f.quantityKg} onChange={e => setF({ ...f, quantityKg: e.target.value })} />
-          <button className={primary} disabled={act.busy} onClick={async () => {
-            if (await act.run(() => marketApi.addStock({ warehouseName: f.warehouseName, location: f.location || undefined, cropName: f.cropName, quantityKg: Number(f.quantityKg) }))) {
-              setF({ warehouseName: "", location: "", cropName: "", quantityKg: "" }); stock.reload();
-            }
-          }}>Add stock</button>
-        </div>
-      </div>
-      {stock.data.map(s => (
-        <div key={s.id} className={`${card} flex items-center justify-between flex-wrap gap-2`}>
-          <div><p className="font-bold text-slate-800">{s.cropName} · {s.quantityKg} kg</p><p className="text-xs text-slate-500">{s.warehouseName}{s.location ? ` · ${s.location}` : ""}</p></div>
-          <div className="flex gap-2">
-            <input className={`${input} w-28`} type="number" placeholder="+/- kg" value={delta[s.id] ?? ""} onChange={e => setDelta({ ...delta, [s.id]: e.target.value })} />
-            <button className={primary} disabled={act.busy} onClick={async () => { if (await act.run(() => marketApi.adjustStock(s.id, Number(delta[s.id])))) { setDelta({ ...delta, [s.id]: "" }); stock.reload(); } }}>Apply</button>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-// ---------------------------------------------------------------- Admin
-
-function StatsPanel() {
-  const s = useLoad<MarketStats | null>(marketApi.stats, null);
-  if (s.error) return <ErrorBanner msg={s.error} />;
-  if (!s.data) return <Empty text="Loading..." />;
-  const items: [string, string][] = [
-    ["Farms", String(s.data.farms)], ["Open listings", String(s.data.openListings)], ["Pending bids", String(s.data.pendingBids)],
-    ["Orders", String(s.data.orders)], ["Completed orders", String(s.data.completedOrders)],
-    ["Completed value", inr(s.data.completedValue)], ["Held in escrow", inr(s.data.escrowHeld)],
-  ];
-  return <div className="grid grid-cols-2 md:grid-cols-4 gap-3">{items.map(([k, v]) => <div key={k} className={card}><p className="text-xs text-slate-500">{k}</p><p className="text-xl font-black text-slate-800">{v}</p></div>)}</div>;
-}
-
-// ---------------------------------------------------------------- Shell
-
-type Tab = { id: string; label: string; node: React.ReactNode };
-
-export default function LiveMarketplace() {
-  const { user } = useAuth();
-  const role = user?.role ?? "";
-  const tabs: Tab[] =
-    role === "Farmer" ? [
-      { id: "sell", label: "Sell & bids", node: <SellPanel /> },
-      { id: "farms", label: "My farms & crops", node: <FarmsPanel /> },
-      { id: "orders", label: "Orders & shipping", node: <OrdersPanel role={role} /> },
-      { id: "stock", label: "Stored stock", node: <StockPanel /> },
-    ] : role === "Buyer" ? [
-      { id: "browse", label: "Browse & bid", node: <BrowsePanel /> },
-      { id: "bids", label: "My bids", node: <MyBidsPanel /> },
-      { id: "orders", label: "My orders", node: <OrdersPanel role={role} /> },
-    ] : role === "Logistics Provider" ? [
-      { id: "ships", label: "My shipments", node: <ShipmentsPanel /> },
-    ] : role === "Warehouse Operator" ? [
-      { id: "stock", label: "Warehouse stock", node: <StockPanel /> },
-    ] : role === "Admin" ? [
-      { id: "stats", label: "Marketplace stats", node: <StatsPanel /> },
-    ] : [];
-
-  const [tab, setTab] = useState<string>("");
-  const active = tabs.find(t => t.id === tab) ?? tabs[0];
-
-  return (
-    <div className="max-w-5xl mx-auto space-y-4">
-      <div>
-        <h2 className="text-xl font-black text-slate-800">Live Marketplace</h2>
-        <p className="text-xs text-slate-500">Real data saved on the server. You are signed in as <b>{role || "unknown"}</b>; what you can do follows your account role.</p>
-      </div>
-      {!active ? (
-        <div className={card}><p className="text-sm text-slate-600">The live marketplace is available to Farmer, Buyer, Logistics Provider, Warehouse Operator and Admin accounts. Register one of those roles to trade.</p></div>
-      ) : (
-        <>
-          <div className="flex gap-2 flex-wrap">
-            {tabs.map(t => (
-              <button key={t.id} onClick={() => setTab(t.id)} className={`px-3 py-1.5 rounded-xl text-xs font-bold border ${active.id === t.id ? "bg-emerald-600 text-white border-emerald-600" : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"}`}>{t.label}</button>
-            ))}
-          </div>
-          <React.Fragment key={active.id}>{active.node}</React.Fragment>
-        </>
-      )}
-    </div>
-  );
-}
+const NEXT_SHIP: Record<string, string | undefined> = { booked: "picked_up", picked_up: "in_transit
