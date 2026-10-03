@@ -14,6 +14,7 @@ import { SCHEMA_STATEMENTS } from "./schema";
 // stays well below 2^53, so plain numbers are safe and far less error-prone.
 pg.types.setTypeParser(20, (v) => Number(v));      // BIGINT
 pg.types.setTypeParser(1700, (v) => Number(v));    // NUMERIC
+pg.types.setTypeParser(1082, (v) => v);              // DATE -> 'YYYY-MM-DD' (no timezone shifting)
 
 let pool: pg.Pool | null = null;
 let usingMemory = false;
