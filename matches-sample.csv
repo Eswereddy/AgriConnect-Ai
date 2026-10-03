@@ -1,0 +1,8 @@
+farmer_id,buyer_id,crop,score,farmer_ask_per_quintal,buyer_offer_per_quintal,matched_quantity_quintals,full_fill,next_step
+SAMPLE-T01,SAMPLE-B01,Tomato,100,2500,2700,20,yes,place_order
+SAMPLE-T03,SAMPLE-B04,Onion,93,1800,1850,30,yes,place_order
+SAMPLE-T01,SAMPLE-B03,Tomato,90,2500,2550,20,no,place_order
+SAMPLE-T02,SAMPLE-B01,Tomato,85,2600,2700,10,no,place_order
+SAMPLE-T01,SAMPLE-B02,Tomato,80,2500,2400,20,yes,negotiate
+SAMPLE-T02,SAMPLE-B03,Tomato,75,2600,2550,10,no,negotiate
+SAMPLE-T02,SAMPLE-B02,Tomato,57,2600,2400,10,no,negotiate
