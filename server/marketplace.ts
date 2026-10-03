@@ -11,28 +11,29 @@
 //  - orders move through a strict state machine (conditional UPDATE ... WHERE status = x)
 //  - money is integer paise internally; the API speaks rupees at the edge
 //
-// NOTE ON PAYMENTS: /orders/:id/pay records a payment in an escrow LEDGER
-// (provider "ledger"). It does NOT move real money. Replace it with Razorpay:
-// create a Razorpay order, verify the checkout signature on the server, then
-// write the same payments row with provider "razorpay" and the payment id.
+// PAYMENTS: with RAZORPAY_KEY_ID/SECRET set, buyers pay through Razorpay Checkout
+// (server/payments.ts: /api/market/payments/orders/:id/intent + /verify, plus the
+// webhook). The simple POST /orders/:id/pay below is only a bookkeeping "ledger"
+// for UI development when no keys are set outside production; it never moves money.
 
 import { Router, type Request, type Response, type NextFunction } from "express";
 import { randomUUID, randomBytes } from "crypto";
 import { requireAuth, requireRole, type AuthedRequest } from "./auth";
 import { findUserById } from "./db";
 import { query, withTransaction, pgAvailable } from "./pg";
+import { paymentMode, refundHeldPayments } from "./razorpay";
 
 // ---------- small helpers ----------
 
-class HttpError extends Error {
+export class HttpError extends Error {
   constructor(public status: number, message: string) {
     super(message);
   }
 }
 
-const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+export const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
-function wrap(fn: (req: AuthedRequest, res: Response) => Promise<void>) {
+export function wrap(fn: (req: AuthedRequest, res: Response) => Promise<void>) {
   return (req: Request, res: Response, next: NextFunction) => {
     fn(req as AuthedRequest, res).catch((err) => {
       if (err instanceof HttpError) {
@@ -44,7 +45,7 @@ function wrap(fn: (req: AuthedRequest, res: Response) => Promise<void>) {
   };
 }
 
-function idParam(req: Request, name = "id"): string {
+export function idParam(req: Request, name = "id"): string {
   const v = req.params[name];
   if (!UUID_RE.test(v)) throw new HttpError(400, `Invalid ${name}.`);
   return v;
@@ -120,13 +121,13 @@ const mBid = (r: any) => ({
   pricePerKg: toRupees(r.price_paise_per_kg), totalAmount: toRupees(Math.round(r.quantity_kg * r.price_paise_per_kg)),
   status: r.status, createdAt: r.created_at, decidedAt: r.decided_at,
 });
-const mOrder = (r: any) => ({
+export const mOrder = (r: any) => ({
   id: r.id, listingId: r.listing_id, bidId: r.bid_id, sellerId: r.seller_id, sellerName: userName(r.seller_id),
   buyerId: r.buyer_id, buyerName: userName(r.buyer_id), cropName: r.crop_name, quantityKg: r.quantity_kg,
   pricePerKg: toRupees(r.price_paise_per_kg), totalAmount: toRupees(r.total_paise), status: r.status,
   createdAt: r.created_at, updatedAt: r.updated_at,
 });
-const mPayment = (r: any) => ({
+export const mPayment = (r: any) => ({
   id: r.id, orderId: r.order_id, amount: toRupees(r.amount_paise), provider: r.provider, providerRef: r.provider_ref,
   status: r.status, escrowStatus: r.escrow_status, createdAt: r.created_at, releasedAt: r.released_at,
 });
@@ -467,6 +468,9 @@ marketRouter.get("/orders/:id", wrap(async (req, res) => {
 marketRouter.post("/orders/:id/pay", requireRole("Buyer"), wrap(async (req, res) => {
   const orderId = idParam(req);
   const userId = req.user!.id;
+  const mode = paymentMode();
+  if (mode === "razorpay") throw new HttpError(409, "Real payments are enabled. Pay through Razorpay Checkout instead.");
+  if (mode === "disabled") throw new HttpError(503, "Payments are not configured on this server (set RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET).");
   const result = await withTransaction(async (q) => {
     const moved = await q(
       `UPDATE orders SET status = 'paid', updated_at = now()
@@ -494,9 +498,16 @@ marketRouter.post("/orders/:id/cancel", wrap(async (req, res) => {
       [orderId, userId]
     );
     if (!upd[0]) throw new HttpError(409, "This order can't be cancelled (not yours, or already shipped/closed).");
+    // Ledger payments and never-completed checkouts are settled here.
     await q(
-      `UPDATE payments SET status = 'refunded', escrow_status = 'refunded', released_at = now()
-       WHERE order_id = $1 AND escrow_status = 'held'`, [orderId]
+      `UPDATE payments SET status = CASE WHEN status = 'captured' THEN 'refunded' ELSE 'failed' END,
+              escrow_status = 'refunded', released_at = now()
+       WHERE order_id = $1 AND escrow_status = 'held' AND (provider <> 'razorpay' OR status <> 'captured')`, [orderId]
+    );
+    // Captured Razorpay money is flagged as OWED to the buyer; refundHeldPayments() below returns it.
+    await q(
+      `UPDATE payments SET escrow_status = 'refunded', released_at = now()
+       WHERE order_id = $1 AND escrow_status = 'held' AND provider = 'razorpay' AND status = 'captured'`, [orderId]
     );
     await q(
       `UPDATE listings SET available_kg = available_kg + $1,
@@ -505,7 +516,10 @@ marketRouter.post("/orders/:id/cancel", wrap(async (req, res) => {
     );
     return upd[0];
   });
-  res.json(mOrder(cancelled));
+  // Real money back to the buyer. If Razorpay is unreachable the refund stays queued
+  // (see refundHeldPayments / POST /api/market/payments/admin/retry-refunds).
+  const refund = await refundHeldPayments(orderId);
+  res.json({ ...mOrder(cancelled), refundPending: refund.failed > 0 });
 }));
 
 // Seller books the shipment (order must be paid).
@@ -653,6 +667,9 @@ marketRouter.get("/stats", requireRole("Admin"), wrap(async (_req, res) => {
     orders: await one(`SELECT count(*) AS n FROM orders`),
     completedOrders: await one(`SELECT count(*) AS n FROM orders WHERE status = 'completed'`),
     completedValue: toRupees(await one(`SELECT COALESCE(sum(total_paise), 0) AS n FROM orders WHERE status = 'completed'`)),
-    escrowHeld: toRupees(await one(`SELECT COALESCE(sum(amount_paise), 0) AS n FROM payments WHERE escrow_status = 'held'`)),
+    escrowHeld: toRupees(await one(`SELECT COALESCE(sum(amount_paise), 0) AS n FROM payments WHERE escrow_status = 'held' AND status = 'captured'`)),
+    refundsPending: await one(
+      `SELECT count(*) AS n FROM payments
+       WHERE provider = 'razorpay' AND status = 'captured' AND escrow_status = 'refunded' AND provider_refund_id IS NULL`),
   });
 }));
