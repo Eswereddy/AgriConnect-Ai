@@ -9,7 +9,7 @@ export interface WeatherResponse {
   daily: WeatherDay[]; advisories: string[]; advisoryNote: string;
 }
 export interface MandiRecord { state: string; district: string; market: string; commodity: string; variety: string; grade: string; arrivalDate: string; minPerQuintal: number; maxPerQuintal: number; modalPerQuintal: number; modalPerKg: number }
-export interface MandiResponse { source: "data.gov.in" | "cache" | "stored"; stale: boolean; fetchedAt: string | null; records: MandiRecord[]; note?: string }
+export interface MandiResponse { source: "data.gov.in" | "cache" | "stored" | "kaggle-file"; stale: boolean; fetchedAt: string | null; records: MandiRecord[]; note?: string }
 export interface TrendPoint { date: string; modalPerQuintal: number; lowPerQuintal: number; highPerQuintal: number; markets: number }
 
 async function get<T>(path: string): Promise<T> {
