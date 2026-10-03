@@ -92,6 +92,7 @@ function MandiPanel() {
 
   const badge = !data ? null : data.source === "data.gov.in" ? { t: "Live from data.gov.in", c: "bg-emerald-50 text-emerald-700" }
     : data.source === "cache" ? { t: "Live (cached up to 30 min)", c: "bg-emerald-50 text-emerald-700" }
+    : data.source === "kaggle-file" ? { t: "Not live - saved Kaggle dataset prices", c: "bg-amber-50 text-amber-700" }
     : { t: "Feed unavailable - showing last saved prices", c: "bg-amber-50 text-amber-700" };
 
   return (
