@@ -214,11 +214,11 @@ export const WeatherIntelligence: React.FC = () => {
       id: "alert-1",
       type: "Flood",
       severity: "Critical",
-      title: "Gurdaspur/Amritsar Low-Lying Sector Inundation Warning",
+      title: "Machilipatnam/Vijayawada Low-Lying Sector Inundation Warning",
       description: "Immediate flash-flood risks along tributary drainage systems due to unprecedented heavy discharges upstream.",
       evacuationRoutes: [
         "Primary: State Highway 15 (North-East elevated bypass)",
-        "Secondary: Amritsar-Batala link road via Sector 4 high ridge"
+        "Secondary: Vijayawada-Tenali link road via Sector 4 high ridge"
       ],
       effectiveUntil: "2026-06-29"
     },
@@ -392,7 +392,7 @@ export const WeatherIntelligence: React.FC = () => {
               type="text"
               value={locationQuery}
               onChange={(e) => setLocationQuery(e.target.value)}
-              placeholder="Type any location (e.g., Ludhiana Punjab, Fresno California, Nakuru Kenya)..."
+              placeholder="Type any location (e.g., Guntur Andhra Pradesh, Fresno California, Nakuru Kenya)..."
               className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all"
             />
           </div>

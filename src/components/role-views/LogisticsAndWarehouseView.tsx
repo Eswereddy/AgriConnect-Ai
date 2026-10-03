@@ -39,7 +39,7 @@ export default function LogisticsAndWarehouseView({
   const [driverName, setDriverName] = useState("David Miller");
   const [cargo, setCargo] = useState("Premium Basmati Rice Grade-A");
   const [weight, setWeight] = useState(4500);
-  const [origin, setOrigin] = useState("Punjab Agri Cooperative");
+  const [origin, setOrigin] = useState("Andhra Pradesh Agri Cooperative");
   const [destination, setDestination] = useState("Silo Terminal 4B");
 
   const handleAddRoute = (e: React.FormEvent) => {

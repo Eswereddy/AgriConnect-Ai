@@ -63,7 +63,7 @@ export default function ExpertFarmerRelationships() {
       id: "f-3",
       name: "Ram Singh",
       mobile: "+91 91720 98114",
-      location: "Ludhiana, PB",
+      location: "Guntur, AP",
       totalConsultations: 12,
       lastConsultationDate: "2026-05-20",
       rating: 5,
@@ -90,9 +90,9 @@ export default function ExpertFarmerRelationships() {
 
   // --- 8.3 SEGMENTATION ---
   const cropSegments = [
-    { name: "Wheat Growers", count: 142, description: "Rabi season cultivators in Punjab & Haryana tracts." },
+    { name: "Wheat Growers", count: 142, description: "Rabi season cultivators in Andhra Pradesh & Haryana tracts." },
     { name: "Rice Growers", count: 98, description: "Kharif season farmers utilizing canal sync systems." },
-    { name: "Grape Vineyards", count: 45, description: "Horticulture farmers based out of Nashik & Pune." }
+    { name: "Grape Vineyards", count: 45, description: "Horticulture farmers based out of Nashik & Krishna." }
   ];
 
   const vulnerabilitySegments = [

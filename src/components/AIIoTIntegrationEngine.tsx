@@ -1274,7 +1274,7 @@ export default function AIIoTIntegrationEngine() {
                 </span>
                 <div className="space-y-2 text-xs">
                   {[
-                    { rank: 1, name: "Ramesh Patel (Pune)", yield: "19.2 Tons/Acre", coins: "2,450" },
+                    { rank: 1, name: "Ramesh Patel (Krishna)", yield: "19.2 Tons/Acre", coins: "2,450" },
                     { rank: 2, name: "Sita Sharma (Nasik)", yield: "18.8 Tons/Acre", coins: "2,100" },
                     { rank: 3, name: "You (Sector A)", yield: "18.5 Tons/Acre", coins: `${userCoins}` }
                   ].map((f) => (

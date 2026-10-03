@@ -274,7 +274,7 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
         { author: "Ramesh P.", rating: 4, text: "High yield, but needs solid trellis support.", date: "2026-06-01", verified: true }
       ],
       supplier: "Saraswati Agro-Seeds Ltd",
-      supplierLocation: "Amritsar Rural Hub",
+      supplierLocation: "Vijayawada Rural Hub",
       supplierRating: 4.9,
       supplierProductsSold: 18200,
       certification: "APEDA Quality Seed Stamp #A-483",
@@ -286,8 +286,8 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
       stockLevel: "In Stock",
       maxStock: 85,
       nearbyStock: [
-        { dealer: "Amritsar Farmers Co-op", distance: 4.2, stock: 45, price: 18.0 },
-        { dealer: "Precision Agri-Inputs Ludhiana", distance: 12.8, stock: 150, price: 18.5 }
+        { dealer: "Vijayawada Farmers Co-op", distance: 4.2, stock: 45, price: 18.0 },
+        { dealer: "Precision Agri-Inputs Guntur", distance: 12.8, stock: 150, price: 18.5 }
       ],
       aiMatchReason: "Optimal match for your active Tomato crop. Supports high-density vertical row farming.",
       priceForecast: {
@@ -323,7 +323,7 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
         { author: "Amit K.", rating: 4, text: "No burning compared to urea. Great organic supplement.", date: "2026-05-28", verified: true }
       ],
       supplier: "Prithvi Organic Inputs",
-      supplierLocation: "Jalandhar Eco Park",
+      supplierLocation: "Nellore Eco Park",
       supplierRating: 4.7,
       supplierProductsSold: 9400,
       certification: "NPOP National Organic Standard Certified",
@@ -335,8 +335,8 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
       stockLevel: "In Stock",
       maxStock: 250,
       nearbyStock: [
-        { dealer: "Amritsar Farmers Co-op", distance: 4.2, stock: 120, price: 33.5 },
-        { dealer: "Gurdaspur Agro Hub", distance: 8.5, stock: 80, price: 34.0 }
+        { dealer: "Vijayawada Farmers Co-op", distance: 4.2, stock: 120, price: 33.5 },
+        { dealer: "Machilipatnam Agro Hub", distance: 8.5, stock: 80, price: 34.0 }
       ],
       aiMatchReason: "Highly recommended for nitrogen replenishment in Clay Loam soil to prevent compaction yellowing.",
       priceForecast: {
@@ -370,7 +370,7 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
         { author: "Eswar R.", rating: 5, text: "Completely arrested my tomato early blight outbreak within 36 hours. Best copper formula.", date: "2026-06-15", verified: true }
       ],
       supplier: "Apex Plant Protection",
-      supplierLocation: "Ludhiana Chemical Zone",
+      supplierLocation: "Guntur Chemical Zone",
       supplierRating: 4.5,
       supplierProductsSold: 12100,
       certification: "Govt Insecticides Act Approved (No. G-9284)",
@@ -382,8 +382,8 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
       stockLevel: "Low Stock",
       maxStock: 15,
       nearbyStock: [
-        { dealer: "Gurdaspur Agro Hub", distance: 8.5, stock: 3, price: 24.0 },
-        { dealer: "Precision Agri-Inputs Ludhiana", distance: 12.8, stock: 12, price: 22.8 }
+        { dealer: "Machilipatnam Agro Hub", distance: 8.5, stock: 3, price: 24.0 },
+        { dealer: "Precision Agri-Inputs Guntur", distance: 12.8, stock: 12, price: 22.8 }
       ],
       aiMatchReason: "Perfect match! Direct remediation target for suspected Tomato Early Blight pathogens.",
       priceForecast: {
@@ -429,7 +429,7 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
       stockLevel: "In Stock",
       maxStock: 30,
       nearbyStock: [
-        { dealer: "Precision Agri-Inputs Ludhiana", distance: 12.8, stock: 25, price: 180.0 }
+        { dealer: "Precision Agri-Inputs Guntur", distance: 12.8, stock: 25, price: 180.0 }
       ],
       aiMatchReason: "Essential upgrade for your clay-loam sectors to avoid waterlogged root zones and root rot.",
       priceForecast: {
@@ -475,8 +475,8 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
       stockLevel: "In Stock",
       maxStock: 300,
       nearbyStock: [
-        { dealer: "Amritsar Farmers Co-op", distance: 4.2, stock: 300, price: 14.5 },
-        { dealer: "Gurdaspur Agro Hub", distance: 8.5, stock: 110, price: 15.0 }
+        { dealer: "Vijayawada Farmers Co-op", distance: 4.2, stock: 300, price: 14.5 },
+        { dealer: "Machilipatnam Agro Hub", distance: 8.5, stock: 110, price: 15.0 }
       ],
       aiMatchReason: "Will improve biological aeration and nutrient holding in hard clay loam soil layers.",
       priceForecast: {
@@ -522,7 +522,7 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
       stockLevel: "In Stock",
       maxStock: 50,
       nearbyStock: [
-        { dealer: "Precision Agri-Inputs Ludhiana", distance: 12.8, stock: 15, price: 45.0 }
+        { dealer: "Precision Agri-Inputs Guntur", distance: 12.8, stock: 15, price: 45.0 }
       ],
       aiMatchReason: "Recommended tool to protect grain assets and chore barns from vermin pressure.",
       priceForecast: {
@@ -556,7 +556,7 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
         { author: "Gurmail S.", rating: 5, text: "Excellent resistance to bacterial blight. Beautiful long grains.", date: "2026-06-11", verified: true }
       ],
       supplier: "Saraswati Agro-Seeds Ltd",
-      supplierLocation: "Amritsar Rural Hub",
+      supplierLocation: "Vijayawada Rural Hub",
       supplierRating: 4.9,
       supplierProductsSold: 18200,
       certification: "APEDA Quality Seed Stamp #A-370",
@@ -568,7 +568,7 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
       stockLevel: "In Stock",
       maxStock: 120,
       nearbyStock: [
-        { dealer: "Gurdaspur Agro Hub", distance: 6.5, stock: 200, price: 23.5 }
+        { dealer: "Machilipatnam Agro Hub", distance: 6.5, stock: 200, price: 23.5 }
       ],
       aiMatchReason: "High compatibility with wet clay-loam sectors. Excellent flood tolerance indicators.",
       priceForecast: {
@@ -602,7 +602,7 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
         { author: "Daljit K.", rating: 5, text: "Very effective against whiteflies and aphids without harming ladybugs.", date: "2026-05-18", verified: true }
       ],
       supplier: "Prithvi Organic Inputs",
-      supplierLocation: "Jalandhar Eco Park",
+      supplierLocation: "Nellore Eco Park",
       supplierRating: 4.7,
       supplierProductsSold: 9400,
       certification: "Govt Insecticides Act Approved (No. N-4911)",
@@ -614,7 +614,7 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
       stockLevel: "In Stock",
       maxStock: 200,
       nearbyStock: [
-        { dealer: "Amritsar Farmers Co-op", distance: 3.1, stock: 85, price: 15.0 }
+        { dealer: "Vijayawada Farmers Co-op", distance: 3.1, stock: 85, price: 15.0 }
       ],
       aiMatchReason: "Zero-residue botanical pest solution recommended for organic crop protection plans.",
       priceForecast: {
@@ -660,7 +660,7 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
       stockLevel: "In Stock",
       maxStock: 20,
       nearbyStock: [
-        { dealer: "Gurdaspur Agro Hub", distance: 9.8, stock: 12, price: 112.0 }
+        { dealer: "Machilipatnam Agro Hub", distance: 9.8, stock: 12, price: 112.0 }
       ],
       aiMatchReason: "Perfect manual implement to complete precise depth-regulated seed planting.",
       priceForecast: {
@@ -706,7 +706,7 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
       stockLevel: "Out of Stock",
       maxStock: 0,
       nearbyStock: [
-        { dealer: "Precision Agri-Inputs Ludhiana", distance: 18.2, stock: 0, price: 29.0 }
+        { dealer: "Precision Agri-Inputs Guntur", distance: 18.2, stock: 0, price: 29.0 }
       ],
       aiMatchReason: "Allows automatic gravity feed control in low-pressure micro-dam outlets.",
       priceForecast: {
@@ -752,7 +752,7 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
       stockLevel: "In Stock",
       maxStock: 150,
       nearbyStock: [
-        { dealer: "Amritsar Farmers Co-op", distance: 5.0, stock: 40, price: 26.5 }
+        { dealer: "Vijayawada Farmers Co-op", distance: 5.0, stock: 40, price: 26.5 }
       ],
       aiMatchReason: "Provides micro-nutrients & amino acids to alleviate transplantation shock in young seedlings.",
       priceForecast: {
@@ -786,7 +786,7 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
         { author: "Harchand B.", rating: 4, text: "Quickly corrects potassium deficiency in basmati plots.", date: "2026-06-03", verified: true }
       ],
       supplier: "Saraswati Agro-Seeds Ltd",
-      supplierLocation: "Amritsar Rural Hub",
+      supplierLocation: "Vijayawada Rural Hub",
       supplierRating: 4.9,
       supplierProductsSold: 18200,
       certification: "FCI Quality Inspected Grade",
@@ -798,7 +798,7 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
       stockLevel: "Low Stock",
       maxStock: 8,
       nearbyStock: [
-        { dealer: "Precision Agri-Inputs Ludhiana", distance: 15.0, stock: 4, price: 42.5 }
+        { dealer: "Precision Agri-Inputs Guntur", distance: 15.0, stock: 4, price: 42.5 }
       ],
       aiMatchReason: "Helps solidify starch granules and strengthens basmati straw from lodging risks.",
       priceForecast: {
@@ -863,28 +863,28 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
     {
       id: "sup-1",
       name: "Saraswati Agro-Seeds Ltd",
-      location: "Amritsar Rural Hub",
+      location: "Vijayawada Rural Hub",
       productsSold: 18200,
       reviews: [
         { author: "Gurdev S.", rating: 5, text: "Outstanding seed viability (above 96%). Excellent support.", date: "2026-05-12", photo: "https://images.unsplash.com/photo-1592417817098-8f3d6eb19675?auto=format&fit=crop&w=150&q=80" },
         { author: "Ramesh P.", rating: 4, text: "High germination rate, but delivery was delayed by a day.", date: "2026-06-01", photo: null },
-        { author: "Sohan L.", rating: 5, text: "Best hybrid seeds in the Amritsar region. High resistance.", date: "2026-06-20", photo: null }
+        { author: "Sohan L.", rating: 5, text: "Best hybrid seeds in the Vijayawada region. High resistance.", date: "2026-06-20", photo: null }
       ]
     },
     {
       id: "sup-2",
       name: "Prithvi Organic Inputs",
-      location: "Ludhiana Co-op Center",
+      location: "Guntur Co-op Center",
       productsSold: 12500,
       reviews: [
         { author: "Baljit S.", rating: 5, text: "Their nitrogen booster did wonders for my paddy fields. Clean, chemical-free compost.", date: "2026-05-18", photo: null },
-        { author: "Gurpreet D.", rating: 4, text: "Excellent compost. Fast delivery to Jalandhar.", date: "2026-06-15", photo: null }
+        { author: "Gurpreet D.", rating: 4, text: "Excellent compost. Fast delivery to Nellore.", date: "2026-06-15", photo: null }
       ]
     },
     {
       id: "sup-3",
       name: "Apex Plant Protection",
-      location: "Bathinda Chemical Mandi",
+      location: "Kurnool Chemical Mandi",
       productsSold: 9400,
       reviews: [
         { author: "Harman S.", rating: 4, text: "Affordable bio-pesticides. Kept whiteflies fully under control.", date: "2026-05-22", photo: null }
@@ -893,7 +893,7 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
     {
       id: "sup-4",
       name: "Neer-Agri Water Tech",
-      location: "Jalandhar Industrial Area",
+      location: "Nellore Industrial Area",
       productsSold: 6100,
       reviews: [
         { author: "Jasbir S.", rating: 5, text: "Durable drip tubes. Saved nearly 30% water this season.", date: "2026-06-01", photo: null }
@@ -926,7 +926,7 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
             reviewsCount: 34,
             reviews: [],
             supplier: "Saraswati Agro-Seeds Ltd",
-            supplierLocation: "Amritsar Rural Hub",
+            supplierLocation: "Vijayawada Rural Hub",
             supplierRating: 4.9,
             supplierProductsSold: 18200,
             certification: "APEDA Quality Seed Stamp #A-483",
@@ -959,7 +959,7 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
             reviewsCount: 52,
             reviews: [],
             supplier: "Prithvi Organic Inputs",
-            supplierLocation: "Jalandhar Eco Park",
+            supplierLocation: "Nellore Eco Park",
             supplierRating: 4.7,
             supplierProductsSold: 9400,
             certification: "NPOP National Organic Standard Certified",
@@ -991,8 +991,8 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
         name: "Gurdev Singh (Primary)",
         phone: "+91 98765-43210",
         addressLine: "H.No 142, Street 3, Near Co-op Society",
-        city: "Amritsar",
-        state: "Punjab",
+        city: "Vijayawada",
+        state: "Andhra Pradesh",
         pincode: "143001"
       },
       paymentMethod: "UPI (BHIM Gateway)",
@@ -1014,7 +1014,7 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
             reviewsCount: 52,
             reviews: [],
             supplier: "Prithvi Organic Inputs",
-            supplierLocation: "Jalandhar Eco Park",
+            supplierLocation: "Nellore Eco Park",
             supplierRating: 4.7,
             supplierProductsSold: 9400,
             certification: "NPOP National Organic Standard Certified",
@@ -1046,8 +1046,8 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
         name: "Gurdev Singh (Primary)",
         phone: "+91 98765-43210",
         addressLine: "H.No 142, Street 3, Near Co-op Society",
-        city: "Amritsar",
-        state: "Punjab",
+        city: "Vijayawada",
+        state: "Andhra Pradesh",
         pincode: "143001"
       },
       paymentMethod: "Co-op Credit Card",
@@ -1069,7 +1069,7 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
             reviewsCount: 34,
             reviews: [],
             supplier: "Saraswati Agro-Seeds Ltd",
-            supplierLocation: "Amritsar Rural Hub",
+            supplierLocation: "Vijayawada Rural Hub",
             supplierRating: 4.9,
             supplierProductsSold: 18200,
             certification: "APEDA Quality Seed Stamp #A-483",
@@ -1101,8 +1101,8 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
         name: "Balwinder Singh (Farm-gate Depot)",
         phone: "+91 87654-32109",
         addressLine: "Kheti Badi Farm, G.T. Road",
-        city: "Ludhiana",
-        state: "Punjab",
+        city: "Guntur",
+        state: "Andhra Pradesh",
         pincode: "141008"
       },
       paymentMethod: "Cash on Delivery",
@@ -1124,7 +1124,7 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
             reviewsCount: 52,
             reviews: [],
             supplier: "Prithvi Organic Inputs",
-            supplierLocation: "Jalandhar Eco Park",
+            supplierLocation: "Nellore Eco Park",
             supplierRating: 4.7,
             supplierProductsSold: 9400,
             certification: "NPOP National Organic Standard Certified",
@@ -1156,8 +1156,8 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
         name: "Gurdev Singh (Primary)",
         phone: "+91 98765-43210",
         addressLine: "H.No 142, Street 3, Near Co-op Society",
-        city: "Amritsar",
-        state: "Punjab",
+        city: "Vijayawada",
+        state: "Andhra Pradesh",
         pincode: "143001"
       },
       paymentMethod: "Kisan Subsidized Wallet",
@@ -1181,7 +1181,7 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
   const [appliedCoupon, setAppliedCoupon] = useState<{ code: string; discountPercent: number; description: string } | null>(null);
   const [couponError, setCouponError] = useState<string>("");
   const [couponSuccess, setCouponSuccess] = useState<string>("");
-  const [shippingLocation, setShippingLocation] = useState<string>("Amritsar");
+  const [shippingLocation, setShippingLocation] = useState<string>("Vijayawada");
   const [isCartCheckoutModalOpen, setIsCartCheckoutModalOpen] = useState<boolean>(false);
   const [isDirectCheckout, setIsDirectCheckout] = useState<boolean>(false);
   const [originalCartBeforeDirect, setOriginalCartBeforeDirect] = useState<any[] | null>(null);
@@ -1199,8 +1199,8 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
     name: "",
     phone: "",
     addressLine: "",
-    city: "Amritsar",
-    state: "Punjab",
+    city: "Vijayawada",
+    state: "Andhra Pradesh",
     pincode: ""
   });
   const [savedAddresses, setSavedAddresses] = useState([
@@ -1209,8 +1209,8 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
       name: "Gurdev Singh (Primary)",
       phone: "+91 98765-43210",
       addressLine: "H.No 142, Street 3, Near Co-op Society",
-      city: "Amritsar",
-      state: "Punjab",
+      city: "Vijayawada",
+      state: "Andhra Pradesh",
       pincode: "143001"
     },
     {
@@ -1218,8 +1218,8 @@ export const SmartMarketplace: React.FC<SmartMarketplaceProps> = ({
       name: "Balwinder Singh (Farm-gate Depot)",
       phone: "+91 87654-32109",
       addressLine: "Kheti Badi Farm, G.T. Road",
-      city: "Ludhiana",
-      state: "Punjab",
+      city: "Guntur",
+      state: "Andhra Pradesh",
       pincode: "141008"
     }
   ]);
@@ -1292,11 +1292,11 @@ This is a certified digital cooperative invoice under APEDA regulations.
   };
 
   const SHIPPING_LOCATIONS = [
-    { name: "Amritsar", baseCostUsd: 4.99 },
-    { name: "Ludhiana", baseCostUsd: 7.50 },
-    { name: "Jalandhar", baseCostUsd: 6.20 },
+    { name: "Vijayawada", baseCostUsd: 4.99 },
+    { name: "Guntur", baseCostUsd: 7.50 },
+    { name: "Nellore", baseCostUsd: 6.20 },
     { name: "Patiala", baseCostUsd: 8.99 },
-    { name: "Bathinda", baseCostUsd: 11.50 },
+    { name: "Kurnool", baseCostUsd: 11.50 },
     { name: "Firozpur", baseCostUsd: 12.99 },
     { name: "Pathankot", baseCostUsd: 14.50 },
   ];
@@ -2508,7 +2508,7 @@ This is a certified digital cooperative invoice under APEDA regulations.
                   <span className="font-black text-slate-800 text-xs block leading-tight">{selectedProduct.supplier}</span>
                   <div className="flex items-center gap-1 text-[9px] text-slate-500 font-semibold">
                     <MapPin className="h-3 w-3 text-emerald-600 shrink-0" />
-                    <span>{selectedProduct.supplierLocation || "Amritsar Rural Hub"}</span>
+                    <span>{selectedProduct.supplierLocation || "Vijayawada Rural Hub"}</span>
                   </div>
                   <div className="text-[9px] text-slate-400 font-bold pt-1">
                     Certified Organic, FCI-Verified distributor with GPS checked warehouses.
@@ -2556,12 +2556,12 @@ This is a certified digital cooperative invoice under APEDA regulations.
                   <span className="text-[8px] font-black bg-emerald-900 text-white px-1 rounded shadow-xs mt-0.5">Your Farm</span>
                 </div>
 
-                {/* Dealer Amritsar Co-op */}
+                {/* Dealer Vijayawada Co-op */}
                 <div className="absolute top-[20%] left-[15%] flex flex-col items-center">
                   <div className="h-4.5 w-4.5 bg-amber-500 text-white border border-white rounded-full flex items-center justify-center shadow-md animate-pulse">
                     <MapPin className="h-2.5 w-2.5" />
                   </div>
-                  <span className="text-[7px] font-bold bg-slate-800 text-slate-100 px-1 rounded shadow-xs mt-0.5">Amritsar (4.2km)</span>
+                  <span className="text-[7px] font-bold bg-slate-800 text-slate-100 px-1 rounded shadow-xs mt-0.5">Vijayawada (4.2km)</span>
                 </div>
 
                 {/* Dealer Precision Inputs */}
@@ -2569,7 +2569,7 @@ This is a certified digital cooperative invoice under APEDA regulations.
                   <div className="h-4.5 w-4.5 bg-amber-500 text-white border border-white rounded-full flex items-center justify-center shadow-md">
                     <MapPin className="h-2.5 w-2.5" />
                   </div>
-                  <span className="text-[7px] font-bold bg-slate-800 text-slate-100 px-1 rounded shadow-xs mt-0.5">Ludhiana (12.8km)</span>
+                  <span className="text-[7px] font-bold bg-slate-800 text-slate-100 px-1 rounded shadow-xs mt-0.5">Guntur (12.8km)</span>
                 </div>
               </div>
 
@@ -2919,14 +2919,14 @@ This is a certified digital cooperative invoice under APEDA regulations.
                     Consolidated Logistics Optimization
                   </h4>
                   <p className="text-[9.5px] text-slate-500 font-semibold leading-relaxed">
-                    All deliveries are scheduled directly to your registered GPS land parcel boundaries in Punjab. You can optimize the transport dispatch speed for each item directly from the catalog.
+                    All deliveries are scheduled directly to your registered GPS land parcel boundaries in Andhra Pradesh. You can optimize the transport dispatch speed for each item directly from the catalog.
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
                     <div className="bg-white border border-slate-100 p-3 rounded-xl">
                       <span className="text-[8.5px] font-extrabold text-slate-400 uppercase tracking-wider block">Default Target Destination</span>
                       <span className="text-[10px] font-black text-slate-800 block mt-1 flex items-center gap-1">
                         <MapPin className="h-3.5 w-3.5 text-emerald-600" />
-                        Punjab Co-op Sector 4
+                        Andhra Pradesh Co-op Sector 4
                       </span>
                     </div>
                     <div className="bg-white border border-slate-100 p-3 rounded-xl">
@@ -2952,7 +2952,7 @@ This is a certified digital cooperative invoice under APEDA regulations.
                 <div className="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs space-y-3">
                   <label className="block text-[10px] font-black text-slate-700 uppercase tracking-wider flex items-center gap-1">
                     <MapPin className="h-4 w-4 text-emerald-600" />
-                    1. Shipping Location (Punjab)
+                    1. Shipping Location (Andhra Pradesh)
                   </label>
                   <p className="text-[9px] text-slate-400 font-medium leading-tight">
                     Select your nearest district hub to automatically calculate specific co-op shipping rates & distance surcharges.
@@ -3782,7 +3782,7 @@ This is a certified digital cooperative invoice under APEDA regulations.
                   <MapPin className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
                   <div className="text-[8.5px] text-slate-600 font-medium">
                     <span className="font-extrabold text-slate-900 block">Automatic GPS Farm-Gate Dispatch Address</span>
-                    Coordinates derived from soil-health database. Matches registered land parcel in Punjab co-op registries. No manual verification required.
+                    Coordinates derived from soil-health database. Matches registered land parcel in Andhra Pradesh co-op registries. No manual verification required.
                   </div>
                 </div>
 
@@ -3866,7 +3866,7 @@ This is a certified digital cooperative invoice under APEDA regulations.
                 <div className="bg-slate-50 border border-slate-200/50 p-4 rounded-xl text-left space-y-2 text-[9px]">
                   <div className="flex justify-between font-bold border-b border-slate-200/40 pb-1.5">
                     <span className="text-slate-500">Scheduled Dispatch Target:</span>
-                    <span className="text-slate-800 font-extrabold">Autonomous GPS Coordinates (Punjab Sector 4)</span>
+                    <span className="text-slate-800 font-extrabold">Autonomous GPS Coordinates (Andhra Pradesh Sector 4)</span>
                   </div>
                   <div className="flex justify-between font-bold border-b border-slate-200/40 pb-1.5">
                     <span className="text-slate-500">Logistics Payload Method:</span>
@@ -4061,7 +4061,7 @@ This is a certified digital cooperative invoice under APEDA regulations.
                           type="text"
                           value={newAddress.city}
                           onChange={(e) => setNewAddress({ ...newAddress, city: e.target.value })}
-                          placeholder="Amritsar"
+                          placeholder="Vijayawada"
                           className="w-full bg-white border border-slate-200 rounded-lg text-[10.5px] px-2.5 py-1.5 font-semibold text-slate-800 focus:outline-none focus:ring-1 focus:ring-emerald-500"
                         />
                       </div>
@@ -4071,7 +4071,7 @@ This is a certified digital cooperative invoice under APEDA regulations.
                           type="text"
                           value={newAddress.state}
                           onChange={(e) => setNewAddress({ ...newAddress, state: e.target.value })}
-                          placeholder="Punjab"
+                          placeholder="Andhra Pradesh"
                           className="w-full bg-white border border-slate-200 rounded-lg text-[10.5px] px-2.5 py-1.5 font-semibold text-slate-800 focus:outline-none focus:ring-1 focus:ring-emerald-500"
                         />
                       </div>
@@ -4327,7 +4327,7 @@ This is a certified digital cooperative invoice under APEDA regulations.
                     <div className="grid grid-cols-2 gap-2">
                       {[
                         { code: "SBI", name: "State Bank of India" },
-                        { code: "PNB", name: "Punjab National Bank" },
+                        { code: "PNB", name: "State Bank of India" },
                         { code: "HDFC", name: "HDFC Bank" },
                         { code: "ICICI", name: "ICICI Bank" }
                       ].map((bank) => (

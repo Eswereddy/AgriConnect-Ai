@@ -182,7 +182,7 @@ export default function BlockchainCarbonEngine() {
       stages: [
         {
           stageName: "Seed Purchase",
-          location: "National Seed Corp, Pune",
+          location: "National Seed Corp, Krishna",
           date: "01-Nov-2025",
           details: "Certified Disease-Free PBW 343 Seeds, Batch #NSC-882",
           verifiedBy: "State Agriculture Officer",
@@ -265,7 +265,7 @@ export default function BlockchainCarbonEngine() {
     {
       batchId: "B-2026-002",
       farmerName: "Gurpreet Singh",
-      farmerLocation: "Ludhiana, Punjab",
+      farmerLocation: "Guntur, Andhra Pradesh",
       cropName: "Organic Basmati Rice",
       cropVariety: "Pusa Basmati 1121",
       harvestDate: "20-Jul-2026",
@@ -280,7 +280,7 @@ export default function BlockchainCarbonEngine() {
       stages: [
         {
           stageName: "Seed Purchase",
-          location: "PAU Seed Farm, Ludhiana",
+          location: "PAU Seed Farm, Guntur",
           date: "15-May-2025",
           details: "PAU Certified Pure Pusa 1121 Breeder Seed",
           verifiedBy: "PAU Extension Officer",
@@ -290,7 +290,7 @@ export default function BlockchainCarbonEngine() {
         },
         {
           stageName: "Planting & Sowing",
-          location: "Ludhiana Bio Farm Plot #1",
+          location: "Guntur Bio Farm Plot #1",
           date: "10-Jun-2025",
           details: "System of Rice Intensification (SRI) technique with 50% water savings.",
           verifiedBy: "PAU Field Monitor",
@@ -300,7 +300,7 @@ export default function BlockchainCarbonEngine() {
         },
         {
           stageName: "Growing & Irrigation",
-          location: "Ludhiana Bio Farm Plot #1",
+          location: "Guntur Bio Farm Plot #1",
           date: "15-Jun-2025 - 15-Jul-2026",
           details: "Zero synthetic fertilizers. Vermicompost & Azolla bio-fertilizer application.",
           verifiedBy: "Organic Certifier Inspector",
@@ -310,7 +310,7 @@ export default function BlockchainCarbonEngine() {
         },
         {
           stageName: "Harvesting & Grading",
-          location: "Ludhiana Bio Farm Plot #1",
+          location: "Guntur Bio Farm Plot #1",
           date: "20-Jul-2026",
           details: "Grain length 8.2mm, moisture 12.5%. Graded Export Quality A+.",
           verifiedBy: "Export Inspector",
@@ -320,7 +320,7 @@ export default function BlockchainCarbonEngine() {
         },
         {
           stageName: "Warehouse Storage",
-          location: "Ludhiana Silo Hub #12",
+          location: "Guntur Silo Hub #12",
           date: "22-Jul-2026",
           details: "Aerated storage in airtight GrainPro bags.",
           verifiedBy: "Warehouse Operator",
@@ -424,7 +424,7 @@ export default function BlockchainCarbonEngine() {
       id: "CCL-102",
       creditId: "ACC-2026-PB-008",
       farmerName: "Gurpreet Singh",
-      farmRegion: "Ludhiana, Punjab",
+      farmRegion: "Guntur, Andhra Pradesh",
       acreage: 30,
       creditsAvailableTons: 110,
       pricePerTonRs: 1400,
@@ -469,7 +469,7 @@ export default function BlockchainCarbonEngine() {
       id: "CERT-FT-9012",
       certNumber: "FTI-FAIRTRADE-2026-9012",
       farmerName: "Gurpreet Singh",
-      farmLocation: "Ludhiana, Punjab",
+      farmLocation: "Guntur, Andhra Pradesh",
       certType: "Fair Trade Certified",
       issuedDate: "01-Mar-2026",
       expiryDate: "28-Feb-2027",

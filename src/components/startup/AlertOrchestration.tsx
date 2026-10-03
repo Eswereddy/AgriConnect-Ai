@@ -39,7 +39,7 @@ export const AlertOrchestration: React.FC<AlertOrchestrationProps> = ({ onToggle
       case "weather":
         return {
           title: "🚨 SEVERE WEATHER HAZARD WARNING",
-          body: "IMD Alert: Radiative frost and heavy precipitation expected in Punjab Block 4 in the next 24 hrs. Cover high-yield seedlings and suspend nitrogen spraying.",
+          body: "IMD Alert: Radiative frost and heavy precipitation expected in Andhra Pradesh Block 4 in the next 24 hrs. Cover high-yield seedlings and suspend nitrogen spraying.",
           meta: "Twilio Broadcast Route • Priority 1"
         };
       case "price":
@@ -57,7 +57,7 @@ export const AlertOrchestration: React.FC<AlertOrchestrationProps> = ({ onToggle
       case "order":
         return {
           title: "📦 ORDER LOGISTICS DISPATCH",
-          body: "Shipment update for Lot-982: 4,200kg Basmati Rice has departed Punjab Hub. Driver: Aarav Sharma. Live cold-chain temperature: 4.2°C. Traceability QR: active.",
+          body: "Shipment update for Lot-982: 4,200kg Basmati Rice has departed Andhra Pradesh Hub. Driver: Aarav Sharma. Live cold-chain temperature: 4.2°C. Traceability QR: active.",
           meta: "Webhook Notification • Multi-Channel Delivery"
         };
       default:

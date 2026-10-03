@@ -29,15 +29,15 @@ const SHIPPERS = [
 const MANDI_HEATMAPS = {
   Basmati: [
     { city: "Khanna Mandi", price: "₹68,500/T", status: "Premium", color: "text-emerald-400 bg-emerald-950/40 border-emerald-500/20", x: 260, y: 70 },
-    { city: "Amritsar Hub", price: "₹65,200/T", status: "High", color: "text-emerald-400 bg-emerald-950/40 border-emerald-500/20", x: 80, y: 110 },
-    { city: "Bathinda Block", price: "₹61,000/T", status: "Standard", color: "text-amber-400 bg-amber-950/40 border-amber-500/20", x: 150, y: 250 },
-    { city: "Ludhiana Mandi", price: "₹66,400/T", status: "Premium", color: "text-emerald-400 bg-emerald-950/40 border-emerald-500/20", x: 380, y: 190 }
+    { city: "Vijayawada Hub", price: "₹65,200/T", status: "High", color: "text-emerald-400 bg-emerald-950/40 border-emerald-500/20", x: 80, y: 110 },
+    { city: "Kurnool Block", price: "₹61,000/T", status: "Standard", color: "text-amber-400 bg-amber-950/40 border-amber-500/20", x: 150, y: 250 },
+    { city: "Guntur Mandi", price: "₹66,400/T", status: "Premium", color: "text-emerald-400 bg-emerald-950/40 border-emerald-500/20", x: 380, y: 190 }
   ],
   Maize: [
     { city: "Khanna Mandi", price: "₹24,200/T", status: "Low", color: "text-rose-400 bg-rose-950/40 border-rose-500/20", x: 260, y: 70 },
-    { city: "Amritsar Hub", price: "₹28,500/T", status: "Standard", color: "text-amber-400 bg-amber-950/40 border-amber-500/20", x: 80, y: 110 },
-    { city: "Bathinda Block", price: "₹31,000/T", status: "Premium", color: "text-emerald-400 bg-emerald-950/40 border-emerald-500/20", x: 150, y: 250 },
-    { city: "Ludhiana Mandi", price: "₹29,000/T", status: "Standard", color: "text-amber-400 bg-amber-950/40 border-amber-500/20", x: 380, y: 190 }
+    { city: "Vijayawada Hub", price: "₹28,500/T", status: "Standard", color: "text-amber-400 bg-amber-950/40 border-amber-500/20", x: 80, y: 110 },
+    { city: "Kurnool Block", price: "₹31,000/T", status: "Premium", color: "text-emerald-400 bg-emerald-950/40 border-emerald-500/20", x: 150, y: 250 },
+    { city: "Guntur Mandi", price: "₹29,000/T", status: "Standard", color: "text-amber-400 bg-amber-950/40 border-amber-500/20", x: 380, y: 190 }
   ]
 };
 
@@ -95,7 +95,7 @@ export const GeospatialFarmMapper: React.FC = () => {
       );
     } else if (activeLayer === "heatmap") {
       setSimulatedRouteText(
-        `APMC Mandi indices live. Filtering real-time spot rates for ${selectedMandiCrop} across regional Punjab terminals.`
+        `APMC Mandi indices live. Filtering real-time spot rates for ${selectedMandiCrop} across regional Andhra Pradesh terminals.`
       );
     } else {
       setSimulatedRouteText("Route planner idle. Map coordinates or select storage center.");
@@ -263,7 +263,7 @@ export const GeospatialFarmMapper: React.FC = () => {
               <span className="flex items-center gap-1 text-emerald-400">
                 <Navigation className="h-3.5 w-3.5" /> CO-ORDINATE GPS: LOCKED
               </span>
-              <span>EPICENTER: 30.6724° N, 76.2843° E</span>
+              <span>EPICENTER: 16.3067° N, 80.4365° E</span>
             </div>
           </div>
         </div>

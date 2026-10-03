@@ -82,11 +82,11 @@ export const WarehouseStorage: React.FC = () => {
   const [warehouses, setWarehouses] = useState<Warehouse[]>([
     {
       id: "wh-1",
-      name: "Amritsar Agronomic Cold Depot",
+      name: "Vijayawada Agronomic Cold Depot",
       type: "Cold Storage",
       distanceKm: 8.4,
-      latitude: 31.634,
-      longitude: 74.872,
+      latitude: 16.5062,
+      longitude: 80.648,
       totalCapacityBags: 25000,
       availableCapacityBags: 4200,
       baseRatePerBagPerMonth: 12.5,
@@ -97,18 +97,18 @@ export const WarehouseStorage: React.FC = () => {
       ventilationFanActive: true,
       certifiedForExport: true,
       transitRoutes: [
-        { marketName: "Amritsar Central APMC", distanceKm: 9.2, durationMins: 20, transitCostPerTon: 350 },
-        { marketName: "Jalandhar Grain Mandi", distanceKm: 82.0, durationMins: 110, transitCostPerTon: 1800 },
-        { marketName: "Ludhiana Export Terminal", distanceKm: 140.0, durationMins: 180, transitCostPerTon: 3200 }
+        { marketName: "Vijayawada Central APMC", distanceKm: 9.2, durationMins: 20, transitCostPerTon: 350 },
+        { marketName: "Nellore Grain Mandi", distanceKm: 82.0, durationMins: 110, transitCostPerTon: 1800 },
+        { marketName: "Guntur Export Terminal", distanceKm: 140.0, durationMins: 180, transitCostPerTon: 3200 }
       ]
     },
     {
       id: "wh-2",
-      name: "Gurdaspur Sovereign Dry Terminal",
+      name: "Machilipatnam Sovereign Dry Terminal",
       type: "Dry Warehouse",
       distanceKm: 14.2,
       latitude: 32.041,
-      longitude: 75.405,
+      longitude: 80.8079,
       totalCapacityBags: 50000,
       availableCapacityBags: 18500,
       baseRatePerBagPerMonth: 6.0,
@@ -119,18 +119,18 @@ export const WarehouseStorage: React.FC = () => {
       ventilationFanActive: false,
       certifiedForExport: false,
       transitRoutes: [
-        { marketName: "Gurdaspur APMC Yard", distanceKm: 5.4, durationMins: 12, transitCostPerTon: 220 },
-        { marketName: "Batala Grain Market", distanceKm: 34.0, durationMins: 45, transitCostPerTon: 950 },
-        { marketName: "Amritsar Central APMC", distanceKm: 76.0, durationMins: 95, transitCostPerTon: 2100 }
+        { marketName: "Machilipatnam APMC Yard", distanceKm: 5.4, durationMins: 12, transitCostPerTon: 220 },
+        { marketName: "Tenali Grain Market", distanceKm: 34.0, durationMins: 45, transitCostPerTon: 950 },
+        { marketName: "Vijayawada Central APMC", distanceKm: 76.0, durationMins: 95, transitCostPerTon: 2100 }
       ]
     },
     {
       id: "wh-3",
-      name: "Ludhiana Multimodal Cold Link",
+      name: "Guntur Multimodal Cold Link",
       type: "Hybrid Depot",
       distanceKm: 32.1,
-      latitude: 30.901,
-      longitude: 75.857,
+      latitude: 16.3067,
+      longitude: 80.4365,
       totalCapacityBags: 80000,
       availableCapacityBags: 32400,
       baseRatePerBagPerMonth: 9.8,
@@ -141,9 +141,9 @@ export const WarehouseStorage: React.FC = () => {
       ventilationFanActive: true,
       certifiedForExport: true,
       transitRoutes: [
-        { marketName: "Ludhiana APMC Yard", distanceKm: 4.1, durationMins: 10, transitCostPerTon: 180 },
-        { marketName: "Jalandhar Grain Mandi", distanceKm: 61.0, durationMins: 75, transitCostPerTon: 1400 },
-        { marketName: "Amritsar Central APMC", distanceKm: 138.0, durationMins: 170, transitCostPerTon: 3100 }
+        { marketName: "Guntur APMC Yard", distanceKm: 4.1, durationMins: 10, transitCostPerTon: 180 },
+        { marketName: "Nellore Grain Mandi", distanceKm: 61.0, durationMins: 75, transitCostPerTon: 1400 },
+        { marketName: "Vijayawada Central APMC", distanceKm: 138.0, durationMins: 170, transitCostPerTon: 3100 }
       ]
     }
   ]);
@@ -154,7 +154,7 @@ export const WarehouseStorage: React.FC = () => {
       id: "BATCH-9021",
       cropName: "Tomato",
       warehouseId: "wh-1",
-      warehouseName: "Amritsar Agronomic Cold Depot",
+      warehouseName: "Vijayawada Agronomic Cold Depot",
       bagsCount: 150,
       weightTons: 7.5,
       storeDate: "2026-06-15",
@@ -169,7 +169,7 @@ export const WarehouseStorage: React.FC = () => {
       id: "BATCH-8714",
       cropName: "Basmati Rice",
       warehouseId: "wh-2",
-      warehouseName: "Gurdaspur Sovereign Dry Terminal",
+      warehouseName: "Machilipatnam Sovereign Dry Terminal",
       bagsCount: 800,
       weightTons: 40.0,
       storeDate: "2026-04-10",
@@ -184,7 +184,7 @@ export const WarehouseStorage: React.FC = () => {
       id: "BATCH-4402",
       cropName: "Wheat",
       warehouseId: "wh-3",
-      warehouseName: "Ludhiana Multimodal Cold Link",
+      warehouseName: "Guntur Multimodal Cold Link",
       bagsCount: 500,
       weightTons: 25.0,
       storeDate: "2026-05-02",
@@ -393,7 +393,7 @@ export const WarehouseStorage: React.FC = () => {
         <div className="space-y-1 text-xs">
           <h3 className="font-extrabold text-amber-950 uppercase text-[10.5px]">FEFO Early-Warning Stock Alert</h3>
           <p className="text-amber-900 leading-relaxed font-semibold">
-            Batch <strong className="text-slate-900 font-extrabold">BATCH-9021 (Tomato, 7.5 Tons)</strong> stored inside <span className="underline">Amritsar Agronomic Cold Depot</span> has reached <strong className="text-red-700">FEFO Expiration Rank 1</strong>. Complete immediate liquidation within 5 days to avoid spoilage.
+            Batch <strong className="text-slate-900 font-extrabold">BATCH-9021 (Tomato, 7.5 Tons)</strong> stored inside <span className="underline">Vijayawada Agronomic Cold Depot</span> has reached <strong className="text-red-700">FEFO Expiration Rank 1</strong>. Complete immediate liquidation within 5 days to avoid spoilage.
           </p>
         </div>
       </div>

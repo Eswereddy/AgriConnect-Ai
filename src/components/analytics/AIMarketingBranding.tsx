@@ -222,7 +222,7 @@ export default function AIMarketingBranding() {
 
   // --- 4. STORYTELLING GENERATOR ---
   const [cropForStory, setCropForStory] = useState("Heirloom Black Basmati");
-  const [farmHeritage, setFarmHeritage] = useState("Third-generation soil stewards in the Punjab foothills");
+  const [farmHeritage, setFarmHeritage] = useState("Third-generation soil stewards in the Andhra Pradesh foothills");
   const [soilSecret, setSoilSecret] = useState("Aged bio-inoculants, rich Vermicompost, and zero chemical inputs for 5 years");
   const [generatedStory, setGeneratedStory] = useState("");
 
@@ -586,7 +586,7 @@ export default function AIMarketingBranding() {
                   <div className="text-right">
                     <span className="text-[8px] font-black text-slate-400 uppercase block">Sovereign Ledger ID</span>
                     <span className="font-mono text-[10px] font-black text-slate-800 block">BATCH-2026-NPOP-B3</span>
-                    <span className="text-[9px] text-slate-400 block font-semibold">Grown in Punjab Loam</span>
+                    <span className="text-[9px] text-slate-400 block font-semibold">Grown in Andhra Pradesh Loam</span>
                   </div>
                 </div>
 
@@ -930,7 +930,7 @@ export default function AIMarketingBranding() {
                     </div>
                     <div>
                       <span className="text-[11px] font-black text-slate-800 block">@vedic_green_acres</span>
-                      <span className="text-[9px] text-slate-400 font-bold block">Punjab Foothills Organic Sourcing</span>
+                      <span className="text-[9px] text-slate-400 font-bold block">Andhra Pradesh Foothills Organic Sourcing</span>
                     </div>
                   </div>
 

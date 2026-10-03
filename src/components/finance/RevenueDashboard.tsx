@@ -69,13 +69,13 @@ const REVENUE_DATA_SETS = {
     ],
     customers: [
       { name: "GreenValley Co-op", amount: 410000, orders: 12, region: "North" },
-      { name: "Punjab Organic Farms", amount: 320000, orders: 9, region: "North" },
+      { name: "Andhra Pradesh Organic Farms", amount: 320000, orders: 9, region: "North" },
       { name: "Pioneer Agritech Ltd", amount: 220000, orders: 6, region: "West" },
       { name: "Deccan Crop Producers", amount: 180000, orders: 5, region: "South" },
       { name: "Sahyadri Agri Solutions", amount: 115000, orders: 3, region: "West" }
     ],
     regions: [
-      { id: "North", name: "Punjab & Haryana (North)", amount: 480000, percentage: 38.5, growth: 14.2 },
+      { id: "North", name: "Andhra Pradesh & Haryana (North)", amount: 480000, percentage: 38.5, growth: 14.2 },
       { id: "West", name: "Maharashtra & Gujarat (West)", amount: 360000, percentage: 28.9, growth: 10.8 },
       { id: "South", name: "Karnataka & AP (South)", amount: 245000, percentage: 19.7, growth: 9.3 },
       { id: "East", name: "Bihar & West Bengal (East)", amount: 90000, percentage: 7.2, growth: -2.1 },
@@ -106,13 +106,13 @@ const REVENUE_DATA_SETS = {
     ],
     customers: [
       { name: "GreenValley Co-op", amount: 1180000, orders: 38, region: "North" },
-      { name: "Punjab Organic Farms", amount: 920000, orders: 27, region: "North" },
+      { name: "Andhra Pradesh Organic Farms", amount: 920000, orders: 27, region: "North" },
       { name: "Pioneer Agritech Ltd", amount: 650000, orders: 19, region: "West" },
       { name: "Deccan Crop Producers", amount: 510000, orders: 15, region: "South" },
       { name: "Sahyadri Agri Solutions", amount: 420000, orders: 11, region: "West" }
     ],
     regions: [
-      { id: "North", name: "Punjab & Haryana (North)", amount: 1420000, percentage: 38.6, growth: 9.8 },
+      { id: "North", name: "Andhra Pradesh & Haryana (North)", amount: 1420000, percentage: 38.6, growth: 9.8 },
       { id: "West", name: "Maharashtra & Gujarat (West)", amount: 1050000, percentage: 28.5, growth: 8.2 },
       { id: "South", name: "Karnataka & AP (South)", amount: 720000, percentage: 19.6, growth: 7.1 },
       { id: "East", name: "Bihar & West Bengal (East)", amount: 280000, percentage: 7.6, growth: 1.4 },
@@ -143,13 +143,13 @@ const REVENUE_DATA_SETS = {
     ],
     customers: [
       { name: "GreenValley Co-op", amount: 4650000, orders: 142, region: "North" },
-      { name: "Punjab Organic Farms", amount: 3720000, orders: 110, region: "North" },
+      { name: "Andhra Pradesh Organic Farms", amount: 3720000, orders: 110, region: "North" },
       { name: "Pioneer Agritech Ltd", amount: 2680000, orders: 84, region: "West" },
       { name: "Deccan Crop Producers", amount: 2050000, orders: 62, region: "South" },
       { name: "Sahyadri Agri Solutions", amount: 1750000, orders: 51, region: "West" }
     ],
     regions: [
-      { id: "North", name: "Punjab & Haryana (North)", amount: 5650000, percentage: 38.0, growth: 16.4 },
+      { id: "North", name: "Andhra Pradesh & Haryana (North)", amount: 5650000, percentage: 38.0, growth: 16.4 },
       { id: "West", name: "Maharashtra & Gujarat (West)", amount: 4250000, percentage: 28.6, growth: 14.1 },
       { id: "South", name: "Karnataka & AP (South)", amount: 2920000, percentage: 19.7, growth: 12.8 },
       { id: "East", name: "Bihar & West Bengal (East)", amount: 1080000, percentage: 7.3, growth: 8.5 },
@@ -207,7 +207,7 @@ export default function RevenueDashboard() {
   // Payment tracking states
   const [orders, setOrders] = useState<OrderPayment[]>([
     { id: "ORD-2026-089", customerName: "Pioneer Agritech Ltd", amount: 124500, orderDate: "2026-06-15", dueDate: "2026-07-05", status: "Overdue", cropVariety: "LoRaWAN Smart Soil Moisture Probes" },
-    { id: "ORD-2026-092", customerName: "Punjab Organic Farms", amount: 320000, orderDate: "2026-06-28", dueDate: "2026-07-15", status: "Pending", cropVariety: "Nano-Urea Liquid Bio-fertilizer" },
+    { id: "ORD-2026-092", customerName: "Andhra Pradesh Organic Farms", amount: 320000, orderDate: "2026-06-28", dueDate: "2026-07-15", status: "Pending", cropVariety: "Nano-Urea Liquid Bio-fertilizer" },
     { id: "ORD-2026-095", customerName: "GreenValley Co-op", amount: 410000, orderDate: "2026-07-01", dueDate: "2026-07-20", status: "Pending", cropVariety: "Premium Hybrid Maize Seeds (F1)" },
     { id: "ORD-2026-085", customerName: "Hari Singh Estates", amount: 950000, orderDate: "2026-06-05", dueDate: "2026-06-25", status: "Overdue", cropVariety: "Autonomous Solar Pest Traps (v3)" },
     { id: "ORD-2026-098", customerName: "Krishi Cooperative Soc", amount: 150000, orderDate: "2026-07-05", dueDate: "2026-07-25", status: "Pending", cropVariety: "Cold-Storage Smart Node Sensors" },
@@ -217,7 +217,7 @@ export default function RevenueDashboard() {
   const [transactions, setTransactions] = useState<BankTransaction[]>([
     { id: "TXN-REF-8910", sender: "Pioneer Agritech Ltd (Direct RTGS)", amount: 124500, receivedDate: "2026-07-08", status: "Unreconciled" },
     { id: "TXN-REF-9022", sender: "GreenValley Co-op (NEFT transfer)", amount: 410000, receivedDate: "2026-07-09", status: "Unreconciled" },
-    { id: "TXN-REF-7121", sender: "Punjab Organic Farms (RTGS transfer)", amount: 320000, receivedDate: "2026-07-09", status: "Unreconciled" },
+    { id: "TXN-REF-7121", sender: "Andhra Pradesh Organic Farms (RTGS transfer)", amount: 320000, receivedDate: "2026-07-09", status: "Unreconciled" },
     { id: "TXN-REF-5034", sender: "Hari Singh Estates (IMPS check)", amount: 950000, receivedDate: "2026-07-09", status: "Unreconciled" }
   ]);
 
@@ -306,17 +306,17 @@ export default function RevenueDashboard() {
   const [taxRecords, setTaxRecords] = useState<TaxRecord[]>([
     // Sales Records (Output GST)
     { id: "INV-2026-441", partnerName: "Pioneer Agritech Ltd", date: "2026-06-15", itemDescription: "LoRaWAN Smart Soil Moisture Probes", hsnCode: "9015", taxableValue: 105500, gstRate: 18, placeOfSupply: "Karnataka", type: "Sales" },
-    { id: "INV-2026-442", partnerName: "Punjab Organic Farms", date: "2026-06-28", itemDescription: "Nano-Urea Liquid Bio-fertilizer", hsnCode: "3105", taxableValue: 285700, gstRate: 12, placeOfSupply: "Punjab", type: "Sales" },
+    { id: "INV-2026-442", partnerName: "Andhra Pradesh Organic Farms", date: "2026-06-28", itemDescription: "Nano-Urea Liquid Bio-fertilizer", hsnCode: "3105", taxableValue: 285700, gstRate: 12, placeOfSupply: "Andhra Pradesh", type: "Sales" },
     { id: "INV-2026-443", partnerName: "GreenValley Co-op", date: "2026-07-01", itemDescription: "Premium Hybrid Maize Seeds (F1)", hsnCode: "1209", taxableValue: 390400, gstRate: 5, placeOfSupply: "Haryana", type: "Sales" },
-    { id: "INV-2026-444", partnerName: "Hari Singh Estates", date: "2026-06-05", itemDescription: "Autonomous Solar Pest Traps (v3)", hsnCode: "8424", taxableValue: 805000, gstRate: 12, placeOfSupply: "Punjab", type: "Sales" },
+    { id: "INV-2026-444", partnerName: "Hari Singh Estates", date: "2026-06-05", itemDescription: "Autonomous Solar Pest Traps (v3)", hsnCode: "8424", taxableValue: 805000, gstRate: 12, placeOfSupply: "Andhra Pradesh", type: "Sales" },
     { id: "INV-2026-445", partnerName: "Krishi Cooperative Soc", date: "2026-07-05", itemDescription: "Cold-Storage Smart Node Sensors", hsnCode: "9015", taxableValue: 127100, gstRate: 18, placeOfSupply: "Maharashtra", type: "Sales" },
     { id: "INV-2026-446", partnerName: "Deccan Crop Producers", date: "2026-07-08", itemDescription: "Bacterial Blight Resilient Rice Seedlings", hsnCode: "1209", taxableValue: 171400, gstRate: 5, placeOfSupply: "Andhra Pradesh", type: "Sales" },
     
     // Purchases (Input Tax Credit / ITC)
     { id: "PUR-2026-050", partnerName: "SemTech Chipsets India", date: "2026-06-10", itemDescription: "Radio Transceiver IC chips for IoT", hsnCode: "9015", taxableValue: 45000, gstRate: 18, placeOfSupply: "Karnataka", type: "Purchase" },
-    { id: "PUR-2026-051", partnerName: "Nagarjuna Chemicals Ltd", date: "2026-06-20", itemDescription: "Concentrated Bio-Chemical Base", hsnCode: "3105", taxableValue: 120000, gstRate: 12, placeOfSupply: "Punjab", type: "Purchase" },
+    { id: "PUR-2026-051", partnerName: "Nagarjuna Chemicals Ltd", date: "2026-06-20", itemDescription: "Concentrated Bio-Chemical Base", hsnCode: "3105", taxableValue: 120000, gstRate: 12, placeOfSupply: "Andhra Pradesh", type: "Purchase" },
     { id: "PUR-2026-052", partnerName: "Apex Drone Frame Labs", date: "2026-06-25", itemDescription: "Carbon Fiber Drone Chassis", hsnCode: "8424", taxableValue: 350000, gstRate: 18, placeOfSupply: "Tamil Nadu", type: "Purchase" },
-    { id: "PUR-2026-053", partnerName: "Indo-American Seed Breeders", date: "2026-07-02", itemDescription: "Parent Breeder Seeds (Inbred Line)", hsnCode: "1209", taxableValue: 80000, gstRate: 5, placeOfSupply: "Punjab", type: "Purchase" },
+    { id: "PUR-2026-053", partnerName: "Indo-American Seed Breeders", date: "2026-07-02", itemDescription: "Parent Breeder Seeds (Inbred Line)", hsnCode: "1209", taxableValue: 80000, gstRate: 5, placeOfSupply: "Andhra Pradesh", type: "Purchase" },
     { id: "PUR-2026-054", partnerName: "Zenith IoT Enclosures", date: "2026-07-04", itemDescription: "Waterproof IP67 Plastic Injection Casings", hsnCode: "9015", taxableValue: 25000, gstRate: 18, placeOfSupply: "Maharashtra", type: "Purchase" }
   ]);
 
@@ -333,7 +333,7 @@ export default function RevenueDashboard() {
   const [newTaxHsn, setNewTaxHsn] = useState("1209");
   const [newTaxValue, setNewTaxValue] = useState<string>("50000");
   const [newTaxRate, setNewTaxRate] = useState<number>(12);
-  const [newTaxState, setNewTaxState] = useState("Punjab");
+  const [newTaxState, setNewTaxState] = useState("Andhra Pradesh");
   const [newTaxType, setNewTaxType] = useState<"Sales" | "Purchase">("Sales");
   const [newTaxSuccess, setNewTaxSuccess] = useState("");
 
@@ -377,7 +377,7 @@ export default function RevenueDashboard() {
   // Memoized GST calculations
   const computedRecords = useMemo(() => {
     return taxRecords.map(r => {
-      const isLocal = r.placeOfSupply === "Punjab";
+      const isLocal = r.placeOfSupply === "Andhra Pradesh";
       const cgst = isLocal ? r.taxableValue * (r.gstRate / 100) / 2 : 0;
       const sgst = isLocal ? r.taxableValue * (r.gstRate / 100) / 2 : 0;
       const igst = !isLocal ? r.taxableValue * (r.gstRate / 100) : 0;
@@ -662,7 +662,7 @@ export default function RevenueDashboard() {
               className="bg-transparent border-0 focus:outline-none cursor-pointer"
             >
               <option value="All">All Regions</option>
-              <option value="North">Punjab & Haryana (North)</option>
+              <option value="North">Andhra Pradesh & Haryana (North)</option>
               <option value="West">Maharashtra & Gujarat (West)</option>
               <option value="South">Karnataka & AP (South)</option>
               <option value="East">Bihar & West Bengal (East)</option>
@@ -1086,7 +1086,7 @@ export default function RevenueDashboard() {
                 <line x1="0" y1="350" x2="400" y2="350" />
               </g>
 
-              {/* REGION 1: NORTH (Punjab/Haryana) - Green block top left */}
+              {/* REGION 1: NORTH (Andhra Pradesh/Haryana) - Green block top left */}
               <path
                 d="M 120,50 L 220,50 L 210,120 L 110,110 Z"
                 fill={selectedRegion === "North" ? "#4f46e5" : hoveredRegion === "North" ? "#818cf8" : "#c7d2fe"}
@@ -2462,7 +2462,7 @@ export default function RevenueDashboard() {
                       onChange={(e) => setNewTaxState(e.target.value)}
                       className="w-full px-2 py-1.5 text-xs text-slate-700 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-indigo-500"
                     >
-                      <option value="Punjab">Punjab (Local Office)</option>
+                      <option value="Andhra Pradesh">Andhra Pradesh (Local Office)</option>
                       <option value="Haryana">Haryana (Inter-state)</option>
                       <option value="Karnataka">Karnataka (Inter-state)</option>
                       <option value="Maharashtra">Maharashtra (Inter-state)</option>
@@ -2474,7 +2474,7 @@ export default function RevenueDashboard() {
                 {/* DYNAMIC REAL-TIME PREVIEW */}
                 {(() => {
                   const val = parseFloat(newTaxValue) || 0;
-                  const isLocal = newTaxState === "Punjab";
+                  const isLocal = newTaxState === "Andhra Pradesh";
                   const totalGstVal = val * (newTaxRate / 100);
                   const cgst = isLocal ? totalGstVal / 2 : 0;
                   const sgst = isLocal ? totalGstVal / 2 : 0;
@@ -2485,7 +2485,7 @@ export default function RevenueDashboard() {
                     <div className="bg-slate-50 p-3 rounded-2xl border border-slate-100 text-[10px] space-y-1 font-semibold text-slate-500">
                       <div className="flex justify-between border-b border-slate-200/50 pb-1 font-bold text-slate-800">
                         <span>Dynamic Computation Preview</span>
-                        <span className="text-indigo-600 font-extrabold uppercase">Local state: Punjab</span>
+                        <span className="text-indigo-600 font-extrabold uppercase">Local state: Andhra Pradesh</span>
                       </div>
                       <div className="flex justify-between font-mono">
                         <span>Taxable Value:</span>
@@ -2714,7 +2714,7 @@ export default function RevenueDashboard() {
                       </td>
                       <td className="py-3 px-2">
                         <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold ${
-                          r.placeOfSupply === "Punjab" ? "bg-amber-50 text-amber-800" : "bg-sky-50 text-sky-800"
+                          r.placeOfSupply === "Andhra Pradesh" ? "bg-amber-50 text-amber-800" : "bg-sky-50 text-sky-800"
                         }`}>
                           {r.placeOfSupply}
                         </span>

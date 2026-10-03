@@ -49,7 +49,7 @@ interface PricePredictionResponse {
 export default function BuyerAIPricePredictor() {
   // Input parameters
   const [cropName, setCropName] = useState("Premium Basmati Rice");
-  const [region, setRegion] = useState("Punjab & Haryana Basin");
+  const [region, setRegion] = useState("Andhra Pradesh & Haryana Basin");
   const [season, setSeason] = useState("Harvest Season");
 
   // Loading and error states
@@ -62,7 +62,7 @@ export default function BuyerAIPricePredictor() {
 
   // Suggested search shortcuts
   const cropSuggestions = [
-    { name: "Premium Basmati Rice", region: "Punjab & Haryana Basin", season: "Harvest Season" },
+    { name: "Premium Basmati Rice", region: "Andhra Pradesh & Haryana Basin", season: "Harvest Season" },
     { name: "Non-GMO Corn / Maize", region: "Iowa Corn Belt", season: "Growing Season" },
     { name: "Soft Red Winter Wheat", region: "Madhya Pradesh Plains", season: "Sowing Season" },
     { name: "Organic Soybean Seed", region: "São Paulo Highlands", season: "Growing Season" },
@@ -220,7 +220,7 @@ export default function BuyerAIPricePredictor() {
                     type="text"
                     value={region}
                     onChange={(e) => setRegion(e.target.value)}
-                    placeholder="Enter region (e.g. Punjab, Midwest)"
+                    placeholder="Enter region (e.g. Andhra Pradesh, Midwest)"
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-3.5 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:border-teal-500 focus:bg-white transition-colors"
                   />
                 </div>

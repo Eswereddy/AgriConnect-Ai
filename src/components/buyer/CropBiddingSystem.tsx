@@ -656,7 +656,7 @@ export default function CropBiddingSystem({
               className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-xs text-slate-800 font-semibold focus:outline-hidden"
             >
               <option value="All">📍 All India Regions</option>
-              <option value="Punjab">Punjab</option>
+              <option value="Andhra Pradesh">Andhra Pradesh</option>
               <option value="Haryana">Haryana</option>
               <option value="Himachal Pradesh">Himachal Pradesh</option>
             </select>

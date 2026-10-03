@@ -137,7 +137,7 @@ export default function ExpertQAGateway({
   const specialists = [
     { id: "s1", name: "Dr. Ramesh Patel", specialty: "Soil Nutrition & Chemistry", university: "IARI New Delhi", rating: "4.9", experience: "18 Yrs" },
     { id: "s2", name: "Dr. Anita Nair", specialty: "Entomology & Pest Outbreaks", university: "Kerala Agri University", rating: "4.8", experience: "12 Yrs" },
-    { id: "s3", name: "Prof. S. R. Chander", specialty: "Hydrology & Precision Irrigation", university: "PAU Ludhiana", rating: "4.95", experience: "22 Yrs" },
+    { id: "s3", name: "Prof. S. R. Chander", specialty: "Hydrology & Precision Irrigation", university: "ANGRAU Guntur", rating: "4.95", experience: "22 Yrs" },
     { id: "s4", name: "Dr. G. Venkat", specialty: "Organic Farming & Bio-Remediation", university: "TNAU Coimbatore", rating: "4.7", experience: "15 Yrs" }
   ];
 

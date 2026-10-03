@@ -212,7 +212,7 @@ export default function BuyerVerificationSystem({ onVerificationUpdate }: BuyerV
             legalName: "Satnam Sovereign Grains Private Limited",
             registrationDate: "14/08/2019",
             constitution: "Private Limited Company",
-            addr: "Plot No 44, Focal Point Industrial Area, Jalandhar, Punjab, 144001",
+            addr: "Plot No 44, Focal Point Industrial Area, Nellore, Andhra Pradesh, 144001",
             status: "Active",
             taxpayerType: "Regular",
             filingFrequency: "GSTR-1 Monthly, GSTR-3B Monthly",
@@ -824,7 +824,7 @@ export default function BuyerVerificationSystem({ onVerificationUpdate }: BuyerV
                           <option value="State Bank of India">State Bank of India (SBI)</option>
                           <option value="HDFC Bank Limited">HDFC Bank Limited</option>
                           <option value="ICICI Bank Limited">ICICI Bank Limited</option>
-                          <option value="Punjab National Bank">Punjab National Bank</option>
+                          <option value="State Bank of India">State Bank of India</option>
                         </select>
                       </div>
 

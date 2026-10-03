@@ -82,8 +82,8 @@ export default function BuyerLogisticsDashboard() {
   const [bookedOrderInfo, setBookedOrderInfo] = useState<{ ids: string[]; count: number; totalTons: number; cost: number } | null>(null);
   
   // AI Logistics Optimizer States
-  const [optPickupAddress, setOptPickupAddress] = useState<string>("Gurdaspur Cooperative Mandi Yard, Gurdaspur, Punjab");
-  const [optDeliveryAddress, setOptDeliveryAddress] = useState<string>("Adani Agri-Logistics Terminal, Moga, Punjab");
+  const [optPickupAddress, setOptPickupAddress] = useState<string>("Machilipatnam Cooperative Mandi Yard, Machilipatnam, Andhra Pradesh");
+  const [optDeliveryAddress, setOptDeliveryAddress] = useState<string>("Adani Agri-Logistics Terminal, Moga, Andhra Pradesh");
   const [optQuantity, setOptQuantity] = useState<number>(12);
   const [optUrgency, setOptUrgency] = useState<"Low" | "Medium" | "High" | "Immediate">("Medium");
   const [isOptimizing, setIsOptimizing] = useState<boolean>(false);
@@ -222,7 +222,7 @@ export default function BuyerLogisticsDashboard() {
     
     // Let's return deterministic distance based on location
     const loc = firstSelected.location || "North India";
-    if (loc.includes("Gurdaspur")) return 310;
+    if (loc.includes("Machilipatnam")) return 310;
     if (loc.includes("Shimla")) return 355;
     if (loc.includes("Rohtak")) return 95;
     if (loc.includes("Karnal")) return 145;
@@ -1059,7 +1059,7 @@ export default function BuyerLogisticsDashboard() {
                           {/* Major Highway Corridors Paths */}
                           <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
                             {/* Route lines */}
-                            {/* Gurdaspur (x: 100, y: 50) to New Delhi (x: 450, y: 240) */}
+                            {/* Machilipatnam (x: 100, y: 50) to New Delhi (x: 450, y: 240) */}
                             <path d="M 120 60 Q 240 120 310 150 T 450 240" fill="none" stroke="#334155" strokeWidth="4" />
                             {/* Selected Live Path (Greened with Progress) */}
                             <path
@@ -1076,10 +1076,10 @@ export default function BuyerLogisticsDashboard() {
                           </svg>
 
                           {/* GIS City/Node Markers */}
-                          {/* 1. Gurdaspur Sourcing Node */}
+                          {/* 1. Machilipatnam Sourcing Node */}
                           <div className="absolute left-[120px] top-[60px] text-center">
                             <div className="h-3 w-3 bg-teal-500 border border-white rounded-full mx-auto shadow-sm" />
-                            <span className="text-[7px] text-slate-400 font-black font-mono uppercase bg-slate-950/80 px-1 py-0.5 rounded mt-1 block">Gurdaspur (Origin)</span>
+                            <span className="text-[7px] text-slate-400 font-black font-mono uppercase bg-slate-950/80 px-1 py-0.5 rounded mt-1 block">Machilipatnam (Origin)</span>
                           </div>
 
                           {/* 2. Chandigarh Junction Node */}
@@ -1351,8 +1351,8 @@ export default function BuyerLogisticsDashboard() {
                 <div className="shrink-0">
                   <button
                     onClick={() => {
-                      setOptPickupAddress("Gurdaspur Cooperative Mandi Yard, Gurdaspur, Punjab");
-                      setOptDeliveryAddress("Adani Agri-Logistics Terminal, Moga, Punjab");
+                      setOptPickupAddress("Machilipatnam Cooperative Mandi Yard, Machilipatnam, Andhra Pradesh");
+                      setOptDeliveryAddress("Adani Agri-Logistics Terminal, Moga, Andhra Pradesh");
                       setOptQuantity(15);
                       setOptUrgency("High");
                     }}
@@ -1392,7 +1392,7 @@ export default function BuyerLogisticsDashboard() {
                     <div className="flex flex-wrap gap-1 pt-1">
                       <span className="text-[8px] text-slate-400 font-bold self-center mr-1">QUICK ORIGINS:</span>
                       {[
-                        { short: "Gurdaspur, PB", full: "Gurdaspur Cooperative Mandi Yard, Gurdaspur, Punjab" },
+                        { short: "Machilipatnam, PB", full: "Machilipatnam Cooperative Mandi Yard, Machilipatnam, Andhra Pradesh" },
                         { short: "Shimla, HP", full: "Shimla Apple Sourcing Terminal, Shimla, Himachal Pradesh" },
                         { short: "Rohtak, HR", full: "Rohtak Central Wheat Yard, Rohtak, Haryana" },
                         { short: "Karnal, HR", full: "Karnal Basmati Sourcing Terminal, Karnal, Haryana" }
@@ -1427,7 +1427,7 @@ export default function BuyerLogisticsDashboard() {
                     <div className="flex flex-wrap gap-1 pt-1">
                       <span className="text-[8px] text-slate-400 font-bold self-center mr-1">QUICK TARGETS:</span>
                       {[
-                        { short: "Moga Terminal", full: "Adani Agri-Logistics Terminal (Moga), Punjab" },
+                        { short: "Moga Terminal", full: "Adani Agri-Logistics Terminal (Moga), Andhra Pradesh" },
                         { short: "Kurukshetra Yard", full: "Cargill Processing Facility (Kurukshetra), Haryana" },
                         { short: "Chandigarh Hub", full: "Adani Fresh Cold Storage Hub (Chandigarh)" },
                         { short: "Delhi CWC Depot", full: "Central Warehousing Corporation Depot (Delhi)" }

@@ -117,7 +117,7 @@ export default function ExpertAIResearchLabs() {
   // --- 5.3 AI Price & Yield Prediction ---
   const [predictionForm, setPredictionForm] = useState({
     crop: "Wheat",
-    location: "Punjab Central Tracts",
+    location: "Andhra Pradesh Central Tracts",
     season: "Rabi",
     pastYield: "1.8" // tons/acre
   });

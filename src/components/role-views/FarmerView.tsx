@@ -267,7 +267,7 @@ const INITIAL_CROPS: ActiveCrop[] = [
   { id: "crop-1", farmId: "farm-1", name: "Rice Paddy", variety: "Pusa Basmati 1121", acreage: 12, sowingDate: "2026-05-10", harvestDate: "2026-10-15", stage: "Vegetative", projectedYield: 2.2, gpsCoordinates: { latitude: 16.5062, longitude: 80.6480, accuracy: 4.2, timestamp: "2026-05-10T08:30:00Z", address: "Delta Sector A1, Vijayawada" } },
   { id: "crop-2", farmId: "farm-1", name: "Tomato", variety: "Arka Rakshak F1", acreage: 6.5, sowingDate: "2026-06-01", harvestDate: "2026-09-10", stage: "Flowering", projectedYield: 8.5, gpsCoordinates: { latitude: 16.5120, longitude: 80.6515, accuracy: 3.8, timestamp: "2026-06-01T09:15:00Z", address: "Guntur Plot B2" } },
   { id: "crop-3", farmId: "farm-1", name: "Maize", variety: "DeKalb Double-X", acreage: 8, sowingDate: "2026-06-15", harvestDate: "2026-11-01", stage: "Germination", projectedYield: 3.8 },
-  { id: "crop-4", farmId: "farm-2", name: "Coffee", variety: "Arabica Typica Spec", acreage: 5, sowingDate: "2024-03-20", harvestDate: "2026-12-05", stage: "Yielding", projectedYield: 0.9, gpsCoordinates: { latitude: 30.9045, longitude: 77.0967, accuracy: 5.0, timestamp: "2024-03-20T10:00:00Z", address: "Solan Valley Terrace Upper" } },
+  { id: "crop-4", farmId: "farm-2", name: "Coffee", variety: "Arabica Typica Spec", acreage: 5, sowingDate: "2024-03-20", harvestDate: "2026-12-05", stage: "Yielding", projectedYield: 0.9, gpsCoordinates: { latitude: 16.2873, longitude: 77.0967, accuracy: 5.0, timestamp: "2024-03-20T10:00:00Z", address: "Solan Valley Terrace Upper" } },
   { id: "crop-5", farmId: "farm-3", name: "Wheat", variety: "GW-322 Lokwan", acreage: 18, sowingDate: "2025-11-15", harvestDate: "2026-04-20", stage: "Mature", projectedYield: 1.8 }
 ];
 
@@ -704,10 +704,10 @@ export default function FarmerView({
         // Fallback gracefully without throwing alerts or printing 'GPS lock error' to console.
         console.log("GPS lock completed with high-precision simulation fallback.", error.message);
         
-        const latitude = 31.6340;
-        const longitude = 74.8723;
-        const fallbackLocation = "Amritsar, Punjab";
-        const fallbackName = "Amritsar Smart Farm Holding";
+        const latitude = 16.5062;
+        const longitude = 80.6480;
+        const fallbackLocation = "Vijayawada, Andhra Pradesh";
+        const fallbackName = "Vijayawada Smart Farm Holding";
 
         setFarms((prev) => {
           return prev.map((f) => {
@@ -727,7 +727,7 @@ export default function FarmerView({
           });
         });
 
-        setSimulationMsg(`GPS Simulated Lock: Amritsar, Punjab`);
+        setSimulationMsg(`GPS Simulated Lock: Vijayawada, Andhra Pradesh`);
         setTimeout(() => setSimulationMsg(""), 5000);
 
         window.dispatchEvent(new CustomEvent("syncFarmTelemetry", {

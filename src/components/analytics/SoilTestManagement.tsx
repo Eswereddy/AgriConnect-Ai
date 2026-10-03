@@ -362,10 +362,10 @@ export function SoilTestManagement() {
               type="button"
               onClick={handleLoadSampleSoil}
               className="shrink-0 text-[10px] bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold px-3 py-1.5 rounded-lg border border-emerald-200/60 transition-all cursor-pointer flex items-center gap-1"
-              id="btn-preload-punjab-report"
+              id="btn-preload-andhra pradesh-report"
             >
               <Sparkles className="h-3 w-3" />
-              Preload Punjab Clay-Loam Report
+              Preload Andhra Pradesh Clay-Loam Report
             </button>
           </div>
 
@@ -491,7 +491,7 @@ export function SoilTestManagement() {
                     type="text"
                     value={manualLocation}
                     onChange={(e) => setManualLocation(e.target.value)}
-                    placeholder="e.g. Punjab North Basin, India"
+                    placeholder="e.g. Andhra Pradesh North Basin, India"
                     className="w-full bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs font-semibold text-slate-700"
                   />
                 </div>
@@ -549,7 +549,7 @@ export function SoilTestManagement() {
                       required
                       value={soilFormLabName}
                       onChange={(e) => setSoilFormLabName(e.target.value)}
-                      placeholder="e.g. Punjab Soil Lab"
+                      placeholder="e.g. Andhra Pradesh Soil Lab"
                       className="w-full bg-white border border-slate-200 rounded-lg px-2 py-1.5 font-semibold text-slate-700 outline-none"
                     />
                   </div>
@@ -1021,7 +1021,7 @@ export function SoilTestManagement() {
                   <FlaskConical className="h-12 w-12 text-slate-300 mb-2.5" />
                   <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider">Soil Diagnostic Lab Idle</h4>
                   <p className="text-[10px] text-slate-400 mt-2 max-w-sm font-medium leading-relaxed">
-                    Upload chemical reports and structure photographs or click the **"Preload Punjab Clay-Loam Report"** button at the top to generate a precision dashboard.
+                    Upload chemical reports and structure photographs or click the **"Preload Andhra Pradesh Clay-Loam Report"** button at the top to generate a precision dashboard.
                   </p>
                 </div>
               )}

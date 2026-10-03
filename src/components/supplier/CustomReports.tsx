@@ -224,7 +224,7 @@ export default function CustomReports({ orders, products, onClose }: CustomRepor
     } else { // region
       const regionMap: Record<string, { qty: number; sales: number; ordersCount: number }> = {};
       filteredOrders.forEach(o => {
-        const fullLoc = o.location || "Haryana, Punjab";
+        const fullLoc = o.location || "Haryana, Andhra Pradesh";
         const parts = fullLoc.split(",");
         const state = (parts.length > 1 ? parts[parts.length - 1] : parts[0]).trim();
         
@@ -746,7 +746,7 @@ export default function CustomReports({ orders, products, onClose }: CustomRepor
         `₹${r.totalSpent.toLocaleString()}`,
         r.clvTier
       ]);
-      summaryText = `Customer Lifetime Value index calculates aggregate trade volumes. Top accounts represent essential regional cooperative buyers in Haryana, Punjab, and Maharashtra.`;
+      summaryText = `Customer Lifetime Value index calculates aggregate trade volumes. Top accounts represent essential regional cooperative buyers in Haryana, Andhra Pradesh, and Maharashtra.`;
     }
 
     setPreviewData({ title, headers, rows, summaryText });

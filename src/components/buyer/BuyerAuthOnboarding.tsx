@@ -398,7 +398,7 @@ export default function BuyerAuthOnboarding({ onComplete }: BuyerAuthOnboardingP
             mobile: loginMobile,
             isVerified: true,
             remembered: rememberMe,
-            businessName: "Punjab Agro Corp"
+            businessName: "Andhra Pradesh Agro Corp"
           });
         }, 1000);
       }
@@ -1068,7 +1068,7 @@ export default function BuyerAuthOnboarding({ onComplete }: BuyerAuthOnboardingP
                       <p className="text-[9px] text-slate-500 leading-none">Select the primary agrarian regions for sourcing</p>
                       <div className="flex flex-wrap gap-1.5 pt-1">
                         {[
-                          "Punjab",
+                          "Andhra Pradesh",
                           "Haryana",
                           "Maharashtra",
                           "Madhya Pradesh",

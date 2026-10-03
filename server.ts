@@ -782,7 +782,7 @@ app.post("/api/supplier/demand-prediction", async (req, res) => {
     let textPrompt = `You are an elite AI Demand Forecaster and Supply Chain Optimization Analyst specializing in agricultural inputs (seeds, fertilizers, machinery, IoT sensors).
 Analyze the procurement demand trends for the following parameters:
 - Product Category: ${category}
-- Target Region: ${region || "Punjab"}
+- Target Region: ${region || "Andhra Pradesh"}
 - Target Season: ${season || "Kharif (Monsoon)"}
 
 Based on these parameters, predict the demand forecast trends, recommend optimal storage inventory levels (in units), calculate confidence scores, and provide a detailed agribusiness insight explaining localized buying trends, weather correlation, and crop sowing dynamics.
@@ -851,7 +851,7 @@ Your response must be a strict structured JSON matching the requested schema:
     console.log(`[Demand Predictor Fallback Active] Served fallback prediction response for category ${req.body.category || "Seeds"}`);
 
     const cat = req.body.category || "Seeds";
-    const reg = req.body.region || "Punjab";
+    const reg = req.body.region || "Andhra Pradesh";
     const sea = req.body.season || "Kharif (Monsoon)";
 
     // Intelligent high-fidelity fallback generator based on category and season
@@ -907,7 +907,7 @@ Your response must be a strict structured JSON matching the requested schema:
         demandForecast90Days = -35.8;
         recommendedStockLevel = 45;
         recommendation = "Increase stock";
-        marketInsights = `Harvesting equipment and land levelers are in critical demand as Punjab farmers rush to clear fields before the stubble burning and winter sowing cycles. High urgency transaction velocity is expected.`;
+        marketInsights = `Harvesting equipment and land levelers are in critical demand as Andhra Pradesh farmers rush to clear fields before the Rabi sowing cycle (paddy, chilli, groundnut and pulses). High urgency transaction velocity is expected.`;
       } else {
         demandForecast30Days = 2.5;
         demandForecast60Days = 5.8;
@@ -2043,7 +2043,7 @@ app.post("/api/farm-advisory", async (req, res) => {
 Generate a comprehensive, weather-adaptive autonomous advisory and action plan for:
 - Crop: ${cropName || "Basmati Rice"}
 - Growth Stage: ${stage || "Vegetative Stage"}
-- Location: ${location || "Punjab, India"}
+- Location: ${location || "Andhra Pradesh, India"}
 - Live Weather: ${weather || "Sunny, 32°C, 65% humidity"}
 - Soil Moisture: ${soilMoisture || "42"}%
 - Soil Temperature: ${temperature || "28"}°C
@@ -2197,7 +2197,7 @@ Your response must be a strict structured JSON matching the requested schema:
     
     const cropName = req.body.cropName || "Basmati Rice";
     const stage = req.body.stage || "Vegetative Stage";
-    const location = req.body.location || "Punjab, India";
+    const location = req.body.location || "Andhra Pradesh, India";
 
     const result = {
       dailyChecklist: [
@@ -2570,8 +2570,8 @@ const AGRICULTURAL_RAG_DATABASE = [
   },
   {
     key: "Most popular schemes in district",
-    keywords: ["schemes", "popular", "most popular", "district", "pune", "ludhiana", "trend"],
-    content: "In Pune and Ludhiana districts, the most popular agricultural schemes are: 1. PM-KISAN (Pradhan Mantri Kisan Samman Nidhi) with over 85% enrollment, 2. PM-FBY (Pradhan Mantri Fasal Bima Yojana) Crop Insurance with 72% coverage, 3. PM-KUSUM (Solar Water Pumps Subsidy) with 64% participation, and 4. SMAM (Sub-Mission on Agricultural Mechanization) for drone and tractor rentals."
+    keywords: ["schemes", "popular", "most popular", "district", "krishna", "guntur", "trend"],
+    content: "In Krishna and Guntur districts, the most popular agricultural schemes are: 1. PM-KISAN (Pradhan Mantri Kisan Samman Nidhi) with over 85% enrollment, 2. PM-FBY (Pradhan Mantri Fasal Bima Yojana) Crop Insurance with 72% coverage, 3. PM-KUSUM (Solar Water Pumps Subsidy) with 64% participation, and 4. SMAM (Sub-Mission on Agricultural Mechanization) for drone and tractor rentals."
   },
   {
     key: "PM-KISAN application metrics",
@@ -2580,18 +2580,18 @@ const AGRICULTURAL_RAG_DATABASE = [
   },
   {
     key: "Average yield in district",
-    keywords: ["average yield", "yield", "district", "pune", "ludhiana", "crop productivity"],
+    keywords: ["average yield", "yield", "district", "krishna", "guntur", "crop productivity"],
     content: "The average crop yield in our district is recorded as: Wheat: 2.8 tons per acre (Rabi), Basmati Rice: 3.6 tons per acre (Kharif), Sugarcane: 34.5 tons per acre, Tomato: 18.2 tons per acre, Cotton: 1.5 tons per acre. Overall crop productivity is stable, with a 4.2% year-on-year increase attributed to micro-irrigation and precision sowing techniques."
   },
   {
     key: "Disaster assistance needs by block",
-    keywords: ["block", "disaster", "assistance", "damage", "loss", "flood", "drought", "pune west", "ludhiana north"],
-    content: "Based on recent telemetry and satellite crop-loss estimation: 1. Pune West Block (or Ludhiana West Block) needs the highest disaster assistance due to recent heavy inundation, affecting 12,400 hectares with an estimated loss value of ₹18.5 Crores. 2. Shirur Block needs ₹8.2 Crores for late-monsoon hail damage. 3. Purandar Block requires ₹4.1 Crores for drought relief."
+    keywords: ["block", "disaster", "assistance", "damage", "loss", "flood", "drought", "guntur west", "guntur north"],
+    content: "Based on recent telemetry and satellite crop-loss estimation: 1. Guntur West Block needs the highest disaster assistance due to recent heavy inundation, affecting 12,400 hectares with an estimated loss value of ₹18.5 Crores. 2. Tenali Block needs ₹8.2 Crores for late-monsoon hail damage. 3. Bapatla Block requires ₹4.1 Crores for drought relief."
   },
   {
     key: "Agriculture Minister monthly report generation",
     keywords: ["monthly report", "report", "minister", "agriculture minister", "summary report", "briefing"],
-    content: "Monthly Agricultural Executive Briefing for the Agriculture Minister (July 2026): 1. Overall Crop Health Index is 84% (Optimal). 2. Total Direct Benefit Transfers (DBT) disbursed: ₹24.2 Cr across PM-KISAN & PM-FBY. 3. Target achievements: PM-KUSUM solar pump installation is at 92% of quarterly target. 4. Disaster Assistance: Special packages recommended for Pune West block (₹18.5 Cr recommended). 5. Ground level feedback: High demand for drone-assisted pesticide sprays and organic mulch kits."
+    content: "Monthly Agricultural Executive Briefing for the Agriculture Minister (July 2026): 1. Overall Crop Health Index is 84% (Optimal). 2. Total Direct Benefit Transfers (DBT) disbursed: ₹24.2 Cr across PM-KISAN & PM-FBY. 3. Target achievements: PM-KUSUM solar pump installation is at 92% of quarterly target. 4. Disaster Assistance: Special packages recommended for Guntur West block (₹18.5 Cr recommended). 5. Ground level feedback: High demand for drone-assisted pesticide sprays and organic mulch kits."
   },
   {
     key: "Best performing crops this season",
@@ -3187,7 +3187,7 @@ Generate detailed patent suggestions in Markdown:
         break;
 
       case "universities":
-        text = `# University Collaboration Finder\n\n## 1. Target Institutions\n- **Indian Agricultural Research Institute (IARI), New Delhi**: Department of Water Technology and Sensor Systems. Focus on smart micro-fertigation algorithms.\n- **Punjab Agricultural University (PAU), Ludhiana**: Department of Soil Physics. Specialized trials in direct seeded rice.\n\n## 2. Collaborative Opportunity Pitch\nPropose a joint multi-year field trial analyzing active root-zone moisture metrics using IoT sensors linked to localized weather forecasters.\n\n## 3. Professional Email Collaboration Template\n\`\`\`text\nSubject: Collaborative Research Inquiry: Smart Soil Moisture Sensing\n\nDear Prof. / Dr. [Department Head],\n\nMy name is [Your Name], conducting agronomic research at [Your Institution]. We are currently validating a real-time soil telemetry system and would love to discuss potential data sharing or co-authorship on field trials...\n\nSincerely,\n[Your Name]\n\`\`\``;
+        text = `# University Collaboration Finder\n\n## 1. Target Institutions\n- **Indian Agricultural Research Institute (IARI), New Delhi**: Department of Water Technology and Sensor Systems. Focus on smart micro-fertigation algorithms.\n- **Acharya N.G. Ranga Agricultural University (ANGRAU), Guntur**: Department of Soil Physics. Specialized trials in direct seeded rice.\n\n## 2. Collaborative Opportunity Pitch\nPropose a joint multi-year field trial analyzing active root-zone moisture metrics using IoT sensors linked to localized weather forecasters.\n\n## 3. Professional Email Collaboration Template\n\`\`\`text\nSubject: Collaborative Research Inquiry: Smart Soil Moisture Sensing\n\nDear Prof. / Dr. [Department Head],\n\nMy name is [Your Name], conducting agronomic research at [Your Institution]. We are currently validating a real-time soil telemetry system and would love to discuss potential data sharing or co-authorship on field trials...\n\nSincerely,\n[Your Name]\n\`\`\``;
         break;
 
       case "peer-review":
@@ -3363,8 +3363,8 @@ Your response must be a strict structured JSON matching this schema:
       const { location } = req.body;
 
       // Parse coordinates if they exist in the GPS string format
-      let lat = 30.9011;
-      let lon = 75.8572;
+      let lat = 16.2863;
+      let lon = 80.9436;
       let resolvedName = location;
 
       const coordMatch = location.match(/Latitude:\s*([\d.-]+),\s*Longitude:\s*([\d.-]+)/i);
@@ -3379,7 +3379,7 @@ Your response must be a strict structured JSON matching this schema:
           seed += location.charCodeAt(i);
         }
         lat = 20.0 + (seed % 15);
-        lon = 75.0 + (seed % 10);
+        lon = 80.6864 + (seed % 10);
       }
 
       // Generate parameters with deterministic values matching the requested schema
@@ -3395,7 +3395,7 @@ Your response must be a strict structured JSON matching this schema:
       let typicalPh = 6.6;
       let OM = 3.2;
       const locLower = location.toLowerCase();
-      if (locLower.includes("punjab") || locLower.includes("ludhiana") || locLower.includes("haryana")) {
+      if (locLower.includes("andhra pradesh") || locLower.includes("guntur") || locLower.includes("telangana")) {
         soilType = "Alluvial Clay Loam";
         typicalPh = 7.1;
         OM = 2.2;
@@ -3679,7 +3679,7 @@ Your response must be a strict structured JSON matching this schema:
       });
 
       const fallbackForecast = {
-        locationName: location || "Punjab Region",
+        locationName: location || "Andhra Pradesh Region",
         cropName: resolvedCrop,
         forecast: forecastList,
         planningSummary: isColdRegion 
@@ -3711,7 +3711,7 @@ app.post("/api/yield-forecast", async (req, res) => {
     rainfall = 650, 
     fertilizerNPK = "120:60:40", 
     soilMoisture = 45,
-    district = "Pune",
+    district = "Krishna",
     season = "Rabi"
   } = req.body;
 
@@ -4171,7 +4171,7 @@ Evaluate and generate an eligibility dossier. Your response must be a strict str
 app.post("/api/disaster-predictor", async (req, res) => {
   const cacheKey = getCacheKey("/api/disaster-predictor", req.body);
   const {
-    zone = "Pune District West",
+    zone = "Krishna District West",
     rainfall = 120,
     wind = 45,
     temperature = 28,
@@ -5057,7 +5057,7 @@ An escrow-based auction lot is currently open for bidding:
 - Current Highest Bid: ₹${currentHighestBid || 45000} per Ton
 - Organic Certification: ${organic ? "Yes" : "No"}
 - Available Quantity: ${quantity || 10} Tons
-- Farm Location: ${location || "Punjab, India"}
+- Farm Location: ${location || "Andhra Pradesh, India"}
 
 Analyze current market price trends (simulating live commodity mandi indexes across Indian agrarian hubs) and calculate:
 1. "fairMarketValue": The fair market value of this lot (in ₹ per Ton) based on its crop type, organic status, quality grade, and regional demand.

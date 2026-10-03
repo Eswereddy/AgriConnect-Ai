@@ -48,14 +48,14 @@ interface DemandData {
 
 export default function AIDemandPredictor({ onClose }: AIDemandPredictorProps) {
   const [category, setCategory] = useState("Seeds");
-  const [region, setRegion] = useState("Punjab");
+  const [region, setRegion] = useState("Andhra Pradesh");
   const [season, setSeason] = useState("Kharif (Monsoon)");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [prediction, setPrediction] = useState<DemandData | null>(null);
 
   const categories = ["Seeds", "Fertilizers", "Machinery", "IoT Sensors"];
-  const regions = ["Punjab", "Haryana", "Maharashtra", "Karnataka", "Tamil Nadu", "Uttar Pradesh", "Gujarat", "Andhra Pradesh"];
+  const regions = ["Andhra Pradesh", "Haryana", "Maharashtra", "Karnataka", "Tamil Nadu", "Uttar Pradesh", "Gujarat", "Andhra Pradesh"];
   const seasons = ["Kharif (Monsoon)", "Rabi (Winter)", "Zaid (Summer)"];
 
   const handlePredict = async (e?: React.FormEvent) => {
@@ -230,10 +230,10 @@ export default function AIDemandPredictor({ onClose }: AIDemandPredictorProps) {
               <div className="flex flex-wrap justify-center gap-2">
                 <button
                   type="button"
-                  onClick={() => { setCategory("Seeds"); setRegion("Punjab"); setSeason("Kharif (Monsoon)"); }}
+                  onClick={() => { setCategory("Seeds"); setRegion("Andhra Pradesh"); setSeason("Kharif (Monsoon)"); }}
                   className="text-[10px] font-bold text-slate-500 hover:text-indigo-600 bg-slate-50 hover:bg-indigo-50 px-2.5 py-1 rounded-lg border border-slate-200 transition-colors cursor-pointer"
                 >
-                  🌾 Seeds in Punjab (Kharif)
+                  🌾 Seeds in Andhra Pradesh (Kharif)
                 </button>
                 <button
                   type="button"

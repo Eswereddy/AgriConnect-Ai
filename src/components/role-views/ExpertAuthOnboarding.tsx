@@ -116,7 +116,7 @@ export default function ExpertAuthOnboarding({ onComplete }: ExpertAuthOnboardin
     if (saved) return JSON.parse(saved);
     return [
       { id: "sess-1", device: "Chrome on macOS (Current Device)", ip: "192.168.1.102", location: "New Delhi, IN", active: true, icon: "Laptop" },
-      { id: "sess-2", device: "Safari on iPhone 15 Pro", ip: "103.45.22.18", location: "Pune, IN", active: false, icon: "Smartphone" },
+      { id: "sess-2", device: "Safari on iPhone 15 Pro", ip: "103.45.22.18", location: "Krishna, IN", active: false, icon: "Smartphone" },
       { id: "sess-3", device: "Chrome on Windows 11 Workspace", ip: "203.111.45.92", location: "Hyderabad, IN", active: false, icon: "Laptop" }
     ];
   });

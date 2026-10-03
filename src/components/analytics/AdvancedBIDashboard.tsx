@@ -89,7 +89,7 @@ const SEGMENTS = [
 
 export default function AdvancedBIDashboard() {
   const [viewLevel, setViewLevel] = useState<"farm" | "district" | "state" | "national">("farm");
-  const [selectedState, setSelectedState] = useState<string>("punjab");
+  const [selectedState, setSelectedState] = useState<string>("andhra pradesh");
 
   // Predictive simulator states
   const [forecastRainfall, setForecastRainfall] = useState<number>(100); // % of normal
@@ -333,7 +333,7 @@ export default function AdvancedBIDashboard() {
                     onChange={(e) => setSelectedState(e.target.value)}
                     className="bg-white border rounded px-2.5 py-1 text-xs font-bold text-slate-800 outline-none"
                   >
-                    <option value="punjab">Punjab (Amritsar Plains Zone)</option>
+                    <option value="andhra pradesh">Andhra Pradesh (Vijayawada Plains Zone)</option>
                     <option value="andhra">Andhra Pradesh (Delta Lowlands)</option>
                     <option value="rajasthan">Rajasthan (Arid West Basin)</option>
                     <option value="kerala">Kerala (Malabar Hillside)</option>

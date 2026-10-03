@@ -276,7 +276,7 @@ export const FinancialServices: React.FC = () => {
 
   // --- DOCUMENT UPLOAD SIMULATION ---
   const [uploadedDocuments, setUploadedDocuments] = useState<{ name: string; size: string; status: "Verified" | "Uploading" }[]>([
-    { name: "Land-Title-Records-Gurdaspur.pdf", size: "2.4 MB", status: "Verified" },
+    { name: "Land-Title-Records-Machilipatnam.pdf", size: "2.4 MB", status: "Verified" },
     { name: "Aadhaar-KYC-Identity.pdf", size: "1.2 MB", status: "Verified" }
   ]);
   const [documentMessage, setDocumentMessage] = useState<string | null>(null);
@@ -313,7 +313,7 @@ export const FinancialServices: React.FC = () => {
       premiumAmount: 5000, // 2% Kharif Paddy Rate
       appliedDate: "2026-06-12",
       status: "Active",
-      documentsAttached: ["Land-Records-Gurdaspur.pdf", "Aadhaar-KYC.pdf"]
+      documentsAttached: ["Land-Records-Machilipatnam.pdf", "Aadhaar-KYC.pdf"]
     },
     {
       id: "POL-WEATHER-294",

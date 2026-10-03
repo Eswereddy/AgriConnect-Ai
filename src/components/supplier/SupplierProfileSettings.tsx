@@ -124,7 +124,7 @@ export default function SupplierProfileSettings({
     }
     return [
       { id: "CUST-001", name: "Amir Patel", company: "Amir Farms & Seed Growers Ltd.", location: "Karnal, Haryana", mobile: "+91 98765-12345", email: "amir.patel@karnal-agri.in", baseOrders: 14, baseSpent: 118000, baseRating: 4.9, joinedDate: "2025-03-12", status: "active" },
-      { id: "CUST-002", name: "Devendra Singh", company: "Bhatinda Cooperative Society", location: "Bhatinda, Punjab", mobile: "+91 99123-45678", email: "devendra.singh@punjabcoop.org", baseOrders: 8, baseSpent: 64200, baseRating: 4.7, joinedDate: "2025-06-18", status: "active" }
+      { id: "CUST-002", name: "Devendra Singh", company: "Kurnool Cooperative Society", location: "Kurnool, Andhra Pradesh", mobile: "+91 99123-45678", email: "devendra.singh@apcoop.org", baseOrders: 8, baseSpent: 64200, baseRating: 4.7, joinedDate: "2025-06-18", status: "active" }
     ];
   }, [ordersList]);
 

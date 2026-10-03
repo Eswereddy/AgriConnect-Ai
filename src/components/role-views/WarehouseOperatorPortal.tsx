@@ -116,10 +116,10 @@ export default function WarehouseOperatorPortal({
     panNumber: "ABCDE1234F",
     businessType: "Private Limited",
     yearsInOperation: 8,
-    serviceAreas: ["Punjab", "Haryana", "Delhi-NCR", "Rajasthan"],
+    serviceAreas: ["Andhra Pradesh", "Haryana", "Delhi-NCR", "Rajasthan"],
     mobile: "+91 98765 43210",
     email: "rajesh@apexcoldchain.in",
-    address: "Plot 42, Focal Point Industrial Area, Ludhiana, Punjab",
+    address: "Plot 42, Focal Point Industrial Area, Guntur, Andhra Pradesh",
     trustScore: 94,
     badge: "Gold",
     verificationStatus: "Verified"
@@ -138,9 +138,9 @@ export default function WarehouseOperatorPortal({
   const [warehouses, setWarehouses] = useState([
     {
       id: "WH-101",
-      name: "Apex Ludhiana Cold Depot & Silo",
+      name: "Apex Guntur Cold Depot & Silo",
       type: "Cold Storage",
-      address: "Industrial Area Phase-2, Ludhiana, Punjab",
+      address: "Industrial Area Phase-2, Guntur, Andhra Pradesh",
       gps: "30.9010° N, 75.8573° E",
       totalCapacityTons: 5000,
       usedCapacityTons: 3800,
@@ -171,10 +171,10 @@ export default function WarehouseOperatorPortal({
     },
     {
       id: "WH-102",
-      name: "Apex Amritsar Grain Terminal & Controlled Atmosphere",
+      name: "Apex Vijayawada Grain Terminal & Controlled Atmosphere",
       type: "Controlled Atmosphere Storage",
-      address: "GT Road Near APMC Yard, Amritsar, Punjab",
-      gps: "31.6340° N, 74.8723° E",
+      address: "GT Road Near APMC Yard, Vijayawada, Andhra Pradesh",
+      gps: "16.5062° N, 80.6480° E",
       totalCapacityTons: 8000,
       usedCapacityTons: 6200,
       availableCapacityTons: 1800,
@@ -204,9 +204,9 @@ export default function WarehouseOperatorPortal({
     },
     {
       id: "WH-103",
-      name: "Apex Gurdaspur Dry Grain Silo Complex",
+      name: "Apex Machilipatnam Dry Grain Silo Complex",
       type: "Silo",
-      address: "Bypass Road, Gurdaspur, Punjab",
+      address: "Bypass Road, Machilipatnam, Andhra Pradesh",
       gps: "32.0410° N, 75.4053° E",
       totalCapacityTons: 12000,
       usedCapacityTons: 11200,
@@ -255,14 +255,14 @@ export default function WarehouseOperatorPortal({
   const [bookings, setBookings] = useState([
     {
       id: "BK-8801",
-      customerName: "Harpreet Singh (Punjab Co-op)",
+      customerName: "Harpreet Singh (Andhra Pradesh Co-op)",
       customerType: "Farmer",
       mobile: "+91 98123 45678",
       cropName: "Premium Basmati Rice Grade-A",
       quantityTons: 250,
       storageType: "Cold Storage",
       warehouseId: "WH-101",
-      warehouseName: "Apex Ludhiana Cold Depot & Silo",
+      warehouseName: "Apex Guntur Cold Depot & Silo",
       startDate: "2026-07-20",
       endDate: "2026-10-20",
       durationDays: 92,
@@ -281,7 +281,7 @@ export default function WarehouseOperatorPortal({
       quantityTons: 120,
       storageType: "Cold Storage",
       warehouseId: "WH-102",
-      warehouseName: "Apex Amritsar Grain Terminal",
+      warehouseName: "Apex Vijayawada Grain Terminal",
       startDate: "2026-07-22",
       endDate: "2026-08-22",
       durationDays: 31,
@@ -300,7 +300,7 @@ export default function WarehouseOperatorPortal({
       quantityTons: 500,
       storageType: "Silo",
       warehouseId: "WH-103",
-      warehouseName: "Apex Gurdaspur Dry Grain Silo Complex",
+      warehouseName: "Apex Machilipatnam Dry Grain Silo Complex",
       startDate: "2026-05-10",
       endDate: "2026-11-10",
       durationDays: 184,
@@ -312,14 +312,14 @@ export default function WarehouseOperatorPortal({
     },
     {
       id: "BK-8799",
-      customerName: "Ludhiana Flour Mills",
+      customerName: "Guntur Flour Mills",
       customerType: "Buyer",
       mobile: "+91 94111 22334",
       cropName: "Maize / Yellow Corn",
       quantityTons: 300,
       storageType: "Dry Warehouse",
       warehouseId: "WH-101",
-      warehouseName: "Apex Ludhiana Cold Depot & Silo",
+      warehouseName: "Apex Guntur Cold Depot & Silo",
       startDate: "2026-04-01",
       endDate: "2026-07-01",
       durationDays: 91,
@@ -341,7 +341,7 @@ export default function WarehouseOperatorPortal({
       batchNo: "BAT-2026-001",
       productName: "Premium Basmati Rice",
       warehouseId: "WH-101",
-      warehouseName: "Apex Ludhiana Cold Depot",
+      warehouseName: "Apex Guntur Cold Depot",
       bayRoom: "Chamber 2B",
       quantityTons: 250,
       receiptDate: "2026-07-20",
@@ -360,7 +360,7 @@ export default function WarehouseOperatorPortal({
       batchNo: "BAT-2026-002",
       productName: "Organic Tomatoes (Perishable)",
       warehouseId: "WH-102",
-      warehouseName: "Apex Amritsar Grain Terminal",
+      warehouseName: "Apex Vijayawada Grain Terminal",
       bayRoom: "Chamber 1A",
       quantityTons: 85,
       receiptDate: "2026-07-15",
@@ -379,7 +379,7 @@ export default function WarehouseOperatorPortal({
       batchNo: "BAT-2026-003",
       productName: "Sharbati Wheat Grain",
       warehouseId: "WH-103",
-      warehouseName: "Apex Gurdaspur Silo Complex",
+      warehouseName: "Apex Machilipatnam Silo Complex",
       bayRoom: "Silo Tower 1",
       quantityTons: 500,
       receiptDate: "2026-05-10",
@@ -531,7 +531,7 @@ export default function WarehouseOperatorPortal({
       id: `WH-${100 + warehouses.length + 1}`,
       name: newWhName || "New Grain & Cold Depot",
       type: newWhType,
-      address: newWhAddress || "Industrial Hub, Punjab",
+      address: newWhAddress || "Industrial Hub, Andhra Pradesh",
       gps: "30.9500° N, 75.8200° E",
       totalCapacityTons: newWhCapacity,
       usedCapacityTons: 0,
@@ -626,7 +626,7 @@ export default function WarehouseOperatorPortal({
     setTimeout(() => {
       let reply = "I analyzed your warehouse metrics: Occupancy is currently at 85% across all facilities. Recommend clearing Batch BAT-2026-002 (Tomatoes) within 15 days due to FEFO rank 1.";
       if (aiInputText.toLowerCase().includes("revenue")) {
-        reply = "Your revenue for this month is ₹7,42,000. Apex Amritsar Terminal is your most profitable facility generating ₹3,16,200 this month.";
+        reply = "Your revenue for this month is ₹7,42,000. Apex Vijayawada Terminal is your most profitable facility generating ₹3,16,200 this month.";
       } else if (aiInputText.toLowerCase().includes("temp") || aiInputText.toLowerCase().includes("cold")) {
         reply = "All cold storage chambers are operating within target parameters (3.8°C - 4.8°C). Solar energy backup is active at 100% capacity.";
       }
@@ -792,7 +792,7 @@ export default function WarehouseOperatorPortal({
                   Welcome back, {operatorProfile.name}
                 </h2>
                 <p className="text-slate-300 text-xs leading-relaxed">
-                  {operatorProfile.companyName} oversees <strong className="text-white">{warehouses.length} Storage Facilities</strong> with a total capacity of <strong className="text-emerald-400">25,000 Metric Tons</strong> across Punjab & Haryana.
+                  {operatorProfile.companyName} oversees <strong className="text-white">{warehouses.length} Storage Facilities</strong> with a total capacity of <strong className="text-emerald-400">25,000 Metric Tons</strong> across Andhra Pradesh & Haryana.
                 </p>
               </div>
 
@@ -1080,7 +1080,7 @@ export default function WarehouseOperatorPortal({
                       { title: "GST Certificate", file: "GST_Apex_2025.pdf", status: "Verified" },
                       { title: "PAN Card Document", file: "PAN_ABCDE1234F.pdf", status: "Verified" },
                       { title: "FSSAI License Certificate", file: "FSSAI_10019082726.pdf", status: "Verified" },
-                      { title: "Fire Safety Certificate", file: "Fire_Safety_Ludhiana.pdf", status: "Verified" },
+                      { title: "Fire Safety Certificate", file: "Fire_Safety_Guntur.pdf", status: "Verified" },
                       { title: "Building Safety Plan Approval", file: "Building_Plan_App.pdf", status: "Verified" },
                       { title: "Cold Storage Insurance Policy", file: "Insurance_2026.pdf", status: "Verified" }
                     ].map((doc, i) => (
@@ -1796,7 +1796,7 @@ export default function WarehouseOperatorPortal({
                 <input
                   type="text"
                   required
-                  placeholder="e.g., Apex Jalandhar Cold Depot"
+                  placeholder="e.g., Apex Nellore Cold Depot"
                   value={newWhName}
                   onChange={(e) => setNewWhName(e.target.value)}
                   className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-semibold"

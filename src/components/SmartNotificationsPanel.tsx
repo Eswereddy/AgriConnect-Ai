@@ -62,7 +62,7 @@ export default function SmartNotificationsPanel({ onClose }: SmartNotificationsP
       priority: "Emergency",
       category: "Pest",
       title: "🐛 Locust Migration / Early Blight Warning",
-      message: "Locust swarm warning issued within a 15km radius of Amritsar Plains block. Expert pathologists verification completed. Spray organic neem mixture immediately.",
+      message: "Locust swarm warning issued within a 15km radius of Vijayawada Plains block. Expert pathologists verification completed. Spray organic neem mixture immediately.",
       time: "45 mins ago",
       read: false,
       smsFallbackTriggered: true

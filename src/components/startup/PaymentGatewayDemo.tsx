@@ -372,7 +372,7 @@ export const PaymentGatewayDemo: React.FC<PaymentGatewayDemoProps> = ({ onAddTra
                     <option>State Bank of India (SBI)</option>
                     <option>HDFC Bank Ltd</option>
                     <option>ICICI Bank Ltd</option>
-                    <option>Punjab National Bank (PNB)</option>
+                    <option>State Bank of India (PNB)</option>
                     <option>NABARD Rural Credit</option>
                   </select>
                 </div>
@@ -556,7 +556,7 @@ export const PaymentGatewayDemo: React.FC<PaymentGatewayDemoProps> = ({ onAddTra
                 <div>
                   <p className="font-bold text-slate-700 uppercase">Billed To:</p>
                   <p className="font-extrabold text-slate-800">{invoiceRecord.buyer.name}</p>
-                  <p>Punjab Block 4 Agriculture Hub</p>
+                  <p>Andhra Pradesh Block 4 Agriculture Hub</p>
                   <p className="font-mono">{invoiceRecord.buyer.phone}</p>
                 </div>
               </div>

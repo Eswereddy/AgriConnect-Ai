@@ -164,7 +164,7 @@ export default function SupplierAuthOnboarding({ onComplete }: SupplierAuthOnboa
         id: "sess-2",
         device: "AgriConnect Companion Mobile",
         browser: "Android Native Shell",
-        location: "Pune, Maharashtra, India",
+        location: "Krishna, Maharashtra, India",
         ipAddress: "110.22.45.1",
         lastActive: "2 hours ago",
         isCurrent: false

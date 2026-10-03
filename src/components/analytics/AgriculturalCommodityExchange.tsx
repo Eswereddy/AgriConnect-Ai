@@ -234,8 +234,8 @@ export default function AgriculturalCommodityExchange() {
   const mandiSpotPricesList = useMemo<MandiSpotPrice[]>(() => {
     const basePrice = currentComp.spotPrice;
     return [
-      { mandiName: "Amritsar Cooperative Mandi", state: "Punjab", spotPrice: basePrice + 10, basis: (basePrice + 10) - currentComp.futuresPrice, arrivalVolume: 1200 },
-      { mandiName: "Khanna Grain Market", state: "Punjab", spotPrice: basePrice - 15, basis: (basePrice - 15) - currentComp.futuresPrice, arrivalVolume: 3400 },
+      { mandiName: "Vijayawada Cooperative Mandi", state: "Andhra Pradesh", spotPrice: basePrice + 10, basis: (basePrice + 10) - currentComp.futuresPrice, arrivalVolume: 1200 },
+      { mandiName: "Khanna Grain Market", state: "Andhra Pradesh", spotPrice: basePrice - 15, basis: (basePrice - 15) - currentComp.futuresPrice, arrivalVolume: 3400 },
       { mandiName: "Indore Agri Yard", state: "Madhya Pradesh", spotPrice: basePrice + 45, basis: (basePrice + 45) - currentComp.futuresPrice, arrivalVolume: 850 },
       { mandiName: "Azadpur APMC Hub", state: "Delhi NCR", spotPrice: basePrice + 90, basis: (basePrice + 90) - currentComp.futuresPrice, arrivalVolume: 2200 },
       { mandiName: "Rajasthan Alwar Yard", state: "Rajasthan", spotPrice: basePrice - 40, basis: (basePrice - 40) - currentComp.futuresPrice, arrivalVolume: 1500 }

@@ -533,7 +533,7 @@ export default function FarmerHealthWellness({ externalWeather }: FarmerHealthWe
   };
   
   // --- PERSONALIZED WEATHER SAFETY ALERTS STATES ---
-  const [selectedRegion, setSelectedRegion] = useState<"punjab" | "andhra" | "rajasthan" | "kerala">("andhra");
+  const [selectedRegion, setSelectedRegion] = useState<"andhra pradesh" | "andhra" | "rajasthan" | "kerala">("andhra");
   const [safetyTemp, setSafetyTemp] = useState<number>(35);
   const [safetyHumidity, setSafetyHumidity] = useState<number>(85);
   const [safetyWind, setSafetyWind] = useState<number>(14);
@@ -569,7 +569,7 @@ export default function FarmerHealthWellness({ externalWeather }: FarmerHealthWe
       let baseWind = 14;
       let baseUV = 8;
       
-      if (selectedRegion === "punjab") {
+      if (selectedRegion === "andhra pradesh") {
         baseTemp = 40; baseHumidity = 35; baseWind = 12; baseUV = 10;
       } else if (selectedRegion === "andhra") {
         baseTemp = 35; baseHumidity = 85; baseWind = 14; baseUV = 8;
@@ -596,7 +596,7 @@ export default function FarmerHealthWellness({ externalWeather }: FarmerHealthWe
 
   // Sync region selections to sliders automatically
   useEffect(() => {
-    if (selectedRegion === "punjab") {
+    if (selectedRegion === "andhra pradesh") {
       setSafetyTemp(40);
       setSafetyHumidity(35);
       setSafetyWind(12);
@@ -996,7 +996,7 @@ export default function FarmerHealthWellness({ externalWeather }: FarmerHealthWe
               className="bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 rounded-lg px-2.5 py-1 focus:outline-none focus:ring-1 focus:ring-rose-500 cursor-pointer"
             >
               <option value="andhra">Guntur Delta, AP (Extremely Humid)</option>
-              <option value="punjab">Amritsar Plains, PB (Hot & Dry)</option>
+              <option value="andhra pradesh">Vijayawada Plains, PB (Hot & Dry)</option>
               <option value="rajasthan">Thar Desert, RJ (Extreme Scorching Dry)</option>
               <option value="kerala">Wayanad Hills, KL (Cool Monsoon)</option>
             </select>

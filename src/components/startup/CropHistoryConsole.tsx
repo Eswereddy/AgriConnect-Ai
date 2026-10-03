@@ -63,7 +63,7 @@ const INITIAL_HARVEST_HISTORY: HarvestedCrop[] = [
   {
     id: "h-1",
     farmId: "farm-1",
-    farmName: "Amritsar Digital Grainfield",
+    farmName: "Vijayawada Digital Grainfield",
     name: "Wheat",
     variety: "HD-2967 Lokwan",
     acreage: 15,
@@ -81,7 +81,7 @@ const INITIAL_HARVEST_HISTORY: HarvestedCrop[] = [
   {
     id: "h-2",
     farmId: "farm-1",
-    farmName: "Amritsar Digital Grainfield",
+    farmName: "Vijayawada Digital Grainfield",
     name: "Rice Paddy",
     variety: "Pusa Basmati 1121",
     acreage: 15,
@@ -99,7 +99,7 @@ const INITIAL_HARVEST_HISTORY: HarvestedCrop[] = [
   {
     id: "h-3",
     farmId: "farm-1",
-    farmName: "Amritsar Digital Grainfield",
+    farmName: "Vijayawada Digital Grainfield",
     name: "Wheat",
     variety: "HD-3086 Co-Sow",
     acreage: 15,
@@ -117,7 +117,7 @@ const INITIAL_HARVEST_HISTORY: HarvestedCrop[] = [
   {
     id: "h-4",
     farmId: "farm-1",
-    farmName: "Amritsar Digital Grainfield",
+    farmName: "Vijayawada Digital Grainfield",
     name: "Soybean",
     variety: "JS 335 Organic",
     acreage: 12,
@@ -135,7 +135,7 @@ const INITIAL_HARVEST_HISTORY: HarvestedCrop[] = [
   {
     id: "h-5",
     farmId: "farm-1",
-    farmName: "Amritsar Digital Grainfield",
+    farmName: "Vijayawada Digital Grainfield",
     name: "Moong Dal",
     variety: "SML 668 Nitric",
     acreage: 10,
@@ -153,7 +153,7 @@ const INITIAL_HARVEST_HISTORY: HarvestedCrop[] = [
   {
     id: "h-6",
     farmId: "farm-1",
-    farmName: "Amritsar Digital Grainfield",
+    farmName: "Vijayawada Digital Grainfield",
     name: "Wheat",
     variety: "DBW 187 Karan Vandana",
     acreage: 18,
@@ -171,7 +171,7 @@ const INITIAL_HARVEST_HISTORY: HarvestedCrop[] = [
   {
     id: "h-7",
     farmId: "farm-1",
-    farmName: "Amritsar Digital Grainfield",
+    farmName: "Vijayawada Digital Grainfield",
     name: "Rice Paddy",
     variety: "PR 126 Medium",
     acreage: 18,
@@ -189,7 +189,7 @@ const INITIAL_HARVEST_HISTORY: HarvestedCrop[] = [
   {
     id: "h-8",
     farmId: "farm-2",
-    farmName: "Ludhiana Precision Acres",
+    farmName: "Guntur Precision Acres",
     name: "Wheat",
     variety: "PBW 725 High-Res",
     acreage: 12,
@@ -207,7 +207,7 @@ const INITIAL_HARVEST_HISTORY: HarvestedCrop[] = [
   {
     id: "h-9",
     farmId: "farm-2",
-    farmName: "Ludhiana Precision Acres",
+    farmName: "Guntur Precision Acres",
     name: "Maize",
     variety: "DeKalb 9108",
     acreage: 12,
@@ -225,7 +225,7 @@ const INITIAL_HARVEST_HISTORY: HarvestedCrop[] = [
   {
     id: "h-10",
     farmId: "farm-2",
-    farmName: "Ludhiana Precision Acres",
+    farmName: "Guntur Precision Acres",
     name: "Wheat",
     variety: "DBW 222 Super-Seed",
     acreage: 15,

@@ -398,7 +398,7 @@ export default function BuyerBidManagement({
           cropName: "Active Lot",
           variety: "Standard Variety",
           farmerName: "Verified Partner Farm",
-          location: "Punjab, India",
+          location: "Andhra Pradesh, India",
           quantity: 10,
           qualityGrade: "Grade A",
           userBidAmount: myBidAmountValue,
@@ -1741,7 +1741,7 @@ function OrderFulfillmentDesk({
                   onChange={(e) => setSelectedWarehouse(e.target.value)}
                   className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-teal-500 focus:bg-white text-slate-800 font-bold"
                 >
-                  <option value="Adani Agri-Logistics Terminal (Moga)">Adani Agri-Logistics Terminal (Moga, Punjab)</option>
+                  <option value="Adani Agri-Logistics Terminal (Moga)">Adani Agri-Logistics Terminal (Moga, Andhra Pradesh)</option>
                   <option value="NHAI Logistics Hub Silo A (Karnal)">NHAI Logistics Hub Silo A (Karnal, Haryana)</option>
                   <option value="Central Warehousing Depot (Shimla)">Central Warehousing Depot (Shimla, HP)</option>
                   <option value="Private Milling Silo (Delhi NCR)">Private Milling Silo (Delhi NCR)</option>

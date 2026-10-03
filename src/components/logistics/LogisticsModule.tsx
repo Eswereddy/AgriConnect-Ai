@@ -75,7 +75,7 @@ export const LogisticsModule: React.FC = () => {
       refrigerated: false,
       baseRatePerKm: 14.0,
       status: "Available",
-      currentLocation: "Amritsar Sector 3 APMC"
+      currentLocation: "Vijayawada Sector 3 APMC"
     },
     {
       id: "VEH-409",
@@ -86,7 +86,7 @@ export const LogisticsModule: React.FC = () => {
       refrigerated: false,
       baseRatePerKm: 18.5,
       status: "Available",
-      currentLocation: "Gurdaspur Central Mandi"
+      currentLocation: "Machilipatnam Central Mandi"
     },
     {
       id: "VEH-712",
@@ -97,7 +97,7 @@ export const LogisticsModule: React.FC = () => {
       refrigerated: true,
       baseRatePerKm: 32.0,
       status: "Available",
-      currentLocation: "Ludhiana Cold Junction"
+      currentLocation: "Guntur Cold Junction"
     },
     {
       id: "VEH-880",
@@ -108,7 +108,7 @@ export const LogisticsModule: React.FC = () => {
       refrigerated: false,
       baseRatePerKm: 26.0,
       status: "In Transit",
-      currentLocation: "Amritsar Bypass"
+      currentLocation: "Vijayawada Bypass"
     }
   ]);
 
@@ -120,8 +120,8 @@ export const LogisticsModule: React.FC = () => {
       weightTons: 4.5,
       vehicleType: "Reefer Cold Truck (5T)",
       driverName: "Satnam Bajwa",
-      origin: "Amritsar Agronomic Cold Depot",
-      destination: "Jalandhar Co-op Mandi",
+      origin: "Vijayawada Agronomic Cold Depot",
+      destination: "Nellore Co-op Mandi",
       currentEtaMins: 45,
       trackingStatus: "In Transit",
       isRefrigerated: true,
@@ -133,7 +133,7 @@ export const LogisticsModule: React.FC = () => {
       weightTons: 40.0,
       vehicleType: "Eicher Pro (7.5T)",
       driverName: "Baldev Sandhu",
-      origin: "Gurdaspur Sovereign Dry Terminal",
+      origin: "Machilipatnam Sovereign Dry Terminal",
       destination: "JNPT Port Mumbai (Export Corridor)",
       currentEtaMins: 1120,
       trackingStatus: "At Customs Border",
@@ -148,7 +148,7 @@ export const LogisticsModule: React.FC = () => {
   const [selectedVehicleType, setSelectedVehicleType] = useState<string>("Tata Ace (1.5T)");
   const [transitType, setTransitType] = useState<"Standard Road" | "AI Optimized Road" | "Multi-modal Rail" | "Global Export Port">("AI Optimized Road");
   const [isRefrigerated, setIsRefrigerated] = useState<boolean>(false);
-  const [destinationMandi, setDestinationMandi] = useState<string>("Amritsar Central APMC");
+  const [destinationMandi, setDestinationMandi] = useState<string>("Vijayawada Central APMC");
 
   // Notifications simulation
   const [smsNotificationSent, setSmsNotificationSent] = useState<string | null>(null);
@@ -179,7 +179,7 @@ export const LogisticsModule: React.FC = () => {
   const computedLogistics = useMemo(() => {
     // Determine distance based on destination Mandi
     let distanceKm = 12.5;
-    if (destinationMandi === "Jalandhar Co-op Mandi") distanceKm = 82.0;
+    if (destinationMandi === "Nellore Co-op Mandi") distanceKm = 82.0;
     if (destinationMandi === "JNPT Port Mumbai (Export Corridor)") distanceKm = 1420.0;
     if (destinationMandi === "ICP Attari Border Terminal") distanceKm = 34.0;
 
@@ -454,7 +454,7 @@ export const LogisticsModule: React.FC = () => {
                   <h4 className="text-slate-800 font-black uppercase text-[10px] tracking-wider">Indian Railways Freight Line</h4>
                 </div>
                 <p className="text-[9.5px] text-slate-500 leading-relaxed font-semibold">
-                  Multi-modal shipping triggers road transport to the closest container yard (Ludhiana Rail Depot), routing bulk cargos directly across deep high-speed corridors.
+                  Multi-modal shipping triggers road transport to the closest container yard (Guntur Rail Depot), routing bulk cargos directly across deep high-speed corridors.
                 </p>
                 <div className="text-[9.5px] text-emerald-700 font-bold bg-emerald-50/50 p-2 rounded border border-emerald-100">
                   ✓ Saves ~35% on fuel tariffs over road haulages for trips exceeding 400km.
@@ -546,8 +546,8 @@ export const LogisticsModule: React.FC = () => {
                   onChange={(e) => setDestinationMandi(e.target.value)}
                   className="w-full bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs font-bold focus:outline-none"
                 >
-                  <option value="Amritsar Central APMC">Amritsar Central APMC Yard (12.5 km)</option>
-                  <option value="Jalandhar Co-op Mandi">Jalandhar Co-op Mandi (82 km)</option>
+                  <option value="Vijayawada Central APMC">Vijayawada Central APMC Yard (12.5 km)</option>
+                  <option value="Nellore Co-op Mandi">Nellore Co-op Mandi (82 km)</option>
                   <option value="ICP Attari Border Terminal">ICP Attari Border land Terminal (34 km)</option>
                   <option value="JNPT Port Mumbai (Export Corridor)">JNPT Port Mumbai Export Yard (1420 km)</option>
                 </select>

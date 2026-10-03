@@ -265,7 +265,7 @@ const INITIAL_BOOKINGS: TransportBooking[] = [
     customerPhone: "+91 93245 98765",
     customerEmail: "priya@coldstarfoods.com",
     pickupAddress: "Mahabaleshwar Strawberry Estates, Maharashtra",
-    deliveryAddress: "ColdStar Distribution Silo A4, Pune, Maharashtra",
+    deliveryAddress: "ColdStar Distribution Silo A4, Krishna, Maharashtra",
     pickupLatLon: [17.9258, 73.6640],
     deliveryLatLon: [18.5204, 73.8567],
     distance: 120,
@@ -383,7 +383,7 @@ export default function LogisticsProviderPortal({
 
   // Live Tracking and Simulation simulation
   const [isPlayingSimulation, setIsPlayingSimulation] = useState(true);
-  const [simulationProgress, setSimulationProgress] = useState(40); // percent along Pune-Mumbai line
+  const [simulationProgress, setSimulationProgress] = useState(40); // percent along Krishna-Mumbai line
   const [simulatedSpeed, setSimulatedSpeed] = useState(62); // km/h
   const [simulatedFuel, setSimulatedFuel] = useState(78); // %
   const [simulatedAlert, setSimulatedAlert] = useState<string | null>(null);
@@ -677,13 +677,13 @@ export default function LogisticsProviderPortal({
           "Expressway Entry -> Vashi APMC Terminal Hub"
         ]
       },
-      "Pune": {
+      "Krishna": {
         distance: "148 km",
         time: "3 hrs 15 mins",
         fuelCost: "₹1,850",
         steps: [
-          "Departure: Pune Agricultural Warehouse 4B",
-          "Vashi-Pune Expressway Gateway",
+          "Departure: Krishna Agricultural Warehouse 4B",
+          "Vashi-Krishna Expressway Gateway",
           "Lonavala Ghat Area - Drive cautious under heavy monsoon rain simulation",
           "Vashi Mandi Entry Point"
         ]
@@ -1791,7 +1791,7 @@ export default function LogisticsProviderPortal({
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <div className="relative w-2/3 h-2 bg-slate-800 rounded-full">
                   {/* Start Point */}
-                  <span className="absolute left-0 -top-6 text-[10px] bg-slate-900 px-2 py-0.5 rounded border border-slate-700">Pune (Farm)</span>
+                  <span className="absolute left-0 -top-6 text-[10px] bg-slate-900 px-2 py-0.5 rounded border border-slate-700">Krishna (Farm)</span>
                   {/* End Point */}
                   <span className="absolute right-0 -top-6 text-[10px] bg-slate-900 px-2 py-0.5 rounded border border-slate-700">Mumbai APMC</span>
                   {/* Active Path */}
@@ -1832,7 +1832,7 @@ export default function LogisticsProviderPortal({
                   <label className="block text-[10px] font-bold text-slate-500 mb-1">Origin Coordinates (City)</label>
                   <select value={routeOrigin} onChange={e => setRouteOrigin(e.target.value)} className="w-full bg-slate-50 border border-slate-200 p-2 text-xs rounded-xl">
                     <option value="Nashik">Nashik Onion Cooperative</option>
-                    <option value="Pune">Pune Warehouse Hub</option>
+                    <option value="Krishna">Krishna Warehouse Hub</option>
                     <option value="Nagpur">Nagpur Orange Mandi</option>
                   </select>
                 </div>

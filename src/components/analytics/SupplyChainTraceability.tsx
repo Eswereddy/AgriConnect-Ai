@@ -156,7 +156,7 @@ export default function SupplyChainTraceability() {
 
   // Asset Tokenization states
   const [tokensMinted, setTokensMinted] = useState<{ id: string; name: string; amount: string; category: string }[]>([
-    { id: "TKN-LAND-01", name: "Punjab Plot 4B Asset-Token", amount: "10,000 SQM", category: "Farm Asset" },
+    { id: "TKN-LAND-01", name: "Andhra Pradesh Plot 4B Asset-Token", amount: "10,000 SQM", category: "Farm Asset" },
     { id: "TKN-FUTR-RICE26", name: "Autumn Basmati Crop Future Option", amount: "12.5 Tons", category: "Crop Futures" },
     { id: "TKN-CARB-998", name: "Sustained No-Till Carbon Credit Offset", amount: "4.2 tCO2e", category: "Carbon Credit" }
   ]);
@@ -610,7 +610,7 @@ export default function SupplyChainTraceability() {
               <div className="bg-white p-4 border rounded-xl space-y-3 text-xs">
                 <div className="flex justify-between items-center border-b pb-2">
                   <span className="text-slate-500 font-bold">DID Identifier:</span>
-                  <span className="font-mono text-[9.5px] font-black text-slate-800">did:agri:eswar_reddy_punjab_109</span>
+                  <span className="font-mono text-[9.5px] font-black text-slate-800">did:agri:eswar_reddy_andhra pradesh_109</span>
                 </div>
                 <div className="flex justify-between items-center border-b pb-2">
                   <span className="text-slate-500 font-bold">Identity Status:</span>

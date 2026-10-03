@@ -71,11 +71,11 @@ import {
 
 export const INITIAL_USERS = [
   { id: "USR-001", name: "Dr. Vikram Singh", role: "Expert", email: "vikram.singh@icar.gov.in", mobile: "+91 98765 43214", aadhaar: "4523-8912-0941", status: "Platinum", accountStatus: "Active", joinDate: "2026-02-12", location: "New Delhi", specialty: "Agronomy", earnings: 42100, lastActive: "2026-07-19" },
-  { id: "USR-002", name: "Rajesh Patel", role: "Farmer", email: "rajesh.patel@agrifarm.org", mobile: "+91 98123 45678", aadhaar: "7823-1122-3344", status: "Gold", accountStatus: "Active", joinDate: "2026-03-01", location: "Punjab", specialty: "Wheat", landSize: "12 Acres", lastActive: "2026-07-19" },
+  { id: "USR-002", name: "Rajesh Patel", role: "Farmer", email: "rajesh.patel@agrifarm.org", mobile: "+91 98123 45678", aadhaar: "7823-1122-3344", status: "Gold", accountStatus: "Active", joinDate: "2026-03-01", location: "Andhra Pradesh", specialty: "Wheat", landSize: "12 Acres", lastActive: "2026-07-19" },
   { id: "USR-003", name: "Meena Devi", role: "Farmer", email: "meena.devi@fieldcrops.in", mobile: "+91 95432 10987", aadhaar: "9012-3456-7890", status: "Bronze", accountStatus: "Pending", joinDate: "2026-07-10", location: "Telangana", specialty: "Rice", landSize: "4 Acres", lastActive: "2026-07-18" },
   { id: "USR-004", name: "Suresh Kumar", role: "Farmer", email: "suresh.k@fieldagro.net", mobile: "+91 94321 09876", aadhaar: "3456-7890-1234", status: "Bronze", accountStatus: "Active", joinDate: "2026-06-15", location: "Haryana", specialty: "Cotton", landSize: "22 Acres", lastActive: "2026-07-19" },
   { id: "USR-005", name: "Global Agrifood Corp", role: "Buyer", email: "procure@globalfoods.com", mobile: "+91 91234 56789", aadhaar: "GST-29AAAAA1111A1Z2", status: "Platinum", accountStatus: "Active", joinDate: "2026-01-20", location: "Maharashtra", businessType: "Wholesale", lastActive: "2026-07-19" },
-  { id: "USR-006", name: "CropCare Supplies", role: "Supplier", email: "sales@cropcaresupplies.com", mobile: "+91 92345 67890", aadhaar: "GST-27BBBBB2222B2Z1", status: "Silver", accountStatus: "Active", joinDate: "2026-02-15", location: "Punjab", productsCount: 18, lastActive: "2026-07-17" },
+  { id: "USR-006", name: "CropCare Supplies", role: "Supplier", email: "sales@cropcaresupplies.com", mobile: "+91 92345 67890", aadhaar: "GST-27BBBBB2222B2Z1", status: "Silver", accountStatus: "Active", joinDate: "2026-02-15", location: "Andhra Pradesh", productsCount: 18, lastActive: "2026-07-17" },
   { id: "USR-007", name: "Dr. Rachel Carter", role: "Expert", email: "rachel.carter@agriuni.edu", mobile: "+91 93456 78901", aadhaar: "5678-9012-3456", status: "Platinum", accountStatus: "Active", joinDate: "2026-04-10", location: "West Bengal", specialty: "Soil Pathology", earnings: 89400, lastActive: "2026-07-19" },
   { id: "USR-008", name: "Govt Officer Amit", role: "Government", email: "amit.sharma@nic.in", mobile: "+91 90011 22334", aadhaar: "8912-3456-1122", status: "Gold", accountStatus: "Active", joinDate: "2026-05-01", location: "Gujarat", specialty: "Subsidies", lastActive: "2026-07-19" }
 ];
@@ -399,7 +399,7 @@ export function AdminDashboard({ onSelectTab }: { onSelectTab: (tab: string) => 
             </div>
             <div className="space-y-4">
               {[
-                { state: "Punjab / Haryana", count: "3,820 Farmers", share: "45.3%", color: "bg-emerald-500" },
+                { state: "Andhra Pradesh / Haryana", count: "3,820 Farmers", share: "45.3%", color: "bg-emerald-500" },
                 { state: "Gujarat / Maharashtra", count: "2,140 Farmers", share: "25.4%", color: "bg-indigo-500" },
                 { state: "Telangana / Andhra Pradesh", count: "1,520 Farmers", share: "18.0%", color: "bg-amber-500" },
                 { state: "West Bengal / Bihar", count: "941 Farmers", share: "11.3%", color: "bg-sky-500" }
@@ -419,7 +419,7 @@ export function AdminDashboard({ onSelectTab }: { onSelectTab: (tab: string) => 
             <div className="p-3 bg-slate-50 rounded-xl border border-slate-150 text-[11px] text-slate-500 space-y-1">
               <div className="flex justify-between font-bold text-slate-700">
                 <span>Top District Density:</span>
-                <span>Bathinda, Punjab</span>
+                <span>Kurnool, Andhra Pradesh</span>
               </div>
               <p className="leading-tight">Highly responsive feature adoption observed in Rayalaseema microclimates.</p>
             </div>
@@ -1453,7 +1453,7 @@ export function AdminCoPilot() {
 - Active Verification Queue: 756 Farmers waiting for KYC approval
 - Dynamic Escrow Block: 3 active disputes resolved today
 - ARR (Annual Run Rate): ₹41,10,804 | MRR: ₹3,42,567
-- Active Fraud Flags: IP duplicate match detected between USR-004 and USR-006 (Bathinda crop lots)
+- Active Fraud Flags: IP duplicate match detected between USR-004 and USR-006 (Kurnool crop lots)
 `;
 
       const response = await fetch("/api/chat", {
@@ -1616,7 +1616,7 @@ export function AdminCoPilot() {
         <div className="space-y-3">
           {[
             { id: "ANM-01", type: "Fraud Risk", desc: "Duplicate bank routing matching detected between USR-004 and USR-006", level: "High", actioned: false },
-            { id: "ANM-02", type: "Volume Spike", desc: "Unusual refund volume spike from Region Bathinda lot index (>₹1L)", level: "Medium", actioned: false },
+            { id: "ANM-02", type: "Volume Spike", desc: "Unusual refund volume spike from Region Kurnool lot index (>₹1L)", level: "Medium", actioned: false },
             { id: "ANM-03", type: "IP Conflict", desc: "Multi-account login matching crop broker USR-005 (Mumbai proxy)", level: "Low", actioned: true }
           ].map((item) => (
             <div key={item.id} className="p-3 bg-slate-50 rounded-xl border flex justify-between items-center text-xs font-bold gap-3">

@@ -52,10 +52,10 @@ import {
 // Original SQL Database Seed
 const INITIAL_MYSQL_TABLES = {
   farmers: [
-    { id: 1, name: "Amir Patel", email: "amir.patel@agrifarm.org", location: "Punjab Block 4", joined_date: "2026-01-10", land_size_acres: 12.5 },
+    { id: 1, name: "Amir Patel", email: "amir.patel@agrifarm.org", location: "Andhra Pradesh Block 4", joined_date: "2026-01-10", land_size_acres: 12.5 },
     { id: 2, name: "Vikram Singh", email: "vikram@singhcrops.com", location: "Haryana Sector 2", joined_date: "2026-03-15", land_size_acres: 24.0 },
     { id: 3, name: "Siddharth Roy", email: "siddharth@royagri.edu", location: "West Bengal Zone C", joined_date: "2026-04-20", land_size_acres: 8.2 },
-    { id: 4, name: "Rajesh Grewal", email: "rajesh@grewalfarms.net", location: "Punjab Block 3", joined_date: "2026-05-02", land_size_acres: 15.0 }
+    { id: 4, name: "Rajesh Grewal", email: "rajesh@grewalfarms.net", location: "Andhra Pradesh Block 3", joined_date: "2026-05-02", land_size_acres: 15.0 }
   ],
   sensors: [
     { id: "sens-1", name: "Soil Probe A", type: "soil_moisture", current_value: 42.0, battery: 92, signal_dbm: -65, location: "Block C (Maize)" },

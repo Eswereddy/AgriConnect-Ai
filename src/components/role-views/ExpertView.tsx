@@ -215,7 +215,7 @@ export default function ExpertView({ diagnostics, onUpdateDiagnostic }: ExpertVi
     {
       id: "q-4",
       farmerName: "Baldev Singh",
-      location: "Amritsar, PB",
+      location: "Vijayawada, PB",
       crop: "Wheat",
       title: "Suspected Wheat Leaf Rust",
       question: "Orange-brown pustules found across leaves of HD 3086 variety. Spreading very rapidly in the morning fog. Urgent organic cure needed!",
@@ -279,7 +279,7 @@ export default function ExpertView({ diagnostics, onUpdateDiagnostic }: ExpertVi
       {
         id: "SOV-BOOK-9010",
         farmerName: "Ram Singh",
-        location: "Ludhiana, PB",
+        location: "Guntur, AP",
         mode: "video",
         date: "Today",
         slot: "02:00 PM - 03:00 PM",
@@ -343,10 +343,10 @@ export default function ExpertView({ diagnostics, onUpdateDiagnostic }: ExpertVi
   const farmerHistoryDatabase = [
     { name: "Suresh Patil", location: "Nashik, MH", trustIndex: 94, consultationsCount: 5, primaryCrop: "Grapes", recentDiagnosis: "Downy Mildew" },
     { name: "Anjali Menon", location: "Palakkad, KL", trustIndex: 88, consultationsCount: 3, primaryCrop: "Coconut Palm", recentDiagnosis: "Leaf Powdery Spot" },
-    { name: "Ram Singh", location: "Ludhiana, PB", trustIndex: 96, consultationsCount: 12, primaryCrop: "Rice", recentDiagnosis: "Leaf Folder" },
+    { name: "Ram Singh", location: "Guntur, AP", trustIndex: 96, consultationsCount: 12, primaryCrop: "Rice", recentDiagnosis: "Leaf Folder" },
     { name: "Vikram Gaikwad", location: "Satara, MH", trustIndex: 91, consultationsCount: 4, primaryCrop: "Tomato", recentDiagnosis: "Early Blight" },
     { name: "Ramesh Singh", location: "Varanasi, UP", trustIndex: 95, consultationsCount: 6, primaryCrop: "Wheat", recentDiagnosis: "Puccinia Rust" },
-    { name: "Harpreet Kaur", location: "Amritsar, PB", trustIndex: 98, consultationsCount: 15, primaryCrop: "Cotton", recentDiagnosis: "Whitefly Outbreak" }
+    { name: "Harpreet Kaur", location: "Vijayawada, PB", trustIndex: 98, consultationsCount: 15, primaryCrop: "Cotton", recentDiagnosis: "Whitefly Outbreak" }
   ];
 
   // Overlay state managers
@@ -481,7 +481,7 @@ export default function ExpertView({ diagnostics, onUpdateDiagnostic }: ExpertVi
     if (saved) return JSON.parse(saved);
     return [
       { id: "sess-1", device: "Chrome on macOS (Current Device)", ip: "192.168.1.102", location: "New Delhi, IN", active: true, icon: "Laptop" },
-      { id: "sess-2", device: "Safari on iPhone 15 Pro", ip: "103.45.22.18", location: "Pune, IN", active: false, icon: "Smartphone" },
+      { id: "sess-2", device: "Safari on iPhone 15 Pro", ip: "103.45.22.18", location: "Krishna, IN", active: false, icon: "Smartphone" },
       { id: "sess-3", device: "Chrome on Windows 11 Workspace", ip: "203.111.45.92", location: "Hyderabad, IN", active: false, icon: "Laptop" }
     ];
   });

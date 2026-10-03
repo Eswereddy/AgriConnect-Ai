@@ -121,7 +121,7 @@ export const EquipmentRentalSystem: React.FC = () => {
         "https://images.unsplash.com/photo-1530268576831-470b4f0453c2?auto=format&fit=crop&w=600&q=80"
       ],
       fuelBurnRate: 6.2,
-      gpsLocation: { lat: 31.621, lng: 74.873, label: "Amritsar Hub Sector 2" },
+      gpsLocation: { lat: 16.5023, lng: 80.6483, label: "Vijayawada Hub Sector 2" },
       aiMaintenanceStatus: {
         healthScore: 92,
         nextServiceHours: 42,
@@ -172,7 +172,7 @@ export const EquipmentRentalSystem: React.FC = () => {
         "https://images.unsplash.com/photo-1593113630400-ea4288922497?auto=format&fit=crop&w=600&q=80"
       ],
       fuelBurnRate: 12.5,
-      gpsLocation: { lat: 31.515, lng: 74.982, label: "Ludhiana Regional Depot" },
+      gpsLocation: { lat: 16.4705, lng: 80.6810, label: "Guntur Regional Depot" },
       aiMaintenanceStatus: {
         healthScore: 78,
         nextServiceHours: 12,
@@ -221,7 +221,7 @@ export const EquipmentRentalSystem: React.FC = () => {
         "https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=600&q=80"
       ],
       fuelBurnRate: 3.5,
-      gpsLocation: { lat: 31.688, lng: 74.821, label: "Gurdaspur Cooperative Storage" },
+      gpsLocation: { lat: 16.5224, lng: 80.6327, label: "Machilipatnam Cooperative Storage" },
       aiMaintenanceStatus: {
         healthScore: 95,
         nextServiceHours: 110,
@@ -264,7 +264,7 @@ export const EquipmentRentalSystem: React.FC = () => {
         "https://images.unsplash.com/photo-1605000797439-75a150088dd4?auto=format&fit=crop&w=600&q=80"
       ],
       fuelBurnRate: 4.0,
-      gpsLocation: { lat: 31.421, lng: 74.654, label: "Batala Equipment Yards" },
+      gpsLocation: { lat: 16.4423, lng: 80.5826, label: "Tenali Equipment Yards" },
       aiMaintenanceStatus: {
         healthScore: 88,
         nextServiceHours: 28,
@@ -309,7 +309,7 @@ export const EquipmentRentalSystem: React.FC = () => {
         "https://images.unsplash.com/photo-1530268576831-470b4f0453c2?auto=format&fit=crop&w=600&q=80"
       ],
       fuelBurnRate: 5.0,
-      gpsLocation: { lat: 31.599, lng: 74.912, label: "Amritsar Sector 3 Depot" },
+      gpsLocation: { lat: 16.4957, lng: 80.6600, label: "Vijayawada Sector 3 Depot" },
       aiMaintenanceStatus: {
         healthScore: 91,
         nextServiceHours: 55,
@@ -352,7 +352,7 @@ export const EquipmentRentalSystem: React.FC = () => {
         "https://images.unsplash.com/photo-1605000797439-75a150088dd4?auto=format&fit=crop&w=600&q=80"
       ],
       fuelBurnRate: 2.8,
-      gpsLocation: { lat: 31.642, lng: 74.891, label: "Amritsar Hub Sector 2" },
+      gpsLocation: { lat: 16.5086, lng: 80.6537, label: "Vijayawada Hub Sector 2" },
       aiMaintenanceStatus: {
         healthScore: 84,
         nextServiceHours: 18,
@@ -395,7 +395,7 @@ export const EquipmentRentalSystem: React.FC = () => {
         "https://images.unsplash.com/photo-1599933333333-d922a969dfb4?auto=format&fit=crop&w=600&q=80"
       ],
       fuelBurnRate: 7.5,
-      gpsLocation: { lat: 31.528, lng: 74.799, label: "Ludhiana Regional Depot" },
+      gpsLocation: { lat: 16.4744, lng: 80.6261, label: "Guntur Regional Depot" },
       aiMaintenanceStatus: {
         healthScore: 96,
         nextServiceHours: 120,
@@ -440,7 +440,7 @@ export const EquipmentRentalSystem: React.FC = () => {
         "https://images.unsplash.com/photo-1558224494-ef6b48969b7b?auto=format&fit=crop&w=600&q=80"
       ],
       fuelBurnRate: 3.1,
-      gpsLocation: { lat: 31.648, lng: 74.832, label: "Amritsar Hub Sector 2" },
+      gpsLocation: { lat: 16.5104, lng: 80.6360, label: "Vijayawada Hub Sector 2" },
       aiMaintenanceStatus: {
         healthScore: 97,
         nextServiceHours: 140,
@@ -483,7 +483,7 @@ export const EquipmentRentalSystem: React.FC = () => {
         "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80"
       ],
       fuelBurnRate: 3.9,
-      gpsLocation: { lat: 31.595, lng: 74.915, label: "Ludhiana Regional Depot" },
+      gpsLocation: { lat: 16.4945, lng: 80.6609, label: "Guntur Regional Depot" },
       aiMaintenanceStatus: {
         healthScore: 93,
         nextServiceHours: 85,
@@ -526,7 +526,7 @@ export const EquipmentRentalSystem: React.FC = () => {
         "https://images.unsplash.com/photo-1530268576831-470b4f0453c2?auto=format&fit=crop&w=600&q=80"
       ],
       fuelBurnRate: 2.2,
-      gpsLocation: { lat: 31.551, lng: 74.882, label: "Batala Equipment Yards" },
+      gpsLocation: { lat: 16.4813, lng: 80.6510, label: "Tenali Equipment Yards" },
       aiMaintenanceStatus: {
         healthScore: 89,
         nextServiceHours: 35,
@@ -570,10 +570,10 @@ export const EquipmentRentalSystem: React.FC = () => {
   const [sortBy, setSortBy] = useState<"price" | "rating" | "distance">("price");
   const [searchQuery, setSearchQuery] = useState<string>("All");
 
-  // Simple distance calculator from Amritsar center (31.634, 74.872)
+  // Simple distance calculator from Vijayawada center (16.5062, 80.648)
   const calculateDistance = (gps: { lat: number; lng: number }) => {
-    const dLat = gps.lat - 31.634;
-    const dLng = gps.lng - 74.872;
+    const dLat = gps.lat - 16.5062;
+    const dLng = gps.lng - 80.648;
     return parseFloat((Math.sqrt(dLat * dLat + dLng * dLng) * 111).toFixed(1)); // 111km per degree
   };
 
@@ -1073,7 +1073,7 @@ export const EquipmentRentalSystem: React.FC = () => {
           <div className="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs space-y-4">
             <div>
               <h3 className="text-xs font-black text-slate-900 uppercase tracking-wider">Heavy Machinery Fleet</h3>
-              <p className="text-[10px] text-slate-500">Select standard, high-clearance, or high-throughput mechanical units near Amritsar.</p>
+              <p className="text-[10px] text-slate-500">Select standard, high-clearance, or high-throughput mechanical units near Vijayawada.</p>
             </div>
 
             {/* SEARCH INPUT (Part 5.1 Browse Equipment) */}
@@ -1751,12 +1751,12 @@ export const EquipmentRentalSystem: React.FC = () => {
                   {/* Nearby dispatch depots */}
                   <div className="absolute text-center" style={{ transform: "translate(-80px, -40px)" }}>
                     <div className="h-2 w-2 bg-amber-500 rounded-full border border-white" />
-                    <span className="text-[6px] text-slate-500 font-black bg-white/95 px-1 rounded border border-slate-200 block mt-0.5">Amritsar Depot</span>
+                    <span className="text-[6px] text-slate-500 font-black bg-white/95 px-1 rounded border border-slate-200 block mt-0.5">Vijayawada Depot</span>
                   </div>
 
                   <div className="absolute text-center" style={{ transform: "translate(90px, 35px)" }}>
                     <div className="h-2 w-2 bg-indigo-500 rounded-full border border-white" />
-                    <span className="text-[6px] text-slate-500 font-black bg-white/95 px-1 rounded border border-slate-200 block mt-0.5">Ludhiana Hub</span>
+                    <span className="text-[6px] text-slate-500 font-black bg-white/95 px-1 rounded border border-slate-200 block mt-0.5">Guntur Hub</span>
                   </div>
 
                   {/* HUD Readout overlay */}

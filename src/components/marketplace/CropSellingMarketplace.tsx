@@ -92,7 +92,7 @@ export const CropSellingMarketplace: React.FC<CropSellingMarketplaceProps> = ({
       qualityGrade: "Grade A",
       pricePerTon: 640,
       harvestDate: "2026-06-20",
-      location: "Gurdaspur Sector 4",
+      location: "Machilipatnam Sector 4",
       sellingType: "Direct",
       status: "Available",
       exportReadiness: 96,
@@ -113,7 +113,7 @@ export const CropSellingMarketplace: React.FC<CropSellingMarketplaceProps> = ({
       qualityGrade: "Grade A",
       pricePerTon: 1050,
       harvestDate: "2026-06-25",
-      location: "Amritsar North Block",
+      location: "Vijayawada North Block",
       sellingType: "Dutch Auction",
       status: "Active Auction",
       exportReadiness: 84,
@@ -136,7 +136,7 @@ export const CropSellingMarketplace: React.FC<CropSellingMarketplaceProps> = ({
       qualityGrade: "Grade B",
       pricePerTon: 310,
       harvestDate: "2026-06-15",
-      location: "Ludhiana South Field",
+      location: "Guntur South Field",
       sellingType: "Contract Farming",
       status: "Signed Contract",
       exportReadiness: 90,
@@ -157,7 +157,7 @@ export const CropSellingMarketplace: React.FC<CropSellingMarketplaceProps> = ({
       qualityGrade: "Grade A",
       pricePerTon: 1800,
       harvestDate: "2026-06-27",
-      location: "Gurdaspur Block C",
+      location: "Machilipatnam Block C",
       sellingType: "Direct",
       status: "Available",
       exportReadiness: 92,
@@ -187,7 +187,7 @@ export const CropSellingMarketplace: React.FC<CropSellingMarketplaceProps> = ({
     contractId: "ESC-823901",
     amount: 11520,
     status: "Funds Locked",
-    shipperName: "Punjab Logistics Reefer Corp"
+    shipperName: "Andhra Pradesh Logistics Reefer Corp"
   });
 
   // --- Dutch Auction Timer Simulator ---
@@ -230,7 +230,7 @@ export const CropSellingMarketplace: React.FC<CropSellingMarketplaceProps> = ({
   const [newPrice, setNewPrice] = useState(580);
   const [newGrade, setNewGrade] = useState<"Grade A" | "Grade B" | "Grade C" | "Pending">("Pending");
   const [newSellingType, setNewSellingType] = useState<"Direct" | "Dutch Auction" | "Contract Farming">("Direct");
-  const [newLocation, setNewLocation] = useState("Ludhiana West Sector");
+  const [newLocation, setNewLocation] = useState("Guntur West Sector");
   const [newHarvestDate, setNewHarvestDate] = useState("2026-07-05");
   const [newColdChain, setNewColdChain] = useState(false);
 
@@ -352,7 +352,7 @@ export const CropSellingMarketplace: React.FC<CropSellingMarketplaceProps> = ({
         contractId: `ESC-${Math.floor(100000 + Math.random() * 900000)}`,
         amount: origOffers[offerIndex].price * selectedCrop.quantity,
         status: "Funds Locked",
-        shipperName: selectedCrop.coldChainRequired ? "Punjab Logistics Reefer Corp" : "Standard Ambient Truck Dispatch"
+        shipperName: selectedCrop.coldChainRequired ? "Andhra Pradesh Logistics Reefer Corp" : "Standard Ambient Truck Dispatch"
       });
       alert(`✓ Negotiation contract settled! Escrow funds locked at $${origOffers[offerIndex].price * selectedCrop.quantity}. ready for logistics planning.`);
     }
@@ -375,7 +375,7 @@ export const CropSellingMarketplace: React.FC<CropSellingMarketplaceProps> = ({
       contractId: `ESC-${Math.floor(100000 + Math.random() * 900000)}`,
       amount: finalTotal,
       status: "Funds Locked",
-      shipperName: selectedCrop.coldChainRequired ? "Punjab Logistics Reefer Corp" : "Standard Ambient Truck Dispatch"
+      shipperName: selectedCrop.coldChainRequired ? "Andhra Pradesh Logistics Reefer Corp" : "Standard Ambient Truck Dispatch"
     });
 
     alert(`✓ SUCCESS! You purchased ${selectedCrop.quantity} Tons of "${selectedCrop.cropName}" at the current Dutch drop rate of $${finalPrice}/Ton! Grand Total escrow lock: $${finalTotal.toFixed(2)}.`);

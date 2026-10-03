@@ -114,7 +114,7 @@ export default function AIDiseaseScanner({
       designation: "Senior Plant Pathologist",
       department: "Division of Plant Pathology",
       institution: "Agri University",
-      location: "Ludhiana, Punjab",
+      location: "Guntur, Andhra Pradesh",
       experienceYears: 14,
       specializations: ["Fungal Diseases", "Soil Pathology", "Organic Bio-Control"],
       languages: ["English", "Hindi", "Punjabi"],

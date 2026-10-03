@@ -128,7 +128,7 @@ const INITIAL_AID_REQUESTS: FarmerAidRequest[] = [
     farmerName: "Amir Patel",
     aadhaar: "xxxx-xxxx-8012",
     phone: "+91 98765 43210",
-    district: "Amritsar",
+    district: "Vijayawada",
     block: "Verka Block",
     reason: "Crop Loss",
     description: "Heavy lodging and submerged paddy crops across 2 hectares due to localized flooding.",
@@ -172,8 +172,8 @@ export const GovernmentIntegration: React.FC = () => {
           aadhaar: parsed.aadhaar || "xxxx-xxxx-8012",
           pan: parsed.pan || "BNXPA1928K",
           phone: parsed.phone || parsed.mobile || "+91 98765 43210",
-          district: parsed.district || "Amritsar Block B",
-          state: parsed.state || "Punjab",
+          district: parsed.district || "Vijayawada Block B",
+          state: parsed.state || "Andhra Pradesh",
           landSizeHectares: parsed.landSizeHectares || (parsed.landSize ? parseFloat(parsed.landSize) * 0.404686 : 1.82), // convert acres to hectares
           mainCrop: parsed.mainCrop || (parsed.cropsGrown && parsed.cropsGrown[0]) || "Heirloom Basmati Rice",
           annualIncome: parsed.annualIncome || 260000,
@@ -192,8 +192,8 @@ export const GovernmentIntegration: React.FC = () => {
       aadhaar: "xxxx-xxxx-8012",
       pan: "BNXPA1928K",
       phone: "+91 98765 43210",
-      district: "Amritsar Block B",
-      state: "Punjab",
+      district: "Vijayawada Block B",
+      state: "Andhra Pradesh",
       landSizeHectares: 1.82,
       mainCrop: "Heirloom Basmati Rice",
       annualIncome: 260000, // ₹2,60,000 / Year
@@ -263,7 +263,7 @@ export const GovernmentIntegration: React.FC = () => {
       farmerName: farmerProfile.name,
       aadhaar: farmerProfile.aadhaar,
       phone: farmerProfile.phone,
-      district: farmerProfile.district ? farmerProfile.district.split(" ")[0] : "Amritsar",
+      district: farmerProfile.district ? farmerProfile.district.split(" ")[0] : "Vijayawada",
       block: farmerProfile.district && farmerProfile.district.includes("Block") ? farmerProfile.district : "Verka Block",
       reason: newAidReason,
       description: newAidDescription.trim(),
@@ -306,7 +306,7 @@ export const GovernmentIntegration: React.FC = () => {
       penetrationPercentage: 94,
       successStory: {
         farmerName: "Sarbjit Singh",
-        location: "Ludhiana District",
+        location: "Guntur District",
         amountReceived: "$120",
         quote: "The direct transfers helped me buy high-quality organic Basmati seed inputs exactly before the monsoon began without high-interest loans."
       },
@@ -320,16 +320,16 @@ export const GovernmentIntegration: React.FC = () => {
       utilizedBudget: "₹54,200 Crores ($6.5 Billion)"
     },
     {
-      id: "PUNJAB-LIVELIHOOD",
-      name: "Punjab Smallholder Livelihood Income Support",
+      id: "ANDHRA PRADESH-LIVELIHOOD",
+      name: "Andhra Pradesh Smallholder Livelihood Income Support",
       level: "State",
       type: "Livelihood Support",
       description: "State-funded matching grants to secure secondary income streams for marginal farmers during lean seasons, with dynamic direct cash payouts.",
-      simpleExplanation: "An extra income boost of ₹4,500 during non-harvest months from the Punjab Government. Designed to support minor farm expenses when crop income is low.",
+      simpleExplanation: "An extra income boost of ₹4,500 during non-harvest months from the Andhra Pradesh Government. Designed to support minor farm expenses when crop income is low.",
       eligibilityCriteria: {
         maxLandSizeHectares: 1.5,
         requiredDocuments: ["Aadhaar Card", "Active Bank Ledger Statement", "Cultivation Certificate"],
-        otherConditions: "Exclusive to registered smallholders in border districts of Punjab.",
+        otherConditions: "Exclusive to registered smallholders in border districts of Andhra Pradesh.",
         incomeLimit: "Below ₹1,50,000 / Year",
         minAge: 18,
         socialCategory: "Marginal Farmers",
@@ -347,11 +347,11 @@ export const GovernmentIntegration: React.FC = () => {
         quote: "The lean season matching cash made sure we could pay for tube-well repairs without skipping basic food or household expenses."
       },
       category: "Income Support",
-      state: "Punjab",
+      state: "Andhra Pradesh",
       deadlineStatus: "Upcoming",
-      ministry: "Department of Agriculture & Farmers Welfare, Punjab",
+      ministry: "Department of Agriculture & Farmers Welfare, Andhra Pradesh",
       benefitsDetails: "₹4,500 direct seasonal income support paid in two installments during dry winter months.",
-      applicationUrl: "https://agri.punjab.gov.in/",
+      applicationUrl: "https://agri.andhra pradesh.gov.in/",
       allocatedBudget: "₹1,200 Crores ($145 Million)",
       utilizedBudget: "₹1,120 Crores ($135 Million)"
     },
@@ -378,7 +378,7 @@ export const GovernmentIntegration: React.FC = () => {
       penetrationPercentage: 78,
       successStory: {
         farmerName: "Gurpreet Kaur",
-        location: "Amritsar Sector 3",
+        location: "Vijayawada Sector 3",
         amountReceived: "$1,450 (Claim settled)",
         quote: "After the unseasonal hailstorm damaged my wheat, the crop insurance officer verified my land map and cleared my payout in 18 days."
       },
@@ -504,7 +504,7 @@ export const GovernmentIntegration: React.FC = () => {
       name: "Sub-Mission on Agricultural Mechanization (SMAM - Equipment)",
       level: "State",
       type: "Machinery Subsidy",
-      description: "Punjab state initiative providing massive matching grants for renting or purchasing high-efficiency machinery like happy seeders, laser levelers, and tractors.",
+      description: "Andhra Pradesh state initiative providing massive matching grants for renting or purchasing high-efficiency machinery like happy seeders, laser levelers, and tractors.",
       simpleExplanation: "Rent or buy modern farm machinery with 50% to 80% funding covered by the State. Perfect for renting rotavators or high-precision laser land levelers.",
       eligibilityCriteria: {
         maxLandSizeHectares: 3.0,
@@ -527,9 +527,9 @@ export const GovernmentIntegration: React.FC = () => {
         quote: "Our co-op was able to buy a custom Happy Seeder under the 80% subsidy. Now we all sow our fields without burning residue."
       },
       category: "Subsidies",
-      state: "Punjab",
+      state: "Andhra Pradesh",
       deadlineStatus: "Active",
-      ministry: "Department of Agriculture & Farmers Welfare, Punjab",
+      ministry: "Department of Agriculture & Farmers Welfare, Andhra Pradesh",
       benefitsDetails: "50% capital assistance grant for purchase of individual tractors, tillers, levelers, and up to 80% for local custom hiring hubs.",
       applicationUrl: "https://agrimachinery.nic.in/",
       allocatedBudget: "₹450 Crores ($54 Million)",
@@ -537,11 +537,11 @@ export const GovernmentIntegration: React.FC = () => {
     },
     {
       id: "FARMER-TRAINING",
-      name: "Punjab Sovereign Farm Training & Skill Development",
+      name: "Andhra Pradesh Sovereign Farm Training & Skill Development",
       level: "State",
       type: "Education Support",
       description: "State-certified educational programs focusing on precision agronomy, organic certification compliance, and micro-irrigation management.",
-      simpleExplanation: "A free training program from Punjab state. Learn how to double your crop yield, use less water, and get organic certification with fully funded classroom and field lessons.",
+      simpleExplanation: "A free training program from Andhra Pradesh state. Learn how to double your crop yield, use less water, and get organic certification with fully funded classroom and field lessons.",
       eligibilityCriteria: {
         maxLandSizeHectares: 15.0,
         requiredDocuments: ["ID Proof", "Active Sowing Self-Declaration"],
@@ -558,14 +558,14 @@ export const GovernmentIntegration: React.FC = () => {
       penetrationPercentage: 42,
       successStory: {
         farmerName: "Daljit Sandhu",
-        location: "Jalandhar Krishi Vigyan",
+        location: "Nellore Krishi Vigyan",
         amountReceived: "$100 (Stipend)",
         quote: "The soil biology sessions were outstanding. We learned exactly how to blend vermicompost to reduce costly chemical dependencies."
       },
       category: "Education",
-      state: "Punjab",
+      state: "Andhra Pradesh",
       deadlineStatus: "Active",
-      ministry: "Punjab Agricultural University & PAU Extension",
+      ministry: "Acharya N.G. Ranga Agricultural University & PAU Extension",
       benefitsDetails: "Fully-funded residential courses on sustainable farm techniques plus ₹8,00,000 stipend upon graduation and certification.",
       applicationUrl: "https://www.pau.edu/",
       allocatedBudget: "₹120 Crores ($14 Million)",
@@ -594,7 +594,7 @@ export const GovernmentIntegration: React.FC = () => {
       penetrationPercentage: 55,
       successStory: {
         farmerName: "Sukhwinder Dhillon",
-        location: "Batala Block A",
+        location: "Tenali Block A",
         amountReceived: "$2,400 (Solar Capital Grant)",
         quote: "No more diesel fuel bills or waiting for overnight power grids. My solar pump runs completely free under daylight sun."
       },
@@ -608,11 +608,11 @@ export const GovernmentIntegration: React.FC = () => {
       utilizedBudget: "₹18,500 Crores ($2.2 Billion)"
     },
     {
-      id: "WAREHOUSE-PUNJAB",
+      id: "WAREHOUSE-ANDHRA PRADESH",
       name: "Agricultural Infrastructure Warehousing & Storage Subsidy",
       level: "State",
       type: "Infrastructure Support",
-      description: "Punjab Agricultural Infrastructure Fund providing capital subsidies and interest subvention for constructing localized cold storages and warehouses.",
+      description: "Andhra Pradesh Agricultural Infrastructure Fund providing capital subsidies and interest subvention for constructing localized cold storages and warehouses.",
       simpleExplanation: "Build your own crop warehouse or micro cold storage. The government offers a 3% interest discount on construction loans and covers up to 35% of the total cost.",
       eligibilityCriteria: {
         maxLandSizeHectares: 12.0,
@@ -635,9 +635,9 @@ export const GovernmentIntegration: React.FC = () => {
         quote: "By building a cold storage shed under this scheme, we now store our potatoes for up to 4 months, selling when market prices peak."
       },
       category: "Infrastructure",
-      state: "Punjab",
+      state: "Andhra Pradesh",
       deadlineStatus: "Upcoming",
-      ministry: "Department of Agriculture & Farmers Welfare, Punjab",
+      ministry: "Department of Agriculture & Farmers Welfare, Andhra Pradesh",
       benefitsDetails: "35% credit-linked capital investment subsidy and 3% interest discount on development bank loans for rural storage hubs.",
       applicationUrl: "https://agriinfra.dac.gov.in/",
       allocatedBudget: "₹850 Crores ($102 Million)",
@@ -736,7 +736,7 @@ export const GovernmentIntegration: React.FC = () => {
     {
       id: "APP-284910",
       schemeId: "STATE-DRIP",
-      schemeName: "Punjab State Micro-Irrigation & Drip Incentive",
+      schemeName: "Andhra Pradesh State Micro-Irrigation & Drip Incentive",
       submittedDate: "2026-06-01",
       status: "Rejected",
       progressPercent: 40,
@@ -761,12 +761,12 @@ export const GovernmentIntegration: React.FC = () => {
   const [appFormLandSize, setAppFormLandSize] = useState<number>(1.82);
   const [appFormCrop, setAppFormCrop] = useState<string>("Heirloom Basmati Rice");
   const [appFormIncome, setAppFormIncome] = useState<number>(260000);
-  const [appFormBank, setAppFormBank] = useState<string>("State Bank of Punjab");
+  const [appFormBank, setAppFormBank] = useState<string>("State Bank of India");
   const [appFormAccount, setAppFormAccount] = useState<string>("xxxx-xxxx-1294");
   const [appFormIfsc, setAppFormIfsc] = useState<string>("PUNB002194");
   const [appFormSocialClass, setAppFormSocialClass] = useState<string>("Small & Marginal Farmers");
   const [appFormPhone, setAppFormPhone] = useState<string>("+91 98765 43210");
-  const [appFormDistrict, setAppFormDistrict] = useState<string>("Amritsar Block B");
+  const [appFormDistrict, setAppFormDistrict] = useState<string>("Vijayawada Block B");
 
   // Simulated Files
   const [fileAadhaar, setFileAadhaar] = useState<{ name: string; size: string } | null>(null);
@@ -798,7 +798,7 @@ export const GovernmentIntegration: React.FC = () => {
       id: "NTF-EML-302918",
       timestamp: "2026-06-10 11:15",
       type: "Email",
-      recipient: "amir.patel@punjabmail.in",
+      recipient: "amir.patel@apmail.in",
       title: "Scheme Approved: PM-KISAN",
       message: "Congratulations Amir Patel,\n\nYour biometric credentials and land record files match. Your application APP-509182 has been APPROVED and the direct financial payout verified.",
       isRead: true
@@ -858,11 +858,11 @@ export const GovernmentIntegration: React.FC = () => {
       replies: [
         {
           author: "Amir Patel",
-          message: "Disbursement status shows complete but funds have not cleared my Bank of Punjab ledger.",
+          message: "Disbursement status shows complete but funds have not cleared my State Bank of India ledger.",
           timestamp: "2026-06-15 09:30"
         },
         {
-          author: "Nodal Officer (Amritsar Hub)",
+          author: "Nodal Officer (Vijayawada Hub)",
           message: "Aadhaar verification was pending. We have updated your biometric credentials. Please expect the credit clearance within 3 bank working days.",
           timestamp: "2026-06-25 14:20"
         }
@@ -1124,10 +1124,10 @@ export const GovernmentIntegration: React.FC = () => {
   // Comparison Chart Data
   const schemeComparisonChartData = useMemo(() => {
     return [
-      { name: "Direct Cash Payout (%)", "PM-KISAN": 100, "PMFBY Insurance": 10, "KCC Loan": 15, "PM-KUSUM Solar": 10, "Punjab State Drip": 5 },
-      { name: "Input Protection (%)", "PM-KISAN": 25, "PMFBY Insurance": 90, "KCC Loan": 80, "PM-KUSUM Solar": 100, "Punjab State Drip": 100 },
-      { name: "Success Rate (%)", "PM-KISAN": 98, "PMFBY Insurance": 75, "KCC Loan": 85, "PM-KUSUM Solar": 60, "Punjab State Drip": 70 },
-      { name: "Low-Debt Safety (%)", "PM-KISAN": 100, "PMFBY Insurance": 80, "KCC Loan": 30, "PM-KUSUM Solar": 85, "Punjab State Drip": 90 }
+      { name: "Direct Cash Payout (%)", "PM-KISAN": 100, "PMFBY Insurance": 10, "KCC Loan": 15, "PM-KUSUM Solar": 10, "Andhra Pradesh State Drip": 5 },
+      { name: "Input Protection (%)", "PM-KISAN": 25, "PMFBY Insurance": 90, "KCC Loan": 80, "PM-KUSUM Solar": 100, "Andhra Pradesh State Drip": 100 },
+      { name: "Success Rate (%)", "PM-KISAN": 98, "PMFBY Insurance": 75, "KCC Loan": 85, "PM-KUSUM Solar": 60, "Andhra Pradesh State Drip": 70 },
+      { name: "Low-Debt Safety (%)", "PM-KISAN": 100, "PMFBY Insurance": 80, "KCC Loan": 30, "PM-KUSUM Solar": 85, "Andhra Pradesh State Drip": 90 }
     ];
   }, []);
 
@@ -1154,7 +1154,7 @@ export const GovernmentIntegration: React.FC = () => {
     const logs = [
       "🔄 Initializing bilateral state-central scanning node...",
       "📡 Interfacing with Soil Health Board & GPS registry databases...",
-      "📂 Fetching land registration certificates for Amritsar District Block B...",
+      "📂 Fetching land registration certificates for Krishna District Block B...",
       "🔍 Resolving digital land deeds and Jamabandi registry hash codes...",
       "🤖 Parsing historical crop sowing calendars & pesticide reports...",
       "✨ AI Matching: 5 potential programs found. Estimating optimal matching profiles..."
@@ -1241,7 +1241,7 @@ export const GovernmentIntegration: React.FC = () => {
     // Send notifications
     const dateStr = new Date().toLocaleTimeString();
     const smsMsg = `Dear ${appFormName}, your application ${newApp.id} for "${newApp.schemeName}" was successfully SUBMITTED on ${newApp.submittedDate}. Track progress on your portal.`;
-    const emailMsg = `Dear ${appFormName},\n\nWe have successfully received your electronic application for "${newApp.schemeName}" (Application Reference: ${newApp.id}).\n\nSubmission Date: ${newApp.submittedDate}\nStatus: SUBMITTED\n\nRequired files (Aadhaar, Land records, Bank statement) have been routed to the District Verification Board.\n\nRespectfully,\nDirect Benefit Registry, Punjab & Central Portal`;
+    const emailMsg = `Dear ${appFormName},\n\nWe have successfully received your electronic application for "${newApp.schemeName}" (Application Reference: ${newApp.id}).\n\nSubmission Date: ${newApp.submittedDate}\nStatus: SUBMITTED\n\nRequired files (Aadhaar, Land records, Bank statement) have been routed to the District Verification Board.\n\nRespectfully,\nDirect Benefit Registry, Andhra Pradesh & Central Portal`;
 
     const newSms: NotificationLog = {
       id: `NTF-SMS-${Math.floor(100000 + Math.random() * 900000)}`,
@@ -1257,7 +1257,7 @@ export const GovernmentIntegration: React.FC = () => {
       id: `NTF-EML-${Math.floor(100000 + Math.random() * 900000)}`,
       timestamp: new Date().toISOString().split("T")[0] + " " + dateStr.slice(0, 5),
       type: "Email",
-      recipient: "amir.patel@punjabmail.in",
+      recipient: "amir.patel@apmail.in",
       title: "Receipt Confirmation: Application Submitted",
       message: emailMsg,
       isRead: false
@@ -1300,7 +1300,7 @@ export const GovernmentIntegration: React.FC = () => {
     setAppFormLandSize(farmerProfile.landSizeHectares);
     setAppFormCrop(farmerProfile.mainCrop);
     setAppFormIncome(farmerProfile.annualIncome);
-    setAppFormBank("State Bank of Punjab");
+    setAppFormBank("State Bank of India");
     setAppFormAccount("xxxx-xxxx-1294");
     setAppFormIfsc("PUNB002194");
     setAppFormSocialClass(farmerProfile.socialCategory);
@@ -1320,7 +1320,7 @@ export const GovernmentIntegration: React.FC = () => {
     const fileNames = {
       aadhaar: ["My_Aadhaar_Card.pdf", "Aadhaar_Biometrics_Final.pdf", "UID_Aadhaar_Scanned.pdf"],
       land: ["Jamabandi_Land_Deed_2026.pdf", "Survey_Block_AMR_Sec4.pdf", "Khasra_Deed_Official.pdf"],
-      bank: ["Passbook_State_Bank.pdf", "Bank_Ledger_Certified.pdf", "Statement_Punjab_Bank.pdf"]
+      bank: ["Passbook_State_Bank.pdf", "Bank_Ledger_Certified.pdf", "Statement_Andhra Pradesh_Bank.pdf"]
     };
     const list = fileNames[type];
     const randomName = list[Math.floor(Math.random() * list.length)];
@@ -1366,7 +1366,7 @@ export const GovernmentIntegration: React.FC = () => {
       id: `NTF-EML-${Math.floor(100000 + Math.random() * 900000)}`,
       timestamp: new Date().toISOString().split("T")[0] + " " + dateStr.slice(0, 5),
       type: "Email",
-      recipient: "amir.patel@punjabmail.in",
+      recipient: "amir.patel@apmail.in",
       title: `Notification: ${newStatus} Update`,
       message: emailMsg,
       isRead: false
@@ -1390,7 +1390,7 @@ export const GovernmentIntegration: React.FC = () => {
   const downloadReceiptTxt = (app: Application) => {
     const textContent = `===========================================================
              SOVEREIGN UNION DIRECT BENEFIT REGISTRY
-                       STATE OF PUNJAB
+                       STATE OF ANDHRA PRADESH
 ===========================================================
 APPLICATION RECEIPT & DIRECT PAYOUT ENROLLMENT
 -----------------------------------------------------------
@@ -1398,14 +1398,14 @@ TRANSACTION REF  : ${app.id}
 SCHEME NAME      : ${app.schemeName}
 SUBMISSION DATE  : ${app.submittedDate}
 CURRENT STATUS   : ${app.status.toUpperCase()}
-PAYOUT TARGET    : STATE BANK OF PUNJAB (xxxx-xxxx-1294)
+PAYOUT TARGET    : STATE BANK OF INDIA (xxxx-xxxx-1294)
 IFSC ROUTE CODE  : PUNB002194
 -----------------------------------------------------------
 ENROLLED APPLICANT DETAILS:
 Name             : Amir Patel
 Biometric ID     : xxxx-xxxx-8012
 Deeded Land size : 1.82 Hectares
-Block District   : Amritsar Block B, Punjab
+Block District   : Vijayawada Block B, Andhra Pradesh
 -----------------------------------------------------------
 DOCUMENT INTEGRITY CHECK:
 ${app.verifiedDocuments.map(doc => `* ${doc.name.padEnd(25)}: [${doc.status}]`).join('\n')}
@@ -1415,7 +1415,7 @@ GATEWAY COMMENTARY:
 -----------------------------------------------------------
 This is an automated, cryptographically signed direct payout
 receipt issued on behalf of the Central Portal Registry.
-Digital Signature Match Key: JAM-2025-001928-PUNJABSEC4
+Digital Signature Match Key: JAM-2025-001928-APSEC4
 ===========================================================`;
 
     const blob = new Blob([textContent], { type: "text/plain;charset=utf-8" });
@@ -1478,7 +1478,7 @@ Digital Signature Match Key: JAM-2025-001928-PUNJABSEC4
         aadhaar: farmerProfile.aadhaar,
         landSize: `${farmerProfile.landSizeHectares} Hectares`,
         surveyNo: "AMR-992-SEC4",
-        bankName: "State Bank of Punjab",
+        bankName: "State Bank of India",
         accountNo: "xxxx-xxxx-1294",
         ifsc: "PUNB002194"
       });
@@ -1497,7 +1497,7 @@ Digital Signature Match Key: JAM-2025-001928-PUNJABSEC4
     setAppealAppId(app.id);
     setAppealSent(false);
     const letter = `TO: The District Nodal Officer / Commissioner
-Ministry of Agriculture, State of Punjab
+Ministry of Agriculture, State of Andhra Pradesh
 
 SUBJECT: Appeal for Review of Application ${app.id} (${app.schemeName})
 
@@ -1543,7 +1543,7 @@ Biometric Hash: SEC4-AMIR-2026-X8012`;
     setComplaints((prev) => [newGri, ...prev]);
     setNewGrievanceSubject("");
     setNewGrievanceMsg("");
-    alert(`✓ Grievance registered! Ticket ID: ${newGri.id} has been dispatched to Amritsar District Nodal Head.`);
+    alert(`✓ Grievance registered! Ticket ID: ${newGri.id} has been dispatched to Krishna District Nodal Head.`);
   };
 
   // Toggle schemes comparison checklist
@@ -1762,7 +1762,7 @@ Biometric Hash: SEC4-AMIR-2026-X8012`;
                   <Search className="h-4 w-4 text-emerald-600" /> Browse & Scan Schemes
                 </h4>
                 <p className="text-[10px] text-slate-400 font-semibold">
-                  Search & filter 10 major Central and Punjab State schemes.
+                  Search & filter 10 major Central and Andhra Pradesh State schemes.
                 </p>
               </div>
 
@@ -1854,7 +1854,7 @@ Biometric Hash: SEC4-AMIR-2026-X8012`;
                   >
                     <option value="All">All Regions</option>
                     <option value="Central">Central Govt</option>
-                    <option value="Punjab">Punjab State</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh State</option>
                     <option value="Haryana">Haryana State</option>
                   </select>
                 </div>
@@ -2486,7 +2486,7 @@ Biometric Hash: SEC4-AMIR-2026-X8012`;
                   {/* Submission and Confirmation actions */}
                   <div className="border-t pt-4 flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
                     <span className="text-[9px] text-slate-400 font-bold max-w-xs leading-normal">
-                      By submitting, you certify that the auto-filled credentials align with Punjab direct benefit transfer policies.
+                      By submitting, you certify that the auto-filled credentials align with Andhra Pradesh direct benefit transfer policies.
                     </span>
                     <div className="flex gap-2 w-full sm:w-auto">
                       <button
@@ -2891,7 +2891,7 @@ Biometric Hash: SEC4-AMIR-2026-X8012`;
                         )}
 
                         <div className="text-[9px] text-slate-400 font-semibold border-t pt-2 flex justify-between items-center">
-                          <span>Digital Signature Key: AMIR_PATEL_SEC4_ PunjabReg</span>
+                          <span>Digital Signature Key: AMIR_PATEL_SEC4_ APReg</span>
                           <button
                             type="button"
                             onClick={() => handleApplyNow(activeAssistanceScheme.id)}
@@ -3010,7 +3010,7 @@ Biometric Hash: SEC4-AMIR-2026-X8012`;
                       {compareSchemeIds.includes("PMFBY") && <Bar name="PMFBY Crop Insurance" dataKey="PMFBY Insurance" fill="#d97706" radius={[4, 4, 0, 0]} />}
                       {compareSchemeIds.includes("KCC") && <Bar name="KCC Loan Support" dataKey="KCC Loan" fill="#2563eb" radius={[4, 4, 0, 0]} />}
                       {compareSchemeIds.includes("SUBSIDY-SOLAR") && <Bar name="PM-KUSUM Solar" dataKey="PM-KUSUM Solar" fill="#6366f1" radius={[4, 4, 0, 0]} />}
-                      {compareSchemeIds.includes("STATE-DRIP") && <Bar name="Punjab State Drip" dataKey="Punjab State Drip" fill="#ec4899" radius={[4, 4, 0, 0]} />}
+                      {compareSchemeIds.includes("STATE-DRIP") && <Bar name="Andhra Pradesh State Drip" dataKey="Andhra Pradesh State Drip" fill="#ec4899" radius={[4, 4, 0, 0]} />}
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
@@ -3260,7 +3260,7 @@ Biometric Hash: SEC4-AMIR-2026-X8012`;
                   </div>
 
                   <p className="text-[10px] text-slate-500 leading-relaxed font-semibold">
-                    The appeal is pre-formatted with Punjab Ministry criteria. Correct any coordinates stamps and dispatch directly to the Amritsar Nodal Office.
+                    The appeal is pre-formatted with Andhra Pradesh Ministry criteria. Correct any coordinates stamps and dispatch directly to the Vijayawada Nodal Office.
                   </p>
 
                   <textarea
@@ -3369,7 +3369,7 @@ Biometric Hash: SEC4-AMIR-2026-X8012`;
                           </div>
                           <div className="flex justify-between">
                             <span className="text-slate-400">Disbursement Bank:</span>
-                            <span className="font-black text-slate-800">State Bank of Punjab (xxxx-1294)</span>
+                            <span className="font-black text-slate-800">State Bank of India (xxxx-1294)</span>
                           </div>
                         </div>
                       </div>

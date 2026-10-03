@@ -2508,7 +2508,7 @@ export default function RealWorldFarmerTools() {
                       <option value="State Bank of India (Warangal Agri Branch)">State Bank of India (SBI)</option>
                       <option value="Telangana Grameena Bank">Telangana Grameena Bank (RRB)</option>
                       <option value="District Central Cooperative Bank (DCCB)">DCCB Cooperative Bank</option>
-                      <option value="Punjab National Bank">Punjab National Bank (PNB)</option>
+                      <option value="State Bank of India">State Bank of India (PNB)</option>
                     </select>
                   </div>
 

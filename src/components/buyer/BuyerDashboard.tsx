@@ -81,8 +81,8 @@ export default function BuyerDashboard({ bids, onAddBid, onUpdateBid, onNavigate
       id: "lot-1",
       cropName: "Premium Basmati Rice (Pusa-1121)",
       farmerName: "Sukhdev Singh",
-      location: "Gurdaspur, Punjab",
-      region: "Punjab",
+      location: "Machilipatnam, Andhra Pradesh",
+      region: "Andhra Pradesh",
       cropType: "Rice",
       quantity: 18,
       qualityGrade: "Premium",
@@ -120,8 +120,8 @@ export default function BuyerDashboard({ bids, onAddBid, onUpdateBid, onNavigate
       id: "lot-4",
       cropName: "Non-GMO Feed Corn (Yellow Dent)",
       farmerName: "Rajinder Singh",
-      location: "Moga, Punjab",
-      region: "Punjab",
+      location: "Moga, Andhra Pradesh",
+      region: "Andhra Pradesh",
       cropType: "Corn",
       quantity: 45,
       qualityGrade: "Grade B",
@@ -268,11 +268,11 @@ export default function BuyerDashboard({ bids, onAddBid, onUpdateBid, onNavigate
   const [rfqQuantity, setRfqQuantity] = useState("25");
   const [rfqTargetPrice, setRfqTargetPrice] = useState("64000");
   const [rfqDeliveryDate, setRfqDeliveryDate] = useState("2026-08-15");
-  const [rfqLocation, setRfqLocation] = useState("Jalandhar Central Logistics Hub");
+  const [rfqLocation, setRfqLocation] = useState("Nellore Central Logistics Hub");
   const [rfqSuccess, setRfqSuccess] = useState(false);
 
   // Form states for Pickup
-  const [pickupLocation, setPickupLocation] = useState("Warehouse Lot-B4, Jalandhar");
+  const [pickupLocation, setPickupLocation] = useState("Warehouse Lot-B4, Nellore");
   const [pickupDate, setPickupDate] = useState("2026-07-15");
   const [pickupVehicle, setPickupVehicle] = useState("10-Ton Container Truck");
   const [pickupSuccess, setPickupSuccess] = useState(false);
@@ -497,7 +497,7 @@ export default function BuyerDashboard({ bids, onAddBid, onUpdateBid, onNavigate
           <div className="space-y-1">
             <span className="text-[9px] uppercase font-extrabold text-slate-400 tracking-wider block">Pending Deliveries</span>
             <h4 className="text-base font-black text-slate-800 font-mono">2 Shipments</h4>
-            <p className="text-[10px] text-slate-500 font-medium">1 arriving in Jalandhar tomorrow</p>
+            <p className="text-[10px] text-slate-500 font-medium">1 arriving in Nellore tomorrow</p>
           </div>
           <div className="p-2.5 bg-cyan-50 border border-cyan-100 text-cyan-600 rounded-xl">
             <Truck className="h-5 w-5" />
@@ -695,7 +695,7 @@ export default function BuyerDashboard({ bids, onAddBid, onUpdateBid, onNavigate
               className="w-full bg-white border border-slate-200 rounded-xl py-1.5 px-2.5 text-xs text-slate-800 font-semibold"
             >
               <option value="All">📍 All India Regions</option>
-              <option value="Punjab">Punjab</option>
+              <option value="Andhra Pradesh">Andhra Pradesh</option>
               <option value="Haryana">Haryana</option>
               <option value="Himachal Pradesh">Himachal Pradesh</option>
               <option value="Jammu & Kashmir">Jammu & Kashmir</option>

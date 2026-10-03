@@ -16,12 +16,12 @@ export interface SyncAction {
 }
 
 export const SEED_FARMERS = [
-  { id: "FMR-2104", name: "Amir Patel", email: "amir.patel@agrifarm.org", location: "Pune Block", phone: "+91 98765-12345", joinedDate: "2026-01-10", landSizeAcres: 12.5, crops: "Certified Organic Basmati Rice" },
-  { id: "FMR-2105", name: "Vikram Singh", email: "vikram.singh@agricloud.in", location: "Ludhiana Block", phone: "+91 98765-54321", joinedDate: "2025-11-15", landSizeAcres: 15.0, crops: "Hybrid Wheat & Maize" },
+  { id: "FMR-2104", name: "Amir Patel", email: "amir.patel@agrifarm.org", location: "Krishna Block", phone: "+91 98765-12345", joinedDate: "2026-01-10", landSizeAcres: 12.5, crops: "Certified Organic Basmati Rice" },
+  { id: "FMR-2105", name: "Vikram Singh", email: "vikram.singh@agricloud.in", location: "Guntur Block", phone: "+91 98765-54321", joinedDate: "2025-11-15", landSizeAcres: 15.0, crops: "Hybrid Wheat & Maize" },
   { id: "FMR-2106", name: "Rajesh Grewal", email: "rajesh.g@greengrow.org", location: "Karnal Block", phone: "+91 98765-88888", joinedDate: "2026-02-14", landSizeAcres: 8.4, crops: "Sugarcane" },
-  { id: "FMR-2107", name: "Siddharth Roy", email: "siddharth.r@agroiot.net", location: "Pune East Block", phone: "+91 98765-99999", joinedDate: "2026-03-05", landSizeAcres: 5.2, crops: "Paddy/Rice" },
-  { id: "FMR-2108", name: "Lalita Bai", email: "lalitabhai@organicco.in", location: "Purandar Block", phone: "+91 98765-11111", joinedDate: "2026-04-12", landSizeAcres: 3.5, crops: "Organic Tomatoes" },
-  { id: "FMR-2109", name: "Gurpreet Singh", email: "gurpreet.s@basmati.in", location: "Amritsar Block B", phone: "+91 98765-22222", joinedDate: "2026-05-20", landSizeAcres: 10.2, crops: "Basmati Rice" }
+  { id: "FMR-2107", name: "Siddharth Roy", email: "siddharth.r@agroiot.net", location: "Krishna East Block", phone: "+91 98765-99999", joinedDate: "2026-03-05", landSizeAcres: 5.2, crops: "Paddy/Rice" },
+  { id: "FMR-2108", name: "Lalita Bai", email: "lalitabhai@organicco.in", location: "Bapatla Block", phone: "+91 98765-11111", joinedDate: "2026-04-12", landSizeAcres: 3.5, crops: "Organic Tomatoes" },
+  { id: "FMR-2109", name: "Gurpreet Singh", email: "gurpreet.s@basmati.in", location: "Vijayawada Block B", phone: "+91 98765-22222", joinedDate: "2026-05-20", landSizeAcres: 10.2, crops: "Basmati Rice" }
 ];
 
 export const SEED_SCHEMES = [
@@ -36,7 +36,7 @@ export const SEED_SCHEMES = [
 export const SEED_REPORTS = [
   { id: "REP-001", title: "Monthly Agricultural Executive Briefing", category: "Executive Summary", date: "2026-07-15", description: "Briefing generated for the Agriculture Minister: Crop Health Index is 84%, total DBT disbursed is ₹24.2 Cr, solar installs at 92%." },
   { id: "REP-002", title: "Crop Yield Projection Report", category: "Yield Analytics", date: "2026-07-10", description: "Granular district crop performance data: Basmati Rice yields 3.6 tons/acre, Wheat yields 2.8 tons/acre. Stable 4.2% YoY increase." },
-  { id: "REP-003", title: "Disaster Assistance Block Allocation Report", category: "Disaster Management", date: "2026-07-08", description: "Damage loss report: Pune West block requires ₹18.5 Crores, Shirur block needs ₹8.2 Cr, Purandar block requires ₹4.1 Cr." },
+  { id: "REP-003", title: "Disaster Assistance Block Allocation Report", category: "Disaster Management", date: "2026-07-08", description: "Damage loss report: Guntur West block requires ₹18.5 Crores, Tenali block needs ₹8.2 Cr, Bapatla block requires ₹4.1 Cr." },
   { id: "REP-004", title: "Soil Health Card Matrix Report", category: "Soil Chemistry", date: "2026-07-01", description: "Comprehensive laboratory soil summary: District average pH is 6.4, moisture is 42%, N-P-K balance is stable." },
   { id: "REP-005", title: "Crop Diagnostics Summary Report", category: "AI Pathology", date: "2026-06-28", description: "AI image pathology report: Tomato Early Blight verified at 94% confidence, Rice Bacterial Leaf Streak at 88%." }
 ];

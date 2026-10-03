@@ -88,7 +88,7 @@ export default function FarmerAuthOnboarding({ onComplete }: FarmerAuthOnboardin
   // Session management mock details
   const [sessions, setSessions] = useState([
     { id: "s1", device: "Chrome / Windows 11", location: "Koramangala, Bengaluru", time: "Active Now", current: true },
-    { id: "s2", device: "AgriConnect Mobile App (Android 14)", location: "Bathinda, Punjab", time: "2 hours ago", current: false }
+    { id: "s2", device: "AgriConnect Mobile App (Android 14)", location: "Kurnool, Andhra Pradesh", time: "2 hours ago", current: false }
   ]);
 
   // Forgot password flow
@@ -110,8 +110,8 @@ export default function FarmerAuthOnboarding({ onComplete }: FarmerAuthOnboardin
     soilType: "Loamy",
     waterSource: "Borewell",
     irrigationType: "Drip Irrigation",
-    lat: 31.326,
-    lng: 75.576,
+    lat: 14.4426,
+    lng: 79.9865,
     cropsGrown: ["Wheat", "Rice"],
     farmingExperience: "8",
     language: "English",
@@ -120,10 +120,10 @@ export default function FarmerAuthOnboarding({ onComplete }: FarmerAuthOnboardin
     enablePush: true
   });
 
-  // Simulated GPS Locations for the Farmer's selector (Punjab, Haryana, AP, etc.)
+  // Simulated GPS Locations for the Farmer's selector (Andhra Pradesh, Haryana, AP, etc.)
   const simulatedMapCoordinates = [
-    { name: "Jalandhar Block, Punjab", lat: 31.326, lng: 75.576, description: "Highly fertile alluvial plain, suitable for basmati wheat and sugarcane." },
-    { name: "Bathinda Sub-District, Punjab", lat: 30.211, lng: 74.945, description: "Sandy clay region, highly successful with premium cotton varieties." },
+    { name: "Nellore Block, Andhra Pradesh", lat: 14.4426, lng: 79.9865, description: "Highly fertile alluvial plain, suitable for basmati wheat and sugarcane." },
+    { name: "Kurnool Sub-District, Andhra Pradesh", lat: 15.8281, lng: 78.0373, description: "Sandy clay region, highly successful with premium cotton varieties." },
     { name: "Karnal Agriculture Zone, Haryana", lat: 29.686, lng: 76.990, description: "Optimal loamy soil with excellent canal irrigation access." },
     { name: "Anantapur Arid Farm Circle, AP", lat: 14.681, lng: 77.600, description: "Red gravelly soil, best suited for dryland crops like groundnut and millet." }
   ];

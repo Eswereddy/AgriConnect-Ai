@@ -178,9 +178,9 @@ export default function FarmManagerConsole({
   const [imageName, setImageName] = useState("");
   const [addressLocation, setAddressLocation] = useState("");
   
-  // GPS Coordinates - default to Amritsar, Punjab region coordinates
-  const [lat, setLat] = useState(31.6340);
-  const [lng, setLng] = useState(74.8723);
+  // GPS Coordinates - default to Vijayawada, Andhra Pradesh region coordinates
+  const [lat, setLat] = useState(16.5062);
+  const [lng, setLng] = useState(80.6480);
   
   // Details tab selection: land | soil_history | crops | activity
   const [detailTab, setDetailTab] = useState<"land" | "soil_history" | "crops" | "activity">("land");
@@ -200,8 +200,8 @@ export default function FarmManagerConsole({
     setFarmImage(farm.farmImage || "");
     setImageName(farm.farmImage ? "Current Farm Photo" : "");
     setAddressLocation(farm.location);
-    const farmLat = farm.latitude || 31.6340;
-    const farmLng = farm.longitude || 74.8723;
+    const farmLat = farm.latitude || 16.5062;
+    const farmLng = farm.longitude || 80.6480;
     setLat(farmLat);
     setLng(farmLng);
     setPickerMarker({ lat: farmLat, lng: farmLng });
@@ -219,11 +219,11 @@ export default function FarmManagerConsole({
     setFarmImage("");
     setImageName("");
     setAddressLocation("");
-    // Randomize Punjab coords slightly so not stacked
+    // Randomize Andhra Pradesh coords slightly so not stacked
     const randomOffsetLat = (Math.random() - 0.5) * 0.1;
     const randomOffsetLng = (Math.random() - 0.5) * 0.1;
-    const newLat = 31.6340 + randomOffsetLat;
-    const newLng = 74.8723 + randomOffsetLng;
+    const newLat = 16.5062 + randomOffsetLat;
+    const newLng = 80.6480 + randomOffsetLng;
     setLat(newLat);
     setLng(newLng);
     setPickerMarker({ lat: newLat, lng: newLng });
@@ -386,14 +386,14 @@ export default function FarmManagerConsole({
       // Ensure default farms have coordinates
       if (!f.latitude || !f.longitude) {
         if (f.id === "farm-1") {
-          f.latitude = 31.6340;
-          f.longitude = 74.8723; // Amritsar, Punjab
+          f.latitude = 16.5062;
+          f.longitude = 80.6480; // Vijayawada, Andhra Pradesh
         } else if (f.id === "farm-2") {
-          f.latitude = 30.9010;
-          f.longitude = 75.8573; // Ludhiana, Punjab
+          f.latitude = 16.3067;
+          f.longitude = 80.4365; // Guntur, Andhra Pradesh
         } else {
-          f.latitude = 31.5204;
-          f.longitude = 75.9876;
+          f.latitude = 16.4721;
+          f.longitude = 80.9827;
         }
       }
       
@@ -569,7 +569,7 @@ export default function FarmManagerConsole({
             {hasValidKey ? (
               <APIProvider apiKey={API_KEY} version="weekly">
                 <Map
-                  defaultCenter={{ lat: activeFarm.latitude || 31.6340, lng: activeFarm.longitude || 74.8723 }}
+                  defaultCenter={{ lat: activeFarm.latitude || 16.5062, lng: activeFarm.longitude || 80.6480 }}
                   defaultZoom={15}
                   mapId="DEMO_MAP_ID"
                   internalUsageAttributionIds={['gmp_mcp_codeassist_v1_aistudio']}
@@ -577,8 +577,8 @@ export default function FarmManagerConsole({
                 >
                   {/* Map marker for all farms */}
                   {farms.map((f) => {
-                    const farmLat = f.latitude || 31.6340;
-                    const farmLng = f.longitude || 74.8723;
+                    const farmLat = f.latitude || 16.5062;
+                    const farmLng = f.longitude || 80.6480;
                     const isSelected = f.id === activeFarm.id;
                     return (
                       <React.Fragment key={f.id}>
@@ -627,7 +627,7 @@ export default function FarmManagerConsole({
                     <span>Boundary Box calculated for {activeFarm.totalAcreage} Acres</span>
                   </div>
                   <div className="text-[9px] text-slate-500">
-                    Coords: Lat {(activeFarm.latitude || 31.6340).toFixed(4)}, Lng {(activeFarm.longitude || 74.8723).toFixed(4)}
+                    Coords: Lat {(activeFarm.latitude || 16.5062).toFixed(4)}, Lng {(activeFarm.longitude || 80.6480).toFixed(4)}
                   </div>
                 </div>
               </div>
@@ -846,7 +846,7 @@ export default function FarmManagerConsole({
                       value={farmName}
                       onChange={(e) => setFarmName(e.target.value)}
                       required
-                      placeholder="e.g. Ludhiana Agri-Paddy Core"
+                      placeholder="e.g. Guntur Agri-Paddy Core"
                       className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 font-semibold text-slate-700"
                     />
                   </div>
@@ -939,7 +939,7 @@ export default function FarmManagerConsole({
                     <input
                       value={addressLocation}
                       onChange={(e) => setAddressLocation(e.target.value)}
-                      placeholder="e.g. Sector 12, Tarn Taran Road, Amritsar, Punjab"
+                      placeholder="e.g. Sector 12, Eluru Road, Vijayawada, Andhra Pradesh"
                       className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 font-semibold text-slate-700"
                     />
                   </div>
@@ -1015,11 +1015,11 @@ export default function FarmManagerConsole({
                           <button
                             type="button"
                             onClick={() => {
-                              const testLat = 31.6340 + (Math.random() - 0.5) * 0.05;
-                              const testLng = 74.8723 + (Math.random() - 0.5) * 0.05;
+                              const testLat = 16.5062 + (Math.random() - 0.5) * 0.05;
+                              const testLng = 80.6480 + (Math.random() - 0.5) * 0.05;
                               setLat(testLat);
                               setLng(testLng);
-                              setAddressLocation(`Sector Plot ${Math.floor(Math.random() * 20 + 1)}, Tarn Taran, Punjab`);
+                              setAddressLocation(`Sector Plot ${Math.floor(Math.random() * 20 + 1)}, Tarn Taran, Andhra Pradesh`);
                               alert(`GPS pinpointed to Latitude: ${testLat.toFixed(4)}, Longitude: ${testLng.toFixed(4)}!`);
                             }}
                             className="bg-emerald-600 hover:bg-emerald-700 text-white text-[9px] font-black uppercase tracking-wider px-3 py-1.5 rounded-lg cursor-pointer transition-colors"

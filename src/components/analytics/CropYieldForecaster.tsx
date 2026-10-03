@@ -748,7 +748,7 @@ export default function CropYieldForecaster({ activeFarm, mockTelemetry }: CropY
                     value={recLocation}
                     onChange={(e) => setRecLocation(e.target.value)}
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 font-semibold text-slate-700"
-                    placeholder="Punjab Region"
+                    placeholder="Andhra Pradesh Region"
                   />
                 </div>
                 <div>

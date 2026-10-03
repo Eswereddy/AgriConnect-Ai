@@ -151,10 +151,10 @@ export default function BuyerPaymentDashboard() {
       };
     }
     return {
-      state: "Punjab",
+      state: "Andhra Pradesh",
       stateCode: "03",
       gstin: "03AABFP1102A1Z1",
-      address: "Grain Market Yard, GT Road, Khanna, Punjab - 141401"
+      address: "Grain Market Yard, GT Road, Khanna, Andhra Pradesh - 141401"
     };
   };
 
@@ -2523,9 +2523,9 @@ export default function BuyerPaymentDashboard() {
                   onChange={(e) => setNewApFarmer(e.target.value)}
                   className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-bold text-slate-700 focus:outline-none"
                 >
-                  <option value="Sardara Singh Sandhu">Sardara Singh Sandhu (Gurdaspur)</option>
+                  <option value="Sardara Singh Sandhu">Sardara Singh Sandhu (Machilipatnam)</option>
                   <option value="Ramesh Patel">Ramesh Patel (Karnal Co-op)</option>
-                  <option value="Gurnam Singh">Gurnam Singh (Amritsar Mandi)</option>
+                  <option value="Gurnam Singh">Gurnam Singh (Vijayawada Mandi)</option>
                 </select>
               </div>
 

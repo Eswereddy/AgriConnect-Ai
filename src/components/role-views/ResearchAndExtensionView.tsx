@@ -46,7 +46,7 @@ export default function ResearchAndExtensionView({
 
   // Workshop Form State
   const [wsTitle, setWsTitle] = useState("Sustainable Vermicomposting and Nitrogen Preservation");
-  const [location, setLocation] = useState("Punjab Sector 4 Cooperative Hall");
+  const [location, setLocation] = useState("Andhra Pradesh Sector 4 Cooperative Hall");
   const [objective, setObjective] = useState("Hands-on setup of red-wiggler organic waste recycling pits for cooperative smallholders.");
 
   const handlePublishPaper = (e: React.FormEvent) => {

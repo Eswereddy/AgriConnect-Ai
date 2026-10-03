@@ -72,7 +72,7 @@ export default function ExpertVideoConsultations({
     {
       id: "HIST-BOOK-7001",
       farmerName: "Harpreet Kaur",
-      location: "Amritsar, PB",
+      location: "Vijayawada, PB",
       date: "2026-07-15",
       duration: "25 mins",
       topic: "Cotton sucking pest whitefly infestation",

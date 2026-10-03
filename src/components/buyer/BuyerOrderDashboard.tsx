@@ -82,7 +82,7 @@ export default function BuyerOrderDashboard() {
             location: order.location || "North India Logistics Center",
             farmerPhone: order.farmerPhone || "+91 98711 04291",
             farmerEmail: order.farmerEmail || "cooperative.farmer@agri-hub.org",
-            pickupAddress: order.pickupAddress || "Plot No. 44-B, Grain Market Cooperative Complex, Jalandhar Main Highway, Punjab",
+            pickupAddress: order.pickupAddress || "Plot No. 44-B, Grain Market Cooperative Complex, Nellore Main Highway, Andhra Pradesh",
             trackingNumber: order.trackingNumber || `AGRI-TRK-${order.id ? order.id.split("-")[2] : 9000 + idx}`,
             paymentStatus: order.paymentStatus || "Paid",
             refundStatus: order.refundStatus || "Not Requested"
@@ -113,8 +113,8 @@ export default function BuyerOrderDashboard() {
         paymentLink: "https://sandbox.agri-escrow.gov.in/pay/ORD-2026-9102",
         date: "2026-07-05",
         cropType: "Rice",
-        location: "Gurdaspur, Punjab",
-        pickupAddress: "Mandi Gate No. 3, Gurdaspur Grain Yard, Gurdaspur, Punjab - 143521",
+        location: "Machilipatnam, Andhra Pradesh",
+        pickupAddress: "Mandi Gate No. 3, Machilipatnam Grain Yard, Machilipatnam, Andhra Pradesh - 143521",
         trackingNumber: "AGRI-TRK-9102",
         refundStatus: "Not Requested"
       },
@@ -136,8 +136,8 @@ export default function BuyerOrderDashboard() {
         paymentLink: "https://sandbox.agri-escrow.gov.in/pay/ORD-2026-3104",
         date: "2026-07-04",
         cropType: "Mustard",
-        location: "Moga, Punjab",
-        pickupAddress: "Cooperative Warehouse No. 4, Malout Road, Moga, Punjab - 142001",
+        location: "Moga, Andhra Pradesh",
+        pickupAddress: "Cooperative Warehouse No. 4, Malout Road, Moga, Andhra Pradesh - 142001",
         trackingNumber: "AGRI-TRK-3104",
         refundStatus: "Not Requested"
       },
@@ -298,7 +298,7 @@ export default function BuyerOrderDashboard() {
   const [scheduleDriverName, setScheduleDriverName] = useState<string>("Satnam Pal");
   const [scheduleDriverPhone, setScheduleDriverPhone] = useState<string>("+91 94632 99812");
   const [scheduleVehicleNumber, setScheduleVehicleNumber] = useState<string>("PB-02-CD-5290");
-  const [scheduleWarehouse, setScheduleWarehouse] = useState<string>("Global Aggregations Depo Jalandhar");
+  const [scheduleWarehouse, setScheduleWarehouse] = useState<string>("Global Aggregations Depo Nellore");
 
   // Reset filter triggers
   const handleClearFilters = () => {

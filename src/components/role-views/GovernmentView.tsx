@@ -146,7 +146,7 @@ const DEMO_OFFICER = {
   mobile: "9876543213",
   designation: "District Agriculture Officer",
   department: "Agriculture",
-  jurisdiction: "District - Pune, Maharashtra",
+  jurisdiction: "District - Krishna, Maharashtra",
   employeeId: "GOV-2026-9812",
   specialization: "Crop Management, Soil Health, Subsidies",
   verified: true
@@ -263,7 +263,7 @@ export const SCHEME_DETAILS_FALLBACKS: Record<string, {
   "scheme-db-5": {
     department: "Sustainable Farming & Fertilizers Division",
     eligibility: [
-      "Active farmers in Punjab, Haryana, or Uttar Pradesh preparing to transition to organic methods",
+      "Active farmers in Andhra Pradesh, Haryana, or Uttar Pradesh preparing to transition to organic methods",
       "Minimum of 0.5 acre dedicated strictly to organic cultivation",
       "Mandatory signoff pledging zero residue burning and zero chemical pesticide usage"
     ],
@@ -320,7 +320,7 @@ export const getFullSchemeDetails = (scheme: any) => {
     ...scheme,
     department: scheme.department || fallback?.department || "Department of Agricultural Development",
     eligibility: scheme.eligibility || fallback?.eligibility || [
-      `Active farmers registered in ${scheme.state || "Punjab"}`,
+      `Active farmers registered in ${scheme.state || "Andhra Pradesh"}`,
       "Must own cultivable land and have land records updated in the portal",
       "Must comply with standard ecological guidelines (zero stubble burning, eco-friendly water management)"
     ],
@@ -351,12 +351,12 @@ export const getSchemeApplications = (schemeId: string, schemeName: string, appl
   );
   
   const mockFarmersList = [
-    { name: "Karan Singh", village: "Ghuman", district: "Gurdaspur", date: "2026-07-01", status: "Approved" },
-    { name: "Sukhwinder Kaur", village: "Dhariwal", district: "Gurdaspur", date: "2026-07-05", status: "Pending" },
-    { name: "Rajinder Prasad", village: "Harsa Chhina", district: "Amritsar", date: "2026-06-18", status: "Rejected" },
-    { name: "Gurpreet Singh", village: "Rayya", district: "Amritsar", date: "2026-07-12", status: "Pending" },
-    { name: "Baldev Singh", village: "Majitha", district: "Amritsar", date: "2026-07-02", status: "Approved" },
-    { name: "Manpreet Dhillon", village: "Ghuman", district: "Gurdaspur", date: "2026-06-29", status: "Approved" }
+    { name: "Karan Singh", village: "Ghuman", district: "Machilipatnam", date: "2026-07-01", status: "Approved" },
+    { name: "Sukhwinder Kaur", village: "Dhariwal", district: "Machilipatnam", date: "2026-07-05", status: "Pending" },
+    { name: "Rajinder Prasad", village: "Harsa Chhina", district: "Vijayawada", date: "2026-06-18", status: "Rejected" },
+    { name: "Gurpreet Singh", village: "Rayya", district: "Vijayawada", date: "2026-07-12", status: "Pending" },
+    { name: "Baldev Singh", village: "Majitha", district: "Vijayawada", date: "2026-07-02", status: "Approved" },
+    { name: "Manpreet Dhillon", village: "Ghuman", district: "Machilipatnam", date: "2026-06-29", status: "Approved" }
   ];
 
   const seededApps: any[] = [];
@@ -365,7 +365,7 @@ export const getSchemeApplications = (schemeId: string, schemeName: string, appl
     seededApps.push({
       id: app.id,
       farmerName: app.farmerName,
-      location: "Gurdaspur, Punjab",
+      location: "Machilipatnam, Andhra Pradesh",
       date: app.submittedDate || "2026-07-10",
       status: app.status === "Action Required" ? "Pending" : app.status === "Under Review" ? "Pending" : app.status
     });
@@ -405,9 +405,9 @@ interface MonitorBlock {
 
 const MONITOR_BLOCKS: MonitorBlock[] = [
   {
-    id: "block-amritsar-north",
-    name: "Amritsar Block B (Verka)",
-    district: "Amritsar",
+    id: "block-vijayawada-north",
+    name: "Vijayawada Block B (Verka)",
+    district: "Vijayawada",
     health: "Healthy",
     ndvi: 0.78,
     soilMoisture: 54,
@@ -422,9 +422,9 @@ const MONITOR_BLOCKS: MonitorBlock[] = [
     satelliteImageAlt: "Deep green high-vegetation index canopy cover"
   },
   {
-    id: "block-amritsar-west",
-    name: "Amritsar Block B (Chogawan)",
-    district: "Amritsar",
+    id: "block-vijayawada-west",
+    name: "Vijayawada Block B (Chogawan)",
+    district: "Vijayawada",
     health: "Moderate",
     ndvi: 0.58,
     soilMoisture: 32,
@@ -441,8 +441,8 @@ const MONITOR_BLOCKS: MonitorBlock[] = [
   },
   {
     id: "block-pune-west",
-    name: "Pune West (Maval)",
-    district: "Pune",
+    name: "Guntur West (Maval)",
+    district: "Krishna",
     health: "Healthy",
     ndvi: 0.81,
     soilMoisture: 65,
@@ -458,8 +458,8 @@ const MONITOR_BLOCKS: MonitorBlock[] = [
   },
   {
     id: "block-pune-east",
-    name: "Pune East (Shirur)",
-    district: "Pune",
+    name: "Krishna East (Tenali)",
+    district: "Krishna",
     health: "Critical",
     ndvi: 0.35,
     soilMoisture: 14,
@@ -560,7 +560,7 @@ export interface DistrictProductionData {
 
 export const CROP_PRODUCTION_DATA: DistrictProductionData[] = [
   {
-    districtName: "Amritsar",
+    districtName: "Vijayawada",
     totalArea: 42500,
     changePct: 2.8,
     changeDir: "up",
@@ -646,7 +646,7 @@ export const CROP_PRODUCTION_DATA: DistrictProductionData[] = [
     ]
   },
   {
-    districtName: "Pune",
+    districtName: "Krishna",
     totalArea: 58000,
     changePct: 4.1,
     changeDir: "up",
@@ -694,7 +694,7 @@ export const CROP_PRODUCTION_DATA: DistrictProductionData[] = [
       },
       {
         blockId: "block-shirur",
-        blockName: "Shirur Block",
+        blockName: "Tenali Block",
         totalArea: 28000,
         performance: "Needs Attention",
         crops: [
@@ -707,7 +707,7 @@ export const CROP_PRODUCTION_DATA: DistrictProductionData[] = [
         villages: [
           {
             villageId: "vil-shirur-a",
-            villageName: "Shirur Village A",
+            villageName: "Tenali Village A",
             totalArea: 15000,
             farmers: [
               { farmerId: "f-206", farmerName: "Vikas Shirke", croppedArea: 11, cropName: "Sugarcane", variety: "CoM-0265", productionTons: 385.0, yieldPerAcre: 35.0, fertilizerUsage: "NPK: 150 kg, Vermicompost: 2T", pesticideUsage: "None", status: "Optimal" },
@@ -717,7 +717,7 @@ export const CROP_PRODUCTION_DATA: DistrictProductionData[] = [
           },
           {
             villageId: "vil-shirur-b",
-            villageName: "Shirur Village B",
+            villageName: "Tenali Village B",
             totalArea: 13000,
             farmers: [
               { farmerId: "f-209", farmerName: "Dinesh Pawar", croppedArea: 14, cropName: "Rice", variety: "Phule Samruddhi", productionTons: 28.0, yieldPerAcre: 2.0, fertilizerUsage: "Urea: 100 kg, DAP: 45 kg", pesticideUsage: "Neem Oil Spray: 2.5L", status: "Optimal" },
@@ -813,7 +813,7 @@ export const INITIAL_DISASTER_ALERTS: DisasterAlert[] = [
     id: "ALERT-001",
     type: "Flood",
     severity: "Critical",
-    district: "Amritsar",
+    district: "Vijayawada",
     block: "Verka Block",
     farmersAffected: 1450,
     date: "2026-07-14",
@@ -825,8 +825,8 @@ export const INITIAL_DISASTER_ALERTS: DisasterAlert[] = [
     id: "ALERT-002",
     type: "Pest Outbreak",
     severity: "Severe",
-    district: "Pune",
-    block: "Shirur Block",
+    district: "Krishna",
+    block: "Tenali Block",
     farmersAffected: 890,
     date: "2026-07-12",
     source: "Ground reports from extension officers",
@@ -849,7 +849,7 @@ export const INITIAL_DISASTER_ALERTS: DisasterAlert[] = [
     id: "ALERT-004",
     type: "Drought",
     severity: "Severe",
-    district: "Pune",
+    district: "Krishna",
     block: "Maval Block",
     farmersAffected: 2300,
     date: "2026-06-28",
@@ -861,7 +861,7 @@ export const INITIAL_DISASTER_ALERTS: DisasterAlert[] = [
     id: "ALERT-005",
     type: "Cyclone",
     severity: "Critical",
-    district: "Amritsar",
+    district: "Vijayawada",
     block: "Chogawan Block",
     farmersAffected: 3100,
     date: "2026-07-10",
@@ -872,8 +872,8 @@ export const INITIAL_DISASTER_ALERTS: DisasterAlert[] = [
 ];
 
 export const DISTRICT_BLOCKS_MAP: Record<string, string[]> = {
-  "Amritsar": ["Verka Block", "Chogawan Block", "Ajnala Block"],
-  "Pune": ["Shirur Block", "Maval Block", "Indapur Block"],
+  "Vijayawada": ["Verka Block", "Chogawan Block", "Ajnala Block"],
+  "Krishna": ["Tenali Block", "Maval Block", "Indapur Block"],
   "Karnal": ["Nilokheri Block", "Gharaunda Block"]
 };
 
@@ -905,7 +905,7 @@ export const INITIAL_DISASTER_RESPONSE_PLANS: DisasterResponsePlan[] = [
   {
     id: "PLAN-101",
     disasterType: "Flood",
-    district: "Amritsar",
+    district: "Vijayawada",
     block: "Verka Block",
     responseTeam: ["Extension Officers", "NGOs"],
     actionItems: [
@@ -928,8 +928,8 @@ export const INITIAL_DISASTER_RESPONSE_PLANS: DisasterResponsePlan[] = [
   {
     id: "PLAN-102",
     disasterType: "Pest Outbreak",
-    district: "Pune",
-    block: "Shirur Block",
+    district: "Krishna",
+    block: "Tenali Block",
     responseTeam: ["Extension Officers", "Volunteers"],
     actionItems: [
       { id: "ITEM-4", task: "Distribute pheromone traps and biopesticides", status: "Completed", assignedTo: "Extension Officers" },
@@ -962,83 +962,83 @@ export interface HistoricalProductionRecord {
 }
 
 export const HISTORICAL_PRODUCTION_DATA: HistoricalProductionRecord[] = [
-  // --- 2026 Amritsar ---
-  { year: 2026, district: "Amritsar", block: "Verka Block", season: "Rabi", cropName: "Wheat", variety: "Karan Vandana", croppedArea: 13200, productionTons: 30360, yieldPerAcre: 2.3 },
-  { year: 2026, district: "Amritsar", block: "Verka Block", season: "Kharif", cropName: "Rice", variety: "Pusa Basmati 1121", croppedArea: 10500, productionTons: 22050, yieldPerAcre: 2.1 },
-  { year: 2026, district: "Amritsar", block: "Verka Block", season: "Kharif", cropName: "Corn", variety: "Pioneer 30G37", croppedArea: 2100, productionTons: 3360, yieldPerAcre: 1.6 },
-  { year: 2026, district: "Amritsar", block: "Verka Block", season: "Kharif", cropName: "Cotton", variety: "Bt Cotton-2", croppedArea: 1200, productionTons: 960, yieldPerAcre: 0.8 },
-  { year: 2026, district: "Amritsar", block: "Verka Block", season: "Kharif", cropName: "Sugarcane", variety: "Co-0238", croppedArea: 240, productionTons: 6000, yieldPerAcre: 25.0 },
-  { year: 2026, district: "Amritsar", block: "Verka Block", season: "Zaid", cropName: "Moong", variety: "SML-668", croppedArea: 1500, productionTons: 750, yieldPerAcre: 0.5 },
+  // --- 2026 Vijayawada ---
+  { year: 2026, district: "Vijayawada", block: "Verka Block", season: "Rabi", cropName: "Wheat", variety: "Karan Vandana", croppedArea: 13200, productionTons: 30360, yieldPerAcre: 2.3 },
+  { year: 2026, district: "Vijayawada", block: "Verka Block", season: "Kharif", cropName: "Rice", variety: "Pusa Basmati 1121", croppedArea: 10500, productionTons: 22050, yieldPerAcre: 2.1 },
+  { year: 2026, district: "Vijayawada", block: "Verka Block", season: "Kharif", cropName: "Corn", variety: "Pioneer 30G37", croppedArea: 2100, productionTons: 3360, yieldPerAcre: 1.6 },
+  { year: 2026, district: "Vijayawada", block: "Verka Block", season: "Kharif", cropName: "Cotton", variety: "Bt Cotton-2", croppedArea: 1200, productionTons: 960, yieldPerAcre: 0.8 },
+  { year: 2026, district: "Vijayawada", block: "Verka Block", season: "Kharif", cropName: "Sugarcane", variety: "Co-0238", croppedArea: 240, productionTons: 6000, yieldPerAcre: 25.0 },
+  { year: 2026, district: "Vijayawada", block: "Verka Block", season: "Zaid", cropName: "Moong", variety: "SML-668", croppedArea: 1500, productionTons: 750, yieldPerAcre: 0.5 },
 
-  { year: 2026, district: "Amritsar", block: "Chogawan Block", season: "Rabi", cropName: "Wheat", variety: "HD-3086", croppedArea: 11300, productionTons: 23730, yieldPerAcre: 2.1 },
-  { year: 2026, district: "Amritsar", block: "Chogawan Block", season: "Kharif", cropName: "Rice", variety: "PR-126", croppedArea: 7700, productionTons: 13860, yieldPerAcre: 1.8 },
-  { year: 2026, district: "Amritsar", block: "Chogawan Block", season: "Kharif", cropName: "Corn", variety: "DKC-9108", croppedArea: 2700, productionTons: 3780, yieldPerAcre: 1.4 },
-  { year: 2026, district: "Amritsar", block: "Chogawan Block", season: "Kharif", cropName: "Cotton", variety: "Bt Cotton-1", croppedArea: 2675, productionTons: 2140, yieldPerAcre: 0.8 },
-  { year: 2026, district: "Amritsar", block: "Chogawan Block", season: "Kharif", cropName: "Sugarcane", variety: "CoH-160", croppedArea: 260, productionTons: 6500, yieldPerAcre: 25.0 },
-  { year: 2026, district: "Amritsar", block: "Chogawan Block", season: "Zaid", cropName: "Moong", variety: "MH-125", croppedArea: 1200, productionTons: 540, yieldPerAcre: 0.45 },
+  { year: 2026, district: "Vijayawada", block: "Chogawan Block", season: "Rabi", cropName: "Wheat", variety: "HD-3086", croppedArea: 11300, productionTons: 23730, yieldPerAcre: 2.1 },
+  { year: 2026, district: "Vijayawada", block: "Chogawan Block", season: "Kharif", cropName: "Rice", variety: "PR-126", croppedArea: 7700, productionTons: 13860, yieldPerAcre: 1.8 },
+  { year: 2026, district: "Vijayawada", block: "Chogawan Block", season: "Kharif", cropName: "Corn", variety: "DKC-9108", croppedArea: 2700, productionTons: 3780, yieldPerAcre: 1.4 },
+  { year: 2026, district: "Vijayawada", block: "Chogawan Block", season: "Kharif", cropName: "Cotton", variety: "Bt Cotton-1", croppedArea: 2675, productionTons: 2140, yieldPerAcre: 0.8 },
+  { year: 2026, district: "Vijayawada", block: "Chogawan Block", season: "Kharif", cropName: "Sugarcane", variety: "CoH-160", croppedArea: 260, productionTons: 6500, yieldPerAcre: 25.0 },
+  { year: 2026, district: "Vijayawada", block: "Chogawan Block", season: "Zaid", cropName: "Moong", variety: "MH-125", croppedArea: 1200, productionTons: 540, yieldPerAcre: 0.45 },
 
-  // --- 2025 Amritsar ---
-  { year: 2025, district: "Amritsar", block: "Verka Block", season: "Rabi", cropName: "Wheat", variety: "Karan Vandana", croppedArea: 12800, productionTons: 28160, yieldPerAcre: 2.2 },
-  { year: 2025, district: "Amritsar", block: "Verka Block", season: "Kharif", cropName: "Rice", variety: "Pusa Basmati 1121", croppedArea: 10200, productionTons: 20400, yieldPerAcre: 2.0 },
-  { year: 2025, district: "Amritsar", block: "Verka Block", season: "Kharif", cropName: "Corn", variety: "Pioneer 30G37", croppedArea: 2000, productionTons: 3100, yieldPerAcre: 1.55 },
-  { year: 2025, district: "Amritsar", block: "Verka Block", season: "Kharif", cropName: "Cotton", variety: "Bt Cotton-2", croppedArea: 1150, productionTons: 862, yieldPerAcre: 0.75 },
-  { year: 2025, district: "Amritsar", block: "Verka Block", season: "Kharif", cropName: "Sugarcane", variety: "Co-0238", croppedArea: 230, productionTons: 5520, yieldPerAcre: 24.0 },
-  { year: 2025, district: "Amritsar", block: "Verka Block", season: "Zaid", cropName: "Moong", variety: "SML-668", croppedArea: 1400, productionTons: 644, yieldPerAcre: 0.46 },
+  // --- 2025 Vijayawada ---
+  { year: 2025, district: "Vijayawada", block: "Verka Block", season: "Rabi", cropName: "Wheat", variety: "Karan Vandana", croppedArea: 12800, productionTons: 28160, yieldPerAcre: 2.2 },
+  { year: 2025, district: "Vijayawada", block: "Verka Block", season: "Kharif", cropName: "Rice", variety: "Pusa Basmati 1121", croppedArea: 10200, productionTons: 20400, yieldPerAcre: 2.0 },
+  { year: 2025, district: "Vijayawada", block: "Verka Block", season: "Kharif", cropName: "Corn", variety: "Pioneer 30G37", croppedArea: 2000, productionTons: 3100, yieldPerAcre: 1.55 },
+  { year: 2025, district: "Vijayawada", block: "Verka Block", season: "Kharif", cropName: "Cotton", variety: "Bt Cotton-2", croppedArea: 1150, productionTons: 862, yieldPerAcre: 0.75 },
+  { year: 2025, district: "Vijayawada", block: "Verka Block", season: "Kharif", cropName: "Sugarcane", variety: "Co-0238", croppedArea: 230, productionTons: 5520, yieldPerAcre: 24.0 },
+  { year: 2025, district: "Vijayawada", block: "Verka Block", season: "Zaid", cropName: "Moong", variety: "SML-668", croppedArea: 1400, productionTons: 644, yieldPerAcre: 0.46 },
 
-  { year: 2025, district: "Amritsar", block: "Chogawan Block", season: "Rabi", cropName: "Wheat", variety: "HD-3086", croppedArea: 11000, productionTons: 22000, yieldPerAcre: 2.0 },
-  { year: 2025, district: "Amritsar", block: "Chogawan Block", season: "Kharif", cropName: "Rice", variety: "PR-126", croppedArea: 7500, productionTons: 12750, yieldPerAcre: 1.7 },
-  { year: 2025, district: "Amritsar", block: "Chogawan Block", season: "Kharif", cropName: "Corn", variety: "DKC-9108", croppedArea: 2600, productionTons: 3380, yieldPerAcre: 1.3 },
-  { year: 2025, district: "Amritsar", block: "Chogawan Block", season: "Kharif", cropName: "Cotton", variety: "Bt Cotton-1", croppedArea: 2550, productionTons: 1912, yieldPerAcre: 0.75 },
-  { year: 2025, district: "Amritsar", block: "Chogawan Block", season: "Kharif", cropName: "Sugarcane", variety: "CoH-160", croppedArea: 250, productionTons: 6000, yieldPerAcre: 24.0 },
-  { year: 2025, district: "Amritsar", block: "Chogawan Block", season: "Zaid", cropName: "Moong", variety: "MH-125", croppedArea: 1100, productionTons: 462, yieldPerAcre: 0.42 },
+  { year: 2025, district: "Vijayawada", block: "Chogawan Block", season: "Rabi", cropName: "Wheat", variety: "HD-3086", croppedArea: 11000, productionTons: 22000, yieldPerAcre: 2.0 },
+  { year: 2025, district: "Vijayawada", block: "Chogawan Block", season: "Kharif", cropName: "Rice", variety: "PR-126", croppedArea: 7500, productionTons: 12750, yieldPerAcre: 1.7 },
+  { year: 2025, district: "Vijayawada", block: "Chogawan Block", season: "Kharif", cropName: "Corn", variety: "DKC-9108", croppedArea: 2600, productionTons: 3380, yieldPerAcre: 1.3 },
+  { year: 2025, district: "Vijayawada", block: "Chogawan Block", season: "Kharif", cropName: "Cotton", variety: "Bt Cotton-1", croppedArea: 2550, productionTons: 1912, yieldPerAcre: 0.75 },
+  { year: 2025, district: "Vijayawada", block: "Chogawan Block", season: "Kharif", cropName: "Sugarcane", variety: "CoH-160", croppedArea: 250, productionTons: 6000, yieldPerAcre: 24.0 },
+  { year: 2025, district: "Vijayawada", block: "Chogawan Block", season: "Zaid", cropName: "Moong", variety: "MH-125", croppedArea: 1100, productionTons: 462, yieldPerAcre: 0.42 },
 
-  // --- 2024 Amritsar ---
-  { year: 2024, district: "Amritsar", block: "Verka Block", season: "Rabi", cropName: "Wheat", variety: "Karan Vandana", croppedArea: 12500, productionTons: 26250, yieldPerAcre: 2.1 },
-  { year: 2024, district: "Amritsar", block: "Verka Block", season: "Kharif", cropName: "Rice", variety: "Pusa Basmati 1121", croppedArea: 10000, productionTons: 19000, yieldPerAcre: 1.9 },
-  { year: 2024, district: "Amritsar", block: "Verka Block", season: "Kharif", cropName: "Corn", variety: "Pioneer 30G37", croppedArea: 1950, productionTons: 2925, yieldPerAcre: 1.5 },
-  { year: 2024, district: "Amritsar", block: "Verka Block", season: "Kharif", cropName: "Cotton", variety: "Bt Cotton-2", croppedArea: 1100, productionTons: 770, yieldPerAcre: 0.7 },
-  { year: 2024, district: "Amritsar", block: "Verka Block", season: "Kharif", cropName: "Sugarcane", variety: "Co-0238", croppedArea: 220, productionTons: 5060, yieldPerAcre: 23.0 },
-  { year: 2024, district: "Amritsar", block: "Verka Block", season: "Zaid", cropName: "Moong", variety: "SML-668", croppedArea: 1300, productionTons: 546, yieldPerAcre: 0.42 },
+  // --- 2024 Vijayawada ---
+  { year: 2024, district: "Vijayawada", block: "Verka Block", season: "Rabi", cropName: "Wheat", variety: "Karan Vandana", croppedArea: 12500, productionTons: 26250, yieldPerAcre: 2.1 },
+  { year: 2024, district: "Vijayawada", block: "Verka Block", season: "Kharif", cropName: "Rice", variety: "Pusa Basmati 1121", croppedArea: 10000, productionTons: 19000, yieldPerAcre: 1.9 },
+  { year: 2024, district: "Vijayawada", block: "Verka Block", season: "Kharif", cropName: "Corn", variety: "Pioneer 30G37", croppedArea: 1950, productionTons: 2925, yieldPerAcre: 1.5 },
+  { year: 2024, district: "Vijayawada", block: "Verka Block", season: "Kharif", cropName: "Cotton", variety: "Bt Cotton-2", croppedArea: 1100, productionTons: 770, yieldPerAcre: 0.7 },
+  { year: 2024, district: "Vijayawada", block: "Verka Block", season: "Kharif", cropName: "Sugarcane", variety: "Co-0238", croppedArea: 220, productionTons: 5060, yieldPerAcre: 23.0 },
+  { year: 2024, district: "Vijayawada", block: "Verka Block", season: "Zaid", cropName: "Moong", variety: "SML-668", croppedArea: 1300, productionTons: 546, yieldPerAcre: 0.42 },
 
-  { year: 2024, district: "Amritsar", block: "Chogawan Block", season: "Rabi", cropName: "Wheat", variety: "HD-3086", croppedArea: 10500, productionTons: 19950, yieldPerAcre: 1.9 },
-  { year: 2024, district: "Amritsar", block: "Chogawan Block", season: "Kharif", cropName: "Rice", variety: "PR-126", croppedArea: 7200, productionTons: 11520, yieldPerAcre: 1.6 },
-  { year: 2024, district: "Amritsar", block: "Chogawan Block", season: "Kharif", cropName: "Corn", variety: "DKC-9108", croppedArea: 2500, productionTons: 3000, yieldPerAcre: 1.2 },
-  { year: 2024, district: "Amritsar", block: "Chogawan Block", season: "Kharif", cropName: "Cotton", variety: "Bt Cotton-1", croppedArea: 2400, productionTons: 1680, yieldPerAcre: 0.7 },
-  { year: 2024, district: "Amritsar", block: "Chogawan Block", season: "Kharif", cropName: "Sugarcane", variety: "CoH-160", croppedArea: 240, productionTons: 5520, yieldPerAcre: 23.0 },
-  { year: 2024, district: "Amritsar", block: "Chogawan Block", season: "Zaid", cropName: "Moong", variety: "MH-125", croppedArea: 1000, productionTons: 380, yieldPerAcre: 0.38 },
+  { year: 2024, district: "Vijayawada", block: "Chogawan Block", season: "Rabi", cropName: "Wheat", variety: "HD-3086", croppedArea: 10500, productionTons: 19950, yieldPerAcre: 1.9 },
+  { year: 2024, district: "Vijayawada", block: "Chogawan Block", season: "Kharif", cropName: "Rice", variety: "PR-126", croppedArea: 7200, productionTons: 11520, yieldPerAcre: 1.6 },
+  { year: 2024, district: "Vijayawada", block: "Chogawan Block", season: "Kharif", cropName: "Corn", variety: "DKC-9108", croppedArea: 2500, productionTons: 3000, yieldPerAcre: 1.2 },
+  { year: 2024, district: "Vijayawada", block: "Chogawan Block", season: "Kharif", cropName: "Cotton", variety: "Bt Cotton-1", croppedArea: 2400, productionTons: 1680, yieldPerAcre: 0.7 },
+  { year: 2024, district: "Vijayawada", block: "Chogawan Block", season: "Kharif", cropName: "Sugarcane", variety: "CoH-160", croppedArea: 240, productionTons: 5520, yieldPerAcre: 23.0 },
+  { year: 2024, district: "Vijayawada", block: "Chogawan Block", season: "Zaid", cropName: "Moong", variety: "MH-125", croppedArea: 1000, productionTons: 380, yieldPerAcre: 0.38 },
 
-  // --- 2026 Pune ---
-  { year: 2026, district: "Pune", block: "Maval Block", season: "Rabi", cropName: "Wheat", variety: "HD-2189", croppedArea: 10000, productionTons: 18000, yieldPerAcre: 1.8 },
-  { year: 2026, district: "Pune", block: "Maval Block", season: "Kharif", cropName: "Rice", variety: "Indrayani", croppedArea: 15000, productionTons: 31500, yieldPerAcre: 2.1 },
-  { year: 2026, district: "Pune", block: "Maval Block", season: "Kharif", cropName: "Sugarcane", variety: "Co-86032", croppedArea: 3200, productionTons: 128000, yieldPerAcre: 40.0 },
-  { year: 2026, district: "Pune", block: "Maval Block", season: "Zaid", cropName: "Watermelon", variety: "Kiran", croppedArea: 800, productionTons: 8000, yieldPerAcre: 10.0 },
+  // --- 2026 Krishna ---
+  { year: 2026, district: "Krishna", block: "Maval Block", season: "Rabi", cropName: "Wheat", variety: "HD-2189", croppedArea: 10000, productionTons: 18000, yieldPerAcre: 1.8 },
+  { year: 2026, district: "Krishna", block: "Maval Block", season: "Kharif", cropName: "Rice", variety: "Indrayani", croppedArea: 15000, productionTons: 31500, yieldPerAcre: 2.1 },
+  { year: 2026, district: "Krishna", block: "Maval Block", season: "Kharif", cropName: "Sugarcane", variety: "Co-86032", croppedArea: 3200, productionTons: 128000, yieldPerAcre: 40.0 },
+  { year: 2026, district: "Krishna", block: "Maval Block", season: "Zaid", cropName: "Watermelon", variety: "Kiran", croppedArea: 800, productionTons: 8000, yieldPerAcre: 10.0 },
 
-  { year: 2026, district: "Pune", block: "Shirur Block", season: "Rabi", cropName: "Wheat", variety: "Lok-1", croppedArea: 8000, productionTons: 12800, yieldPerAcre: 1.6 },
-  { year: 2026, district: "Pune", block: "Shirur Block", season: "Kharif", cropName: "Rice", variety: "Phule Samruddhi", croppedArea: 12000, productionTons: 24000, yieldPerAcre: 2.0 },
-  { year: 2026, district: "Pune", block: "Shirur Block", season: "Kharif", cropName: "Cotton", variety: "Bt Cotton-2", croppedArea: 4000, productionTons: 3600, yieldPerAcre: 0.9 },
-  { year: 2026, district: "Pune", block: "Shirur Block", season: "Zaid", cropName: "Watermelon", variety: "Kiran", croppedArea: 600, productionTons: 5400, yieldPerAcre: 9.0 },
+  { year: 2026, district: "Krishna", block: "Tenali Block", season: "Rabi", cropName: "Wheat", variety: "Lok-1", croppedArea: 8000, productionTons: 12800, yieldPerAcre: 1.6 },
+  { year: 2026, district: "Krishna", block: "Tenali Block", season: "Kharif", cropName: "Rice", variety: "Phule Samruddhi", croppedArea: 12000, productionTons: 24000, yieldPerAcre: 2.0 },
+  { year: 2026, district: "Krishna", block: "Tenali Block", season: "Kharif", cropName: "Cotton", variety: "Bt Cotton-2", croppedArea: 4000, productionTons: 3600, yieldPerAcre: 0.9 },
+  { year: 2026, district: "Krishna", block: "Tenali Block", season: "Zaid", cropName: "Watermelon", variety: "Kiran", croppedArea: 600, productionTons: 5400, yieldPerAcre: 9.0 },
 
-  // --- 2025 Pune ---
-  { year: 2025, district: "Pune", block: "Maval Block", season: "Rabi", cropName: "Wheat", variety: "HD-2189", croppedArea: 9500, productionTons: 16150, yieldPerAcre: 1.7 },
-  { year: 2025, district: "Pune", block: "Maval Block", season: "Kharif", cropName: "Rice", variety: "Indrayani", croppedArea: 14500, productionTons: 29000, yieldPerAcre: 2.0 },
-  { year: 2025, district: "Pune", block: "Maval Block", season: "Kharif", cropName: "Sugarcane", variety: "Co-86032", croppedArea: 3100, productionTons: 120900, yieldPerAcre: 39.0 },
-  { year: 2025, district: "Pune", block: "Maval Block", season: "Zaid", cropName: "Watermelon", variety: "Kiran", croppedArea: 750, productionTons: 7125, yieldPerAcre: 9.5 },
+  // --- 2025 Krishna ---
+  { year: 2025, district: "Krishna", block: "Maval Block", season: "Rabi", cropName: "Wheat", variety: "HD-2189", croppedArea: 9500, productionTons: 16150, yieldPerAcre: 1.7 },
+  { year: 2025, district: "Krishna", block: "Maval Block", season: "Kharif", cropName: "Rice", variety: "Indrayani", croppedArea: 14500, productionTons: 29000, yieldPerAcre: 2.0 },
+  { year: 2025, district: "Krishna", block: "Maval Block", season: "Kharif", cropName: "Sugarcane", variety: "Co-86032", croppedArea: 3100, productionTons: 120900, yieldPerAcre: 39.0 },
+  { year: 2025, district: "Krishna", block: "Maval Block", season: "Zaid", cropName: "Watermelon", variety: "Kiran", croppedArea: 750, productionTons: 7125, yieldPerAcre: 9.5 },
 
-  { year: 2025, district: "Pune", block: "Shirur Block", season: "Rabi", cropName: "Wheat", variety: "Lok-1", croppedArea: 7800, productionTons: 11700, yieldPerAcre: 1.5 },
-  { year: 2025, district: "Pune", block: "Shirur Block", season: "Kharif", cropName: "Rice", variety: "Phule Samruddhi", croppedArea: 11500, productionTons: 21850, yieldPerAcre: 1.9 },
-  { year: 2025, district: "Pune", block: "Shirur Block", season: "Kharif", cropName: "Cotton", variety: "Bt Cotton-2", croppedArea: 3900, productionTons: 3315, yieldPerAcre: 0.85 },
-  { year: 2025, district: "Pune", block: "Shirur Block", season: "Zaid", cropName: "Watermelon", variety: "Kiran", croppedArea: 550, productionTons: 4675, yieldPerAcre: 8.5 },
+  { year: 2025, district: "Krishna", block: "Tenali Block", season: "Rabi", cropName: "Wheat", variety: "Lok-1", croppedArea: 7800, productionTons: 11700, yieldPerAcre: 1.5 },
+  { year: 2025, district: "Krishna", block: "Tenali Block", season: "Kharif", cropName: "Rice", variety: "Phule Samruddhi", croppedArea: 11500, productionTons: 21850, yieldPerAcre: 1.9 },
+  { year: 2025, district: "Krishna", block: "Tenali Block", season: "Kharif", cropName: "Cotton", variety: "Bt Cotton-2", croppedArea: 3900, productionTons: 3315, yieldPerAcre: 0.85 },
+  { year: 2025, district: "Krishna", block: "Tenali Block", season: "Zaid", cropName: "Watermelon", variety: "Kiran", croppedArea: 550, productionTons: 4675, yieldPerAcre: 8.5 },
 
-  // --- 2024 Pune ---
-  { year: 2024, district: "Pune", block: "Maval Block", season: "Rabi", cropName: "Wheat", variety: "HD-2189", croppedArea: 9000, productionTons: 14400, yieldPerAcre: 1.6 },
-  { year: 2024, district: "Pune", block: "Maval Block", season: "Kharif", cropName: "Rice", variety: "Indrayani", croppedArea: 14000, productionTons: 26600, yieldPerAcre: 1.9 },
-  { year: 2024, district: "Pune", block: "Maval Block", season: "Kharif", cropName: "Sugarcane", variety: "Co-86032", croppedArea: 3000, productionTons: 114000, yieldPerAcre: 38.0 },
-  { year: 2024, district: "Pune", block: "Maval Block", season: "Zaid", cropName: "Watermelon", variety: "Kiran", croppedArea: 700, productionTons: 6300, yieldPerAcre: 9.0 },
+  // --- 2024 Krishna ---
+  { year: 2024, district: "Krishna", block: "Maval Block", season: "Rabi", cropName: "Wheat", variety: "HD-2189", croppedArea: 9000, productionTons: 14400, yieldPerAcre: 1.6 },
+  { year: 2024, district: "Krishna", block: "Maval Block", season: "Kharif", cropName: "Rice", variety: "Indrayani", croppedArea: 14000, productionTons: 26600, yieldPerAcre: 1.9 },
+  { year: 2024, district: "Krishna", block: "Maval Block", season: "Kharif", cropName: "Sugarcane", variety: "Co-86032", croppedArea: 3000, productionTons: 114000, yieldPerAcre: 38.0 },
+  { year: 2024, district: "Krishna", block: "Maval Block", season: "Zaid", cropName: "Watermelon", variety: "Kiran", croppedArea: 700, productionTons: 6300, yieldPerAcre: 9.0 },
 
-  { year: 2024, district: "Pune", block: "Shirur Block", season: "Rabi", cropName: "Wheat", variety: "Lok-1", croppedArea: 7500, productionTons: 10500, yieldPerAcre: 1.4 },
-  { year: 2024, district: "Pune", block: "Shirur Block", season: "Kharif", cropName: "Rice", variety: "Phule Samruddhi", croppedArea: 11000, productionTons: 19800, yieldPerAcre: 1.8 },
-  { year: 2024, district: "Pune", block: "Shirur Block", season: "Kharif", cropName: "Cotton", variety: "Bt Cotton-2", croppedArea: 3800, productionTons: 3040, yieldPerAcre: 0.8 },
-  { year: 2024, district: "Pune", block: "Shirur Block", season: "Zaid", cropName: "Watermelon", variety: "Kiran", croppedArea: 500, productionTons: 4000, yieldPerAcre: 8.0 },
+  { year: 2024, district: "Krishna", block: "Tenali Block", season: "Rabi", cropName: "Wheat", variety: "Lok-1", croppedArea: 7500, productionTons: 10500, yieldPerAcre: 1.4 },
+  { year: 2024, district: "Krishna", block: "Tenali Block", season: "Kharif", cropName: "Rice", variety: "Phule Samruddhi", croppedArea: 11000, productionTons: 19800, yieldPerAcre: 1.8 },
+  { year: 2024, district: "Krishna", block: "Tenali Block", season: "Kharif", cropName: "Cotton", variety: "Bt Cotton-2", croppedArea: 3800, productionTons: 3040, yieldPerAcre: 0.8 },
+  { year: 2024, district: "Krishna", block: "Tenali Block", season: "Zaid", cropName: "Watermelon", variety: "Kiran", croppedArea: 500, productionTons: 4000, yieldPerAcre: 8.0 },
 
   // --- 2026 Karnal ---
   { year: 2026, district: "Karnal", block: "Karnal Central", season: "Rabi", cropName: "Wheat", variety: "Karan Vandana", croppedArea: 14000, productionTons: 35000, yieldPerAcre: 2.5 },
@@ -1129,7 +1129,7 @@ export default function GovernmentView({
     if (saved) return JSON.parse(saved);
     return [
       { id: "s1", device: "Chrome / Windows 11", location: "New Delhi, Delhi", time: "Active Now", current: true },
-      { id: "s2", device: "Safari / iPhone 15", location: "Amritsar, Punjab", time: "3 hours ago", current: false },
+      { id: "s2", device: "Safari / iPhone 15", location: "Vijayawada, Andhra Pradesh", time: "3 hours ago", current: false },
       { id: "s3", device: "Edge / Windows Server", location: "Chandigarh, UT", time: "1 day ago", current: false }
     ];
   });
@@ -1138,10 +1138,10 @@ export default function GovernmentView({
   const [mobile, setMobile] = useState("");
   const [designation, setDesignation] = useState("District Agriculture Officer");
   const [department, setDepartment] = useState("Department of Agriculture & Farmers Welfare");
-  const [stateJurisdiction, setStateJurisdiction] = useState("Punjab");
-  const [districtJurisdiction, setDistrictJurisdiction] = useState("Amritsar");
-  const [blockJurisdiction, setBlockJurisdiction] = useState("Amritsar Block B");
-  const [tehsilJurisdiction, setTehsilJurisdiction] = useState("Amritsar-I");
+  const [stateJurisdiction, setStateJurisdiction] = useState("Andhra Pradesh");
+  const [districtJurisdiction, setDistrictJurisdiction] = useState("Vijayawada");
+  const [blockJurisdiction, setBlockJurisdiction] = useState("Vijayawada Block B");
+  const [tehsilJurisdiction, setTehsilJurisdiction] = useState("Vijayawada-I");
   const [panchayatJurisdiction, setPanchayatJurisdiction] = useState("Verka Gram Panchayat");
   
   // Specialization fields (Step 3)
@@ -1221,9 +1221,9 @@ export default function GovernmentView({
   const [profileMobile, setProfileMobile] = useState(() => officerProfile.mobile || "9876543213");
   const [profileDesignation, setProfileDesignation] = useState(() => officerProfile.designation || "District Agriculture Officer");
   const [profileDepartment, setProfileDepartment] = useState(() => officerProfile.department || "Agriculture");
-  const [profileJurisdiction, setProfileJurisdiction] = useState(() => officerProfile.jurisdiction || "District - Pune, Maharashtra");
+  const [profileJurisdiction, setProfileJurisdiction] = useState(() => officerProfile.jurisdiction || "District - Krishna, Maharashtra");
   const [profileState, setProfileState] = useState(() => officerProfile.state || "Maharashtra");
-  const [profileDistrict, setProfileDistrict] = useState(() => officerProfile.district || "Pune");
+  const [profileDistrict, setProfileDistrict] = useState(() => officerProfile.district || "Krishna");
   const [profileBlock, setProfileBlock] = useState(() => officerProfile.block || "Haveli Block");
   const [profileSpecialization, setProfileSpecialization] = useState(() => officerProfile.specialization || "Crop Management, Soil Health, Subsidies");
   const [profilePhoto, setProfilePhoto] = useState("https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200");
@@ -1262,8 +1262,8 @@ export default function GovernmentView({
     if (saved) return JSON.parse(saved);
     return [
       { id: "TXN-DBT-2026-00192", farmerName: "Karan Singh", schemeName: "PM-KISAN Samman Nidhi", amount: 2000, date: "2026-07-02", transactionId: "SBI-DBT-2026-9812401", bank: "State Bank of India", status: "SUCCESS" },
-      { id: "TXN-DBT-2026-00193", farmerName: "Manpreet Dhillon", schemeName: "PM-KISAN Samman Nidhi", amount: 2000, date: "2026-07-05", transactionId: "SBI-DBT-2026-9812402", bank: "Punjab National Bank", status: "SUCCESS" },
-      { id: "TXN-DBT-2026-00194", farmerName: "Baldev Singh", schemeName: "PM-KUSUM Solar Water Pump Subsidy", amount: 25000, date: "2026-07-10", transactionId: "PNB-DBT-2026-4019280", bank: "Punjab National Bank", status: "SUCCESS" }
+      { id: "TXN-DBT-2026-00193", farmerName: "Manpreet Dhillon", schemeName: "PM-KISAN Samman Nidhi", amount: 2000, date: "2026-07-05", transactionId: "SBI-DBT-2026-9812402", bank: "State Bank of India", status: "SUCCESS" },
+      { id: "TXN-DBT-2026-00194", farmerName: "Baldev Singh", schemeName: "PM-KUSUM Solar Water Pump Subsidy", amount: 25000, date: "2026-07-10", transactionId: "PNB-DBT-2026-4019280", bank: "State Bank of India", status: "SUCCESS" }
     ];
   });
 
@@ -1274,7 +1274,7 @@ export default function GovernmentView({
   const [apiClients, setApiClients] = useState([
     {
       id: "cli_1",
-      clientName: "Punjab Agricultural University (PAU)",
+      clientName: "Acharya N.G. Ranga Agricultural University (PAU)",
       clientType: "University",
       clientId: "ac_client_pau_2026",
       clientSecret: "ac_secret_pau_901x8a72b",
@@ -1326,7 +1326,7 @@ export default function GovernmentView({
   const [trendCrop, setTrendCrop] = useState<string>("Wheat");
 
   // --- CROP PRODUCTION DASHBOARD STATES ---
-  const [selectedProdDistrict, setSelectedProdDistrict] = useState<string>("Amritsar");
+  const [selectedProdDistrict, setSelectedProdDistrict] = useState<string>("Vijayawada");
   const [selectedProdBlock, setSelectedProdBlock] = useState<string>("All");
   const [selectedProdVillage, setSelectedProdVillage] = useState<string>("All");
   const [farmerSearch, setFarmerSearch] = useState<string>("");
@@ -1334,7 +1334,7 @@ export default function GovernmentView({
   // --- REGIONAL ANALYTICS GENERATOR STATES ---
   const [analyticsYear, setAnalyticsYear] = useState("2026");
   const [analyticsSeason, setAnalyticsSeason] = useState("Kharif");
-  const [analyticsDistrict, setAnalyticsDistrict] = useState("Pune");
+  const [analyticsDistrict, setAnalyticsDistrict] = useState("Krishna");
   const [analyticsType, setAnalyticsType] = useState("scheme-penetration"); // 'scheme-penetration' | 'crop-yields' | 'disaster-impact'
   const [generatedReport, setGeneratedReport] = useState<any | null>(null);
   const [isGeneratingReport, setIsGeneratingReport] = useState(false);
@@ -1373,7 +1373,7 @@ export default function GovernmentView({
       id: "SCH-001",
       reportType: "Farmer Registration Report",
       frequency: "Weekly",
-      recipients: "dir-agr@punjab.gov.in, stats-desk@nic.in",
+      recipients: "dir-agr@andhra pradesh.gov.in, stats-desk@nic.in",
       lastRun: "2026-07-10",
       nextRun: "2026-07-17",
       status: "Active"
@@ -1394,7 +1394,7 @@ export default function GovernmentView({
   const [scheduleSuccessMsg, setScheduleSuccessMsg] = useState<string | null>(null);
 
   // --- CROP HEALTH MONITORING STATES ---
-  const [selectedMonitorBlock, setSelectedMonitorBlock] = useState<string>("block-amritsar-north");
+  const [selectedMonitorBlock, setSelectedMonitorBlock] = useState<string>("block-vijayawada-north");
   const [isDiagnosingCrop, setIsDiagnosingCrop] = useState(false);
   const [cropDiagnosisMessage, setCropDiagnosisMessage] = useState<string>("");
   const [smsBroadcastStatus, setSmsBroadcastStatus] = useState<string | null>(null);
@@ -1409,7 +1409,7 @@ export default function GovernmentView({
   
   // Yield Predictor AI States
   const [predCrop, setPredCrop] = useState("Wheat");
-  const [predDistrict, setPredDistrict] = useState("Pune");
+  const [predDistrict, setPredDistrict] = useState("Krishna");
   const [predSeason, setPredSeason] = useState("Rabi");
   const [predAcreage, setPredAcreage] = useState("5");
   const [predSoilPh, setPredSoilPh] = useState("6.5");
@@ -1427,7 +1427,7 @@ export default function GovernmentView({
   const [eligResult, setEligResult] = useState<any | null>(null);
   
   // Disaster Predictor AI States
-  const [disZone, setDisZone] = useState("Pune District West");
+  const [disZone, setDisZone] = useState("Krishna District West");
   const [disRainfall, setDisRainfall] = useState("120"); // mm
   const [disWind, setDisWind] = useState("45"); // km/h
   const [disTemp, setDisTemp] = useState("28"); // °C
@@ -1454,7 +1454,7 @@ export default function GovernmentView({
   const [newSchemeTitle, setNewSchemeTitle] = useState("");
   const [newSchemeCategory, setNewSchemeCategory] = useState<string>("Subsidy");
   const [newSchemeMinistry, setNewSchemeMinistry] = useState<string>("Ministry of Agriculture & Farmers Welfare");
-  const [newSchemeState, setNewSchemeState] = useState<string>("Punjab");
+  const [newSchemeState, setNewSchemeState] = useState<string>("Andhra Pradesh");
   const [newSchemeBudget, setNewSchemeBudget] = useState(5000000);
   const [newSchemeDeadline, setNewSchemeDeadline] = useState("2026-12-31");
   const [newSchemeDesc, setNewSchemeDesc] = useState("");
@@ -1464,7 +1464,7 @@ export default function GovernmentView({
   const [activeReportTab, setActiveReportTab] = useState<"impact" | "relief" | "disbursement" | "dossier">("impact");
   const [dossierSubmitted, setDossierSubmitted] = useState<boolean>(false);
   const [submissionTimestamp, setSubmissionTimestamp] = useState<string>("");
-  const [dossierNotes, setDossierNotes] = useState<string>("Local surveys confirm intense unseasonal waterlogging in Amritsar's critical grain belt. Joint survey with the Revenue Department recommends emergency allocation of supplementary state-level disaster budget (SDRF).");
+  const [dossierNotes, setDossierNotes] = useState<string>("Local surveys confirm intense unseasonal waterlogging in Vijayawada's critical grain belt. Joint survey with the Revenue Department recommends emergency allocation of supplementary state-level disaster budget (SDRF).");
   const [aidRequests, setAidRequests] = useState<any[]>(() => {
     const saved = localStorage.getItem("agriconnect_emergency_aid_requests");
     if (saved) return JSON.parse(saved);
@@ -1474,7 +1474,7 @@ export default function GovernmentView({
         farmerName: "Amir Patel",
         aadhaar: "xxxx-xxxx-8012",
         phone: "+91 98765 43210",
-        district: "Amritsar",
+        district: "Vijayawada",
         block: "Verka Block",
         reason: "Crop Loss",
         description: "Heavy lodging and submerged paddy crops across 2 hectares due to localized flooding.",
@@ -1579,7 +1579,7 @@ export default function GovernmentView({
 
   const [newAlertType, setNewAlertType] = useState<"Drought" | "Flood" | "Cyclone" | "Storm" | "Pest Outbreak">("Flood");
   const [newAlertSeverity, setNewAlertSeverity] = useState<"Mild" | "Moderate" | "Severe" | "Critical">("Severe");
-  const [newAlertDistrict, setNewAlertDistrict] = useState<string>("Amritsar");
+  const [newAlertDistrict, setNewAlertDistrict] = useState<string>("Vijayawada");
   const [newAlertBlock, setNewAlertBlock] = useState<string>("Verka Block");
   const [newAlertFarmers, setNewAlertFarmers] = useState<number>(500);
   const [newAlertDate, setNewAlertDate] = useState<string>("2026-07-16");
@@ -1598,7 +1598,7 @@ export default function GovernmentView({
   });
 
   const [newPlanDisasterType, setNewPlanDisasterType] = useState<"Drought" | "Flood" | "Cyclone" | "Storm" | "Pest Outbreak">("Flood");
-  const [newPlanDistrict, setNewPlanDistrict] = useState<string>("Amritsar");
+  const [newPlanDistrict, setNewPlanDistrict] = useState<string>("Vijayawada");
   const [newPlanBlock, setNewPlanBlock] = useState<string>("Verka Block");
   const [newPlanTeamExt, setNewPlanTeamExt] = useState<boolean>(true);
   const [newPlanTeamNgos, setNewPlanTeamNgos] = useState<boolean>(true);
@@ -1641,7 +1641,7 @@ export default function GovernmentView({
             phone: "+91 98765 43210",
             email: "rajesh.patel@agriconnect.org",
             state: "Maharashtra",
-            district: "Pune",
+            district: "Krishna",
             block: "Haveli Block",
             village: "Manchar",
             gps: "19.0125° N, 73.8502° E",
@@ -1672,9 +1672,9 @@ export default function GovernmentView({
             phone: "+91 98765 43212",
             email: "suresh.kumar@agriconnect.org",
             state: "Maharashtra",
-            district: "Pune",
+            district: "Krishna",
             block: "Haveli Block",
-            village: "Shirur",
+            village: "Tenali",
             gps: "18.8251° N, 74.3792° E",
             landSize: "4.8",
             mainCrop: "Hybrid Wheat",
@@ -1703,7 +1703,7 @@ export default function GovernmentView({
             phone: "+91 98765 43214",
             email: "meena.devi@agriconnect.org",
             state: "Maharashtra",
-            district: "Pune",
+            district: "Krishna",
             block: "Haveli Block",
             village: "Junnar",
             gps: "19.2081° N, 73.8781° E",
@@ -1733,8 +1733,8 @@ export default function GovernmentView({
             pan: "BNXPA1928K",
             phone: "+91 98765 43210",
             email: "amir.patel@agriharbor.in",
-            state: "Punjab",
-            district: "Amritsar",
+            state: "Andhra Pradesh",
+            district: "Vijayawada",
             block: "Harsha Chhina",
             village: "Rajasansi",
             gps: "31.7086° N, 74.7981° E",
@@ -1770,9 +1770,9 @@ export default function GovernmentView({
             aadhaar: "4521-8932-1102",
             pan: "GPSG8912P",
             phone: "+91 98145 09213",
-            email: "gurpreet.singh@punjabagro.in",
-            state: "Punjab",
-            district: "Amritsar",
+            email: "gurpreet.singh@apagro.in",
+            state: "Andhra Pradesh",
+            district: "Vijayawada",
             block: "Ajnala",
             village: "Ajnala",
             gps: "31.8415° N, 74.7618° E",
@@ -1787,7 +1787,7 @@ export default function GovernmentView({
             documents: ["Aadhaar Card", "Land Deeds (Jamabandi)", "Bank Account Passbook"],
             bankDetails: {
               accountNo: "11048591823",
-              bankName: "Punjab National Bank",
+              bankName: "State Bank of India",
               ifsc: "PUNB0128400"
             },
             cropHistory: [
@@ -1802,9 +1802,9 @@ export default function GovernmentView({
             aadhaar: "9834-1234-5678",
             pan: "MPK91204X",
             phone: "+91 94172 83491",
-            email: "manpreet.k@amritsarfarm.in",
-            state: "Punjab",
-            district: "Amritsar",
+            email: "manpreet.k@vijayawadafarm.in",
+            state: "Andhra Pradesh",
+            district: "Vijayawada",
             block: "Chogawan",
             village: "Chogawan",
             gps: "31.7161° N, 74.6322° E",
@@ -1837,8 +1837,8 @@ export default function GovernmentView({
             pan: "HBSG3921Z",
             phone: "+91 95012 34910",
             email: "harbhajan.majitha@gfarm.org",
-            state: "Punjab",
-            district: "Amritsar",
+            state: "Andhra Pradesh",
+            district: "Vijayawada",
             block: "Majitha",
             village: "Majitha",
             gps: "31.7611° N, 74.9542° E",
@@ -1869,8 +1869,8 @@ export default function GovernmentView({
             pan: "CLKPA9012L",
             phone: "+91 98765 43212",
             email: "rajesh.jandiala@agripost.in",
-            state: "Punjab",
-            district: "Amritsar",
+            state: "Andhra Pradesh",
+            district: "Vijayawada",
             block: "Jandiala",
             village: "Jandiala Guru",
             gps: "31.5645° N, 74.9815° E",
@@ -2086,7 +2086,7 @@ export default function GovernmentView({
             name: "PM-KUSUM Off-Grid Solar Water Pump Subsidy",
             category: "Subsidy",
             ministry: "Ministry of New and Renewable Energy",
-            state: "Punjab",
+            state: "Andhra Pradesh",
             budgetAllocated: 120000000,
             budgetUtilized: 85000000,
             applicationsReceived: 4500,
@@ -2125,7 +2125,7 @@ export default function GovernmentView({
             name: "Organic Bio-Fertilizer Transition Program",
             category: "Subsidy",
             ministry: "Ministry of Agriculture & Farmers Welfare",
-            state: "Punjab",
+            state: "Andhra Pradesh",
             budgetAllocated: 80000000,
             budgetUtilized: 40000000,
             applicationsReceived: 3200,
@@ -2634,7 +2634,7 @@ export default function GovernmentView({
     const targetFarmer = farmers.find(f => f.id === log.farmerId);
     return {
       ...log,
-      district: log.district || targetFarmer?.district || "Amritsar",
+      district: log.district || targetFarmer?.district || "Vijayawada",
       block: log.block || targetFarmer?.block || "Harsha Chhina",
       village: log.village || targetFarmer?.village || "Rajasansi"
     };
@@ -2713,7 +2713,7 @@ export default function GovernmentView({
           <h1>National Farmer Digital KYC Verification Registry Report</h1>
           <div class="meta">
             <div><strong>Generated On:</strong> ${new Date().toLocaleString()}</div>
-            <div><strong>Nodal Officer:</strong> Officer Rajesh Sharma (Nodal Inspector - Amritsar North)</div>
+            <div><strong>Nodal Officer:</strong> Officer Rajesh Sharma (Nodal Inspector - Vijayawada North)</div>
           </div>
           <table>
             <thead>
@@ -2736,7 +2736,7 @@ export default function GovernmentView({
                   <td>${log.date}</td>
                   <td><span class="status-${log.status.toLowerCase()}">${log.status}</span></td>
                   <td>${log.reason || "N/A"}</td>
-                  <td>${log.district || "Amritsar"} / ${log.block || "Harsha Chhina"} / ${log.village || "Rajasansi"}</td>
+                  <td>${log.district || "Vijayawada"} / ${log.block || "Harsha Chhina"} / ${log.village || "Rajasansi"}</td>
                 </tr>
               `).join("")}
             </tbody>
@@ -3388,8 +3388,8 @@ State IT Core Node.
 
       } else if (customReportType === "district-wise") {
         const districtsList = customReportDistrict === "all"
-          ? ["Amritsar Block B", "Pune Block West", "Karnal Central"]
-          : [customReportDistrict === "Amritsar" ? "Amritsar" : customReportDistrict === "Pune" ? "Pune" : "Karnal"];
+          ? ["Vijayawada Block B", "Krishna Block West", "Karnal Central"]
+          : [customReportDistrict === "Vijayawada" ? "Vijayawada" : customReportDistrict === "Krishna" ? "Krishna" : "Karnal"];
 
         reportData = districtsList.map((dist, i) => {
           const pen = 65 + (i * 8) + (customReportSchemeId === "all" ? 5 : 2);
@@ -3487,8 +3487,8 @@ State IT Core Node.
         demographics: "Male: 74%, Female: 24%, Other: 2%"
       },
       data: [
-        { region: "Amritsar (Punjab)", farmers: 2450, verified: 2410, linkPct: "98.8%", avgSize: "5.2 Ac" },
-        { region: "Pune (Maharashtra)", farmers: 3820, verified: 3760, linkPct: "99.2%", avgSize: "3.9 Ac" },
+        { region: "Vijayawada (Andhra Pradesh)", farmers: 2450, verified: 2410, linkPct: "98.8%", avgSize: "5.2 Ac" },
+        { region: "Krishna (Maharashtra)", farmers: 3820, verified: 3760, linkPct: "99.2%", avgSize: "3.9 Ac" },
         { region: "Karnal (Haryana)", farmers: 1950, verified: 1910, linkPct: "99.4%", avgSize: "5.5 Ac" }
       ]
     },
@@ -3500,7 +3500,7 @@ State IT Core Node.
         totalArea: "136,700 Acres",
         totalProduction: "206,800 Tons",
         averageYield: "1.51 Tons/Ac",
-        topCrop: "Wheat (Punjab)",
+        topCrop: "Wheat (Andhra Pradesh)",
         waterIntensePct: "42%"
       },
       data: [
@@ -3558,8 +3558,8 @@ State IT Core Node.
         pendingClaims: "85 Audits"
       },
       data: [
-        { zone: "Amritsar North", event: "Hailstorm", affectedAcres: "4,500 Ac", damage: "55%", status: "Disbursed" },
-        { zone: "Pune South-West", event: "Delayed Monsoon", affectedAcres: "8,200 Ac", damage: "40%", status: "Disbursed" },
+        { zone: "Vijayawada North", event: "Hailstorm", affectedAcres: "4,500 Ac", damage: "55%", status: "Disbursed" },
+        { zone: "Krishna South-West", event: "Delayed Monsoon", affectedAcres: "8,200 Ac", damage: "40%", status: "Disbursed" },
         { zone: "Karnal Central", event: "Pest Epidemic", affectedAcres: "2,100 Ac", damage: "35%", status: "Pending Audit" }
       ]
     }
@@ -4001,7 +4001,7 @@ State IT Core Node.
 
             <div class="footer">
               <p>This report is compile-verified under Digital Audit Provision Act Section 7.2. Approved for digital distribution and official archiving.</p>
-              <p>Authority Signatory: ${officerProfile.name} (${officerProfile.role}) | Department Code: IN-GOV-AGRI-PUNJAB</p>
+              <p>Authority Signatory: ${officerProfile.name} (${officerProfile.role}) | Department Code: IN-GOV-AGRI-ANDHRA PRADESH</p>
               <p style="margin-top: 6px; font-family: monospace; color: #cbd5e1;">MD5 SECURITY ARCHIVE TOKEN: ${reportId}-FARM-SEC-2026</p>
             </div>
 
@@ -4040,7 +4040,7 @@ State IT Core Node.
       let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
       xml += '<DistrictCropProductionData>\n';
       xml += '  <GeneratedAt>' + new Date().toISOString() + '</GeneratedAt>\n';
-      xml += '  <Coverage>All Districts (Amritsar, Pune, Karnal)</Coverage>\n';
+      xml += '  <Coverage>All Districts (Vijayawada, Krishna, Karnal)</Coverage>\n';
       xml += '  <Records>\n';
       HISTORICAL_PRODUCTION_DATA.forEach(rec => {
         xml += '    <Record>\n';
@@ -4866,7 +4866,7 @@ State IT Core Node.
                         onChange={(e) => setStateJurisdiction(e.target.value)}
                         className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
                       >
-                        <option value="Punjab">Punjab</option>
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
                         <option value="Haryana">Haryana</option>
                         <option value="Andhra Pradesh">Andhra Pradesh</option>
                         <option value="Karnataka">Karnataka</option>
@@ -4882,7 +4882,7 @@ State IT Core Node.
                         required
                         value={districtJurisdiction}
                         onChange={(e) => setDistrictJurisdiction(e.target.value)}
-                        placeholder="Amritsar"
+                        placeholder="Vijayawada"
                         className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
                       />
                     </div>
@@ -4896,7 +4896,7 @@ State IT Core Node.
                         required
                         value={blockJurisdiction}
                         onChange={(e) => setBlockJurisdiction(e.target.value)}
-                        placeholder="Amritsar Block B"
+                        placeholder="Vijayawada Block B"
                         className="w-full bg-slate-950 border border-slate-800 rounded-xl px-2.5 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
                       />
                     </div>
@@ -4908,7 +4908,7 @@ State IT Core Node.
                         required
                         value={tehsilJurisdiction}
                         onChange={(e) => setTehsilJurisdiction(e.target.value)}
-                        placeholder="Amritsar-I"
+                        placeholder="Vijayawada-I"
                         className="w-full bg-slate-950 border border-slate-800 rounded-xl px-2.5 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
                       />
                     </div>
@@ -5253,12 +5253,12 @@ State IT Core Node.
                       ...officerProfile,
                       designation: role.title,
                       jurisdiction: role.level === 1 
-                        ? "Punjab, Amritsar District, Amritsar Block B, Amritsar-I Village" 
+                        ? "Andhra Pradesh, Krishna District, Vijayawada Block B, Vijayawada-I Village" 
                         : role.level === 2
-                        ? "Punjab, Amritsar District, Amritsar Block B"
+                        ? "Andhra Pradesh, Krishna District, Vijayawada Block B"
                         : role.level === 3
-                        ? "Punjab, Amritsar District"
-                        : "Punjab State Command"
+                        ? "Andhra Pradesh, Krishna District"
+                        : "Andhra Pradesh State Command"
                     };
                     setOfficerProfile(updated);
                     localStorage.setItem("agriconnect_officer_profile", JSON.stringify(updated));
@@ -5605,7 +5605,7 @@ State IT Core Node.
                   </div>
                   <p className="text-xl font-black text-red-600">2 Active</p>
                   <p className="text-[9px] text-red-500 font-bold">
-                    Amritsar Block B crop loss
+                    Vijayawada Block B crop loss
                   </p>
                 </div>
 
@@ -5732,7 +5732,7 @@ State IT Core Node.
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-2 text-xs text-slate-800 font-medium focus:outline-none font-black"
                   >
                     <option value="All India">All India</option>
-                    <option value="Punjab">Punjab</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
                     <option value="Haryana">Haryana</option>
                     <option value="Uttar Pradesh">Uttar Pradesh</option>
                     <option value="Bihar">Bihar</option>
@@ -5965,7 +5965,7 @@ State IT Core Node.
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs text-slate-700 font-bold focus:outline-none focus:border-emerald-500"
                   >
                     <option value="All">All Districts</option>
-                    <option value="Amritsar">Amritsar</option>
+                    <option value="Vijayawada">Vijayawada</option>
                     <option value="Mandya">Mandya</option>
                   </select>
                 </div>
@@ -6128,7 +6128,7 @@ State IT Core Node.
                                 </span>
                               </td>
                               <td className="p-4">
-                                <span className="text-slate-600 font-semibold">{log.district || "Amritsar"}</span>
+                                <span className="text-slate-600 font-semibold">{log.district || "Vijayawada"}</span>
                                 <span className="text-slate-300 mx-1">•</span>
                                 <span className="text-slate-500">{log.block || "Harsha Chhina"}</span>
                                 <span className="text-slate-300 mx-1">•</span>
@@ -7008,7 +7008,7 @@ State IT Core Node.
                                       onChange={(e) => setAssignedInspector(e.target.value)}
                                       className="w-full bg-white border border-amber-200 rounded-lg p-2 text-xs font-bold text-slate-800 focus:outline-none"
                                     >
-                                      <option value="Officer Rajesh Sharma (Amritsar North)">Officer Rajesh Sharma (Amritsar North)</option>
+                                      <option value="Officer Rajesh Sharma (Vijayawada North)">Officer Rajesh Sharma (Vijayawada North)</option>
                                       <option value="Officer Gurpreet Kaur (Harsha Chhina Block)">Officer Gurpreet Kaur (Harsha Chhina Block)</option>
                                       <option value="Senior Inspector Amit Patel">Senior Inspector Amit Patel</option>
                                     </select>
@@ -7475,7 +7475,7 @@ State IT Core Node.
                         >
                           <option value="All">All States</option>
                           <option value="All India">All India</option>
-                          <option value="Punjab">Punjab</option>
+                          <option value="Andhra Pradesh">Andhra Pradesh</option>
                           <option value="Haryana">Haryana</option>
                           <option value="Uttar Pradesh">Uttar Pradesh</option>
                           <option value="Bihar">Bihar</option>
@@ -7663,7 +7663,7 @@ State IT Core Node.
                   <div className="pt-2">
                     <button
                       onClick={() => {
-                        const updated = { ...officerProfile, designation: "Block Extension Officer", jurisdiction: "Punjab, Amritsar District, Amritsar Block B" };
+                        const updated = { ...officerProfile, designation: "Block Extension Officer", jurisdiction: "Andhra Pradesh, Krishna District, Vijayawada Block B" };
                         setOfficerProfile(updated);
                         localStorage.setItem("agriconnect_officer_profile", JSON.stringify(updated));
                       }}
@@ -7736,8 +7736,8 @@ State IT Core Node.
                             soilType: f?.soilType || "Alluvial Loam",
                             waterSource: f?.waterSource || "Tubewell",
                             irrigationType: f?.irrigationType || "Sprinkler",
-                            state: f?.state || "Punjab",
-                            district: f?.district || "Amritsar",
+                            state: f?.state || "Andhra Pradesh",
+                            district: f?.district || "Vijayawada",
                             block: f?.block || f?.tehsil || "Chogawan",
                             village: f?.village || "Chogawan",
                             gps: f?.gps || "31.7161° N, 74.6322° E",
@@ -7875,8 +7875,8 @@ State IT Core Node.
                               soilType: f?.soilType || "Alluvial Loam",
                               waterSource: f?.waterSource || "Tubewell",
                               irrigationType: f?.irrigationType || "Sprinkler",
-                              state: f?.state || "Punjab",
-                              district: f?.district || "Amritsar",
+                              state: f?.state || "Andhra Pradesh",
+                              district: f?.district || "Vijayawada",
                               block: f?.block || f?.tehsil || "Chogawan",
                               village: f?.village || "Chogawan",
                               gps: f?.gps || "31.7161° N, 74.6322° E",
@@ -7915,7 +7915,7 @@ State IT Core Node.
                             ? "Eligible: All submitted land registration, bank passbook, and identity records match validation criteria."
                             : "Action Required: One or more submitted documents are marked as pending or rejected.";
 
-                          const areaCheckPassed = farmerDetails.state.toLowerCase() === "punjab" || farmerDetails.state.toLowerCase() === "all india" || true;
+                          const areaCheckPassed = farmerDetails.state.toLowerCase() === "andhra pradesh" || farmerDetails.state.toLowerCase() === "all india" || true;
                           const areaCheckText = `Eligible: Validated address in ${farmerDetails.village}, ${farmerDetails.block} block, ${farmerDetails.district} district matches geographical sanction criteria.`;
 
                           const totalPassedChecks = [landCheckPassed, docCheckPassed, areaCheckPassed].filter(Boolean).length;
@@ -8933,7 +8933,7 @@ State IT Core Node.
               // Helper to find a farmer's district
               const getFarmerDistrict = (farmerName: string): string => {
                 const f = farmers.find(farmer => farmer.name === farmerName);
-                return f ? f.district : "Amritsar";
+                return f ? f.district : "Vijayawada";
               };
 
               // Base constants for the 3 districts
@@ -8944,8 +8944,8 @@ State IT Core Node.
                 subsidies: number;
                 penetration: number;
               }> = {
-                "Amritsar": { farmers: 2450, croppedArea: 42500, production: 63300, subsidies: 34500000, penetration: 78.4 },
-                "Pune": { farmers: 3820, croppedArea: 58000, production: 89400, subsidies: 51200000, penetration: 84.1 },
+                "Vijayawada": { farmers: 2450, croppedArea: 42500, production: 63300, subsidies: 34500000, penetration: 78.4 },
+                "Krishna": { farmers: 3820, croppedArea: 58000, production: 89400, subsidies: 51200000, penetration: 84.1 },
                 "Karnal": { farmers: 1950, croppedArea: 36200, production: 54100, subsidies: 28800000, penetration: 72.9 }
               };
 
@@ -8967,7 +8967,7 @@ State IT Core Node.
                   basePenetrationCount++;
                 });
               } else {
-                const b = districtBaselines[distDashDistrict] || districtBaselines["Amritsar"];
+                const b = districtBaselines[distDashDistrict] || districtBaselines["Vijayawada"];
                 baseFarmers = b.farmers;
                 baseCroppedArea = b.croppedArea;
                 baseProduction = b.production;
@@ -9026,7 +9026,7 @@ State IT Core Node.
 
               // Trend data
               const trendData = (() => {
-                const mult = distDashDistrict === "Amritsar" ? 0.3 : distDashDistrict === "Pune" ? 0.5 : distDashDistrict === "Karnal" ? 0.2 : 1.0;
+                const mult = distDashDistrict === "Vijayawada" ? 0.3 : distDashDistrict === "Krishna" ? 0.5 : distDashDistrict === "Karnal" ? 0.2 : 1.0;
                 const yearLabel = distDashPeriod;
 
                 return [
@@ -9039,7 +9039,7 @@ State IT Core Node.
 
               // Crop Share pie data
               const cropShareData = (() => {
-                if (distDashDistrict === "Amritsar") {
+                if (distDashDistrict === "Vijayawada") {
                   return [
                     { name: "Wheat", value: 45, color: "#eab308" },
                     { name: "Paddy/Basmati", value: 35, color: "#10b981" },
@@ -9047,7 +9047,7 @@ State IT Core Node.
                     { name: "Cotton", value: 6, color: "#ec4899" },
                     { name: "Others", value: 4, color: "#6b7280" },
                   ];
-                } else if (distDashDistrict === "Pune") {
+                } else if (distDashDistrict === "Krishna") {
                   return [
                     { name: "Sugarcane", value: 40, color: "#06b6d4" },
                     { name: "Jowar/Bajra", value: 25, color: "#f97316" },
@@ -9075,7 +9075,7 @@ State IT Core Node.
 
               // Comparison bar data
               const comparisonData = (() => {
-                const mult = distDashDistrict === "Amritsar" ? 0.3 : distDashDistrict === "Pune" ? 0.5 : distDashDistrict === "Karnal" ? 0.2 : 1.0;
+                const mult = distDashDistrict === "Vijayawada" ? 0.3 : distDashDistrict === "Krishna" ? 0.5 : distDashDistrict === "Karnal" ? 0.2 : 1.0;
                 const currentYear = Number(distDashPeriod);
                 
                 return [
@@ -9087,12 +9087,12 @@ State IT Core Node.
 
               // Heatmap data matrix representation
               const heatmapBlocks = [
-                { id: "block1", name: "Verka Block", district: "Amritsar", soilHealth: 8.4, yieldIndex: 9.1, risk: "Low" },
-                { id: "block2", name: "Chogawan Block", district: "Amritsar", soilHealth: 7.2, yieldIndex: 7.8, risk: "Low" },
-                { id: "block3", name: "Majitha Block", district: "Amritsar", soilHealth: 5.8, yieldIndex: 6.2, risk: "Moderate" },
-                { id: "block4", name: "Pune West", district: "Pune", soilHealth: 8.9, yieldIndex: 9.3, risk: "Low" },
-                { id: "block5", name: "Haveli Block", district: "Pune", soilHealth: 6.5, yieldIndex: 7.0, risk: "Moderate" },
-                { id: "block6", name: "Shirur Block", district: "Pune", soilHealth: 4.8, yieldIndex: 5.1, risk: "Critical" },
+                { id: "block1", name: "Verka Block", district: "Vijayawada", soilHealth: 8.4, yieldIndex: 9.1, risk: "Low" },
+                { id: "block2", name: "Chogawan Block", district: "Vijayawada", soilHealth: 7.2, yieldIndex: 7.8, risk: "Low" },
+                { id: "block3", name: "Majitha Block", district: "Vijayawada", soilHealth: 5.8, yieldIndex: 6.2, risk: "Moderate" },
+                { id: "block4", name: "Guntur West", district: "Krishna", soilHealth: 8.9, yieldIndex: 9.3, risk: "Low" },
+                { id: "block5", name: "Haveli Block", district: "Krishna", soilHealth: 6.5, yieldIndex: 7.0, risk: "Moderate" },
+                { id: "block6", name: "Tenali Block", district: "Krishna", soilHealth: 4.8, yieldIndex: 5.1, risk: "Critical" },
                 { id: "block7", name: "Nilokheri Block", district: "Karnal", soilHealth: 8.1, yieldIndex: 8.5, risk: "Low" },
                 { id: "block8", name: "Indri Block", district: "Karnal", soilHealth: 7.5, yieldIndex: 7.9, risk: "Low" },
                 { id: "block9", name: "Assandh Block", district: "Karnal", soilHealth: 5.2, yieldIndex: 5.8, risk: "Moderate" },
@@ -9119,8 +9119,8 @@ State IT Core Node.
                           className="w-full text-xs font-bold bg-slate-50 border border-slate-200 p-2.5 rounded-xl text-slate-700 outline-none focus:bg-white cursor-pointer transition-all shadow-sm"
                         >
                           <option value="All">All Districts</option>
-                          <option value="Amritsar">Amritsar (Punjab)</option>
-                          <option value="Pune">Pune (Maharashtra)</option>
+                          <option value="Vijayawada">Vijayawada (Andhra Pradesh)</option>
+                          <option value="Krishna">Krishna (Maharashtra)</option>
                           <option value="Karnal">Karnal (Haryana)</option>
                         </select>
                       </div>
@@ -10211,10 +10211,10 @@ State IT Core Node.
 
                             // Define SVG shapes for 6 organic polygon segments
                             const shapes = [
-                              "M 25 25 L 185 25 L 175 115 L 25 115 Z",       // 0: Amritsar North
-                              "M 195 25 L 375 25 L 375 115 L 185 115 Z",     // 1: Amritsar West
-                              "M 25 125 L 165 125 L 155 205 L 25 205 Z",     // 2: Pune West
-                              "M 175 125 L 375 125 L 375 205 L 165 205 Z",   // 3: Pune East
+                              "M 25 25 L 185 25 L 175 115 L 25 115 Z",       // 0: Vijayawada North
+                              "M 195 25 L 375 25 L 375 115 L 185 115 Z",     // 1: Vijayawada West
+                              "M 25 125 L 165 125 L 155 205 L 25 205 Z",     // 2: Guntur West
+                              "M 175 125 L 375 125 L 375 205 L 165 205 Z",   // 3: Krishna East
                               "M 25 215 L 205 215 L 195 275 L 25 275 Z",     // 4: Karnal Central
                               "M 215 215 L 375 215 L 375 275 L 205 275 Z"      // 5: Karnal North
                             ];
@@ -10858,9 +10858,9 @@ State IT Core Node.
                                 }}
                                 className="w-full text-xs font-bold bg-white border border-slate-200 p-2.5 rounded-xl text-slate-700 outline-none focus:border-emerald-500 cursor-pointer shadow-sm"
                               >
-                                <option value="all">All Districts (Amritsar, Pune, Karnal)</option>
-                                <option value="Amritsar">Amritsar Block B</option>
-                                <option value="Pune">Pune Block West</option>
+                                <option value="all">All Districts (Vijayawada, Krishna, Karnal)</option>
+                                <option value="Vijayawada">Vijayawada Block B</option>
+                                <option value="Krishna">Krishna Block West</option>
                                 <option value="Karnal">Karnal Central</option>
                               </select>
                             </div>
@@ -10916,9 +10916,9 @@ State IT Core Node.
                                 }}
                                 className="w-full text-xs font-bold bg-white border border-slate-200 p-2.5 rounded-xl text-slate-700 outline-none focus:border-emerald-500 cursor-pointer shadow-sm"
                               >
-                                <option value="all">All Districts (Amritsar, Pune, Karnal)</option>
-                                <option value="Amritsar">Amritsar</option>
-                                <option value="Pune">Pune</option>
+                                <option value="all">All Districts (Vijayawada, Krishna, Karnal)</option>
+                                <option value="Vijayawada">Vijayawada</option>
+                                <option value="Krishna">Krishna</option>
                                 <option value="Karnal">Karnal</option>
                               </select>
                             </div>
@@ -10935,16 +10935,16 @@ State IT Core Node.
                               className="w-full text-xs font-bold bg-white border border-slate-200 p-2.5 rounded-xl text-slate-700 outline-none focus:border-emerald-500 cursor-pointer shadow-sm"
                             >
                               <option value="all">All Blocks Combined</option>
-                              {customReportDistrict === "Amritsar" && (
+                              {customReportDistrict === "Vijayawada" && (
                                 <>
-                                  <option value="Amritsar-I">Amritsar-I</option>
-                                  <option value="Amritsar-II">Amritsar-II</option>
+                                  <option value="Vijayawada-I">Vijayawada-I</option>
+                                  <option value="Vijayawada-II">Vijayawada-II</option>
                                 </>
                               )}
-                              {customReportDistrict === "Pune" && (
+                              {customReportDistrict === "Krishna" && (
                                 <>
-                                  <option value="Pune-Central">Pune-Central</option>
-                                  <option value="Pune-East">Pune-East</option>
+                                  <option value="Krishna-Central">Krishna-Central</option>
+                                  <option value="Krishna-East">Krishna-East</option>
                                 </>
                               )}
                               {customReportDistrict === "Karnal" && (
@@ -10955,10 +10955,10 @@ State IT Core Node.
                               )}
                               {customReportDistrict === "all" && (
                                 <>
-                                  <option value="Amritsar-I">Amritsar-I</option>
-                                  <option value="Amritsar-II">Amritsar-II</option>
-                                  <option value="Pune-Central">Pune-Central</option>
-                                  <option value="Pune-East">Pune-East</option>
+                                  <option value="Vijayawada-I">Vijayawada-I</option>
+                                  <option value="Vijayawada-II">Vijayawada-II</option>
+                                  <option value="Krishna-Central">Krishna-Central</option>
+                                  <option value="Krishna-East">Krishna-East</option>
                                   <option value="Karnal-Main">Karnal-Main</option>
                                   <option value="Karnal-North">Karnal-North</option>
                                 </>
@@ -10974,10 +10974,10 @@ State IT Core Node.
                               className="w-full text-xs font-bold bg-white border border-slate-200 p-2.5 rounded-xl text-slate-700 outline-none focus:border-emerald-500 cursor-pointer shadow-sm"
                             >
                               <option value="all">All Villages Combined</option>
-                              {customReportBlock === "Amritsar-I" && <option value="Chogawan">Chogawan</option>}
-                              {customReportBlock === "Amritsar-II" && <option value="Rajasansi">Rajasansi</option>}
-                              {customReportBlock === "Pune-Central" && <option value="Haveli">Haveli</option>}
-                              {customReportBlock === "Pune-East" && <option value="Shirur">Shirur</option>}
+                              {customReportBlock === "Vijayawada-I" && <option value="Chogawan">Chogawan</option>}
+                              {customReportBlock === "Vijayawada-II" && <option value="Rajasansi">Rajasansi</option>}
+                              {customReportBlock === "Krishna-Central" && <option value="Haveli">Haveli</option>}
+                              {customReportBlock === "Krishna-East" && <option value="Tenali">Tenali</option>}
                               {customReportBlock === "Karnal-Main" && <option value="Gharaunda">Gharaunda</option>}
                               {customReportBlock === "Karnal-North" && <option value="Indri">Indri</option>}
                               {customReportBlock === "all" && (
@@ -10985,7 +10985,7 @@ State IT Core Node.
                                   <option value="Chogawan">Chogawan</option>
                                   <option value="Rajasansi">Rajasansi</option>
                                   <option value="Haveli">Haveli</option>
-                                  <option value="Shirur">Shirur</option>
+                                  <option value="Tenali">Tenali</option>
                                   <option value="Gharaunda">Gharaunda</option>
                                   <option value="Indri">Indri</option>
                                 </>
@@ -11423,7 +11423,7 @@ State IT Core Node.
                             <div className="relative">
                               <input
                                 type="text"
-                                placeholder="audit-officer@punjab.gov.in, finance@nic.in"
+                                placeholder="audit-officer@andhra pradesh.gov.in, finance@nic.in"
                                 value={newScheduleRecipients}
                                 onChange={(e) => setNewScheduleRecipients(e.target.value)}
                                 className="w-full text-xs font-bold bg-white border border-slate-200 p-2.5 pl-9 rounded-xl text-slate-700 outline-none focus:border-indigo-500 shadow-sm"
@@ -11757,9 +11757,9 @@ State IT Core Node.
                               }}
                               className="w-full text-xs font-bold bg-white border border-slate-200 p-2.5 rounded-xl text-slate-700 outline-none focus:border-emerald-500 cursor-pointer shadow-sm"
                             >
-                              <option value="All">All Districts (Amritsar, Pune, Karnal)</option>
-                              <option value="Amritsar">Amritsar</option>
-                              <option value="Pune">Pune</option>
+                              <option value="All">All Districts (Vijayawada, Krishna, Karnal)</option>
+                              <option value="Vijayawada">Vijayawada</option>
+                              <option value="Krishna">Krishna</option>
                               <option value="Karnal">Karnal</option>
                             </select>
                           </div>
@@ -12103,7 +12103,7 @@ State IT Core Node.
                           <FileDown className="h-4 w-4 text-emerald-600" /> Bulk District Data Export
                         </h4>
                         <p className="text-[10px] text-slate-400 mt-1">
-                          Export all 108 records spanning Amritsar, Pune, and Karnal districts for research or auditing.
+                          Export all 108 records spanning Vijayawada, Krishna, and Karnal districts for research or auditing.
                         </p>
                       </div>
 
@@ -12208,7 +12208,7 @@ State IT Core Node.
                           <input
                             type="text"
                             required
-                            placeholder="e.g. Ludhiana Biotech Labs"
+                            placeholder="e.g. Guntur Biotech Labs"
                             value={newClientName}
                             onChange={(e) => setNewClientName(e.target.value)}
                             className="w-full bg-white border border-slate-200 rounded-lg py-1.5 px-2.5 text-xs text-slate-700 outline-none focus:border-indigo-500 font-bold"
@@ -12397,8 +12397,8 @@ State IT Core Node.
                           className="w-full bg-white border border-slate-200 rounded-lg py-1.5 px-2 text-xs text-slate-700 outline-none font-bold shadow-xs"
                         >
                           <option value="All">All Districts</option>
-                          <option value="Amritsar">Amritsar</option>
-                          <option value="Pune">Pune</option>
+                          <option value="Vijayawada">Vijayawada</option>
+                          <option value="Krishna">Krishna</option>
                           <option value="Karnal">Karnal</option>
                         </select>
                       </div>
@@ -12512,10 +12512,10 @@ State IT Core Node.
               // Local hardcoded dataset matching exact specification details
               const OFFICER_LEADERBOARD = [
                 { name: "Dr. Ananya Sharma", role: "State Agriculture Director", location: "State HQ, Chandigarh", verified: 84 + farmers.filter(f => f.status === "Approved" || f.status === "Rejected").length, processed: 188 + applications.filter(a => a.status === "Approved" || a.status === "Rejected").length, avgTime: 1.8, rating: 4.8, status: "Top Performer" },
-                { name: "Officer Rajesh Sharma", role: "Nodal Inspector", location: "Amritsar North", verified: 142, processed: 295, avgTime: 2.4, rating: 4.6, status: "On Target" },
-                { name: "Officer Sunita Deshmukh", role: "Block Extension Officer", location: "Pune East", verified: 115, processed: 240, avgTime: 3.1, rating: 4.3, status: "Slight Delay" },
+                { name: "Officer Rajesh Sharma", role: "Nodal Inspector", location: "Vijayawada North", verified: 142, processed: 295, avgTime: 2.4, rating: 4.6, status: "On Target" },
+                { name: "Officer Sunita Deshmukh", role: "Block Extension Officer", location: "Krishna East", verified: 115, processed: 240, avgTime: 3.1, rating: 4.3, status: "Slight Delay" },
                 { name: "Officer Harpreet Singh", role: "Agricultural Sub-Inspector", location: "Karnal South", verified: 88, processed: 185, avgTime: 2.1, rating: 4.5, status: "On Target" },
-                { name: "Officer Amit Verma", role: "District Officer", location: "Jalandhar HQ", verified: 176, processed: 388, avgTime: 1.9, rating: 4.7, status: "Top Performer" },
+                { name: "Officer Amit Verma", role: "District Officer", location: "Nellore HQ", verified: 176, processed: 388, avgTime: 1.9, rating: 4.7, status: "Top Performer" },
               ];
 
               const districtData: Record<string, {
@@ -12567,7 +12567,7 @@ State IT Core Node.
                     ]
                   }
                 },
-                Amritsar: {
+                Vijayawada: {
                   cropYield: [
                     { crop: "Wheat", districtYield: 2.3, stateAvg: 2.1 },
                     { crop: "Rice", districtYield: 2.1, stateAvg: 1.9 },
@@ -12603,7 +12603,7 @@ State IT Core Node.
                     ]
                   }
                 },
-                Pune: {
+                Krishna: {
                   cropYield: [
                     { crop: "Wheat", districtYield: 2.0, stateAvg: 2.1 },
                     { crop: "Rice", districtYield: 1.8, stateAvg: 1.9 },
@@ -12732,8 +12732,8 @@ State IT Core Node.
                           className="bg-slate-50 border border-slate-200 rounded-lg py-1 px-2.5 text-xs text-slate-700 outline-none font-bold"
                         >
                           <option value="All">All Districts</option>
-                          <option value="Amritsar">Amritsar (Punjab)</option>
-                          <option value="Pune">Pune (Maharashtra)</option>
+                          <option value="Vijayawada">Vijayawada (Andhra Pradesh)</option>
+                          <option value="Krishna">Krishna (Maharashtra)</option>
                           <option value="Karnal">Karnal (Haryana)</option>
                         </select>
                       </div>
@@ -13000,7 +13000,7 @@ State IT Core Node.
                             </div>
 
                             <p className="text-[9px] text-slate-500 font-medium leading-relaxed bg-white p-2.5 rounded-lg border border-slate-100">
-                              💡 <strong>Acreage Yield Insight:</strong> {perfDistrict === "Pune" ? "Sugarcane and Maize output levels are 12.1% and 27.0% respectively above the benchmark average." : "Wheat and Rice yields are on par or higher than average baseline models due to high alluvial soil quality indices."}
+                              💡 <strong>Acreage Yield Insight:</strong> {perfDistrict === "Krishna" ? "Sugarcane and Maize output levels are 12.1% and 27.0% respectively above the benchmark average." : "Wheat and Rice yields are on par or higher than average baseline models due to high alluvial soil quality indices."}
                             </p>
                           </div>
 
@@ -13193,7 +13193,7 @@ State IT Core Node.
               <div className="pt-2">
                 <button
                   onClick={() => {
-                    const updated = { ...officerProfile, designation: "State Agriculture Director", jurisdiction: "Punjab State HQ, Chandigarh" };
+                    const updated = { ...officerProfile, designation: "State Agriculture Director", jurisdiction: "Andhra Pradesh State HQ, Amaravati" };
                     setOfficerProfile(updated);
                     localStorage.setItem("agriconnect_officer_profile", JSON.stringify(updated));
                   }}
@@ -13381,8 +13381,8 @@ State IT Core Node.
                           className="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 font-bold focus:outline-none focus:bg-white"
                         >
                           <option value="All">All Districts</option>
-                          <option value="Amritsar">Amritsar</option>
-                          <option value="Pune">Pune</option>
+                          <option value="Vijayawada">Vijayawada</option>
+                          <option value="Krishna">Krishna</option>
                           <option value="Karnal">Karnal</option>
                         </select>
                       </div>
@@ -13420,7 +13420,7 @@ State IT Core Node.
                             {
                               type: "Drought" as const,
                               severity: "Critical" as const,
-                              district: "Pune",
+                              district: "Krishna",
                               block: "Indapur Block",
                               farmersAffected: 1950,
                               source: "IMD (India Meteorological Department)" as const,
@@ -13429,7 +13429,7 @@ State IT Core Node.
                             {
                               type: "Flood" as const,
                               severity: "Critical" as const,
-                              district: "Amritsar",
+                              district: "Vijayawada",
                               block: "Ajnala Block",
                               farmersAffected: 2800,
                               source: "IMD (India Meteorological Department)" as const,
@@ -13744,8 +13744,8 @@ State IT Core Node.
                               }}
                               className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-800 font-bold focus:outline-none focus:bg-white focus:border-red-500"
                             >
-                              <option value="Amritsar">Amritsar</option>
-                              <option value="Pune">Pune</option>
+                              <option value="Vijayawada">Vijayawada</option>
+                              <option value="Krishna">Krishna</option>
                               <option value="Karnal">Karnal</option>
                             </select>
                           </div>
@@ -14396,8 +14396,8 @@ State IT Core Node.
                                   }}
                                   className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-800 font-bold focus:outline-none"
                                 >
-                                  <option value="Amritsar">Amritsar</option>
-                                  <option value="Pune">Pune</option>
+                                  <option value="Vijayawada">Vijayawada</option>
+                                  <option value="Krishna">Krishna</option>
                                   <option value="Karnal">Karnal</option>
                                 </select>
                               </div>
@@ -14905,7 +14905,7 @@ State IT Core Node.
                               </thead>
                               <tbody className="divide-y text-[11px] text-slate-600">
                                 <tr className="hover:bg-slate-50/50">
-                                  <td className="py-2.5 font-bold text-slate-800">Amritsar / Verka Block</td>
+                                  <td className="py-2.5 font-bold text-slate-800">Vijayawada / Verka Block</td>
                                   <td className="py-2.5">950 Hectares</td>
                                   <td className="py-2.5">420 Farmers</td>
                                   <td className="py-2.5 text-red-600 font-black">62%</td>
@@ -14919,7 +14919,7 @@ State IT Core Node.
                                   <td className="py-2.5 text-right font-extrabold text-slate-800">₹32,00,000</td>
                                 </tr>
                                 <tr className="hover:bg-slate-50/50">
-                                  <td className="py-2.5 font-bold text-slate-800">Amritsar / Block B</td>
+                                  <td className="py-2.5 font-bold text-slate-800">Vijayawada / Block B</td>
                                   <td className="py-2.5">1,420 Hectares</td>
                                   <td className="py-2.5">750 Farmers</td>
                                   <td className="py-2.5 text-red-600 font-black">84%</td>
@@ -15366,7 +15366,7 @@ Signed,
                               State Disaster Relief Fund (SDRF) Audit & Allocation
                             </h1>
                             <p className="text-[9px] font-sans text-slate-400 font-bold">
-                              Commission of Agricultural Calamity Control • Government of Punjab / Haryana Secretariat
+                              Commission of Agricultural Calamity Control • Government of Andhra Pradesh / Haryana Secretariat
                             </p>
                           </div>
 
@@ -15504,7 +15504,7 @@ Signed,
                       <h2 className="text-base font-black uppercase tracking-wider">Unseasonal Rainfall Damage Relief Board</h2>
                     </div>
                     <p className="text-xs text-red-100 max-w-2xl leading-relaxed">
-                      Emergency activation for farmers affected by unseasonal monsoonal downpours in Amritsar and surrounding agricultural blocks. Deployed drones and extension services are tracking real-time damage logs to unlock immediate crop insurance claims.
+                      Emergency activation for farmers affected by unseasonal monsoonal downpours in Vijayawada and surrounding agricultural blocks. Deployed drones and extension services are tracking real-time damage logs to unlock immediate crop insurance claims.
                     </p>
                   </div>
 
@@ -15519,7 +15519,7 @@ Signed,
                       <div className="space-y-3">
                         <div className="p-3 bg-red-50 border border-red-150 rounded-xl space-y-1">
                           <div className="flex justify-between items-center text-xs font-black text-red-800">
-                            <span>Amritsar Block B</span>
+                            <span>Vijayawada Block B</span>
                             <span>Critical</span>
                           </div>
                           <div className="w-full bg-red-200 h-1 rounded-full overflow-hidden">
@@ -15829,7 +15829,7 @@ Signed,
                   <div className="bg-white rounded-3xl p-5 border border-slate-200/80 shadow-3xs">
                     <h3 className="text-xs font-black uppercase text-slate-700 tracking-wider mb-2">Regional Insights</h3>
                     <p className="text-[11px] text-slate-500 leading-relaxed font-semibold">
-                      Soil moisture across <strong className="text-slate-700 font-bold">Pune West Block</strong> is currently at <strong className="text-emerald-700 font-bold">48%</strong>, which is optimal for Rabi crop sowing preparations. Nitrate values indicate minor deficiency in sandy regions.
+                      Soil moisture across <strong className="text-slate-700 font-bold">Guntur West Block</strong> is currently at <strong className="text-emerald-700 font-bold">48%</strong>, which is optimal for Rabi crop sowing preparations. Nitrate values indicate minor deficiency in sandy regions.
                     </p>
                   </div>
                 </div>
@@ -15852,8 +15852,8 @@ Signed,
                           onChange={(e) => setPredDistrict(e.target.value)}
                           className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-700 focus:outline-none focus:bg-white focus:border-emerald-600 font-bold"
                         >
-                          <option value="Pune">Pune</option>
-                          <option value="Amritsar">Amritsar</option>
+                          <option value="Krishna">Krishna</option>
+                          <option value="Vijayawada">Vijayawada</option>
                           <option value="Karnal">Karnal</option>
                           <option value="Nagpur">Nagpur</option>
                         </select>
@@ -16300,9 +16300,9 @@ Signed,
                         onChange={(e) => setDisZone(e.target.value)}
                         className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-700 focus:outline-none focus:bg-white focus:border-emerald-600 font-bold"
                       >
-                        <option value="Pune District West">Pune District West (Maval Block)</option>
-                        <option value="Pune District East">Pune District East (Daund Block)</option>
-                        <option value="Pune District South">Pune District South (Bhor Block)</option>
+                        <option value="Krishna District West">Krishna District West (Maval Block)</option>
+                        <option value="Krishna District East">Krishna District East (Daund Block)</option>
+                        <option value="Krishna District South">Krishna District South (Bhor Block)</option>
                         <option value="Nagpur Rural">Nagpur Rural Block</option>
                       </select>
                     </div>
@@ -16913,7 +16913,7 @@ Signed,
                     {[
                       {
                         title: "Farmers List",
-                        desc: "Export active Pune District farmer registrations with land telemetry and verification logs",
+                        desc: "Export active Krishna District farmer registrations with land telemetry and verification logs",
                         filenameCsv: "Pune_Farmers_List_2026.csv",
                         filenameExcel: "Pune_Farmers_List_2026.xls",
                         headers: ["Farmer ID", "Full Name", "Aadhaar Status", "Total Acreage", "Primary Crop", "Registration Date"],
@@ -16947,8 +16947,8 @@ Signed,
                         filenameExcel: "Crop_Production_Data_2026.xls",
                         headers: ["Grid Year", "Block Name", "Crop Name", "Acreage", "Output (Tons)", "Yield / Acre"],
                         data: [
-                          ["2024", "Pune West Block", "Wheat", "15000", "32000", "2.13"],
-                          ["2024", "Pune East Block", "Rice", "22000", "48000", "2.18"],
+                          ["2024", "Guntur West Block", "Wheat", "15000", "32000", "2.13"],
+                          ["2024", "Krishna East Block", "Rice", "22000", "48000", "2.18"],
                           ["2025", "Haveli Block", "Basmati Rice", "18500", "41200", "2.22"]
                         ],
                         formats: ["csv", "excel"]
@@ -17037,7 +17037,7 @@ Signed,
                                           </tbody>
                                         </table>
                                         <div class="footer">
-                                          Generated automatically by Dr. Ananya Sharma (District Agriculture Officer, Pune, Maharashtra) on ${new Date().toLocaleDateString()}. Confidential State Document.
+                                          Generated automatically by Dr. Ananya Sharma (District Agriculture Officer, Krishna, Maharashtra) on ${new Date().toLocaleDateString()}. Confidential State Document.
                                         </div>
                                         <script>
                                           window.onload = function() {

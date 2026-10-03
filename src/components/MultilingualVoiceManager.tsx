@@ -408,11 +408,11 @@ export default function MultilingualVoiceManager({
 
     const DATABASE = [
       // Farmers
-      { name: "Amir Patel", category: "Farmer", description: "Registered organic farmer in Pune block. Manages 5.2 acres of Certified Organic Basmati Rice and high-yield pulses." },
-      { name: "Vikram Singh", category: "Farmer", description: "Progressive grain cultivator in Ludhiana block. Manages 12 acres of hybrid wheat and maize crops under precision drip systems." },
+      { name: "Amir Patel", category: "Farmer", description: "Registered organic farmer in Krishna block. Manages 5.2 acres of Certified Organic Basmati Rice and high-yield pulses." },
+      { name: "Vikram Singh", category: "Farmer", description: "Progressive grain cultivator in Guntur block. Manages 12 acres of hybrid wheat and maize crops under precision drip systems." },
       { name: "Rajesh Grewal", category: "Farmer", description: "Smallholder farmer enrolled in solar well programs. Active credit record with 740 score." },
       { name: "Siddharth Roy", category: "Farmer", description: "Horticulture specialist using real-time IoT N-P-K soil sensors and remote drone spray logs." },
-      { name: "Lalita Bai", category: "Farmer", description: "Organic tomato cultivator in Purandar Block. Features 3.5 acres of certified drip irrigated vegetable plots." },
+      { name: "Lalita Bai", category: "Farmer", description: "Organic tomato cultivator in Bapatla Block. Features 3.5 acres of certified drip irrigated vegetable plots." },
       { name: "Gurpreet Singh", category: "Farmer", description: "Sustainable agriculture advocate. Runs basmati rice blocks with sub-surface watering under drought intervals." },
 
       // Schemes
@@ -426,7 +426,7 @@ export default function MultilingualVoiceManager({
       // Reports
       { name: "Monthly Agricultural Executive Briefing", category: "Report", description: "Briefing generated for the Agriculture Minister: Crop Health Index is 84%, total DBT disbursed is ₹24.2 Cr, solar installs at 92%." },
       { name: "Crop Yield Projection Report", category: "Report", description: "Granular district crop performance data: Basmati Rice yields 3.6 tons/acre, Wheat yields 2.8 tons/acre. Stable 4.2% YoY increase." },
-      { name: "Disaster Assistance Block Allocation Report", category: "Report", description: "Damage loss report: Pune West block requires ₹18.5 Crores, Shirur block needs ₹8.2 Cr, Purandar block requires ₹4.1 Cr." },
+      { name: "Disaster Assistance Block Allocation Report", category: "Report", description: "Damage loss report: Guntur West block requires ₹18.5 Crores, Tenali block needs ₹8.2 Cr, Bapatla block requires ₹4.1 Cr." },
       { name: "Soil Health Card Matrix Report", category: "Report", description: "Comprehensive laboratory soil summary: District average pH is 6.4, moisture is 42%, N-P-K balance is stable." },
       { name: "Crop Diagnostics Summary Report", category: "Report", description: "AI image pathology report: Tomato Early Blight verified at 94% confidence, Rice Bacterial Leaf Streak at 88%." },
 

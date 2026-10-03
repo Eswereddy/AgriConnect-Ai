@@ -41,7 +41,7 @@ const API_KEY =
   "";
 const hasValidKey = Boolean(API_KEY) && API_KEY !== "YOUR_API_KEY" && API_KEY.length > 10;
 
-// --- DEMO VILLAGES DATA (Amritsar District, Punjab) ---
+// --- DEMO VILLAGES DATA (Krishna District, Andhra Pradesh) ---
 interface Village {
   id: string;
   name: string;
@@ -72,8 +72,8 @@ const VILLAGES_DATA: Village[] = [
     id: "v1",
     name: "Rajasansi",
     block: "Harsha Chhina",
-    lat: 31.7086,
-    lng: 74.7981,
+    lat: 16.5286,
+    lng: 80.6258,
     svgX: 180,
     svgY: 160,
     cropHealth: "Green",
@@ -91,8 +91,8 @@ const VILLAGES_DATA: Village[] = [
     id: "v2",
     name: "Ajnala",
     block: "Ajnala",
-    lat: 31.8415,
-    lng: 74.7618,
+    lat: 16.5684,
+    lng: 80.6149,
     svgX: 150,
     svgY: 80,
     cropHealth: "Yellow",
@@ -115,8 +115,8 @@ const VILLAGES_DATA: Village[] = [
     id: "v3",
     name: "Chogawan",
     block: "Chogawan",
-    lat: 31.7161,
-    lng: 74.6322,
+    lat: 16.5308,
+    lng: 80.5761,
     svgX: 80,
     svgY: 180,
     cropHealth: "Red",
@@ -139,8 +139,8 @@ const VILLAGES_DATA: Village[] = [
     id: "v4",
     name: "Majitha",
     block: "Majitha",
-    lat: 31.7611,
-    lng: 74.9542,
+    lat: 16.5443,
+    lng: 80.6727,
     svgX: 280,
     svgY: 130,
     cropHealth: "Green",
@@ -158,8 +158,8 @@ const VILLAGES_DATA: Village[] = [
     id: "v5",
     name: "Jandiala Guru",
     block: "Jandiala",
-    lat: 31.5645,
-    lng: 74.9815,
+    lat: 16.4854,
+    lng: 80.6808,
     svgX: 300,
     svgY: 260,
     cropHealth: "Yellow",
@@ -177,8 +177,8 @@ const VILLAGES_DATA: Village[] = [
     id: "v6",
     name: "Baba Bakala",
     block: "Rayya",
-    lat: 31.5583,
-    lng: 75.2635,
+    lat: 16.4835,
+    lng: 80.7654,
     svgX: 420,
     svgY: 270,
     cropHealth: "Green",
@@ -196,8 +196,8 @@ const VILLAGES_DATA: Village[] = [
     id: "v7",
     name: "Attari",
     block: "Gandiwind",
-    lat: 31.5975,
-    lng: 74.6125,
+    lat: 16.4952,
+    lng: 80.5701,
     svgX: 70,
     svgY: 240,
     cropHealth: "Red",
@@ -323,7 +323,7 @@ export default function GovernmentMapView({
         <div className="space-y-1">
           <h2 className="text-sm font-black uppercase text-slate-800 tracking-wider flex items-center gap-1.5">
             <MapIcon className="h-4.5 w-4.5 text-emerald-700" />
-            Amritsar District Command Map
+            Krishna District Command Map
           </h2>
           <p className="text-[11px] text-slate-500">
             Real-time multispectral satellite telemetry, welfare distribution, and disaster coordination.
@@ -447,7 +447,7 @@ export default function GovernmentMapView({
                   viewBox="0 0 500 380"
                   className="w-full max-w-[500px] aspect-[500/380] relative z-10 filter drop-shadow-2xl"
                 >
-                  {/* Outer District Boundaries (Amritsar Mock Path) */}
+                  {/* Outer District Boundaries (Vijayawada Mock Path) */}
                   <path
                     d="M 120 40 Q 220 20 320 60 T 460 160 Q 480 260 410 320 T 260 360 Q 150 350 80 280 T 50 140 Z"
                     fill="#022c22"
@@ -603,7 +603,7 @@ export default function GovernmentMapView({
 
                 {/* Satellite Coordinate Box */}
                 <div className="absolute top-14 right-3 font-mono text-[8px] text-emerald-400 bg-slate-950/80 px-2.5 py-1 rounded-md border border-emerald-900/30">
-                  SAT_ALT: 320km | LAT: 31.6340 | LNG: 74.8723
+                  SAT_ALT: 320km | LAT: 16.5062 | LNG: 80.6480
                 </div>
               </div>
             ) : (
@@ -611,7 +611,7 @@ export default function GovernmentMapView({
               <div className="w-full h-full min-h-[480px]">
                 <APIProvider apiKey={API_KEY} version="weekly">
                   <Map
-                    defaultCenter={{ lat: 31.7, lng: 74.85 }}
+                    defaultCenter={{ lat: 16.5260, lng: 80.6414 }}
                     defaultZoom={10.5}
                     mapId="DEMO_MAP_ID"
                     internalUsageAttributionIds={["gmp_mcp_codeassist_v1_aistudio"]}
@@ -676,7 +676,7 @@ export default function GovernmentMapView({
                 <div>
                   <h3 className="text-lg font-black tracking-tight">{selectedVillage.name} Village</h3>
                   <p className="text-[11px] text-slate-300">
-                    Jurisdiction: {selectedVillage.block} Block, Amritsar
+                    Jurisdiction: {selectedVillage.block} Block, Vijayawada
                   </p>
                 </div>
                 <div className="flex items-center gap-2 text-[10px] text-slate-400 pt-1">

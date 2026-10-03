@@ -66,7 +66,7 @@ export default function ReturnsRefundsManager({
         id: "RET-2941",
         orderId: "ORD-9839",
         buyerName: "Devendra Singh",
-        buyerCompany: "Bhatinda Cooperative Society",
+        buyerCompany: "Kurnool Cooperative Society",
         reason: "Ordered 50 compost bags, but received 25 bags of alternative brand showing higher sulfur contents which is unsafe for our test crops.",
         proofImage: "https://images.unsplash.com/photo-1595113316349-9fa4ee24f884?auto=format&fit=crop&q=80&w=600",
         status: "Approved",

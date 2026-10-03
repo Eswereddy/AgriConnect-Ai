@@ -114,10 +114,10 @@ interface FarmerPerformanceDashboardProps {
 
 // Fallback Mock Data in case props are absent
 const FALLBACK_FARM: FarmLocation = {
-  id: "farm-punjab-1",
-  name: "Punjab Sovereign Wheat Core",
+  id: "farm-andhra pradesh-1",
+  name: "Andhra Pradesh Sovereign Wheat Core",
   role: "Lead Cultivator",
-  location: "Jalandhar Bypass, Punjab",
+  location: "Nellore Bypass, Andhra Pradesh",
   totalAcreage: 12.4,
   soilType: "Clay Loam",
   organicMatter: 2.8,
@@ -146,9 +146,9 @@ const FALLBACK_ACTIVITIES: FarmActivity[] = [
 ];
 
 const FALLBACK_TASKS: FarmTask[] = [
-  { id: "task-1", farmId: "farm-punjab-1", title: "Apply nitrogen fertilizer", category: "Nutrients", priority: "High", dueDate: "2026-07-02", isCompleted: true },
-  { id: "task-2", farmId: "farm-punjab-1", title: "Weed Sector Gamma edge", category: "Weeding", priority: "Medium", dueDate: "2026-07-04", isCompleted: false },
-  { id: "task-3", farmId: "farm-punjab-1", title: "Clear primary canal mesh filter", category: "Irrigation", priority: "Low", dueDate: "2026-07-06", isCompleted: false }
+  { id: "task-1", farmId: "farm-andhra pradesh-1", title: "Apply nitrogen fertilizer", category: "Nutrients", priority: "High", dueDate: "2026-07-02", isCompleted: true },
+  { id: "task-2", farmId: "farm-andhra pradesh-1", title: "Weed Sector Gamma edge", category: "Weeding", priority: "Medium", dueDate: "2026-07-04", isCompleted: false },
+  { id: "task-3", farmId: "farm-andhra pradesh-1", title: "Clear primary canal mesh filter", category: "Irrigation", priority: "Low", dueDate: "2026-07-06", isCompleted: false }
 ];
 
 const YoY_PROFIT_DATA = [
@@ -1418,7 +1418,7 @@ export default function FarmerPerformanceDashboard({
           <div className="bg-slate-50 border border-slate-100 rounded-xl p-3.5 flex gap-2.5 items-start">
             <Info className="h-4.5 w-4.5 text-indigo-500 shrink-0 mt-0.5" />
             <div className="text-[11px] leading-relaxed text-slate-500 font-medium">
-              Diagnostic advisories are compiled by synthesizing the Amritsar central soil-pH matrix, regional ground-truth moisture tensiometers, and micro-climate forecasting. Always verify physical crop conditions before initiating large-scale operations.
+              Diagnostic advisories are compiled by synthesizing the Vijayawada central soil-pH matrix, regional ground-truth moisture tensiometers, and micro-climate forecasting. Always verify physical crop conditions before initiating large-scale operations.
             </div>
           </div>
         </div>

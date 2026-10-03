@@ -220,11 +220,11 @@ export default function BuyerAIChatAssistant() {
       const queryLower = messageText.toLowerCase();
 
       if (queryLower.includes("crop") || queryLower.includes("value") || queryLower.includes("best")) {
-        fallbackText += "\n\n🌾 **Best Value Crops Right Now:**\n- **Premium Basmati Rice (Grade-A)**: Trading at ₹65,000/Ton in Punjab. Yield trends show strong international demand.\n- **Sugarcane (Co-0238)**: Strong price support with local government MSP index at ₹3,400/Ton.\n- **Durum Wheat**: Prices are dipping slightly, presenting an excellent accumulation window.";
+        fallbackText += "\n\n🌾 **Best Value Crops Right Now:**\n- **Premium Basmati Rice (Grade-A)**: Trading at ₹65,000/Ton in Andhra Pradesh. Yield trends show strong international demand.\n- **Sugarcane (Co-0238)**: Strong price support with local government MSP index at ₹3,400/Ton.\n- **Durum Wheat**: Prices are dipping slightly, presenting an excellent accumulation window.";
       } else if (queryLower.includes("wheat") || queryLower.includes("lowest")) {
         fallbackText += "\n\n📉 **Wheat Purchase Window:**\nOur machine-learning models predict Wheat (HD-2967) prices will hit their seasonal low in mid-August (forecasted dip to ₹21,500/Ton) due to sudden bumper supply arriving from Karnal/Rohtak warehouses. Accumulating now carries a 15% price premium over August futures.";
       } else if (queryLower.includes("farmer") || queryLower.includes("rice")) {
-        fallbackText += "\n\n⭐ **Premium Quality Farmers (Punjab & Haryana):**\n- **Sardara Singh Sandhu** (Gurdaspur Mandi): Grade-A Basmati Rice with pristine grain geometry (average length 8.2mm, moisture 12.8%).\n- **Ramesh Patel** (Karnal Co-op): High density organic Basmati, fully tested with certified heavy metal and pesticide residue compliance sheets.";
+        fallbackText += "\n\n⭐ **Premium Quality Farmers (Andhra Pradesh & Haryana):**\n- **Sardara Singh Sandhu** (Machilipatnam Mandi): Grade-A Basmati Rice with pristine grain geometry (average length 8.2mm, moisture 12.8%).\n- **Ramesh Patel** (Karnal Co-op): High density organic Basmati, fully tested with certified heavy metal and pesticide residue compliance sheets.";
       } else if (queryLower.includes("sugarcane") || queryLower.includes("trend")) {
         fallbackText += "\n\n📈 **Sugarcane Market Trend:**\nSugarcane demand is rising by 6.2% month-on-month driven by high ethanol blending limits mandated in the regional biofuel corridors. Current MSP is highly protected. It is recommended to lock in 3-month supply forward contracts immediately to hedge against rising mill transport tariffs.";
       } else if (queryLower.includes("verify") || queryLower.includes("quality")) {

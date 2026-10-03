@@ -210,7 +210,7 @@ const INITIAL_ROUTES: LogisticsRoute[] = [
     driverName: "Aarav Sharma",
     cargo: "Premium Basmati Rice Lot-4",
     weight: 4200,
-    origin: "Punjab Agrifarm Hub",
+    origin: "Andhra Pradesh Agrifarm Hub",
     destination: "Silo Terminal 4B",
     tempCelsius: 4.2,
     status: "In Transit",
@@ -329,7 +329,7 @@ const INITIAL_WORKSHOPS: FieldWorkshop[] = [
   {
     id: "ws-1",
     title: "Sustainable Vermicomposting and Soil Microbiology",
-    location: "Punjab Central Cooperative Hub",
+    location: "Andhra Pradesh Central Cooperative Hub",
     date: "2026-07-02",
     attendeesCount: 0,
     status: "Scheduled",

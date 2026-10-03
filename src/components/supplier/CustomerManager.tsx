@@ -142,12 +142,12 @@ const INITIAL_CUSTOMERS: Customer[] = [
   {
     id: "CUST-002",
     name: "Devendra Singh",
-    company: "Bhatinda Cooperative Society",
-    location: "Bhatinda, Punjab",
-    address: "Grain Mandi Yard, Block B, Bhatinda, Punjab - 151001",
+    company: "Kurnool Cooperative Society",
+    location: "Kurnool, Andhra Pradesh",
+    address: "Grain Mandi Yard, Block B, Kurnool, Andhra Pradesh - 151001",
     gstNumber: "03AAACB7450K2Z8",
     mobile: "+91 99123-45678",
-    email: "devendra.singh@punjabcoop.org",
+    email: "devendra.singh@apcoop.org",
     baseOrders: 8,
     baseSpent: 74500,
     baseRating: 4.7,
@@ -2853,7 +2853,7 @@ export default function CustomerManager({ orders, onClose }: CustomerManagerProp
             <div className="space-y-2.5 text-xs font-bold text-slate-700">
               <div className="flex items-center justify-between">
                 <span className="text-slate-500 font-semibold">Top Acquisition Region:</span>
-                <span className="font-extrabold text-slate-800">Haryana & Punjab</span>
+                <span className="font-extrabold text-slate-800">Haryana & Andhra Pradesh</span>
               </div>
               <div className="flex items-center justify-between border-t border-slate-200/40 pt-2">
                 <span className="text-slate-500 font-semibold">Reorder Health Index:</span>

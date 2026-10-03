@@ -38,10 +38,10 @@ export default function FarmerProfileSettings() {
   // Profile State
   const [profile, setProfile] = useState<ProfileData>({
     name: "Jasbir Singh Dhillon",
-    email: "jasbir.dhillon@punjabcoop.org",
+    email: "jasbir.dhillon@apcoop.org",
     phone: "+91 98765-43210",
     experience: "18 Years",
-    location: "Jalandhar Outskirts, Punjab",
+    location: "Nellore Outskirts, Andhra Pradesh",
     photoUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80",
     aadhaar: "5421-8902-3112",
     dob: "1983-08-14",
@@ -92,16 +92,16 @@ export default function FarmerProfileSettings() {
 
   // Active Sessions Mock Data
   const [activeSessions, setActiveSessions] = useState([
-    { id: 1, device: "Samsung Galaxy F23 5G", ip: "192.168.1.105", location: "Jalandhar, India", status: "Active Now", icon: Smartphone },
-    { id: 2, device: "Chrome 125 (Windows PC)", ip: "103.45.201.88", location: "Ludhiana, India", status: "Active 4 hours ago", icon: Globe }
+    { id: 1, device: "Samsung Galaxy F23 5G", ip: "192.168.1.105", location: "Nellore, India", status: "Active Now", icon: Smartphone },
+    { id: 2, device: "Chrome 125 (Windows PC)", ip: "103.45.201.88", location: "Guntur, India", status: "Active 4 hours ago", icon: Globe }
   ]);
 
   // Login History Mock Data with device
   const loginHistory = [
-    { timestamp: "2026-07-04 08:30:12", action: "Authorized Login", ip: "192.168.1.105", location: "Jalandhar, India", device: "Samsung Galaxy F23 5G" },
-    { timestamp: "2026-07-03 14:15:45", action: "Profile Updated", ip: "192.168.1.105", location: "Jalandhar, India", device: "Chrome 125 (Windows PC)" },
-    { timestamp: "2026-07-02 09:05:11", action: "Authorized Login", ip: "103.45.201.88", location: "Ludhiana, India", device: "Samsung Galaxy F23 5G" },
-    { timestamp: "2026-07-01 18:22:30", action: "2FA Code Verified", ip: "192.168.1.105", location: "Jalandhar, India", device: "Chrome 125 (Windows PC)" }
+    { timestamp: "2026-07-04 08:30:12", action: "Authorized Login", ip: "192.168.1.105", location: "Nellore, India", device: "Samsung Galaxy F23 5G" },
+    { timestamp: "2026-07-03 14:15:45", action: "Profile Updated", ip: "192.168.1.105", location: "Nellore, India", device: "Chrome 125 (Windows PC)" },
+    { timestamp: "2026-07-02 09:05:11", action: "Authorized Login", ip: "103.45.201.88", location: "Guntur, India", device: "Samsung Galaxy F23 5G" },
+    { timestamp: "2026-07-01 18:22:30", action: "2FA Code Verified", ip: "192.168.1.105", location: "Nellore, India", device: "Chrome 125 (Windows PC)" }
   ];
 
   // Photo Upload Handler (simulated)

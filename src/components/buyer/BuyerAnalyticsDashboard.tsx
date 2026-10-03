@@ -182,7 +182,7 @@ const RECOMMENDED_CROPS = [
 const INITIAL_UPCOMING_HARVESTS = [
   { id: "HARV-221", crop: "Non-GMO Feed Corn", region: "Karnal, Haryana", volume: "45 Tons", date: "In 3 Days (Jul 11)", preOrderPrice: "₹18,500/MT", farmer: "Harpreet Singh", status: "Available" },
   { id: "HARV-304", crop: "Arabica Coffee Beans", region: "Chikmagalur, Karnataka", volume: "12 Tons", date: "In 5 Days (Jul 13)", preOrderPrice: "₹1,65,000/MT", farmer: "Ramesh Gowda", status: "Available" },
-  { id: "HARV-187", crop: "Basmati Rice (Pusa 1121)", region: "Gurdaspur, Punjab", volume: "80 Tons", date: "In 6 Days (Jul 14)", preOrderPrice: "₹61,000/MT", farmer: "Baldev Dhillon", status: "Available" }
+  { id: "HARV-187", crop: "Basmati Rice (Pusa 1121)", region: "Machilipatnam, Andhra Pradesh", volume: "80 Tons", date: "In 6 Days (Jul 14)", preOrderPrice: "₹61,000/MT", farmer: "Baldev Dhillon", status: "Available" }
 ];
 
 export default function BuyerAnalyticsDashboard() {
@@ -719,7 +719,7 @@ export default function BuyerAnalyticsDashboard() {
                       <span className="text-[9px] font-black uppercase tracking-wider text-amber-400">Logistics Arbitrage Alert</span>
                     </div>
                     <p className="text-[10px] text-slate-300 leading-normal font-medium">
-                      Logistics currently accounts for <span className="text-teal-300 font-bold">18.1% of cumulative spend</span>. High empty-mileage fees observed on Gurdaspur-Delhi routes. Consolidating shipments into 40-ton bulk flats will trim freight outlays by <span className="text-teal-300 font-bold">₹38,000</span>.
+                      Logistics currently accounts for <span className="text-teal-300 font-bold">18.1% of cumulative spend</span>. High empty-mileage fees observed on Machilipatnam-Delhi routes. Consolidating shipments into 40-ton bulk flats will trim freight outlays by <span className="text-teal-300 font-bold">₹38,000</span>.
                     </p>
                   </div>
 

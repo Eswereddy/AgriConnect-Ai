@@ -54,7 +54,7 @@ interface AgriculturalForecastWidgetProps {
 }
 
 export const AgriculturalForecastWidget: React.FC<AgriculturalForecastWidgetProps> = ({
-  defaultLocation = "Ludhiana Sector 4, Punjab",
+  defaultLocation = "Guntur Sector 4, Andhra Pradesh",
   defaultCrop = "Rice Paddy"
 }) => {
   const [location, setLocation] = useState<string>(defaultLocation);
@@ -68,7 +68,7 @@ export const AgriculturalForecastWidget: React.FC<AgriculturalForecastWidgetProp
   const [selectedDayIndex, setSelectedDayIndex] = useState<number>(0);
 
   const locationsList = [
-    "Ludhiana Sector 4, Punjab",
+    "Guntur Sector 4, Andhra Pradesh",
     "Solan Valley Block B, Himachal",
     "Deccan Cotton Belt, Andhra Pradesh",
     "Srinagar Apple Orchards, Kashmir",

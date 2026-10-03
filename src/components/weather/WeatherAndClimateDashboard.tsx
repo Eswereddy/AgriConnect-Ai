@@ -47,8 +47,8 @@ export default function WeatherAndClimateDashboard() {
   const [error, setError] = useState<string | null>(null);
 
   // Loaded Weather & Location State
-  const [currentLocation, setCurrentLocation] = useState<string>("Ludhiana, Punjab");
-  const [coordinates, setCoordinates] = useState<{ lat: number; lon: number }>({ lat: 30.901, lon: 75.857 });
+  const [currentLocation, setCurrentLocation] = useState<string>("Guntur, Andhra Pradesh");
+  const [coordinates, setCoordinates] = useState<{ lat: number; lon: number }>({ lat: 16.3067, lon: 80.4365 });
   const [currentWeather, setCurrentWeather] = useState({
     temp: 34.2,
     humidity: 78,
@@ -207,13 +207,13 @@ export default function WeatherAndClimateDashboard() {
           analyzeLocationWeather(`Latitude: ${latitude.toFixed(4)}, Longitude: ${longitude.toFixed(4)}`);
         },
         (err) => {
-          console.warn("Geolocation prompt was declined or unavailable, defaulting to Ludhiana, Punjab.", err);
-          analyzeLocationWeather("Ludhiana, Punjab");
+          console.warn("Geolocation prompt was declined or unavailable, defaulting to Guntur, Andhra Pradesh.", err);
+          analyzeLocationWeather("Guntur, Andhra Pradesh");
         },
         { timeout: 8000 }
       );
     } else {
-      analyzeLocationWeather("Ludhiana, Punjab");
+      analyzeLocationWeather("Guntur, Andhra Pradesh");
     }
   }, []);
 

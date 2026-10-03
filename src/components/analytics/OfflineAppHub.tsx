@@ -152,7 +152,7 @@ export default function OfflineAppHub({ diagnostics = [], onAddDiagnostic }: Off
 
   // Offline Farmer Addition
   const [newFarmerName, setNewFarmerName] = useState("");
-  const [newFarmerLocation, setNewFarmerLocation] = useState("Pune Block");
+  const [newFarmerLocation, setNewFarmerLocation] = useState("Krishna Block");
   const [newFarmerCrops, setNewFarmerCrops] = useState("Basmati Rice");
 
   // Offline Scheme Application
@@ -349,7 +349,7 @@ export default function OfflineAppHub({ diagnostics = [], onAddDiagnostic }: Off
         );
       } else if (code === "3") {
         setPhoneScreenText(
-          "Weather Emergency Alert:\n- Severe Heatwave warning for Punjab Plain. Avoid field labor between 11 AM - 4 PM."
+          "Weather Emergency Alert:\n- Severe Heatwave warning for Andhra Pradesh Plain. Avoid field labor between 11 AM - 4 PM."
         );
       } else if (code === "0") {
         setPhoneScreenText(
@@ -1029,10 +1029,10 @@ export default function OfflineAppHub({ diagnostics = [], onAddDiagnostic }: Off
                           onChange={(e) => setNewFarmerLocation(e.target.value)}
                           className="w-full bg-white border border-slate-200 rounded-lg p-1.5 text-[11px] font-semibold text-slate-700 focus:outline-none"
                         >
-                          <option value="Pune Block">Pune Block</option>
-                          <option value="Ludhiana Block">Ludhiana Block</option>
+                          <option value="Krishna Block">Krishna Block</option>
+                          <option value="Guntur Block">Guntur Block</option>
                           <option value="Karnal Block">Karnal Block</option>
-                          <option value="Amritsar Block B">Amritsar Block B</option>
+                          <option value="Vijayawada Block B">Vijayawada Block B</option>
                         </select>
                       </div>
                       <div className="space-y-0.5">

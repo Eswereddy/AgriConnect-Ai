@@ -133,7 +133,7 @@ const MOCK_ADVISORIES: Record<string, AdvisoryData> = {
       "Store bag lots on raised wooden pallets with 30cm clearance from cold walls."
     ],
     marketTiming: {
-      mandiSuggestions: "Punjab Central Cooperative Mandi & National Digital Agri-Exchange (NCDEX) Rice Lot #R204.",
+      mandiSuggestions: "Andhra Pradesh Central Cooperative Mandi & National Digital Agri-Exchange (NCDEX) Rice Lot #R204.",
       pricePrediction: "Rice wholesale indexes are highly bullish. Hold grain assets for 45 days post-harvest to capture premium pricing (+18.5% margin)."
     },
     weatherAdaptiveSuggestions: "High humidity indices forecast for next 72 hours. Postpone non-essential irrigation. Focus immediately on prophylactic fungal sheath blight monitoring."
@@ -202,7 +202,7 @@ export default function AutomatedFarmAdvisory() {
   const [selectedWeather, setSelectedWeather] = useState<string>("Sunny, 32°C, 65% humidity");
   const [soilMoisture, setSoilMoisture] = useState<number>(42);
   const [temperature, setTemperature] = useState<number>(28);
-  const [location, setLocation] = useState<string>("Punjab, India");
+  const [location, setLocation] = useState<string>("Andhra Pradesh, India");
 
   const [loading, setLoading] = useState<boolean>(false);
   const [advisory, setAdvisory] = useState<AdvisoryData>(MOCK_ADVISORIES["Basmati Rice"]);

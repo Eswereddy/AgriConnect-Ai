@@ -120,10 +120,10 @@ export default function ExpertDashboardOverview({
   const farmerHistoryDatabase = [
     { name: "Suresh Patil", location: "Nashik, MH", trustIndex: 94, consultationsCount: 5, primaryCrop: "Grapes", recentDiagnosis: "Downy Mildew" },
     { name: "Anjali Menon", location: "Palakkad, KL", trustIndex: 88, consultationsCount: 3, primaryCrop: "Coconut Palm", recentDiagnosis: "Leaf Powdery Spot" },
-    { name: "Ram Singh", location: "Ludhiana, PB", trustIndex: 96, consultationsCount: 12, primaryCrop: "Rice", recentDiagnosis: "Leaf Folder" },
+    { name: "Ram Singh", location: "Guntur, AP", trustIndex: 96, consultationsCount: 12, primaryCrop: "Rice", recentDiagnosis: "Leaf Folder" },
     { name: "Vikram Gaikwad", location: "Satara, MH", trustIndex: 91, consultationsCount: 4, primaryCrop: "Tomato", recentDiagnosis: "Early Blight" },
     { name: "Ramesh Singh", location: "Varanasi, UP", trustIndex: 95, consultationsCount: 6, primaryCrop: "Wheat", recentDiagnosis: "Puccinia Rust" },
-    { name: "Harpreet Kaur", location: "Amritsar, PB", trustIndex: 98, consultationsCount: 15, primaryCrop: "Cotton", recentDiagnosis: "Whitefly Outbreak" }
+    { name: "Harpreet Kaur", location: "Vijayawada, PB", trustIndex: 98, consultationsCount: 15, primaryCrop: "Cotton", recentDiagnosis: "Whitefly Outbreak" }
   ];
 
   // Camera feed refs
