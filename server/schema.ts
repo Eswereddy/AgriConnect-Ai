@@ -191,6 +191,31 @@ CREATE TABLE IF NOT EXISTS mandi_prices (
 CREATE UNIQUE INDEX IF NOT EXISTS uq_mandi_price ON mandi_prices(state, district, market, commodity, variety, grade, arrival_date)
 ;;
 CREATE INDEX IF NOT EXISTS idx_mandi_lookup ON mandi_prices(commodity, market, arrival_date)
+;;
+CREATE TABLE IF NOT EXISTS farmer_profiles (
+  id                               UUID PRIMARY KEY,
+  farmer_code                      TEXT NOT NULL UNIQUE,
+  owner_id                         TEXT NOT NULL,
+  farmer_name                      TEXT NOT NULL,
+  district                         TEXT NOT NULL,
+  location                         TEXT,
+  crop                             TEXT NOT NULL,
+  quantity_quintals                NUMERIC NOT NULL CHECK (quantity_quintals >= 0),
+  expected_price_per_quintal       NUMERIC CHECK (expected_price_per_quintal >= 0),
+  current_market_price_per_quintal NUMERIC CHECK (current_market_price_per_quintal >= 0),
+  selling_preference               TEXT NOT NULL DEFAULT 'undecided' CHECK (selling_preference IN ('mandi','direct_buyer','fpo','contract','undecided')),
+  buyer_requirement                TEXT,
+  verified_status                  TEXT NOT NULL DEFAULT 'pending' CHECK (verified_status IN ('pending','verified','rejected')),
+  contact_permission               BOOLEAN NOT NULL DEFAULT false,
+  collected_on                     DATE NOT NULL,
+  is_sample                        BOOLEAN NOT NULL DEFAULT false,
+  created_at                       TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at                       TIMESTAMPTZ NOT NULL DEFAULT now()
+)
+;;
+CREATE INDEX IF NOT EXISTS idx_farmer_profiles_owner ON farmer_profiles(owner_id)
+;;
+CREATE INDEX IF NOT EXISTS idx_farmer_profiles_district ON farmer_profiles(district, crop)
 `
   .split(/^;;$/m)
   .map((s) => s.trim())
