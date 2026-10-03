@@ -11,7 +11,7 @@ export interface Payment { id: string; orderId: string; amount: number; provider
 export interface Shipment { id: string; orderId: string; carrierId: string | null; trackingCode: string; pickupAddress: string | null; dropAddress: string | null; status: "booked" | "picked_up" | "in_transit" | "delivered" }
 export interface OrderDetail { order: Order; payments: Payment[]; shipment: Shipment | null; shipmentEvents: { id: string; status: string; note: string | null; createdAt: string }[] }
 export interface StockRow { id: string; warehouseName: string; location: string | null; cropName: string; quantityKg: number }
-export interface MarketStats { farms: number; openListings: number; pendingBids: number; orders: number; completedOrders: number; completedValue: number; escrowHeld: number }
+export interface MarketStats { refundsPending?: number; farms: number; openListings: number; pendingBids: number; orders: number; completedOrders: number; completedValue: number; escrowHeld: number }
 
 async function call<T>(method: string, path: string, body?: unknown): Promise<T> {
   const res = await fetch(`/api/market${path}`, {
@@ -54,9 +54,13 @@ export const marketApi = {
   listOrders: () => call<Order[]>("GET", "/orders"),
   orderDetail: (id: string) => call<OrderDetail>("GET", `/orders/${id}`),
   payOrder: (id: string) => call<{ order: Order; payment: Payment }>("POST", `/orders/${id}/pay`),
-  cancelOrder: (id: string) => call<Order>("POST", `/orders/${id}/cancel`),
+  cancelOrder: (id: string) => call<Order & { refundPending?: boolean }>("POST", `/orders/${id}/cancel`),
   shipOrder: (id: string, b: { pickupAddress?: string; dropAddress?: string; carrierId?: string }) => call<{ order: Order; shipment: Shipment }>("POST", `/orders/${id}/ship`, b),
   confirmDelivery: (id: string) => call<Order>("POST", `/orders/${id}/confirm-delivery`),
+  // real payments (Razorpay)
+  paymentConfig: () => call<{ provider: "razorpay" | "ledger" | "disabled"; keyId: string | null }>("GET", "/payments/config"),
+  paymentIntent: (orderId: string) => call<{ keyId: string; razorpayOrderId: string; amount: number; currency: string; orderId: string }>("POST", `/payments/orders/${orderId}/intent`),
+  paymentVerify: (orderId: string, r: { razorpay_order_id: string; razorpay_payment_id: string; razorpay_signature: string }) => call<{ order: Order; payment: Payment }>("POST", `/payments/orders/${orderId}/verify`, r),
   // shipments
   myShipments: () => call<Shipment[]>("GET", "/shipments/mine"),
   addShipmentEvent: (id: string, b: { status: string; note?: string }) => call<Shipment>("POST", `/shipments/${id}/events`, b),
