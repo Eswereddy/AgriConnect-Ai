@@ -1,0 +1,31 @@
+farmer_id,farmer_name,district,location,crop,quantity_quintals,expected_price_per_quintal,current_market_price_per_quintal,selling_preference,buyer_requirement,verified_status,contact_permission,date_collected
+SAMPLE-001,Sample Farmer 01,Anantapur,Rapthadu,Groundnut,40,6800,,mandi,Needs buyer paying within 3 days,verified,yes,2026-09-15
+SAMPLE-002,Sample Farmer 02,Anantapur,Kalyandurg,Groundnut,25,6700,,direct_buyer,"Oil mill or trader, bulk lot",pending,yes,2026-09-15
+SAMPLE-003,Sample Farmer 03,Anantapur,Guntakal,Sunflower,18,6200,,fpo,FPO collection centre nearby,verified,yes,2026-09-16
+SAMPLE-004,Sample Farmer 04,Anantapur,Dharmavaram,Sweet Orange,30,3200,,direct_buyer,"Fruit wholesaler, grade A pickup",pending,no,2026-09-16
+SAMPLE-005,Sample Farmer 05,Anantapur,Hindupur,Tomato,22,1800,,mandi,"Daily mandi sale, transport needed",verified,yes,2026-09-17
+SAMPLE-006,Sample Farmer 06,Kurnool,Adoni,Cotton,35,7400,,direct_buyer,"Ginning mill, moisture below 8%",verified,yes,2026-09-17
+SAMPLE-007,Sample Farmer 07,Kurnool,Nandyal,Bengalgram,28,5600,,mandi,Cash payment preferred,pending,yes,2026-09-18
+SAMPLE-008,Sample Farmer 08,Kurnool,Yemmiganur,Onion,50,1500,,mandi,Cold storage space for 2 weeks,pending,no,2026-09-18
+SAMPLE-009,Sample Farmer 09,Kurnool,Pattikonda,Groundnut,20,6600,,fpo,Joint sale through FPO,verified,yes,2026-09-19
+SAMPLE-010,Sample Farmer 10,Chittoor,Madanapalle,Tomato,45,1900,,direct_buyer,"Retail chain, crates supplied",verified,yes,2026-09-19
+SAMPLE-011,Sample Farmer 11,Chittoor,Punganur,Mango,60,4200,,direct_buyer,"Pulp factory, season contract",pending,yes,2026-09-20
+SAMPLE-012,Sample Farmer 12,Chittoor,Palamaner,Banana,70,1600,,mandi,Truck pickup from farm,pending,no,2026-09-20
+SAMPLE-013,Sample Farmer 13,Guntur,Tenali,Chilli,15,14500,,direct_buyer,"Exporter, dried, low moisture",verified,yes,2026-09-21
+SAMPLE-014,Sample Farmer 14,Guntur,Sattenapalli,Cotton,40,7300,,mandi,Cotton Corporation procurement,pending,yes,2026-09-21
+SAMPLE-015,Sample Farmer 15,Guntur,Narasaraopet,Turmeric,12,12800,,fpo,Processing unit tie-up,verified,yes,2026-09-22
+SAMPLE-016,Sample Farmer 16,Krishna,Gudivada,Paddy,120,2300,,mandi,Procurement centre within 10 km,verified,yes,2026-09-22
+SAMPLE-017,Sample Farmer 17,Krishna,Machilipatnam,Paddy,90,2250,,mandi,"Rice miller, 15 day payment ok",pending,no,2026-09-23
+SAMPLE-018,Sample Farmer 18,Krishna,Nuzvid,Mango,55,4500,,direct_buyer,"Exporter, grade A only",pending,yes,2026-09-23
+SAMPLE-019,Sample Farmer 19,West Godavari,Tadepalligudem,Paddy,140,2300,,mandi,Government procurement,verified,yes,2026-09-24
+SAMPLE-020,Sample Farmer 20,West Godavari,Eluru,Maize,65,2100,,direct_buyer,Poultry feed unit,pending,yes,2026-09-24
+SAMPLE-021,Sample Farmer 21,East Godavari,Rajahmundry,Banana,80,1700,,direct_buyer,"Wholesaler, weekly lifting",verified,yes,2026-09-25
+SAMPLE-022,Sample Farmer 22,East Godavari,Amalapuram,Coconut,30,2800,,fpo,Copra unit collection,pending,no,2026-09-25
+SAMPLE-023,Sample Farmer 23,Prakasam,Markapur,Chilli,14,14200,,direct_buyer,Cold storage + exporter,pending,yes,2026-09-26
+SAMPLE-024,Sample Farmer 24,Prakasam,Ongole,Tobacco,25,9800,,undecided,Not decided yet,pending,no,2026-09-26
+SAMPLE-025,Sample Farmer 25,Nellore,Kavali,Paddy,100,2280,,mandi,Rice miller nearby,verified,yes,2026-09-27
+SAMPLE-026,Sample Farmer 26,Kadapa,Pulivendula,Banana,75,1650,,direct_buyer,"Fruit wholesaler, sorted bunches",verified,yes,2026-09-27
+SAMPLE-027,Sample Farmer 27,Kadapa,Proddatur,Turmeric,10,12600,,fpo,Spice board registered buyer,pending,yes,2026-09-28
+SAMPLE-028,Sample Farmer 28,Srikakulam,Palasa,Cashew,8,11000,,fpo,"Processing unit, raw nuts",pending,no,2026-09-29
+SAMPLE-029,Sample Farmer 29,Visakhapatnam,Anakapalle,Sugarcane,200,350,,contract,Sugar factory contract,verified,yes,2026-09-30
+SAMPLE-030,Sample Farmer 30,Vizianagaram,Bobbili,Redgram (Tur),16,7200,,mandi,"Dal mill, 15 day payment ok",pending,yes,2026-10-01
