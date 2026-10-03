@@ -14,7 +14,8 @@
     "test:market": "tsx server/scripts/test-marketplace.ts",
     "test:live": "tsx server/scripts/test-live.ts",
     "check:feeds": "tsx server/scripts/check-live-feeds.ts",
-    "import:kaggle": "tsx server/scripts/import-kaggle-ap.ts"
+    "import:kaggle": "tsx server/scripts/import-kaggle-ap.ts",
+    "test:farmers": "tsx server/scripts/test-farmer-profiles.ts"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
