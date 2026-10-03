@@ -465,9 +465,7 @@ export default function App() {
       {/* Dynamic Header */}
       <header className="h-20 bg-white border-b border-slate-200 px-8 flex justify-between items-center sticky top-0 z-40 shadow-sm">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 bg-emerald-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-emerald-900/20">
-            <Sprout className="h-6 w-6" />
-          </div>
+          <img src="/logo.png" alt="AgriConnect AI logo" width={48} height={48} className="h-12 w-12 object-contain" />
           <div>
             <div className="flex items-center gap-1.5">
               <h1 className="font-extrabold text-slate-800 text-lg tracking-tight font-display">AgriConnect <span className="text-emerald-600">AI</span></h1>
