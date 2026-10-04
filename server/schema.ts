@@ -216,6 +216,45 @@ CREATE TABLE IF NOT EXISTS farmer_profiles (
 CREATE INDEX IF NOT EXISTS idx_farmer_profiles_owner ON farmer_profiles(owner_id)
 ;;
 CREATE INDEX IF NOT EXISTS idx_farmer_profiles_district ON farmer_profiles(district, crop)
+;;
+CREATE TABLE IF NOT EXISTS buyer_profiles (
+  id                         UUID PRIMARY KEY,
+  buyer_code                 TEXT NOT NULL UNIQUE,
+  owner_id                   TEXT NOT NULL,
+  buyer_name                 TEXT NOT NULL,
+  buyer_type                 TEXT NOT NULL CHECK (buyer_type IN ('trader','retailer','wholesaler','processor','exporter')),
+  district                   TEXT NOT NULL,
+  location                   TEXT,
+  required_crop              TEXT NOT NULL,
+  required_quantity_quintals NUMERIC NOT NULL CHECK (required_quantity_quintals > 0),
+  offered_price_per_quintal  NUMERIC NOT NULL CHECK (offered_price_per_quintal >= 0),
+  preferred_grade            TEXT,
+  purchase_frequency         TEXT NOT NULL DEFAULT 'one_time' CHECK (purchase_frequency IN ('one_time','weekly','monthly','seasonal')),
+  delivery_preference        TEXT NOT NULL DEFAULT 'either' CHECK (delivery_preference IN ('delivery','pickup','either')),
+  payment_terms              TEXT NOT NULL DEFAULT 'on_delivery' CHECK (payment_terms IN ('advance','on_delivery','credit_7d','credit_15d')),
+  verified_status            TEXT NOT NULL DEFAULT 'pending' CHECK (verified_status IN ('pending','verified','rejected')),
+  contact_permission         BOOLEAN NOT NULL DEFAULT false,
+  created_at                 TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at                 TIMESTAMPTZ NOT NULL DEFAULT now()
+)
+;;
+CREATE INDEX IF NOT EXISTS idx_buyer_profiles_owner ON buyer_profiles(owner_id)
+;;
+CREATE INDEX IF NOT EXISTS idx_buyer_profiles_crop ON buyer_profiles(required_crop, district)
+;;
+CREATE TABLE IF NOT EXISTS bid_counters (
+  id                  UUID PRIMARY KEY,
+  bid_id              UUID NOT NULL REFERENCES bids(id) ON DELETE CASCADE,
+  from_role           TEXT NOT NULL CHECK (from_role IN ('seller','buyer')),
+  from_user_id        TEXT NOT NULL,
+  quantity_kg         NUMERIC NOT NULL CHECK (quantity_kg > 0),
+  price_paise_per_kg  BIGINT NOT NULL CHECK (price_paise_per_kg > 0),
+  note                TEXT,
+  status              TEXT NOT NULL DEFAULT 'open' CHECK (status IN ('open','accepted','superseded')),
+  created_at          TIMESTAMPTZ NOT NULL DEFAULT now()
+)
+;;
+CREATE INDEX IF NOT EXISTS idx_bid_counters_bid ON bid_counters(bid_id, created_at)
 `
   .split(/^;;$/m)
   .map((s) => s.trim())
