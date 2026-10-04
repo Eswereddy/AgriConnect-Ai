@@ -204,7 +204,9 @@ farmerProfilesRouter.post("/bulk", adminOnly, wrap(async (req, res) => {
   let inserted = 0; const skipped: { row: number; error: string }[] = [];
   for (let i = 0; i < list.length; i++) {
     try {
-      const r = await insertOne(clean(list[i]), req.user!.id, false);
+      const c = clean(list[i]);
+      // Rows whose ID starts with DEMO- or SAMPLE- are placeholders: flag them so they can never be matched or published as real supply.
+      const r = await insertOne(c, req.user!.id, /^(demo|sample)-/i.test(c.farmerCode ?? ""));
       if ("duplicate" in r) skipped.push({ row: i + 1, error: "This farmer ID already exists." }); else inserted++;
     } catch (e: any) {
       if (e instanceof HttpError) skipped.push({ row: i + 1, error: e.message }); else throw e;
