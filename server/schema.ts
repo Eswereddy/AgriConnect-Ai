@@ -255,6 +255,14 @@ CREATE TABLE IF NOT EXISTS bid_counters (
 )
 ;;
 CREATE INDEX IF NOT EXISTS idx_bid_counters_bid ON bid_counters(bid_id, created_at)
+;;
+CREATE TABLE IF NOT EXISTS profile_listings (
+  farmer_profile_id  UUID NOT NULL REFERENCES farmer_profiles(id) ON DELETE CASCADE,
+  listing_id         UUID NOT NULL UNIQUE REFERENCES listings(id) ON DELETE CASCADE,
+  created_at         TIMESTAMPTZ NOT NULL DEFAULT now()
+)
+;;
+CREATE INDEX IF NOT EXISTS idx_profile_listings_profile ON profile_listings(farmer_profile_id)
 `
   .split(/^;;$/m)
   .map((s) => s.trim())
