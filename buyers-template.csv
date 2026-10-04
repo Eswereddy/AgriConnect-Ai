@@ -1,6 +1,6 @@
 buyer_id,business_name,buyer_type,location,required_crops,required_quantity_quintals,offered_price_per_quintal,quality_requirement,purchase_frequency,pickup_delivery,payment_terms,verification,contact_permission
-SAMPLE-B01,Sample Trader A,trader,Anantapur,Tomato,20,2700,Grade A,weekly,pickup,on_delivery,verified,yes
-SAMPLE-B02,Sample Retailer B,retailer,Kurnool,Tomato,20,2400,Grade A,weekly,delivery,advance,verified,yes
-SAMPLE-B03,Sample Wholesaler C,wholesaler,Anantapur,Tomato,30,2550,Grade B,monthly,either,credit_7d,verified,no
-SAMPLE-B04,Sample Processor D,processor,Kurnool,Onion,30,1850,Grade A,seasonal,pickup,on_delivery,verified,yes
-SAMPLE-B05,Sample Exporter E,exporter,Anantapur,Groundnut,40,6900,Grade A,seasonal,delivery,advance,pending,yes
+DEMO-B001,Sri Lakshmi Traders (Demo),trader,Anantapur,Tomato,20,1900,Grade A,weekly,pickup,on_delivery,verified,yes
+DEMO-B002,Rayalaseema Oil Mill (Demo),processor,Anantapur,Groundnut,40,6900,Grade A,monthly,pickup,credit_7d,verified,yes
+DEMO-B003,Amaravati Fruit Wholesale (Demo),wholesaler,Anantapur,Sweet Orange,30,3100,Grade A,weekly,either,on_delivery,verified,yes
+DEMO-B004,Guntur Spice Exports (Demo),exporter,Guntur,Chilli,15,14300,Export grade,seasonal,delivery,advance,verified,no
+DEMO-B005,Krishna Fresh Retail (Demo),retailer,Chittoor,Tomato,40,1850,Grade B,weekly,delivery,credit_7d,verified,yes
