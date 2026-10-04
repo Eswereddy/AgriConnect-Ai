@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { buyerProfilesApi, type BuyerProfile, type BuyerProfileInput, type Match } from "../../services/buyerProfilesApi";
+import NegotiationPanel from "../marketplace/NegotiationPanel";
 
 const EMPTY: BuyerProfileInput = {
   buyerName: "", buyerType: "trader", district: "", location: "", requiredCrop: "", requiredQuantityQuintals: 0,
@@ -9,12 +10,20 @@ const EMPTY: BuyerProfileInput = {
 const label = (s: string) => s.replace(/_/g, " ").replace(/^\w/, (c) => c.toUpperCase());
 const inp = "w-full rounded-lg border border-gray-300 px-3 py-2 text-sm";
 
-export default function BuyerProfiles({ isAdmin = false }: { isAdmin?: boolean }) {
+export default function BuyerProfiles({ isAdmin = false, role }: { isAdmin?: boolean; role?: "Farmer" | "Buyer" | "Admin" }) {
+  const me = role ?? (isAdmin ? "Admin" : "Buyer");
   const [profiles, setProfiles] = useState<BuyerProfile[]>([]);
   const [matches, setMatches] = useState<Match[]>([]);
   const [form, setForm] = useState<BuyerProfileInput>(EMPTY);
   const [err, setErr] = useState("");
   const [busy, setBusy] = useState(false);
+  const [started, setStarted] = useState<Record<string, string>>({});   // match key -> bidId
+  const [rowErr, setRowErr] = useState<Record<string, string>>({});
+  const key = (m: Match) => `${m.farmerProfileId}:${m.buyerProfileId}`;
+  const rowAction = async (m: Match, fn: () => Promise<unknown>) => {
+    setRowErr((e) => ({ ...e, [key(m)]: "" }));
+    try { await fn(); await load(); } catch (e: any) { setRowErr((x) => ({ ...x, [key(m)]: e.message })); }
+  };
 
   const load = async () => {
     try {
@@ -114,7 +123,15 @@ export default function BuyerProfiles({ isAdmin = false }: { isAdmin?: boolean }
               <div className="text-right">
                 <div className="font-semibold">{m.score}/100</div>
                 <div className={m.needsNegotiation ? "text-amber-600" : "text-green-700"}>{m.needsNegotiation ? "Negotiate" : "Ready to order"}</div>
+                {me === "Buyer" && (m.listed
+                  ? <button className="mt-1 rounded-lg bg-green-700 px-3 py-1 text-xs font-medium text-white" onClick={() => rowAction(m, async () => { const r = await buyerProfilesApi.startFromMatch(m.farmerProfileId, m.buyerProfileId); setStarted((x) => ({ ...x, [key(m)]: r.bidId })); })}>Start negotiation</button>
+                  : <div className="mt-1 text-xs text-gray-500">Farmer hasn't listed this yet</div>)}
+                {me === "Farmer" && !m.listed && (
+                  <button className="mt-1 rounded-lg bg-green-700 px-3 py-1 text-xs font-medium text-white" onClick={() => rowAction(m, () => buyerProfilesApi.publishFarmerProfile(m.farmerProfileId))}>Publish to marketplace</button>)}
+                {me === "Farmer" && m.listed && <div className="mt-1 text-xs text-green-700">Listed — see Bids</div>}
               </div>
+              {rowErr[key(m)] && <p className="basis-full text-xs text-red-600">{rowErr[key(m)]}</p>}
+              {started[key(m)] && <div className="basis-full"><NegotiationPanel bidId={started[key(m)]} /></div>}
             </div>
           ))}
           {!matches.length && <p className="text-sm text-gray-500">No matches yet.</p>}
@@ -122,4 +139,4 @@ export default function BuyerProfiles({ isAdmin = false }: { isAdmin?: boolean }
       </section>
     </div>
   );
-}
+          }
