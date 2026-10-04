@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import { payForOrder } from "../../services/checkout";
 import LiveFeeds from "./LiveFeeds";
+import NegotiationPanel from "./NegotiationPanel";
 import {
   marketApi, inr,
   type Farm, type Crop, type Listing, type Bid, type Order, type OrderDetail, type Shipment, type StockRow, type MarketStats,
@@ -172,19 +173,24 @@ function SellPanel() {
 function ListingBids({ listingId, onChanged }: { listingId: string; onChanged: () => void }) {
   const bids = useLoad<Bid[]>(() => marketApi.listingBids(listingId), []);
   const act = useAction();
+  const [negFor, setNegFor] = useState<string | null>(null);
   const after = async (fn: () => Promise<unknown>) => { if (await act.run(fn)) { bids.reload(); onChanged(); } };
   return (
     <div className="mt-3 pt-3 border-t border-slate-100">
       <ErrorBanner msg={act.error} />
       {bids.data.length === 0 ? <Empty text="No bids yet." /> : bids.data.map(b => (
-        <div key={b.id} className="flex items-center justify-between text-sm py-1.5">
+        <div key={b.id}>
+        <div className="flex items-center justify-between text-sm py-1.5">
           <span>{b.buyerName ?? "Buyer"} · {b.quantityKg} kg @ {inr(b.pricePerKg)} = <b>{inr(b.totalAmount)}</b></span>
           <span className="flex items-center gap-2"><Pill s={b.status} />
             {b.status === "pending" && <>
               <button className={primary} disabled={act.busy} onClick={() => after(() => marketApi.acceptBid(b.id))}>Accept</button>
+              <button className={ghost} onClick={() => setNegFor(negFor === b.id ? null : b.id)}>Negotiate</button>
               <button className={danger} disabled={act.busy} onClick={() => after(() => marketApi.rejectBid(b.id))}>Reject</button>
             </>}
           </span>
+        </div>
+        {negFor === b.id && <NegotiationPanel bidId={b.id} onChanged={() => { bids.reload(); onChanged(); }} />}
         </div>
       ))}
     </div>
@@ -239,15 +245,20 @@ function BrowsePanel() {
 function MyBidsPanel() {
   const bids = useLoad<Bid[]>(marketApi.myBids, []);
   const act = useAction();
+  const [negFor, setNegFor] = useState<string | null>(null);
   return (
     <div className={card}>
       <ErrorBanner msg={act.error || bids.error} />
       {bids.loading ? <Empty text="Loading..." /> : bids.data.length === 0 ? <Empty text="You haven't placed any bids." /> : bids.data.map(b => (
-        <div key={b.id} className="flex items-center justify-between text-sm py-1.5">
+        <div key={b.id}>
+        <div className="flex items-center justify-between text-sm py-1.5">
           <span>{b.quantityKg} kg @ {inr(b.pricePerKg)} = <b>{inr(b.totalAmount)}</b></span>
           <span className="flex items-center gap-2"><Pill s={b.status} />
+            {b.status === "pending" && <button className={ghost} onClick={() => setNegFor(negFor === b.id ? null : b.id)}>Negotiate</button>}
             {b.status === "pending" && <button className={danger} onClick={async () => { if (await act.run(() => marketApi.withdrawBid(b.id))) bids.reload(); }}>Withdraw</button>}
           </span>
+        </div>
+        {negFor === b.id && <NegotiationPanel bidId={b.id} onChanged={bids.reload} />}
         </div>
       ))}
     </div>
